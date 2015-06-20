@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MainFrameController.h
 //  chnword
 //
 //  Created by 苏智 on 15/6/20.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface MainFrameController : UIViewController
 
 
 @end

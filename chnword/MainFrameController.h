@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainFrameController : UIViewController
+@interface MainFrameController : UIViewController <UIScrollViewDelegate>
 
 
 @end

@@ -12,6 +12,7 @@
             <string>STLibian-SC-Regular</string>
             <string>STLibian-SC-Regular</string>
             <string>STLibian-SC-Regular</string>
+            <string>STLibian-SC-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -76,6 +77,7 @@
                             <constraint firstAttribute="centerX" secondItem="aDl-8h-rEY" secondAttribute="centerX" id="pOG-Jt-B3S"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="pageControl" destination="ilf-WA-XDk" id="iEX-UP-9a8"/>
                         <outlet property="pages" destination="Y55-W5-ZoP" id="Jt2-DT-GJt"/>
@@ -217,6 +219,7 @@
                             <outlet property="delegate" destination="gFG-LM-IWp" id="Kl1-g8-aGx"/>
                         </connections>
                     </tableView>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="loginButton" destination="6pI-9i-Vuy" id="wYA-mc-3bf"/>
                         <outlet property="userCodeInput" destination="bla-oJ-GEG" id="nfy-IW-hTP"/>
@@ -230,10 +233,12 @@
         <scene sceneID="dED-d6-u1f">
             <objects>
                 <navigationController id="dEa-q1-kRn" userLabel="MAIN-NAVI" sceneMemberID="viewController">
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nJQ-Px-rVU">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="nJQ-Px-rVU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="Nfe-1C-7kX" kind="relationship" relationship="rootViewController" id="HW5-5S-irI"/>
@@ -371,7 +376,6 @@
                     <tabBarItem key="tabBarItem" title="" image="TAB-Main" id="4gI-wW-O7d">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="20"/>
                     </tabBarItem>
-                    <nil key="simulatedTopBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7fx-4I-07Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -511,18 +515,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="《三千字》字课产品" id="2to-oZ-EKk"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wc8-VL-0h5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="1987"/>
         </scene>
-        <!--字动画分类-->
+        <!--CATEGORY-->
         <scene sceneID="ywe-dV-ONl">
             <objects>
-                <collectionViewController id="FUD-ym-wLw" customClass="CategoriesController" sceneMemberID="viewController">
+                <collectionViewController id="FUD-ym-wLw" userLabel="CATEGORY" customClass="CategoriesController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="cb5-Og-REY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -565,6 +567,7 @@
                                 <connections>
                                     <outlet property="categoryImage" destination="XeF-Ot-6qg" id="TCj-3A-E5B"/>
                                     <outlet property="categoryName" destination="4YH-wX-cP8" id="eOt-It-2bU"/>
+                                    <segue destination="Ivp-No-k7o" kind="show" identifier="gotoCategory" id="BPF-IV-ez2"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -573,14 +576,75 @@
                             <outlet property="delegate" destination="FUD-ym-wLw" id="KHo-PZ-lGq"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="字动画分类" id="Z2K-Ka-mGL"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationItem key="navigationItem" id="Z2K-Ka-mGL">
+                        <barButtonItem key="backBarButtonItem" title="分类" id="Ks3-ni-C1Y"/>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKl-Yv-oMW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="800" y="1987"/>
+        </scene>
+        <!--WORDS-->
+        <scene sceneID="Fdy-Uk-egy">
+            <objects>
+                <collectionViewController id="Ivp-No-k7o" userLabel="WORDS" customClass="WordsController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="3DH-0L-013">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OpT-yK-3Xd">
+                            <size key="itemSize" width="90" height="110"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordCell" id="6Dp-8z-wSN" customClass="CategoryCell">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="90" height="110"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CATE_A_01" highlightedImage="CATE_B_01" translatesAutoresizingMaskIntoConstraints="NO" id="Axr-2u-Yth" userLabel="分类图">
+                                            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天文篇" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCb-Ke-S35" userLabel="分类名称">
+                                            <rect key="frame" x="0.0" y="86" width="90" height="24"/>
+                                            <fontDescription key="fontDescription" name="STLibian-SC-Regular" family="Libian SC" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Axr-2u-Yth" firstAttribute="leading" secondItem="6Dp-8z-wSN" secondAttribute="leading" id="B2e-oL-CNh"/>
+                                    <constraint firstAttribute="trailing" secondItem="uCb-Ke-S35" secondAttribute="trailing" id="IuM-KA-YiZ"/>
+                                    <constraint firstItem="uCb-Ke-S35" firstAttribute="leading" secondItem="6Dp-8z-wSN" secondAttribute="leading" id="NU6-YG-7EA"/>
+                                    <constraint firstAttribute="trailing" secondItem="Axr-2u-Yth" secondAttribute="trailing" id="hTb-sv-eFa"/>
+                                    <constraint firstAttribute="bottom" secondItem="Axr-2u-Yth" secondAttribute="bottom" constant="20" id="m7t-pH-CIH"/>
+                                    <constraint firstItem="uCb-Ke-S35" firstAttribute="bottom" secondItem="6Dp-8z-wSN" secondAttribute="bottom" id="qO0-yD-7HO"/>
+                                    <constraint firstItem="Axr-2u-Yth" firstAttribute="top" secondItem="6Dp-8z-wSN" secondAttribute="top" id="ubo-Qf-22J"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="categoryImage" destination="Axr-2u-Yth" id="wiH-Gg-82y"/>
+                                    <outlet property="categoryName" destination="uCb-Ke-S35" id="W8b-80-1l4"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Ivp-No-k7o" id="pIw-PR-fQX"/>
+                            <outlet property="delegate" destination="Ivp-No-k7o" id="7ab-OL-A8y"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="fGF-3b-MF1"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lwJ-gT-Ab5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="800" y="2963"/>
         </scene>
     </scenes>
     <resources>

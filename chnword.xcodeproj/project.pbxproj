@@ -28,6 +28,10 @@
 		D0B947061B3693EB00A1DFD6 /* LessonsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947051B3693EB00A1DFD6 /* LessonsController.m */; };
 		D0B947091B36940B00A1DFD6 /* CategoriesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947081B36940B00A1DFD6 /* CategoriesController.m */; };
 		D0B9470C1B369C6B00A1DFD6 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9470B1B369C6B00A1DFD6 /* CategoryCell.m */; };
+		D0B9470F1B36A8B300A1DFD6 /* WordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9470E1B36A8B300A1DFD6 /* WordsController.m */; };
+		D0B947121B36A8D000A1DFD6 /* WordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947111B36A8D000A1DFD6 /* WordCell.m */; };
+		D0B947141B36AB1B00A1DFD6 /* Resource.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0B947131B36AB1B00A1DFD6 /* Resource.xcassets */; };
+		D0B947171B36B16600A1DFD6 /* CategoryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947161B36B16600A1DFD6 /* CategoryHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +86,13 @@
 		D0B947081B36940B00A1DFD6 /* CategoriesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesController.m; sourceTree = "<group>"; };
 		D0B9470A1B369C6B00A1DFD6 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		D0B9470B1B369C6B00A1DFD6 /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
+		D0B9470D1B36A8B300A1DFD6 /* WordsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordsController.h; sourceTree = "<group>"; };
+		D0B9470E1B36A8B300A1DFD6 /* WordsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordsController.m; sourceTree = "<group>"; };
+		D0B947101B36A8D000A1DFD6 /* WordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordCell.h; sourceTree = "<group>"; };
+		D0B947111B36A8D000A1DFD6 /* WordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordCell.m; sourceTree = "<group>"; };
+		D0B947131B36AB1B00A1DFD6 /* Resource.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resource.xcassets; sourceTree = "<group>"; };
+		D0B947151B36B16600A1DFD6 /* CategoryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryHeaderView.h; sourceTree = "<group>"; };
+		D0B947161B36B16600A1DFD6 /* CategoryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +151,7 @@
 				D0B947021B3693BB00A1DFD6 /* SHOP */,
 				D0B947031B3693C100A1DFD6 /* USER */,
 				D06693761B351A7D00B50D16 /* Images.xcassets */,
+				D0B947131B36AB1B00A1DFD6 /* Resource.xcassets */,
 				D07204B31B353914007C01E8 /* Libian.ttc */,
 				D06693661B351A7D00B50D16 /* Supporting Files */,
 			);
@@ -223,6 +235,12 @@
 				D0B947081B36940B00A1DFD6 /* CategoriesController.m */,
 				D0B9470A1B369C6B00A1DFD6 /* CategoryCell.h */,
 				D0B9470B1B369C6B00A1DFD6 /* CategoryCell.m */,
+				D0B9470D1B36A8B300A1DFD6 /* WordsController.h */,
+				D0B9470E1B36A8B300A1DFD6 /* WordsController.m */,
+				D0B947101B36A8D000A1DFD6 /* WordCell.h */,
+				D0B947111B36A8D000A1DFD6 /* WordCell.m */,
+				D0B947151B36B16600A1DFD6 /* CategoryHeaderView.h */,
+				D0B947161B36B16600A1DFD6 /* CategoryHeaderView.m */,
 			);
 			name = HOME;
 			sourceTree = "<group>";
@@ -327,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D07204B41B353914007C01E8 /* Libian.ttc in Resources */,
+				D0B947141B36AB1B00A1DFD6 /* Resource.xcassets in Resources */,
 				D06693751B351A7D00B50D16 /* Main.storyboard in Resources */,
 				D06693771B351A7D00B50D16 /* Images.xcassets in Resources */,
 			);
@@ -351,18 +370,21 @@
 				D07204C91B355B20007C01E8 /* DataUtil.m in Sources */,
 				D07204C41B355B16007C01E8 /* NSObject+Delay.m in Sources */,
 				D06693951B351B8A00B50D16 /* chnword.xcdatamodeld in Sources */,
+				D0B947171B36B16600A1DFD6 /* CategoryHeaderView.m in Sources */,
 				D07204CD1B3579D4007C01E8 /* HomePageController.m in Sources */,
 				D06693691B351A7D00B50D16 /* main.m in Sources */,
 				D07204D01B3673B0007C01E8 /* MainTabController.m in Sources */,
 				D07204D91B3680E4007C01E8 /* UserViewController.m in Sources */,
 				D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */,
 				D07204C31B355B16007C01E8 /* CHKeychain.m in Sources */,
+				D0B947121B36A8D000A1DFD6 /* WordCell.m in Sources */,
 				D07204BA1B3541D1007C01E8 /* LoginController.m in Sources */,
 				D0B947091B36940B00A1DFD6 /* CategoriesController.m in Sources */,
 				D07204D61B3680D7007C01E8 /* ShopViewController.m in Sources */,
 				D07204C51B355B16007C01E8 /* NSObject+JSON.m in Sources */,
 				D07204C61B355B16007C01E8 /* Util.m in Sources */,
 				D0B947061B3693EB00A1DFD6 /* LessonsController.m in Sources */,
+				D0B9470F1B36A8B300A1DFD6 /* WordsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

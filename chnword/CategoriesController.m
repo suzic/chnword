@@ -7,10 +7,12 @@
 //
 
 #import "CategoriesController.h"
+#import "WordsController.h"
 
 @interface CategoriesController ()
 
 @property (strong, nonatomic) NSMutableArray *categoryList;
+@property (assign, nonatomic) NSInteger selectedIndex;
 
 @end
 
@@ -22,11 +24,8 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
-    //[self.collectionView registerClass:[CategoryCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    self.selectedIndex = NSNotFound;
+    self.clearsSelectionOnViewWillAppear = NO;
     
     // 设置背景图片
     CGRect frame = self.view.frame;
@@ -42,7 +41,18 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    CGRect orgFrame = self.navigationController.navigationBar.frame;
+    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
+    [self.navigationController.navigationBar setFrame:orgFrame];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,15 +73,16 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     }
 }
 
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"gotoCategory"])
+    {
+        WordsController *wordController = (WordsController *)[segue destinationViewController];
+        wordController.categoryIndex = self.selectedIndex;
+    }
 }
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -79,7 +90,6 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 {
     return 1;
 }
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -101,35 +111,17 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     return CGSizeMake((self.view.frame.size.width - 50) / 3, (self.view.frame.size.width - 50) / 3 + 20);
 }
 
-#pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+// 用户选择一个cell时，首先判断highlight状态
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.selectedIndex = indexPath.row;
 	return YES;
 }
-*/
 
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+// 其次再判断select状态
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
     return YES;
 }
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end

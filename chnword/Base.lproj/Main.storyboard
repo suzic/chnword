@@ -602,7 +602,7 @@
                             <size key="itemSize" width="70" height="70"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                            <inset key="sectionInset" minX="10" minY="30" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordCell" id="6Dp-8z-wSN" customClass="WordCell">
@@ -632,6 +632,9 @@
                                     <constraint firstAttribute="centerX" secondItem="6xh-IP-jGO" secondAttribute="centerX" constant="2" id="pxb-FL-nxa"/>
                                     <constraint firstItem="Axr-2u-Yth" firstAttribute="top" secondItem="6Dp-8z-wSN" secondAttribute="top" id="ubo-Qf-22J"/>
                                 </constraints>
+                                <connections>
+                                    <segue destination="Pgb-X3-0cd" kind="show" id="4Zf-ot-hio"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -646,6 +649,105 @@
             </objects>
             <point key="canvasLocation" x="800" y="2963"/>
         </scene>
+        <!--PLAYER-->
+        <scene sceneID="NXQ-3p-wLJ">
+            <objects>
+                <viewController id="Pgb-X3-0cd" userLabel="PLAYER" customClass="PlayController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="U2H-T0-XxU"/>
+                        <viewControllerLayoutGuide type="bottom" id="eBN-pD-mWX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oRB-iR-rMc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlayBackground" translatesAutoresizingMaskIntoConstraints="NO" id="a4i-Nd-sGL">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Player" translatesAutoresizingMaskIntoConstraints="NO" id="ctK-fU-mCt">
+                                <rect key="frame" x="0.0" y="4" width="600" height="532"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ctK-fU-mCt" secondAttribute="height" multiplier="80:71" id="cO0-hb-9Pb"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cCn-Xx-4DD">
+                                <rect key="frame" x="0.0" y="500" width="600" height="100"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pp2-0Q-ZV3">
+                                        <rect key="frame" x="28" y="55" width="544" height="31"/>
+                                    </slider>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKU-rb-x7h">
+                                        <rect key="frame" x="361" y="18" width="69" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="FOREWARD">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUl-o4-G4w">
+                                        <rect key="frame" x="170" y="18" width="70" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="BACKWARD">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8D-bJ-3D4">
+                                        <rect key="frame" x="260" y="18" width="81" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="PLAY / PAUSE">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Pp2-0Q-ZV3" firstAttribute="leading" secondItem="cCn-Xx-4DD" secondAttribute="leading" constant="30" id="2yb-TH-mXA"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pp2-0Q-ZV3" secondAttribute="trailing" constant="30" id="MDA-PY-u30"/>
+                                    <constraint firstItem="n8D-bJ-3D4" firstAttribute="centerY" secondItem="HUl-o4-G4w" secondAttribute="centerY" id="QbC-6e-VX3"/>
+                                    <constraint firstItem="n8D-bJ-3D4" firstAttribute="leading" secondItem="HUl-o4-G4w" secondAttribute="trailing" constant="20" id="YA6-Ux-aY1"/>
+                                    <constraint firstItem="lKU-rb-x7h" firstAttribute="leading" secondItem="n8D-bJ-3D4" secondAttribute="trailing" constant="20" id="brp-4C-tei"/>
+                                    <constraint firstItem="n8D-bJ-3D4" firstAttribute="centerX" secondItem="Pp2-0Q-ZV3" secondAttribute="centerX" id="mHZ-nl-5QQ"/>
+                                    <constraint firstItem="n8D-bJ-3D4" firstAttribute="centerY" secondItem="lKU-rb-x7h" secondAttribute="centerY" id="rDX-rq-Hjj"/>
+                                    <constraint firstAttribute="bottom" secondItem="Pp2-0Q-ZV3" secondAttribute="bottom" constant="15" id="ret-84-fSp"/>
+                                    <constraint firstAttribute="height" constant="100" id="rgn-tK-UGs"/>
+                                    <constraint firstItem="Pp2-0Q-ZV3" firstAttribute="top" secondItem="n8D-bJ-3D4" secondAttribute="bottom" constant="10" id="yMb-ek-BEw"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Tc-ln-R9G">
+                                <rect key="frame" x="16" y="40" width="34" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="返回">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backward:" destination="Pgb-X3-0cd" eventType="touchUpInside" id="541-Kt-TOM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="a4i-Nd-sGL" firstAttribute="height" secondItem="oRB-iR-rMc" secondAttribute="height" id="0ba-aZ-psa"/>
+                            <constraint firstAttribute="centerY" secondItem="a4i-Nd-sGL" secondAttribute="centerY" id="4Bo-8W-gYm"/>
+                            <constraint firstItem="5Tc-ln-R9G" firstAttribute="top" secondItem="U2H-T0-XxU" secondAttribute="bottom" constant="20" id="6ze-fx-U4O"/>
+                            <constraint firstAttribute="width" secondItem="cCn-Xx-4DD" secondAttribute="width" id="GVx-Ll-rfS"/>
+                            <constraint firstAttribute="centerX" secondItem="cCn-Xx-4DD" secondAttribute="centerX" id="Jbr-Wg-Rew"/>
+                            <constraint firstItem="eBN-pD-mWX" firstAttribute="top" secondItem="cCn-Xx-4DD" secondAttribute="bottom" id="MQ6-Es-bfT"/>
+                            <constraint firstAttribute="centerY" secondItem="ctK-fU-mCt" secondAttribute="centerY" constant="30" id="QGO-bJ-HRr"/>
+                            <constraint firstItem="ctK-fU-mCt" firstAttribute="width" secondItem="oRB-iR-rMc" secondAttribute="width" id="bLW-Dg-2A1"/>
+                            <constraint firstItem="a4i-Nd-sGL" firstAttribute="width" secondItem="oRB-iR-rMc" secondAttribute="width" id="bxz-6a-I7Z"/>
+                            <constraint firstItem="5Tc-ln-R9G" firstAttribute="leading" secondItem="oRB-iR-rMc" secondAttribute="leadingMargin" id="jPS-5T-bgw"/>
+                            <constraint firstAttribute="centerX" secondItem="a4i-Nd-sGL" secondAttribute="centerX" id="n9J-vg-fu8"/>
+                            <constraint firstAttribute="centerX" secondItem="ctK-fU-mCt" secondAttribute="centerX" id="uAo-b8-lgj"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OPx-pY-bbY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1591" y="2963"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BoyIcon" width="140" height="234"/>
@@ -656,6 +758,8 @@
         <image name="HOME-WORDS" width="445" height="367"/>
         <image name="InputBoxLine" width="624" height="19"/>
         <image name="LoginButton" width="493" height="222"/>
+        <image name="PlayBackground" width="720" height="1280"/>
+        <image name="Player" width="720" height="639"/>
         <image name="TAB-Main" width="42" height="40"/>
         <image name="TAB-Shop" width="42" height="40"/>
         <image name="TAB-User" width="42" height="40"/>

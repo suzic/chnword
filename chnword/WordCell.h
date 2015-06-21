@@ -10,6 +10,4 @@
 
 @interface WordCell : UICollectionViewCell
 
-@property (strong, nonatomic) IBOutlet UIButton *word;
-
 @end

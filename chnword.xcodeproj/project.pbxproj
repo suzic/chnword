@@ -31,8 +31,8 @@
 		D0B9470F1B36A8B300A1DFD6 /* WordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9470E1B36A8B300A1DFD6 /* WordsController.m */; };
 		D0B947121B36A8D000A1DFD6 /* WordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947111B36A8D000A1DFD6 /* WordCell.m */; };
 		D0B947141B36AB1B00A1DFD6 /* Resource.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0B947131B36AB1B00A1DFD6 /* Resource.xcassets */; };
-		D0B947171B36B16600A1DFD6 /* CategoryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947161B36B16600A1DFD6 /* CategoryHeaderView.m */; };
 		D0B9471F1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */; };
+		D0B947241B36F73500A1DFD6 /* PlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947231B36F73500A1DFD6 /* PlayController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,9 +92,9 @@
 		D0B947101B36A8D000A1DFD6 /* WordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordCell.h; sourceTree = "<group>"; };
 		D0B947111B36A8D000A1DFD6 /* WordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordCell.m; sourceTree = "<group>"; };
 		D0B947131B36AB1B00A1DFD6 /* Resource.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resource.xcassets; sourceTree = "<group>"; };
-		D0B947151B36B16600A1DFD6 /* CategoryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryHeaderView.h; sourceTree = "<group>"; };
-		D0B947161B36B16600A1DFD6 /* CategoryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryHeaderView.m; sourceTree = "<group>"; };
 		D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdobeKaitiStd-Regular.otf"; sourceTree = "<group>"; };
+		D0B947221B36F73500A1DFD6 /* PlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayController.h; sourceTree = "<group>"; };
+		D0B947231B36F73500A1DFD6 /* PlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,16 +234,10 @@
 				D07204CC1B3579D4007C01E8 /* HomePageController.m */,
 				D0B947041B3693EB00A1DFD6 /* LessonsController.h */,
 				D0B947051B3693EB00A1DFD6 /* LessonsController.m */,
-				D0B947071B36940B00A1DFD6 /* CategoriesController.h */,
-				D0B947081B36940B00A1DFD6 /* CategoriesController.m */,
-				D0B9470A1B369C6B00A1DFD6 /* CategoryCell.h */,
-				D0B9470B1B369C6B00A1DFD6 /* CategoryCell.m */,
-				D0B9470D1B36A8B300A1DFD6 /* WordsController.h */,
-				D0B9470E1B36A8B300A1DFD6 /* WordsController.m */,
-				D0B947101B36A8D000A1DFD6 /* WordCell.h */,
-				D0B947111B36A8D000A1DFD6 /* WordCell.m */,
-				D0B947151B36B16600A1DFD6 /* CategoryHeaderView.h */,
-				D0B947161B36B16600A1DFD6 /* CategoryHeaderView.m */,
+				D0B947201B36E84000A1DFD6 /* List-Cate */,
+				D0B947211B36E86800A1DFD6 /* List-Word */,
+				D0B947221B36F73500A1DFD6 /* PlayController.h */,
+				D0B947231B36F73500A1DFD6 /* PlayController.m */,
 			);
 			name = HOME;
 			sourceTree = "<group>";
@@ -264,6 +258,28 @@
 				D07204D81B3680E4007C01E8 /* UserViewController.m */,
 			);
 			name = USER;
+			sourceTree = "<group>";
+		};
+		D0B947201B36E84000A1DFD6 /* List-Cate */ = {
+			isa = PBXGroup;
+			children = (
+				D0B947071B36940B00A1DFD6 /* CategoriesController.h */,
+				D0B947081B36940B00A1DFD6 /* CategoriesController.m */,
+				D0B9470A1B369C6B00A1DFD6 /* CategoryCell.h */,
+				D0B9470B1B369C6B00A1DFD6 /* CategoryCell.m */,
+			);
+			name = "List-Cate";
+			sourceTree = "<group>";
+		};
+		D0B947211B36E86800A1DFD6 /* List-Word */ = {
+			isa = PBXGroup;
+			children = (
+				D0B9470D1B36A8B300A1DFD6 /* WordsController.h */,
+				D0B9470E1B36A8B300A1DFD6 /* WordsController.m */,
+				D0B947101B36A8D000A1DFD6 /* WordCell.h */,
+				D0B947111B36A8D000A1DFD6 /* WordCell.m */,
+			);
+			name = "List-Word";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,11 +386,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0B9470C1B369C6B00A1DFD6 /* CategoryCell.m in Sources */,
+				D0B947241B36F73500A1DFD6 /* PlayController.m in Sources */,
 				D066936C1B351A7D00B50D16 /* AppDelegate.m in Sources */,
 				D07204C91B355B20007C01E8 /* DataUtil.m in Sources */,
 				D07204C41B355B16007C01E8 /* NSObject+Delay.m in Sources */,
 				D06693951B351B8A00B50D16 /* chnword.xcdatamodeld in Sources */,
-				D0B947171B36B16600A1DFD6 /* CategoryHeaderView.m in Sources */,
 				D07204CD1B3579D4007C01E8 /* HomePageController.m in Sources */,
 				D06693691B351A7D00B50D16 /* main.m in Sources */,
 				D07204D01B3673B0007C01E8 /* MainTabController.m in Sources */,

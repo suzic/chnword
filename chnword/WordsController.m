@@ -7,7 +7,6 @@
 //
 
 #import "WordsController.h"
-#import "CategoryHeaderView.h"
 
 @interface WordsController ()
 
@@ -41,13 +40,29 @@ static NSString * const reuseIdentifier = @"WordCell";
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    CGRect orgFrame = self.navigationController.navigationBar.frame;
+    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
+    [self.navigationController.navigationBar setFrame:orgFrame];
+}
+
 // 初始化分类列表
 - (void)setupWordsList
 {
-    self.wordsList = [NSMutableArray arrayWithCapacity:10];
-    for (int i = 0; i < 10; i++)
+    self.wordsList = [NSMutableArray arrayWithCapacity:40];
+    for (int i = 0; i < 40; i++)
     {
-        [self.wordsList addObject:@{@"wordName":[NSString stringWithFormat:@"分类%d", i + 1],
+        [self.wordsList addObject:@{@"wordName":@"",
                                     @"lockStatus":@"1",
                                     @"wordImageA":[NSString stringWithFormat:@"CATE_A_%02d", i + 1],
                                     @"wordImageB":[NSString stringWithFormat:@"CATE_B_%02d", i + 1]}];
@@ -79,6 +94,7 @@ static NSString * const reuseIdentifier = @"WordCell";
     return cell;
 }
 
+/*
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     if (kind == UICollectionElementKindSectionHeader)
@@ -92,10 +108,6 @@ static NSString * const reuseIdentifier = @"WordCell";
     }
     return nil;
 }
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return CGSizeMake((self.view.frame.size.width - 50) / 4, (self.view.frame.size.width - 50) / 4);
-}
+*/
 
 @end

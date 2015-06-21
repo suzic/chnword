@@ -42,15 +42,17 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 {
     [super viewDidAppear:animated];
     
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
+
     // 设置导航背景图片及过渡动画
-    [UIView animateWithDuration:0.1f animations:^{
-        self.navigationController.navigationBar.alpha = 0.2f;
-    } completion:^(BOOL finished) {
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
-        [UIView animateWithDuration:0.1 animations:^{
-            self.navigationController.navigationBar.alpha = 1.0f;
-        }];
-    }];
+//    [UIView animateWithDuration:0.1f animations:^{
+//        self.navigationController.navigationBar.alpha = 0.2f;
+//    } completion:^(BOOL finished) {
+//        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
+//        [UIView animateWithDuration:0.1 animations:^{
+//            self.navigationController.navigationBar.alpha = 1.0f;
+//        }];
+//    }];
 
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
@@ -74,9 +76,10 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 - (void)setupCategroyList
 {
     self.categoryList = [NSMutableArray arrayWithCapacity:10];
+    NSArray *cateNames = @[@"天文篇", @"地理篇", @"植物篇", @"动物篇", @"人姿篇", @"身体篇", @"生理篇", @"生活篇", @"活动篇", @"文化篇"];
     for (int i = 0; i < 10; i++)
     {
-        [self.categoryList addObject:@{@"cateName":[NSString stringWithFormat:@"分类%d", i + 1],
+        [self.categoryList addObject:@{@"cateName":cateNames[i],
                                        @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02d", i + 1],
                                        @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02d", i + 1]}];
     }
@@ -120,22 +123,19 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     return CGSizeMake((self.view.frame.size.width - 50) / 3, (self.view.frame.size.width - 50) / 3 + 20);
 }
 
-// 用户选择一个cell时，首先判断highlight状态
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 在highlight时就先记录选择
+    self.selectedIndex = indexPath.row;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectedIndex = indexPath.row;
     
     // 设置导航背景图片及过渡动画
     NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02d", (self.selectedIndex + 1)];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:headerImageName] forBarMetrics:UIBarMetricsDefault];
-
-	return YES;
-}
-
-// 其次再判断select状态
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
 }
 
 @end

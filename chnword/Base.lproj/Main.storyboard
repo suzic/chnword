@@ -605,40 +605,33 @@
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordCell" id="6Dp-8z-wSN" customClass="CategoryCell">
+                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordCell" id="6Dp-8z-wSN" customClass="WordCell">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WordCell" translatesAutoresizingMaskIntoConstraints="NO" id="Axr-2u-Yth" userLabel="分类图">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WordCell" highlightedImage="WordCellSelected" translatesAutoresizingMaskIntoConstraints="NO" id="Axr-2u-Yth" userLabel="田字格">
                                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ae-pi-rfT">
-                                            <rect key="frame" x="3" y="-3" width="60" height="72"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xh-IP-jGO">
+                                            <rect key="frame" x="3" y="3" width="60" height="60"/>
                                             <fontDescription key="fontDescription" name="AdobeKaitiStd-Regular" family="Adobe Kaiti Std" pointSize="60"/>
-                                            <state key="normal" title="字">
-                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
+                                            <color key="highlightedColor" red="0.1071597629" green="0.57070707070000004" blue="0.42465431679999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Axr-2u-Yth" firstAttribute="leading" secondItem="6Dp-8z-wSN" secondAttribute="leading" id="B2e-oL-CNh"/>
-                                    <constraint firstAttribute="centerX" secondItem="4ae-pi-rfT" secondAttribute="centerX" constant="2" id="IsW-dK-7N3"/>
-                                    <constraint firstAttribute="centerY" secondItem="4ae-pi-rfT" secondAttribute="centerY" constant="2" id="M0Z-Ji-rW3"/>
                                     <constraint firstAttribute="trailing" secondItem="Axr-2u-Yth" secondAttribute="trailing" id="hTb-sv-eFa"/>
                                     <constraint firstAttribute="bottom" secondItem="Axr-2u-Yth" secondAttribute="bottom" id="m7t-pH-CIH"/>
+                                    <constraint firstAttribute="centerY" secondItem="6xh-IP-jGO" secondAttribute="centerY" constant="2" id="ngf-tJ-mFd"/>
+                                    <constraint firstAttribute="centerX" secondItem="6xh-IP-jGO" secondAttribute="centerX" constant="2" id="pxb-FL-nxa"/>
                                     <constraint firstItem="Axr-2u-Yth" firstAttribute="top" secondItem="6Dp-8z-wSN" secondAttribute="top" id="ubo-Qf-22J"/>
                                 </constraints>
-                                <connections>
-                                    <outlet property="categoryImage" destination="Axr-2u-Yth" id="wiH-Gg-82y"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -668,5 +661,6 @@
         <image name="TAB-User" width="42" height="40"/>
         <image name="TrialBanner" width="720" height="320"/>
         <image name="WordCell" width="137" height="137"/>
+        <image name="WordCellSelected" width="137" height="137"/>
     </resources>
 </document>

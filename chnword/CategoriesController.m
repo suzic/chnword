@@ -43,11 +43,11 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     [super viewDidAppear:animated];
     
     // 设置导航背景图片及过渡动画
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.1f animations:^{
         self.navigationController.navigationBar.alpha = 0.2f;
     } completion:^(BOOL finished) {
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.1 animations:^{
             self.navigationController.navigationBar.alpha = 1.0f;
         }];
     }];
@@ -124,6 +124,11 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectedIndex = indexPath.row;
+    
+    // 设置导航背景图片及过渡动画
+    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02d", (self.selectedIndex + 1)];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:headerImageName] forBarMetrics:UIBarMetricsDefault];
+
 	return YES;
 }
 

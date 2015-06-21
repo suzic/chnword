@@ -35,22 +35,6 @@ static NSString * const reuseIdentifier = @"WordCell";
     [self setupWordsList];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    // 设置导航背景图片及过渡动画
-    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02d", (self.categoryIndex + 1)];
-    [UIView animateWithDuration:0.3f animations:^{
-        self.navigationController.navigationBar.alpha = 0.2f;
-    } completion:^(BOOL finished) {
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:headerImageName] forBarMetrics:UIBarMetricsDefault];
-        [UIView animateWithDuration:0.3 animations:^{
-            self.navigationController.navigationBar.alpha = 1.0f;
-        }];
-    }];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

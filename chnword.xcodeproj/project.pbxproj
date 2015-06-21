@@ -21,6 +21,10 @@
 		D07204C51B355B16007C01E8 /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204C01B355B16007C01E8 /* NSObject+JSON.m */; };
 		D07204C61B355B16007C01E8 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204C21B355B16007C01E8 /* Util.m */; };
 		D07204C91B355B20007C01E8 /* DataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204C81B355B20007C01E8 /* DataUtil.m */; };
+		D07204CD1B3579D4007C01E8 /* HomePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204CC1B3579D4007C01E8 /* HomePageController.m */; };
+		D07204D01B3673B0007C01E8 /* MainTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204CF1B3673B0007C01E8 /* MainTabController.m */; };
+		D07204D61B3680D7007C01E8 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204D51B3680D7007C01E8 /* ShopViewController.m */; };
+		D07204D91B3680E4007C01E8 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204D81B3680E4007C01E8 /* UserViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +64,15 @@
 		D07204C21B355B16007C01E8 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		D07204C71B355B20007C01E8 /* DataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataUtil.h; sourceTree = "<group>"; };
 		D07204C81B355B20007C01E8 /* DataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataUtil.m; sourceTree = "<group>"; };
+		D07204CA1B357461007C01E8 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		D07204CB1B3579D4007C01E8 /* HomePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageController.h; sourceTree = "<group>"; };
+		D07204CC1B3579D4007C01E8 /* HomePageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageController.m; sourceTree = "<group>"; };
+		D07204CE1B3673B0007C01E8 /* MainTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabController.h; sourceTree = "<group>"; };
+		D07204CF1B3673B0007C01E8 /* MainTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabController.m; sourceTree = "<group>"; };
+		D07204D41B3680D7007C01E8 /* ShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopViewController.h; sourceTree = "<group>"; };
+		D07204D51B3680D7007C01E8 /* ShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewController.m; sourceTree = "<group>"; };
+		D07204D71B3680E4007C01E8 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		D07204D81B3680E4007C01E8 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +125,14 @@
 				D06693711B351A7D00B50D16 /* MainFrameController.m */,
 				D07204B81B3541D1007C01E8 /* LoginController.h */,
 				D07204B91B3541D1007C01E8 /* LoginController.m */,
+				D07204CE1B3673B0007C01E8 /* MainTabController.h */,
+				D07204CF1B3673B0007C01E8 /* MainTabController.m */,
+				D07204CB1B3579D4007C01E8 /* HomePageController.h */,
+				D07204CC1B3579D4007C01E8 /* HomePageController.m */,
+				D07204D41B3680D7007C01E8 /* ShopViewController.h */,
+				D07204D51B3680D7007C01E8 /* ShopViewController.m */,
+				D07204D71B3680E4007C01E8 /* UserViewController.h */,
+				D07204D81B3680E4007C01E8 /* UserViewController.m */,
 				D06693761B351A7D00B50D16 /* Images.xcassets */,
 				D07204B31B353914007C01E8 /* Libian.ttc */,
 				D06693661B351A7D00B50D16 /* Supporting Files */,
@@ -124,6 +145,7 @@
 			children = (
 				D06693671B351A7D00B50D16 /* Info.plist */,
 				D06693681B351A7D00B50D16 /* main.m */,
+				D07204CA1B357461007C01E8 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -289,10 +311,14 @@
 				D07204C91B355B20007C01E8 /* DataUtil.m in Sources */,
 				D07204C41B355B16007C01E8 /* NSObject+Delay.m in Sources */,
 				D06693951B351B8A00B50D16 /* chnword.xcdatamodeld in Sources */,
+				D07204CD1B3579D4007C01E8 /* HomePageController.m in Sources */,
 				D06693691B351A7D00B50D16 /* main.m in Sources */,
+				D07204D01B3673B0007C01E8 /* MainTabController.m in Sources */,
+				D07204D91B3680E4007C01E8 /* UserViewController.m in Sources */,
 				D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */,
 				D07204C31B355B16007C01E8 /* CHKeychain.m in Sources */,
 				D07204BA1B3541D1007C01E8 /* LoginController.m in Sources */,
+				D07204D61B3680D7007C01E8 /* ShopViewController.m in Sources */,
 				D07204C51B355B16007C01E8 /* NSObject+JSON.m in Sources */,
 				D07204C61B355B16007C01E8 /* Util.m in Sources */,
 			);
@@ -416,6 +442,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = chnword/PrefixHeader.pch;
 				INFOPLIST_FILE = chnword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -429,6 +457,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = chnword/PrefixHeader.pch;
 				INFOPLIST_FILE = chnword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

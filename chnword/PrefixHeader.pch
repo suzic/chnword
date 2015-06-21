@@ -1,0 +1,49 @@
+//
+//  PrefixHeader.pch
+//  Chnword
+//
+//  Created by khtc on 15/4/27.
+//  Copyright (c) 2015年 chnword. All rights reserved.
+//
+
+#ifndef Chnword_PrefixHeader_pch
+#define Chnword_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import <Availability.h>
+
+#ifndef __IPHONE_7_0
+#warning "This project uses features only available in iOS SDK 7.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreGraphics/CoreGraphics.h>
+    #import <CoreData/CoreData.h>
+    #import <SystemConfiguration/SystemConfiguration.h>
+    #import <MobileCoreServices/MobileCoreServices.h>
+
+    //#import "NetParamFactory.h"
+    //#import "NetManager.h"
+#endif
+
+#define CHNWORD_USER_FIRSTLOGIN @"CHNWORD_USER_FIRSTLOGIN"
+
+// urls
+#define URL_BASE @"http://app.3000zi.com/api"
+#define URL_VERIFY  [NSString stringWithFormat:@"%@/%@", URL_BASE, @"verify.php"]
+#define URL_LIST    [NSString stringWithFormat:@"%@/%@", URL_BASE, @"list.php" ]
+#define URL_SUBLIST [NSString stringWithFormat:@"%@/%@", URL_BASE, @"sublist.php"]
+#define URL_WORD    [NSString stringWithFormat:@"%@/%@", URL_BASE, @"word.php"]
+#define URL_SHOW    [NSString stringWithFormat:@"%@/%@", URL_BASE, @"show.php"]
+#define URL_REGIST  [NSString stringWithFormat:@"%@/%@", URL_BASE, @"regist.php"]
+
+#pragma mark - Notifications
+
+#define NotiShowWelcome         @"NotiShowWelcome"
+#define NotiShowLogin           @"NotiShowLogin"
+
+#endif

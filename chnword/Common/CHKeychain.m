@@ -55,7 +55,7 @@ NSString * const KEY_PASSWORD = @"com.company.app.password";
     return ret;
 }
 
-+ (void)deleteItem:(NSString *)service:(NSString *)service {
++ (void)deleteItem:(NSString *)service{
     NSMutableDictionary *keychainQuery = [self getKeychainQuery:service];
     SecItemDelete((__bridge CFDictionaryRef)keychainQuery);
 }

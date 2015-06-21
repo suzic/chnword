@@ -7,10 +7,12 @@
 //
 
 #import "MainFrameController.h"
+#import "NSObject+Delay.h"
 #import "DataUtil.h"
 
 @interface MainFrameController ()
 
+@property (strong, nonatomic) IBOutlet UIView *welcomeView;
 @property (strong, nonatomic) IBOutlet UIScrollView *pages;
 @property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
 
@@ -22,15 +24,64 @@
 {
     [super viewDidLoad];
     
-    self.pageControl.currentPage = 0;
-    self.pageControl.numberOfPages = 3;
-    self.pages.contentSize = CGSizeMake(self.pages.bounds.size.width * 3, self.pages.bounds.size.height);
+    [self setupPages];
+    self.welcomeView.hidden = YES;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showWelcome:) name:NotiShowWelcome object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginView:) name:NotiShowLogin object:nil];
+    
+    if ([DataUtil isFirstLogin])
+        [self showWelcome:nil];
+    else if (![DataUtil getDefaultUser])
+        [self performBlock:^{ [self showLoginView:nil]; } afterDelay:0.5];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)showLoginView:(NSNotification *)notification
+{
+    if (self.welcomeView.hidden == YES)
+        [self performSegueWithIdentifier:@"showLogin" sender:self];
+}
+
+- (void)showWelcome:(NSNotification *)notification
+{
+    self.welcomeView.hidden = NO;
+}
+
+- (void)buttonClicked:(id) sender
+{
+    self.welcomeView.hidden = YES;
+    if (![DataUtil getDefaultUser])
+        [self showLoginView:nil];
+}
+
+- (void)setupPages
+{
     CGFloat width = self.view.frame.size.width;
     CGFloat height = self.view.frame.size.height;
+
+    self.pageControl.currentPage = 0;
+    self.pageControl.numberOfPages = 3;
+    self.pages.contentSize = CGSizeMake(width * 3, height);
+    
     for (int i = 0; i < 3; i ++)
     {
-        NSString *imageName = [NSString stringWithFormat:@"PageIntro%02d.png", i + 1];
+        NSString *imageName = [NSString stringWithFormat:@"PageIntro%02d", i + 1];
         UIImage *image = [UIImage imageNamed:imageName];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         
@@ -48,47 +99,9 @@
     [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.pages addSubview:button];
-    
-    [self showWelcome:NO];
-    if ([DataUtil isFirstLogin])
-        [self showWelcome:YES];
-    else  if (![DataUtil getDefaultUser])
-        [self showLoginView];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)showLoginView
-{
-    [self performSegueWithIdentifier:@"showLogin" sender:self];
-}
-
-- (void)showWelcome:(BOOL)show
-{
-    self.pages.hidden = !show;
-    self.pageControl.hidden = !show;
-}
-
-- (void)buttonClicked:(id) sender
-{
-    [self showWelcome:NO];
-    if (![DataUtil getDefaultUser])
-        [self showLoginView];
-}
-
-/**
- *  page control 值改变的控制方法
- */
-- (IBAction)pageControlValueChanded:(id)sender
+- (IBAction)pageControlValueChanged:(id)sender
 {
     NSInteger i = self.pageControl.currentPage;
     float width = self.pages.frame.size.width;
@@ -101,7 +114,7 @@
 {
     CGRect screen = scrollView.frame;
     float width = screen.size.width;
-    int i = (int)(scrollView.contentOffset.x + 1) / width;
+    int i = (int)((scrollView.contentOffset.x) / width);
     self.pageControl.currentPage = i;
 }
 

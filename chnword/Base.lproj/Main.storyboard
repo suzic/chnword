@@ -7,8 +7,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="AdobeKaitiStd-Regular.otf">
+            <string>AdobeKaitiStd-Regular</string>
+        </mutableArray>
         <mutableArray key="Libian.ttc">
-            <string>STLibian-SC-Regular</string>
             <string>STLibian-SC-Regular</string>
             <string>STLibian-SC-Regular</string>
             <string>STLibian-SC-Regular</string>
@@ -376,6 +378,9 @@
                     <tabBarItem key="tabBarItem" title="" image="TAB-Main" id="4gI-wW-O7d">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="20"/>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" id="SfD-5p-39U">
+                        <barButtonItem key="backBarButtonItem" title="主页" id="C9O-so-dAc"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7fx-4I-07Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -593,8 +598,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OpT-yK-3Xd">
-                            <size key="itemSize" width="90" height="110"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="6" id="OpT-yK-3Xd">
+                            <size key="itemSize" width="70" height="70"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
@@ -604,33 +609,35 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="90" height="110"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CATE_A_01" highlightedImage="CATE_B_01" translatesAutoresizingMaskIntoConstraints="NO" id="Axr-2u-Yth" userLabel="分类图">
-                                            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WordCell" translatesAutoresizingMaskIntoConstraints="NO" id="Axr-2u-Yth" userLabel="分类图">
+                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天文篇" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCb-Ke-S35" userLabel="分类名称">
-                                            <rect key="frame" x="0.0" y="86" width="90" height="24"/>
-                                            <fontDescription key="fontDescription" name="STLibian-SC-Regular" family="Libian SC" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ae-pi-rfT">
+                                            <rect key="frame" x="3" y="-3" width="60" height="72"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="AdobeKaitiStd-Regular" family="Adobe Kaiti Std" pointSize="60"/>
+                                            <state key="normal" title="字">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Axr-2u-Yth" firstAttribute="leading" secondItem="6Dp-8z-wSN" secondAttribute="leading" id="B2e-oL-CNh"/>
-                                    <constraint firstAttribute="trailing" secondItem="uCb-Ke-S35" secondAttribute="trailing" id="IuM-KA-YiZ"/>
-                                    <constraint firstItem="uCb-Ke-S35" firstAttribute="leading" secondItem="6Dp-8z-wSN" secondAttribute="leading" id="NU6-YG-7EA"/>
+                                    <constraint firstAttribute="centerX" secondItem="4ae-pi-rfT" secondAttribute="centerX" constant="2" id="IsW-dK-7N3"/>
+                                    <constraint firstAttribute="centerY" secondItem="4ae-pi-rfT" secondAttribute="centerY" constant="2" id="M0Z-Ji-rW3"/>
                                     <constraint firstAttribute="trailing" secondItem="Axr-2u-Yth" secondAttribute="trailing" id="hTb-sv-eFa"/>
-                                    <constraint firstAttribute="bottom" secondItem="Axr-2u-Yth" secondAttribute="bottom" constant="20" id="m7t-pH-CIH"/>
-                                    <constraint firstItem="uCb-Ke-S35" firstAttribute="bottom" secondItem="6Dp-8z-wSN" secondAttribute="bottom" id="qO0-yD-7HO"/>
+                                    <constraint firstAttribute="bottom" secondItem="Axr-2u-Yth" secondAttribute="bottom" id="m7t-pH-CIH"/>
                                     <constraint firstItem="Axr-2u-Yth" firstAttribute="top" secondItem="6Dp-8z-wSN" secondAttribute="top" id="ubo-Qf-22J"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="categoryImage" destination="Axr-2u-Yth" id="wiH-Gg-82y"/>
-                                    <outlet property="categoryName" destination="uCb-Ke-S35" id="W8b-80-1l4"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -660,5 +667,6 @@
         <image name="TAB-Shop" width="42" height="40"/>
         <image name="TAB-User" width="42" height="40"/>
         <image name="TrialBanner" width="720" height="320"/>
+        <image name="WordCell" width="137" height="137"/>
     </resources>
 </document>

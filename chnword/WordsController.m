@@ -22,9 +22,7 @@ static NSString * const reuseIdentifier = @"WordCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.clearsSelectionOnViewWillAppear = NO;
-    
+   
     // 设置背景图片
     CGRect frame = self.view.frame;
     frame.origin.y -= 20; // 算上状态栏位置
@@ -41,9 +39,16 @@ static NSString * const reuseIdentifier = @"WordCell";
 {
     [super viewDidAppear:animated];
     
-    // 设置导航背景图片
+    // 设置导航背景图片及过渡动画
     NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02d", (self.categoryIndex + 1)];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:headerImageName] forBarMetrics:UIBarMetricsDefault];
+    [UIView animateWithDuration:0.3f animations:^{
+        self.navigationController.navigationBar.alpha = 0.2f;
+    } completion:^(BOOL finished) {
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:headerImageName] forBarMetrics:UIBarMetricsDefault];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.navigationController.navigationBar.alpha = 1.0f;
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -106,7 +111,7 @@ static NSString * const reuseIdentifier = @"WordCell";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((self.view.frame.size.width - 50) / 3, (self.view.frame.size.width - 50) / 3 + 20);
+    return CGSizeMake((self.view.frame.size.width - 50) / 4, (self.view.frame.size.width - 50) / 4);
 }
 
 @end

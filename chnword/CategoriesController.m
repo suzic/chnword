@@ -25,7 +25,6 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     [super viewDidLoad];
     
     self.selectedIndex = NSNotFound;
-    self.clearsSelectionOnViewWillAppear = NO;
     
     // 设置背景图片
     CGRect frame = self.view.frame;
@@ -35,6 +34,7 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
     [self.view insertSubview:bacgroundImageView atIndex:0];
     
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
     [self setupCategroyList];
 }
 
@@ -42,7 +42,16 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 {
     [super viewDidAppear:animated];
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
+    // 设置导航背景图片及过渡动画
+    [UIView animateWithDuration:0.3f animations:^{
+        self.navigationController.navigationBar.alpha = 0.2f;
+    } completion:^(BOOL finished) {
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.navigationController.navigationBar.alpha = 1.0f;
+        }];
+    }];
+
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 

@@ -32,6 +32,7 @@
 		D0B947121B36A8D000A1DFD6 /* WordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947111B36A8D000A1DFD6 /* WordCell.m */; };
 		D0B947141B36AB1B00A1DFD6 /* Resource.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0B947131B36AB1B00A1DFD6 /* Resource.xcassets */; };
 		D0B947171B36B16600A1DFD6 /* CategoryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947161B36B16600A1DFD6 /* CategoryHeaderView.m */; };
+		D0B9471F1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		D0B947131B36AB1B00A1DFD6 /* Resource.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resource.xcassets; sourceTree = "<group>"; };
 		D0B947151B36B16600A1DFD6 /* CategoryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryHeaderView.h; sourceTree = "<group>"; };
 		D0B947161B36B16600A1DFD6 /* CategoryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryHeaderView.m; sourceTree = "<group>"; };
+		D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdobeKaitiStd-Regular.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				D06693761B351A7D00B50D16 /* Images.xcassets */,
 				D0B947131B36AB1B00A1DFD6 /* Resource.xcassets */,
 				D07204B31B353914007C01E8 /* Libian.ttc */,
+				D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */,
 				D06693661B351A7D00B50D16 /* Supporting Files */,
 			);
 			path = chnword;
@@ -345,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D07204B41B353914007C01E8 /* Libian.ttc in Resources */,
+				D0B9471F1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf in Resources */,
 				D0B947141B36AB1B00A1DFD6 /* Resource.xcassets in Resources */,
 				D06693751B351A7D00B50D16 /* Main.storyboard in Resources */,
 				D06693771B351A7D00B50D16 /* Images.xcassets in Resources */,

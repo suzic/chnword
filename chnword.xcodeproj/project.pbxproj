@@ -33,6 +33,8 @@
 		D0B947141B36AB1B00A1DFD6 /* Resource.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0B947131B36AB1B00A1DFD6 /* Resource.xcassets */; };
 		D0B9471F1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */; };
 		D0B947241B36F73500A1DFD6 /* PlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947231B36F73500A1DFD6 /* PlayController.m */; };
+		D0B9472B1B37B49800A1DFD6 /* SvGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9472A1B37B49800A1DFD6 /* SvGifView.m */; };
+		D0B9472D1B37B4D600A1DFD6 /* jiafei.gif in Resources */ = {isa = PBXBuildFile; fileRef = D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,9 @@
 		D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdobeKaitiStd-Regular.otf"; sourceTree = "<group>"; };
 		D0B947221B36F73500A1DFD6 /* PlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayController.h; sourceTree = "<group>"; };
 		D0B947231B36F73500A1DFD6 /* PlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayController.m; sourceTree = "<group>"; };
+		D0B947291B37B49800A1DFD6 /* SvGifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SvGifView.h; sourceTree = "<group>"; };
+		D0B9472A1B37B49800A1DFD6 /* SvGifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SvGifView.m; sourceTree = "<group>"; };
+		D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = jiafei.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +159,7 @@
 				D0B947031B3693C100A1DFD6 /* USER */,
 				D06693761B351A7D00B50D16 /* Images.xcassets */,
 				D0B947131B36AB1B00A1DFD6 /* Resource.xcassets */,
+				D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */,
 				D07204B31B353914007C01E8 /* Libian.ttc */,
 				D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */,
 				D06693661B351A7D00B50D16 /* Supporting Files */,
@@ -236,8 +242,7 @@
 				D0B947051B3693EB00A1DFD6 /* LessonsController.m */,
 				D0B947201B36E84000A1DFD6 /* List-Cate */,
 				D0B947211B36E86800A1DFD6 /* List-Word */,
-				D0B947221B36F73500A1DFD6 /* PlayController.h */,
-				D0B947231B36F73500A1DFD6 /* PlayController.m */,
+				D0B947251B37B03F00A1DFD6 /* Player */,
 			);
 			name = HOME;
 			sourceTree = "<group>";
@@ -280,6 +285,17 @@
 				D0B947111B36A8D000A1DFD6 /* WordCell.m */,
 			);
 			name = "List-Word";
+			sourceTree = "<group>";
+		};
+		D0B947251B37B03F00A1DFD6 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				D0B947291B37B49800A1DFD6 /* SvGifView.h */,
+				D0B9472A1B37B49800A1DFD6 /* SvGifView.m */,
+				D0B947221B36F73500A1DFD6 /* PlayController.h */,
+				D0B947231B36F73500A1DFD6 /* PlayController.m */,
+			);
+			name = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,6 +383,7 @@
 				D0B9471F1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf in Resources */,
 				D0B947141B36AB1B00A1DFD6 /* Resource.xcassets in Resources */,
 				D06693751B351A7D00B50D16 /* Main.storyboard in Resources */,
+				D0B9472D1B37B4D600A1DFD6 /* jiafei.gif in Resources */,
 				D06693771B351A7D00B50D16 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +412,7 @@
 				D06693691B351A7D00B50D16 /* main.m in Sources */,
 				D07204D01B3673B0007C01E8 /* MainTabController.m in Sources */,
 				D07204D91B3680E4007C01E8 /* UserViewController.m in Sources */,
+				D0B9472B1B37B49800A1DFD6 /* SvGifView.m in Sources */,
 				D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */,
 				D07204C31B355B16007C01E8 /* CHKeychain.m in Sources */,
 				D0B947121B36A8D000A1DFD6 /* WordCell.m in Sources */,

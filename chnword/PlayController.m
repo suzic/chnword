@@ -7,8 +7,13 @@
 //
 
 #import "PlayController.h"
+#import "SvGifView.h"
 
 @interface PlayController ()
+
+@property (strong, nonatomic) IBOutlet UIWebView *webPlayer;
+@property (strong, nonatomic) SvGifView *playViewer;
+@property (assign, nonatomic) BOOL inPlaying;
 
 @end
 
@@ -17,13 +22,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.playViewer.hidden = YES;
+    self.inPlaying = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
+    self.playViewer = [[SvGifView alloc] initWithCenter:self.webPlayer.center fileURL:fileUrl];
+    self.playViewer.backgroundColor = [UIColor clearColor];
+    self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [self.view addSubview:self.playViewer];
+
+    [self playButtonPressed:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,6 +55,15 @@
 - (IBAction)backward:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)playButtonPressed:(id)sender
+{
+    self.inPlaying = !self.inPlaying;
+    if (self.inPlaying)
+        [self.playViewer startGif];
+    else
+        [self.playViewer stopGif];
 }
 
 /*

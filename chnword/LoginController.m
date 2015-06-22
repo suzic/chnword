@@ -8,7 +8,7 @@
 
 #import "LoginController.h"
 
-@interface LoginController () <UITextFieldDelegate>
+@interface LoginController () <UITextFieldDelegate, UIAlertViewDelegate>
 {
     CGFloat rowHeight;
 }
@@ -41,7 +41,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)requestLoginFromNetwork
+// 在这里写调用登录请求
+- (void)requestLoginFromNetwork:(NSString *)userCode
+{
+    
+}
+
+// 在这里写登录请求验证码
+- (void)requestVerifyFromNetwork:(NSString *)verifyCode
 {
     
 }
@@ -86,7 +93,7 @@
     if (self.loginButton.alpha < 1.0f)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                        message:@"请输入您的用户号然后再点击登录"
+                                                        message:@"请输入您的用户码然后再点击登录"
                                                        delegate:nil
                                               cancelButtonTitle:@"确定"
                                               otherButtonTitles:nil];
@@ -95,9 +102,12 @@
     }
 
     // 发送网络登录请求
-    [self requestLoginFromNetwork];
-#warning 现在默认直接登录成功
-    [self loginSucceed];
+    [self requestLoginFromNetwork:self.userCodeInput.text];
+    
+#warning 现在默认返回需要验证
+    [self loginNeedsVerify];
+    // 如果返回登录成功直接调用
+    // [self loginSucceed];
 }
 
 - (void)loginSucceed
@@ -113,6 +123,32 @@
                                           cancelButtonTitle:@"确定"
                                           otherButtonTitles:nil];
     [alert show];
+}
+
+- (void)loginNeedsVerify
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您已经在超过两台设备上登录"
+                                                    message:@"系统将向该用户码绑定的手机发送验证码，得到验证码后请在下方输入："
+                                                   delegate:self
+                                          cancelButtonTitle:@"取消"
+                                          otherButtonTitles:@"确定", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+    
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != 0)
+    {
+        UITextField *tf = [alertView textFieldAtIndex:0];
+        [self requestVerifyFromNetwork:tf.text];
+
+#warning 现在默认直接登录成功
+        [self loginSucceed];
+    }
 }
 
 #pragma mark - UITextFeildDelegate

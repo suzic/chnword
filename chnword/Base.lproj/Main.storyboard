@@ -404,7 +404,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection footerTitle="如果您购买了任何《三千字》实体产品，您可使用随产品附赠的用户码登录。您也可以用其他已知的用户号或绑定对应的手机号码登录。" id="BaB-qe-br5">
+                            <tableViewSection footerTitle="如果您购买了任何《三千字》实体产品，您可使用随产品附赠的用户码登录。您也可以用其他已知的用户码或绑定对应的手机号码登录。" id="BaB-qe-br5">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="iRE-qY-5LQ">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -438,7 +438,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection footerTitle="将您的用户号和手机号码绑定，从而以后您可以用手机号登录，避免因为记不清用户号带来的麻烦（仅对授权用户有效）" id="mQc-Yi-uzr">
+                            <tableViewSection footerTitle="将您的用户码和手机号码绑定，从而以后您可以用手机号登录，避免因为记不清用户码带来的麻烦（仅对授权用户有效）" id="mQc-Yi-uzr">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="i9k-qE-T8k">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -492,9 +492,10 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rkI-pw-k3P">
                                                     <rect key="frame" x="8" y="8" width="584" height="233"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <string key="text">试用状态下，您若购买任何在线商店产品（比如动画资源库），则自动升级为授权用户，系统将为您分配一个新的用户号。
+                                                    <string key="text">试用状态下，您若购买任何在线商店产品（比如动画资源库），则自动升级为授权用户，系统将为您分配一个新的用户码。
 
-每个用户号限同时最多两个设备登录。当您使用同一个用户号尝试在第三台设备上登录使用时，系统将向您的手机发送验证码，验证成功后，第三台设备方可继续使用该产品，与此同时，您之前的两个设备中之一将失去登录权。（如果您没有绑定手机号码，则无法执行该操作）</string>
+每个用户码限同时最多两个设备登录。当您使用同一个用户码尝试在第三台设备上登录使用时，系统将向您的手机发送验证码，验证成功后，第三台设备方可继续使用该产品，与此同时，您之前的两个设备中之一将无法再使用该用户码。（如果您没有绑定手机号码，则无法执行该操作）
+</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>

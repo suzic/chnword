@@ -93,8 +93,8 @@
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake( 0, 0, 200, 100)];
     button.center = CGPointMake(2.5 * width, height - 100);
-    button.backgroundColor = [UIColor greenColor];
-    [button setImage:[UIImage imageNamed:@"btn_start.png"] forState:UIControlStateNormal];
+    [button setTitle:@"进入三千字的世界" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.pages addSubview:button];

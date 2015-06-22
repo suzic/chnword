@@ -14,17 +14,30 @@
 
 @implementation UserViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // 设置背景图片
+    CGRect frame = self.view.frame;
+    frame.origin.y -= 64;
+    frame.size.height += 64;
+    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:frame];
+    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
+    [self.view insertSubview:bacgroundImageView atIndex:0];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationItem setTitle:@"用户中心"];
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

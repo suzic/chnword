@@ -46,6 +46,7 @@
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationItem setTitle:@"产品商店"];
 }
 
 - (void)didReceiveMemoryWarning

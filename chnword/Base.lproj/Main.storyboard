@@ -633,7 +633,7 @@
                                     <constraint firstItem="Axr-2u-Yth" firstAttribute="top" secondItem="6Dp-8z-wSN" secondAttribute="top" id="ubo-Qf-22J"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="Pgb-X3-0cd" kind="show" id="4Zf-ot-hio"/>
+                                    <segue destination="Pgb-X3-0cd" kind="show" identifier="showPlay" id="4Zf-ot-hio"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -670,45 +670,53 @@
                                     <constraint firstAttribute="width" secondItem="ctK-fU-mCt" secondAttribute="height" multiplier="80:71" id="cO0-hb-9Pb"/>
                                 </constraints>
                             </imageView>
-                            <webView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wDh-bz-ZDc" userLabel="WebPlayer">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zd5-aq-ydI" userLabel="FramePlayer">
                                 <rect key="frame" x="0.0" y="45" width="600" height="450"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="wDh-bz-ZDc" secondAttribute="height" multiplier="4:3" id="lOQ-iO-wuf"/>
+                                    <constraint firstAttribute="width" secondItem="zd5-aq-ydI" secondAttribute="height" multiplier="4:3" id="dGE-Fa-yaH"/>
                                 </constraints>
-                                <dataDetectorType key="dataDetectorTypes"/>
-                            </webView>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cCn-Xx-4DD" userLabel="Control">
                                 <rect key="frame" x="0.0" y="500" width="600" height="100"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pp2-0Q-ZV3">
                                         <rect key="frame" x="28" y="55" width="544" height="31"/>
+                                        <connections>
+                                            <action selector="gotoFrame:" destination="Pgb-X3-0cd" eventType="valueChanged" id="okN-Hh-pAf"/>
+                                        </connections>
                                     </slider>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKU-rb-x7h">
-                                        <rect key="frame" x="357" y="18" width="69" height="27"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="FOREWARD">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUl-o4-G4w">
-                                        <rect key="frame" x="173" y="18" width="70" height="27"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="BACKWARD">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8D-bJ-3D4">
-                                        <rect key="frame" x="263" y="18" width="74" height="27"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="PLAY / STOP">
+                                        <rect key="frame" x="283" y="12" width="34" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="播放">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="playButtonPressed:" destination="Pgb-X3-0cd" eventType="touchUpInside" id="tHl-y2-XxH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKU-rb-x7h">
+                                        <rect key="frame" x="337" y="14" width="30" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="前进">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="frameNext:" destination="Pgb-X3-0cd" eventType="touchUpInside" id="HzQ-GN-Xek"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUl-o4-G4w">
+                                        <rect key="frame" x="233" y="14" width="30" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="后退">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="framePrev:" destination="Pgb-X3-0cd" eventType="touchUpInside" id="f4x-uz-Tmn"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -740,25 +748,29 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="a4i-Nd-sGL" firstAttribute="height" secondItem="oRB-iR-rMc" secondAttribute="height" id="0ba-aZ-psa"/>
-                            <constraint firstItem="wDh-bz-ZDc" firstAttribute="centerX" secondItem="ctK-fU-mCt" secondAttribute="centerX" id="33k-im-NtP"/>
-                            <constraint firstItem="wDh-bz-ZDc" firstAttribute="width" secondItem="ctK-fU-mCt" secondAttribute="width" id="3sv-YL-adq"/>
                             <constraint firstAttribute="centerY" secondItem="a4i-Nd-sGL" secondAttribute="centerY" id="4Bo-8W-gYm"/>
                             <constraint firstItem="5Tc-ln-R9G" firstAttribute="top" secondItem="U2H-T0-XxU" secondAttribute="bottom" constant="20" id="6ze-fx-U4O"/>
                             <constraint firstAttribute="width" secondItem="cCn-Xx-4DD" secondAttribute="width" id="GVx-Ll-rfS"/>
                             <constraint firstAttribute="centerX" secondItem="cCn-Xx-4DD" secondAttribute="centerX" id="Jbr-Wg-Rew"/>
                             <constraint firstItem="eBN-pD-mWX" firstAttribute="top" secondItem="cCn-Xx-4DD" secondAttribute="bottom" id="MQ6-Es-bfT"/>
                             <constraint firstAttribute="centerY" secondItem="ctK-fU-mCt" secondAttribute="centerY" constant="30" id="QGO-bJ-HRr"/>
+                            <constraint firstItem="zd5-aq-ydI" firstAttribute="width" secondItem="ctK-fU-mCt" secondAttribute="width" id="SrQ-Ou-xb6"/>
                             <constraint firstItem="ctK-fU-mCt" firstAttribute="width" secondItem="oRB-iR-rMc" secondAttribute="width" id="bLW-Dg-2A1"/>
                             <constraint firstItem="a4i-Nd-sGL" firstAttribute="width" secondItem="oRB-iR-rMc" secondAttribute="width" id="bxz-6a-I7Z"/>
                             <constraint firstItem="5Tc-ln-R9G" firstAttribute="leading" secondItem="oRB-iR-rMc" secondAttribute="leadingMargin" id="jPS-5T-bgw"/>
                             <constraint firstAttribute="centerX" secondItem="a4i-Nd-sGL" secondAttribute="centerX" id="n9J-vg-fu8"/>
+                            <constraint firstItem="zd5-aq-ydI" firstAttribute="centerY" secondItem="ctK-fU-mCt" secondAttribute="centerY" id="q83-Xh-hKQ"/>
+                            <constraint firstItem="zd5-aq-ydI" firstAttribute="centerX" secondItem="ctK-fU-mCt" secondAttribute="centerX" id="sDF-EB-OeD"/>
                             <constraint firstAttribute="centerX" secondItem="ctK-fU-mCt" secondAttribute="centerX" id="uAo-b8-lgj"/>
-                            <constraint firstItem="wDh-bz-ZDc" firstAttribute="centerY" secondItem="ctK-fU-mCt" secondAttribute="centerY" id="xHn-ze-eZg"/>
                         </constraints>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="webPlayer" destination="wDh-bz-ZDc" id="uHa-Ia-JfO"/>
+                        <outlet property="framePlayer" destination="zd5-aq-ydI" id="rPN-qM-FHm"/>
+                        <outlet property="nextButton" destination="lKU-rb-x7h" id="mLK-gv-sBu"/>
+                        <outlet property="playAndStopButton" destination="n8D-bJ-3D4" id="RFn-GU-1Rs"/>
+                        <outlet property="prevButton" destination="HUl-o4-G4w" id="Dfs-Jh-OvT"/>
+                        <outlet property="progressSlider" destination="Pp2-0Q-ZV3" id="x1i-eR-YFq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OPx-pY-bbY" userLabel="First Responder" sceneMemberID="firstResponder"/>

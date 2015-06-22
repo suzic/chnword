@@ -10,4 +10,9 @@
 
 @interface PlayController : UIViewController
 
+/**
+ * @abstract 将要播放的动画的文件路径
+ */
+@property (strong, nonatomic) NSURL *fileUrl;
+
 @end

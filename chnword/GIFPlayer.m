@@ -1,18 +1,17 @@
 //
-//  SvGifView.m
-//  SvGifSample
+//  GIFPLayer.m
+//  chnword
 //
-//  Created by maple on 3/28/13.
-//  Copyright (c) 2013 smileEvday. All rights reserved.
+//  Created by 苏智 on 15/6/21.
+//  Copyright (c) 2015年 Suzic. All rights reserved.
 //
-//  QQ: 1592232964
 
-#import "SvGifView.h"
+#import "GIFPlayer.h"
 #import <ImageIO/ImageIO.h>
 #import <QuartzCore/CoreAnimation.h>
 
-/*
- * @brief resolving gif information
+/**
+ * @abstract C函数，解析给定的GIF返回关键帧、每帧持续时间、总播放时间、以及帧尺寸
  */
 void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTimes, CGFloat *totalTime,CGFloat *gifWidth, CGFloat *gifHeight)
 {
@@ -47,7 +46,7 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
     }
 }
 
-@interface SvGifView()
+@interface GIFPlayer()
 {
     NSMutableArray *_frames;
     NSMutableArray *_frameDelayTimes;
@@ -57,27 +56,11 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
     CGFloat _height;
 }
 
+@property (strong, nonatomic) CAKeyframeAnimation *animation;
+
 @end
 
-@implementation SvGifView
-
-- (void)setFileURL:(NSURL *)fileURL
-{
-    CGPoint center = self.center;
-    
-    _frames = [[NSMutableArray alloc] init];
-    _frameDelayTimes = [[NSMutableArray alloc] init];
-    
-    _width = 0;
-    _height = 0;
-
-    if (fileURL) {
-        getFrameInfo((__bridge CFURLRef)fileURL, _frames, _frameDelayTimes, &_totalTime, &_width, &_height);
-    }
-    
-    self.frame = CGRectMake(0, 0, _width, _height);
-    self.center = center;
-}
+@implementation GIFPlayer
 
 - (id)initWithCenter:(CGPoint)center fileURL:(NSURL*)fileURL;
 {
@@ -111,31 +94,39 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
     return frames;
 }
 
-- (void)startGif
+- (CAKeyframeAnimation *)animation
 {
-    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
-    
-    NSMutableArray *times = [NSMutableArray arrayWithCapacity:3];
-    CGFloat currentTime = 0;
-    int count = (int)_frameDelayTimes.count;
-    for (int i = 0; i < count; ++i) {
-        [times addObject:[NSNumber numberWithFloat:(currentTime / _totalTime)]];
-        currentTime += [[_frameDelayTimes objectAtIndex:i] floatValue];
+    if (_animation == nil)
+    {
+        _animation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+        
+        NSMutableArray *times = [NSMutableArray arrayWithCapacity:3];
+        CGFloat currentTime = 0;
+        int count = (int)_frameDelayTimes.count;
+        for (int i = 0; i < count; ++i)
+        {
+            [times addObject:[NSNumber numberWithFloat:(currentTime / _totalTime)]];
+            currentTime += [[_frameDelayTimes objectAtIndex:i] floatValue];
+        }
+        [_animation setKeyTimes:times];
+        
+        NSMutableArray *images = [NSMutableArray arrayWithCapacity:3];
+        for (int i = 0; i < count; ++i) {
+            [images addObject:[_frames objectAtIndex:i]];
+        }
+        
+        [_animation setValues:images];
+        [_animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
+        _animation.duration = _totalTime;
+        _animation.repeatCount = 1;
     }
-    [animation setKeyTimes:times];
-    
-    NSMutableArray *images = [NSMutableArray arrayWithCapacity:3];
-    for (int i = 0; i < count; ++i) {
-        [images addObject:[_frames objectAtIndex:i]];
-    }
-    
-    [animation setValues:images];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
-    animation.duration = _totalTime;
-    animation.delegate = self;
-    animation.repeatCount = 99999;
-    
-    [self.layer addAnimation:animation forKey:@"gifAnimation"];
+    return _animation;
+}
+
+- (void)startGif:(UIViewController *)delegateController
+{
+    self.animation.delegate = delegateController;
+    [self.layer addAnimation:self.animation forKey:@"gifAnimation"];
 }
 
 - (void)stopGif

@@ -7,6 +7,7 @@
 //
 
 #import "WordsController.h"
+#import "PlayController.h"
 
 @interface WordsController ()
 
@@ -73,6 +74,12 @@ static NSString * const reuseIdentifier = @"WordCell";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if ([segue.identifier isEqualToString:@"showPlay"])
+    {
+#warning 这里设置正确的播放动画资源
+        PlayController *player = (PlayController *)[segue destinationViewController];
+        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
+    }
 }
 
 #pragma mark <UICollectionViewDataSource>

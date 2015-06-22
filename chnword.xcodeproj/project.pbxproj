@@ -35,6 +35,9 @@
 		D0B947241B36F73500A1DFD6 /* PlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947231B36F73500A1DFD6 /* PlayController.m */; };
 		D0B9472B1B37B49800A1DFD6 /* GIFPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9472A1B37B49800A1DFD6 /* GIFPlayer.m */; };
 		D0B9472D1B37B4D600A1DFD6 /* jiafei.gif in Resources */ = {isa = PBXBuildFile; fileRef = D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */; };
+		D0B947301B37DF6600A1DFD6 /* ShopSuitController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9472F1B37DF6600A1DFD6 /* ShopSuitController.m */; };
+		D0B947331B37E77600A1DFD6 /* ShopAnimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947321B37E77600A1DFD6 /* ShopAnimeController.m */; };
+		D0B947361B37EADB00A1DFD6 /* ShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947351B37EADB00A1DFD6 /* ShopCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +103,12 @@
 		D0B947291B37B49800A1DFD6 /* GIFPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFPlayer.h; sourceTree = "<group>"; };
 		D0B9472A1B37B49800A1DFD6 /* GIFPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIFPlayer.m; sourceTree = "<group>"; };
 		D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = jiafei.gif; sourceTree = "<group>"; };
+		D0B9472E1B37DF6600A1DFD6 /* ShopSuitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopSuitController.h; sourceTree = "<group>"; };
+		D0B9472F1B37DF6600A1DFD6 /* ShopSuitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopSuitController.m; sourceTree = "<group>"; };
+		D0B947311B37E77600A1DFD6 /* ShopAnimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopAnimeController.h; sourceTree = "<group>"; };
+		D0B947321B37E77600A1DFD6 /* ShopAnimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopAnimeController.m; sourceTree = "<group>"; };
+		D0B947341B37EADB00A1DFD6 /* ShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCell.h; sourceTree = "<group>"; };
+		D0B947351B37EADB00A1DFD6 /* ShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +261,12 @@
 			children = (
 				D07204D41B3680D7007C01E8 /* ShopViewController.h */,
 				D07204D51B3680D7007C01E8 /* ShopViewController.m */,
+				D0B9472E1B37DF6600A1DFD6 /* ShopSuitController.h */,
+				D0B9472F1B37DF6600A1DFD6 /* ShopSuitController.m */,
+				D0B947311B37E77600A1DFD6 /* ShopAnimeController.h */,
+				D0B947321B37E77600A1DFD6 /* ShopAnimeController.m */,
+				D0B947341B37EADB00A1DFD6 /* ShopCell.h */,
+				D0B947351B37EADB00A1DFD6 /* ShopCell.m */,
 			);
 			name = SHOP;
 			sourceTree = "<group>";
@@ -418,11 +433,14 @@
 				D0B947121B36A8D000A1DFD6 /* WordCell.m in Sources */,
 				D07204BA1B3541D1007C01E8 /* LoginController.m in Sources */,
 				D0B947091B36940B00A1DFD6 /* CategoriesController.m in Sources */,
+				D0B947301B37DF6600A1DFD6 /* ShopSuitController.m in Sources */,
 				D07204D61B3680D7007C01E8 /* ShopViewController.m in Sources */,
 				D07204C51B355B16007C01E8 /* NSObject+JSON.m in Sources */,
+				D0B947331B37E77600A1DFD6 /* ShopAnimeController.m in Sources */,
 				D07204C61B355B16007C01E8 /* Util.m in Sources */,
 				D0B947061B3693EB00A1DFD6 /* LessonsController.m in Sources */,
 				D0B9470F1B36A8B300A1DFD6 /* WordsController.m in Sources */,
+				D0B947361B37EADB00A1DFD6 /* ShopCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

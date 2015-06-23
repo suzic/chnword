@@ -25,6 +25,7 @@
 		A7B0531D1B3996D0009A0CC2 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B0530B1B3996D0009A0CC2 /* UIRefreshControl+AFNetworking.m */; };
 		A7B0531E1B3996D0009A0CC2 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B0530D1B3996D0009A0CC2 /* UIWebView+AFNetworking.m */; };
 		A7B053211B399713009A0CC2 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B053201B399713009A0CC2 /* NetWorkManager.m */; };
+		A7B053241B399820009A0CC2 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B053231B399820009A0CC2 /* DataManager.m */; };
 		D06693691B351A7D00B50D16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693681B351A7D00B50D16 /* main.m */; };
 		D066936C1B351A7D00B50D16 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D066936B1B351A7D00B50D16 /* AppDelegate.m */; };
 		D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693711B351A7D00B50D16 /* MainFrameController.m */; };
@@ -107,6 +108,8 @@
 		A7B0530D1B3996D0009A0CC2 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		A7B0531F1B399713009A0CC2 /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetWorkManager.h; path = chnword/libs/NetWorkManager.h; sourceTree = SOURCE_ROOT; };
 		A7B053201B399713009A0CC2 /* NetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetWorkManager.m; path = chnword/libs/NetWorkManager.m; sourceTree = SOURCE_ROOT; };
+		A7B053221B399820009A0CC2 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		A7B053231B399820009A0CC2 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		D06693631B351A7D00B50D16 /* chnword.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chnword.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06693671B351A7D00B50D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D06693681B351A7D00B50D16 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -349,6 +352,8 @@
 				D06693911B351B8A00B50D16 /* chnword.xcdatamodeld */,
 				D07204C71B355B20007C01E8 /* DataUtil.h */,
 				D07204C81B355B20007C01E8 /* DataUtil.m */,
+				A7B053221B399820009A0CC2 /* DataManager.h */,
+				A7B053231B399820009A0CC2 /* DataManager.m */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -556,6 +561,7 @@
 				D06693951B351B8A00B50D16 /* chnword.xcdatamodeld in Sources */,
 				A7B0531B1B3996D0009A0CC2 /* UIImageView+AFNetworking.m in Sources */,
 				D07204CD1B3579D4007C01E8 /* HomePageController.m in Sources */,
+				A7B053241B399820009A0CC2 /* DataManager.m in Sources */,
 				D06693691B351A7D00B50D16 /* main.m in Sources */,
 				D07204D01B3673B0007C01E8 /* MainTabController.m in Sources */,
 				A7B053191B3996D0009A0CC2 /* UIAlertView+AFNetworking.m in Sources */,

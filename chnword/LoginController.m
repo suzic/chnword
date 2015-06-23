@@ -7,9 +7,12 @@
 //
 
 #import "LoginController.h"
-
-#import "NetWorkManager.h"
+#import "NetManager.h"
+#import "NetParamFactory.h"
 #import "Util.h"
+#import "DataUtil.h"
+
+#import "MBProgressHUD.h"
 
 @interface LoginController () <UITextFieldDelegate, UIAlertViewDelegate>
 {
@@ -18,6 +21,8 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *userCodeInput;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
+
+@property (nonatomic, retain) MBProgressHUD *hud;
 
 @end
 
@@ -60,7 +65,7 @@
                            deviceId:deviceId
                            session:[Util generateUuid]
                            verify:@"verify"];
-    [NetWorkManager postRequest:URL_REGIST param:param success:^(id json){
+    [NetManager postRequest:URL_REGIST param:param success:^(id json){
         
         NSLog(@"success with json: %@", json);
         
@@ -93,7 +98,71 @@
 // 在这里写登录请求验证码
 - (void)requestVerifyFromNetwork:(NSString *)verifyCode
 {
+//    NSString *activeCode = self.activeCodeField.text;
     
+    NSString *opid = [Util generateUuid];
+    NSString *deviceId = [Util getUdid];
+    NSString *userid = [DataUtil getDefaultUser];
+    
+    //本地用户存储
+    //    [DataUtil setDefaultUser:deviceId];
+    [self.hud show:YES];
+    
+    //    NSDictionary *param = [NetParamFactory registParam:opid userid:userid device:deviceId userCode:userid  deviceId:deviceId session:[Util generateUuid] verify:@"verify"];
+    NSDictionary *param = [NetParamFactory verifyParam:opid userid:userid device:deviceId code:verifyCode user:userid];
+    [NetManager postRequest:URL_VERIFY param:param success:^(id json){
+        
+        NSLog(@"success with json: %@", json);
+        
+        [self.hud hide:YES];
+        
+        NSDictionary *dict = json;
+        
+        NSString *str = [dict objectForKey:@"result"];
+        if (str && [@"1" isEqualToString:str]) {
+            //成功
+            
+            NSDictionary *data = [dict objectForKey:@"data"];
+            if (data) {
+                
+                NSString *unlock_all = [dict objectForKey:@"unlock_all"];
+                NSArray *zones = [dict objectForKey:@"unlock_zone"];
+                if (unlock_all && [@"1" isEqualToString:unlock_all]) {
+                    //解锁全部的
+                    NSLog(@"unlock——all");
+                    [DataUtil setUnlockAllModelsForUser:[DataUtil getDefaultUser]];
+                    
+                    
+                } else {
+                    //得到解锁的其他条目,处理unlock_zone.
+                    for (NSString *unlocked in zones) {
+                        NSLog(@"unlocked %@", unlocked);
+                    }
+                    
+                    [DataUtil setUnlockModel:userid models:zones];
+                    
+                    
+                }
+                NSString *message = [NSString stringWithFormat:@"解锁成功：\n data \n %@", data];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+                
+            }else {
+                NSString *message = [dict objectForKey:@"message"];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+            }
+            
+            
+        }
+        
+    }fail:^ (){
+        NSLog(@"fail ");
+        [self.hud hide:YES];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }];
+
 }
 
 #pragma mark - Table view data source
@@ -213,5 +282,25 @@
     else
         self.loginButton.alpha = 1.0f;
 }
+
+
+#pragma mark -getter
+
+- (MBProgressHUD *) hud {
+    if (!_hud) {
+        
+        _hud = [[MBProgressHUD alloc] initWithView:self.view];
+        _hud.color = [UIColor clearColor];//这儿表示无背景
+        //显示的文字
+        _hud.labelText = @"Test";
+        //细节文字
+        _hud.detailsLabelText = @"Test detail";
+        //是否有庶罩
+        _hud.dimBackground = YES;
+        [self.navigationController.view addSubview:_hud];
+    }
+    return _hud;
+}
+
 
 @end

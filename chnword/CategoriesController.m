@@ -9,6 +9,15 @@
 #import "CategoriesController.h"
 #import "WordsController.h"
 
+#import "NetManager.h"
+#import "NetParamFactory.h"
+#import "Util.h"
+#import "DataUtil.h"
+
+#import "MBProgressHUD.h"
+
+
+
 @interface CategoriesController ()
 
 @property (strong, nonatomic) NSMutableArray *categoryList;
@@ -137,5 +146,132 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02d", (self.selectedIndex + 1)];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:headerImageName] forBarMetrics:UIBarMetricsDefault];
 }
+
+
+#pragma mark - request net work
+
+- (void) requestModules {
+    
+    NSString *opid = [Util generateUuid];
+    NSString *userid = @"userid";
+    NSString *deviceId = [Util getUdid];
+    NSDictionary *param = [NetParamFactory listParam:opid userid:userid device:deviceId page:0 size:0];
+    
+//    [self.hud show:YES];
+    
+    NSLog(@"%@", URL_LIST);
+    
+    [NetManager postRequest:URL_LIST param:param success:^(id json){
+        
+        //        NSDictionary *dict = [json jsonValue];
+        NSDictionary *dict = json;
+        NSString *result = [dict objectForKey:@"result"];
+//        [self.hud hide:YES];
+        
+        if (result && [result isEqualToString:@"1"]) {
+            
+            NSDictionary *data = [dict objectForKey:@"data"];
+            NSArray *array = [dict objectForKey:@"name"];
+            NSArray *carray = [data objectForKey:@"cname"];
+            if (data && array) {
+//                [self.modules removeAllObjects];
+//                Module *module = nil;
+                for (NSInteger i = 0; i < array.count ; i ++) {
+                    
+//                    module = [[Module alloc] init];
+//                    module.moduleName = [array objectAtIndex:i];
+//                    module.moduleCode = [carray objectAtIndex:i];
+                    
+//                    [self.modules addObject:module];
+                }
+//                [self.moduleTableView reloadData];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无参数" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+            }
+            
+            
+        }else {
+//            [self.hud hide:YES];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
+        
+        
+    }fail:^ (){
+        NSLog(@"fail ");
+        
+//        [self.hud hide:YES];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+        
+    }];
+}
+
+- (void) requestWord:(NSString *) moduleCode {
+    
+    NSString *opid = [Util generateUuid];
+    NSString *userid = @"userid";
+    NSString *deviceId = [Util getUdid];
+    
+    NSString *str = moduleCode;
+    
+    NSDictionary *param = [NetParamFactory subListParam:opid userid:userid device:deviceId zone:str page:0 size:0];
+    
+    
+//    [self.hud show:YES];
+    
+    NSLog(@"%@", URL_SUBLIST);
+    
+    [NetManager postRequest:URL_SUBLIST param:param success:^(id json){
+        
+        //        NSDictionary *dict = [json jsonValue];
+        NSDictionary *dict = json;
+        NSString *result = [dict objectForKey:@"result"];
+//        [self.hud hide:YES];
+        if (result && [result isEqualToString:@"1"]) {
+            
+            NSDictionary *data = [dict objectForKey:@"data"];
+            NSArray *wArray = [data objectForKey:@"word"];
+            NSArray *wCode  = [data objectForKey:@"unicode"];
+            
+            if (data && wArray && wCode) {
+//                [self.words removeAllObjects];
+                for (NSInteger i = 0; i < wArray.count; i ++) {
+//                    Word *word = [[Word alloc] init];
+//                    word.wordName = [wArray objectAtIndex:i];
+//                    word.wordCode = [wCode  objectAtIndex:i];
+//                    [self.words addObject:word];
+                }
+//                [self.wordCollectionView reloadData];
+                
+                
+            } else  {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无参数返回" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+            }
+            
+            //            [self.collectionView reloadData];
+            
+            
+        }else {
+//            [self.hud hide:YES];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
+        
+        
+    }fail:^ (){
+        NSLog(@"fail ");
+        
+//        [self.hud hide:YES];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+        
+    }];
+    
+}
+
+
 
 @end

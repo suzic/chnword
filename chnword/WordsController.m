@@ -8,6 +8,10 @@
 
 #import "WordsController.h"
 #import "PlayController.h"
+#import "NetParamFactory.h"
+#import "NetManager.h"
+#import "Util.h"
+#import "DataUtil.h"
 
 @interface WordsController ()
 
@@ -116,5 +120,53 @@ static NSString * const reuseIdentifier = @"WordCell";
     return nil;
 }
 */
+
+#pragma mark - net request
+- (void) requestWord:(NSString *) word
+{
+    NSDictionary *param = [NetParamFactory wordParam:[Util generateUuid] userid:@"1" device:@"1" word:@"1"];
+    
+//    [self.hud show:YES];
+    [NetManager postRequest:URL_SHOW param:param success:^(id json){
+        
+        NSLog(@"success with json: %@", json);
+        NSDictionary *dict = json;
+        
+//        [self.hud hide:YES];
+        
+        if (dict) {
+            NSString *result = [dict objectForKey:@"result"];
+            
+            if ([result isEqualToString:@"1"]) {
+                NSDictionary *data = [dict objectForKey:@"data"];
+                
+                NSString *videoUrl = [data objectForKey:@"video"];
+                NSString *gifUrl = [data objectForKey:@"gif"];
+                //                self.mediaPlayer.contentURL = [NSURL URLWithString:videoUrl];
+                //                [self.mediaPlayer play];
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:videoUrl delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+                
+            }else {
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+            }
+            
+            
+        } else {
+//            [self.hud hide:YES];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
+        
+    }fail:^ (){
+        NSLog(@"fail ");
+//        [self.hud hide:YES];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }];
+}
 
 @end

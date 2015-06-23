@@ -1,15 +1,15 @@
 //
-//  NetWorkManager.m
+//  NetManager.m
 //  chnword
 //
 //  Created by khtc on 15/6/23.
 //  Copyright (c) 2015年 Suzic. All rights reserved.
 //
 
-#import "NetWorkManager.h"
+#import "NetManager.h"
 #import "AFNetworking.h"
 
-@implementation NetWorkManager
+@implementation NetManager
 
 + (void) postRequest:(NSString *) url param:(NSDictionary *) param success:(void (^)(id jsonObject)) success fail:(void (^)(void)) fail
 {
@@ -28,8 +28,6 @@
         NSLog ( @"operation: %@" , operation.responseString);
         if (success) {
             success(responseObject);
-            //            调试使用
-            //            success(dict);
         } else {
             if (fail) {
                 fail();
@@ -43,5 +41,6 @@
         }
     }];
 }
+
 
 @end

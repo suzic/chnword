@@ -8,6 +8,9 @@
 
 #import "LoginController.h"
 
+#import "NetWorkManager.h"
+#import "Util.h"
+
 @interface LoginController () <UITextFieldDelegate, UIAlertViewDelegate>
 {
     CGFloat rowHeight;
@@ -44,7 +47,47 @@
 // 在这里写调用登录请求
 - (void)requestLoginFromNetwork:(NSString *)userCode
 {
+    NSString *opid = [Util generateUuid];
+    NSString *deviceId = [Util getUdid];
+    NSString *userid = [Util generateUuid];
     
+    //本地用户存储
+    NSDictionary *param = [NetParamFactory
+                           registParam:opid
+                           userid:userid
+                           device:deviceId
+                           userCode:userid
+                           deviceId:deviceId
+                           session:[Util generateUuid]
+                           verify:@"verify"];
+    [NetWorkManager postRequest:URL_REGIST param:param success:^(id json){
+        
+        NSLog(@"success with json: %@", json);
+        
+        NSDictionary *dict = json;
+        
+        if (dict) {
+            NSString *result = [dict objectForKey:@"result"];
+            if (result && [@"1" isEqualToString:result]) {
+                //注册成功
+                [DataUtil setDefaultUser:userid];
+                [self performSegueWithIdentifier:@"PushToMain" sender:nil];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+            }
+            
+        }else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
+        
+        
+    }fail:^ (){
+        NSLog(@"fail ");
+        
+    }];
+
 }
 
 // 在这里写登录请求验证码

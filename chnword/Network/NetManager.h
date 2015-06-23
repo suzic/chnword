@@ -1,5 +1,5 @@
 //
-//  NetWorkManager.h
+//  NetManager.h
 //  chnword
 //
 //  Created by khtc on 15/6/23.
@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NetWorkManager : NSObject
+@interface NetManager : NSObject
 
 + (void) postRequest:(NSString *) url param:(NSDictionary *) param success:(void (^)(id jsonObject)) success fail:(void (^)(void)) fail;
-
 
 @end

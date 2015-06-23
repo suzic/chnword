@@ -24,8 +24,9 @@
 		A7B0531C1B3996D0009A0CC2 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B053091B3996D0009A0CC2 /* UIProgressView+AFNetworking.m */; };
 		A7B0531D1B3996D0009A0CC2 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B0530B1B3996D0009A0CC2 /* UIRefreshControl+AFNetworking.m */; };
 		A7B0531E1B3996D0009A0CC2 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B0530D1B3996D0009A0CC2 /* UIWebView+AFNetworking.m */; };
-		A7B053211B399713009A0CC2 /* NetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B053201B399713009A0CC2 /* NetWorkManager.m */; };
 		A7B053241B399820009A0CC2 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B053231B399820009A0CC2 /* DataManager.m */; };
+		A7B053271B399A58009A0CC2 /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B053261B399A58009A0CC2 /* NetManager.m */; };
+		A7B0532A1B399A6D009A0CC2 /* NetParamFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B053291B399A6D009A0CC2 /* NetParamFactory.m */; };
 		D06693691B351A7D00B50D16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693681B351A7D00B50D16 /* main.m */; };
 		D066936C1B351A7D00B50D16 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D066936B1B351A7D00B50D16 /* AppDelegate.m */; };
 		D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693711B351A7D00B50D16 /* MainFrameController.m */; };
@@ -106,10 +107,12 @@
 		A7B0530B1B3996D0009A0CC2 /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		A7B0530C1B3996D0009A0CC2 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		A7B0530D1B3996D0009A0CC2 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
-		A7B0531F1B399713009A0CC2 /* NetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetWorkManager.h; path = chnword/libs/NetWorkManager.h; sourceTree = SOURCE_ROOT; };
-		A7B053201B399713009A0CC2 /* NetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetWorkManager.m; path = chnword/libs/NetWorkManager.m; sourceTree = SOURCE_ROOT; };
 		A7B053221B399820009A0CC2 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		A7B053231B399820009A0CC2 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		A7B053251B399A58009A0CC2 /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManager.h; sourceTree = "<group>"; };
+		A7B053261B399A58009A0CC2 /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManager.m; sourceTree = "<group>"; };
+		A7B053281B399A6D009A0CC2 /* NetParamFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetParamFactory.h; sourceTree = "<group>"; };
+		A7B053291B399A6D009A0CC2 /* NetParamFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetParamFactory.m; sourceTree = "<group>"; };
 		D06693631B351A7D00B50D16 /* chnword.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chnword.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06693671B351A7D00B50D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D06693681B351A7D00B50D16 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -361,8 +364,10 @@
 		D06693931B351B8A00B50D16 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				A7B0531F1B399713009A0CC2 /* NetWorkManager.h */,
-				A7B053201B399713009A0CC2 /* NetWorkManager.m */,
+				A7B053251B399A58009A0CC2 /* NetManager.h */,
+				A7B053261B399A58009A0CC2 /* NetManager.m */,
+				A7B053281B399A6D009A0CC2 /* NetParamFactory.h */,
+				A7B053291B399A6D009A0CC2 /* NetParamFactory.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7B0532A1B399A6D009A0CC2 /* NetParamFactory.m in Sources */,
 				A7B053141B3996D0009A0CC2 /* AFURLRequestSerialization.m in Sources */,
 				D0B9470C1B369C6B00A1DFD6 /* CategoryCell.m in Sources */,
 				A7B0531D1B3996D0009A0CC2 /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -568,7 +574,6 @@
 				D07204D91B3680E4007C01E8 /* UserViewController.m in Sources */,
 				A7B053111B3996D0009A0CC2 /* AFNetworkReachabilityManager.m in Sources */,
 				D0B9472B1B37B49800A1DFD6 /* GIFPlayer.m in Sources */,
-				A7B053211B399713009A0CC2 /* NetWorkManager.m in Sources */,
 				A7B0531E1B3996D0009A0CC2 /* UIWebView+AFNetworking.m in Sources */,
 				D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */,
 				A7B053161B3996D0009A0CC2 /* AFURLSessionManager.m in Sources */,
@@ -586,6 +591,7 @@
 				A7B053121B3996D0009A0CC2 /* AFSecurityPolicy.m in Sources */,
 				A7B0530F1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.m in Sources */,
 				A7B053101B3996D0009A0CC2 /* AFHTTPSessionManager.m in Sources */,
+				A7B053271B399A58009A0CC2 /* NetManager.m in Sources */,
 				D07204C61B355B16007C01E8 /* Util.m in Sources */,
 				D0B947061B3693EB00A1DFD6 /* LessonsController.m in Sources */,
 				A7B0530E1B3996D0009A0CC2 /* AFHTTPRequestOperation.m in Sources */,

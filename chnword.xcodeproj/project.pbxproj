@@ -27,6 +27,7 @@
 		A7B053241B399820009A0CC2 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B053231B399820009A0CC2 /* DataManager.m */; };
 		A7B053271B399A58009A0CC2 /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B053261B399A58009A0CC2 /* NetManager.m */; };
 		A7B0532A1B399A6D009A0CC2 /* NetParamFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B053291B399A6D009A0CC2 /* NetParamFactory.m */; };
+		A7B053301B399DA8009A0CC2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B0532F1B399DA8009A0CC2 /* MBProgressHUD.m */; };
 		D06693691B351A7D00B50D16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693681B351A7D00B50D16 /* main.m */; };
 		D066936C1B351A7D00B50D16 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D066936B1B351A7D00B50D16 /* AppDelegate.m */; };
 		D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693711B351A7D00B50D16 /* MainFrameController.m */; };
@@ -113,6 +114,8 @@
 		A7B053261B399A58009A0CC2 /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManager.m; sourceTree = "<group>"; };
 		A7B053281B399A6D009A0CC2 /* NetParamFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetParamFactory.h; sourceTree = "<group>"; };
 		A7B053291B399A6D009A0CC2 /* NetParamFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetParamFactory.m; sourceTree = "<group>"; };
+		A7B0532E1B399DA8009A0CC2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		A7B0532F1B399DA8009A0CC2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		D06693631B351A7D00B50D16 /* chnword.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chnword.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06693671B351A7D00B50D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D06693681B351A7D00B50D16 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -194,6 +197,7 @@
 		A7B052E61B3996D0009A0CC2 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				A7B0532D1B399DA8009A0CC2 /* MBProgressHUD */,
 				A7B052E71B3996D0009A0CC2 /* afnetworking */,
 			);
 			name = libs;
@@ -257,6 +261,15 @@
 				A7B0530D1B3996D0009A0CC2 /* UIWebView+AFNetworking.m */,
 			);
 			path = "UIKit+AFNetworking";
+			sourceTree = "<group>";
+		};
+		A7B0532D1B399DA8009A0CC2 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				A7B0532E1B399DA8009A0CC2 /* MBProgressHUD.h */,
+				A7B0532F1B399DA8009A0CC2 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		D066935A1B351A7D00B50D16 = {
@@ -576,6 +589,7 @@
 				D0B9472B1B37B49800A1DFD6 /* GIFPlayer.m in Sources */,
 				A7B0531E1B3996D0009A0CC2 /* UIWebView+AFNetworking.m in Sources */,
 				D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */,
+				A7B053301B399DA8009A0CC2 /* MBProgressHUD.m in Sources */,
 				A7B053161B3996D0009A0CC2 /* AFURLSessionManager.m in Sources */,
 				D07204C31B355B16007C01E8 /* CHKeychain.m in Sources */,
 				D0B947121B36A8D000A1DFD6 /* WordCell.m in Sources */,

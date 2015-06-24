@@ -55,7 +55,8 @@
 + (NSString *)getDefaultUser
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults objectForKey:CHNWORD_DEFAULT_USER];
+    NSString *str = [defaults objectForKey:CHNWORD_DEFAULT_USER];
+    return str ? str : @"0" ;
 }
 
 // 添加一个用户

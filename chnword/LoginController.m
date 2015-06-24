@@ -106,6 +106,12 @@
     NSString *deviceId = [Util getUdid];    
     NSString *userid = [DataUtil getDefaultUser];
     
+    if (!userid) {
+        [DataUtil setDefaultUser:@"0"];
+        userid = @"0";
+    }
+    
+    
     //本地用户存储
     [self.hud show:YES];
     

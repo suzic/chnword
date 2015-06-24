@@ -23,6 +23,8 @@
 @property (strong, nonatomic) NSMutableArray *categoryList;
 @property (assign, nonatomic) NSInteger selectedIndex;
 
+@property (nonatomic, retain) MBProgressHUD *hud;
+
 @end
 
 @implementation CategoriesController
@@ -84,14 +86,17 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 // 初始化分类列表
 - (void)setupCategroyList
 {
-    self.categoryList = [NSMutableArray arrayWithCapacity:10];
-    NSArray *cateNames = @[@"天文篇", @"地理篇", @"植物篇", @"动物篇", @"人姿篇", @"身体篇", @"生理篇", @"生活篇", @"活动篇", @"文化篇"];
-    for (int i = 0; i < 10; i++)
-    {
-        [self.categoryList addObject:@{@"cateName":cateNames[i],
-                                       @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02d", i + 1],
-                                       @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02d", i + 1]}];
-    }
+//    self.categoryList = [NSMutableArray arrayWithCapacity:10];
+//    NSArray *cateNames = @[@"天文篇", @"地理篇", @"植物篇", @"动物篇", @"人姿篇", @"身体篇", @"生理篇", @"生活篇", @"活动篇", @"文化篇"];
+//    for (int i = 0; i < 10; i++)
+//    {
+//        [self.categoryList addObject:@{@"cateName":cateNames[i],
+//                                       @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02d", i + 1],
+//                                       @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02d", i + 1]}];
+//    }
+    
+    [self requestModules];
+    
 }
 
 #pragma mark - Navigation
@@ -143,7 +148,7 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     self.selectedIndex = indexPath.row;
     
     // 设置导航背景图片及过渡动画
-    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02d", (self.selectedIndex + 1)];
+    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02ld", (self.selectedIndex + 1)];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:headerImageName] forBarMetrics:UIBarMetricsDefault];
 }
 
@@ -153,38 +158,43 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 - (void) requestModules {
     
     NSString *opid = [Util generateUuid];
-    NSString *userid = @"userid";
+    NSString *userid = [DataUtil getDefaultUser];
     NSString *deviceId = [Util getUdid];
     NSDictionary *param = [NetParamFactory listParam:opid userid:userid device:deviceId page:0 size:0];
     
-//    [self.hud show:YES];
+    [self.hud show:YES];
     
     NSLog(@"%@", URL_LIST);
+    NSLog(@"%@", param);
     
     [NetManager postRequest:URL_LIST param:param success:^(id json){
         
-        //        NSDictionary *dict = [json jsonValue];
         NSDictionary *dict = json;
         NSString *result = [dict objectForKey:@"result"];
-//        [self.hud hide:YES];
+        [self.hud hide:YES];
+        
+        NSLog(@"%@", dict);
         
         if (result && [result isEqualToString:@"1"]) {
             
             NSDictionary *data = [dict objectForKey:@"data"];
-            NSArray *array = [dict objectForKey:@"name"];
+            NSArray *array = [data objectForKey:@"name"];
             NSArray *carray = [data objectForKey:@"cname"];
             if (data && array) {
-//                [self.modules removeAllObjects];
-//                Module *module = nil;
+                
+                [self.categoryList removeAllObjects];
                 for (NSInteger i = 0; i < array.count ; i ++) {
+                    NSString *modelName = [array objectAtIndex:i];
+                    NSString *moduleCode = [carray objectAtIndex:i];
                     
-//                    module = [[Module alloc] init];
-//                    module.moduleName = [array objectAtIndex:i];
-//                    module.moduleCode = [carray objectAtIndex:i];
+                    [self.categoryList addObject:@{@"cateName":modelName,
+                                                   @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02ld", (i%10) + 1],
+                                                   @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02ld", (i%10) + 1],
+                                                   @"cateCode":moduleCode}];
                     
-//                    [self.modules addObject:module];
                 }
-//                [self.moduleTableView reloadData];
+                //更新数据
+                [self.collectionView reloadData];
             } else {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无参数" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
@@ -192,7 +202,6 @@ static NSString * const reuseIdentifier = @"CategoryCell";
             
             
         }else {
-//            [self.hud hide:YES];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [alert show];
         }
@@ -201,7 +210,7 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     }fail:^ (){
         NSLog(@"fail ");
         
-//        [self.hud hide:YES];
+        [self.hud hide:YES];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
         
@@ -219,13 +228,11 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     NSDictionary *param = [NetParamFactory subListParam:opid userid:userid device:deviceId zone:str page:0 size:0];
     
     
-//    [self.hud show:YES];
+    [self.hud show:YES];
     
-    NSLog(@"%@", URL_SUBLIST);
     
     [NetManager postRequest:URL_SUBLIST param:param success:^(id json){
         
-        //        NSDictionary *dict = [json jsonValue];
         NSDictionary *dict = json;
         NSString *result = [dict objectForKey:@"result"];
 //        [self.hud hide:YES];
@@ -255,7 +262,6 @@ static NSString * const reuseIdentifier = @"CategoryCell";
             
             
         }else {
-//            [self.hud hide:YES];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [alert show];
         }
@@ -264,7 +270,7 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     }fail:^ (){
         NSLog(@"fail ");
         
-//        [self.hud hide:YES];
+        [self.hud hide:YES];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
         
@@ -272,6 +278,29 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     
 }
 
+#pragma mark - Getter Method
+- (NSMutableArray *) categoryList
+{
+    if (!_categoryList) {
+        _categoryList = [NSMutableArray array];
+    }
+    return _categoryList;
+}
 
+- (MBProgressHUD *) hud {
+    if (!_hud) {
+        
+        _hud = [[MBProgressHUD alloc] initWithView:self.view];
+        _hud.color = [UIColor clearColor];//这儿表示无背景
+        //显示的文字
+        _hud.labelText = @"Test";
+        //细节文字
+        _hud.detailsLabelText = @"Test detail";
+        //是否有庶罩
+        _hud.dimBackground = YES;
+        [self.navigationController.view addSubview:_hud];
+    }
+    return _hud;
+}
 
 @end

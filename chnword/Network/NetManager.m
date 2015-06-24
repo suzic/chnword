@@ -25,13 +25,9 @@
     
     [manager POST:url parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSLog ( @"operation: %@" , operation.responseString);
+//        NSLog ( @"operation: %@" , operation.responseString);
         if (success) {
             success(responseObject);
-        } else {
-            if (fail) {
-                fail();
-            }
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

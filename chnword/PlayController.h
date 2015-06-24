@@ -15,4 +15,6 @@
  */
 @property (strong, nonatomic) NSURL *fileUrl;
 
+@property (nonatomic, retain) NSString *wordCode;
+
 @end

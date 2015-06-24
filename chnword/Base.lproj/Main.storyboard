@@ -845,6 +845,7 @@
                                     <constraint firstItem="Axr-2u-Yth" firstAttribute="top" secondItem="6Dp-8z-wSN" secondAttribute="top" id="ubo-Qf-22J"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="wordNameLabel" destination="6xh-IP-jGO" id="oEd-Mh-tXI"/>
                                     <segue destination="Pgb-X3-0cd" kind="show" identifier="showPlay" id="4Zf-ot-hio"/>
                                 </connections>
                             </collectionViewCell>

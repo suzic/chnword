@@ -12,5 +12,6 @@
 @interface WordsController : UICollectionViewController
 
 @property (assign, nonatomic) NSInteger categoryIndex;
+@property (nonatomic, retain) NSString *moduleCode;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface WordCell : UICollectionViewCell
 
+@property (nonatomic, retain) IBOutlet UILabel *wordNameLabel;
+
 @end

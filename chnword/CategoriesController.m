@@ -107,6 +107,8 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     {
         WordsController *wordController = (WordsController *)[segue destinationViewController];
         wordController.categoryIndex = self.selectedIndex;
+        wordController.moduleCode = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateCode"];
+        
     }
 }
 
@@ -148,7 +150,9 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     self.selectedIndex = indexPath.row;
     
     // 设置导航背景图片及过渡动画
-    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02ld", (self.selectedIndex + 1)];
+//    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02ld", (self.selectedIndex + 1)];
+    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02ld", self.categoryList.count - indexPath.row];
+
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:headerImageName] forBarMetrics:UIBarMetricsDefault];
 }
 
@@ -215,67 +219,6 @@ static NSString * const reuseIdentifier = @"CategoryCell";
         [alert show];
         
     }];
-}
-
-- (void) requestWord:(NSString *) moduleCode {
-    
-    NSString *opid = [Util generateUuid];
-    NSString *userid = @"userid";
-    NSString *deviceId = [Util getUdid];
-    
-    NSString *str = moduleCode;
-    
-    NSDictionary *param = [NetParamFactory subListParam:opid userid:userid device:deviceId zone:str page:0 size:0];
-    
-    
-    [self.hud show:YES];
-    
-    
-    [NetManager postRequest:URL_SUBLIST param:param success:^(id json){
-        
-        NSDictionary *dict = json;
-        NSString *result = [dict objectForKey:@"result"];
-//        [self.hud hide:YES];
-        if (result && [result isEqualToString:@"1"]) {
-            
-            NSDictionary *data = [dict objectForKey:@"data"];
-            NSArray *wArray = [data objectForKey:@"word"];
-            NSArray *wCode  = [data objectForKey:@"unicode"];
-            
-            if (data && wArray && wCode) {
-//                [self.words removeAllObjects];
-                for (NSInteger i = 0; i < wArray.count; i ++) {
-//                    Word *word = [[Word alloc] init];
-//                    word.wordName = [wArray objectAtIndex:i];
-//                    word.wordCode = [wCode  objectAtIndex:i];
-//                    [self.words addObject:word];
-                }
-//                [self.wordCollectionView reloadData];
-                
-                
-            } else  {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无参数返回" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                [alert show];
-            }
-            
-            //            [self.collectionView reloadData];
-            
-            
-        }else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-            [alert show];
-        }
-        
-        
-    }fail:^ (){
-        NSLog(@"fail ");
-        
-        [self.hud hide:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alert show];
-        
-    }];
-    
 }
 
 #pragma mark - Getter Method

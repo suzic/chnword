@@ -54,29 +54,31 @@
 {
     NSString *opid = [Util generateUuid];
     NSString *deviceId = [Util getUdid];
-    NSString *userid = [Util generateUuid];
-    
+//    NSString *userid = [Util generateUuid];
+
+    NSString *userid = userCode;
+
     //本地用户存储
     NSDictionary *param = [NetParamFactory
                            registParam:opid
                            userid:userid
                            device:deviceId
-                           userCode:userid
+                           userCode:userCode
                            deviceId:deviceId
                            session:[Util generateUuid]
                            verify:@"verify"];
     [NetManager postRequest:URL_REGIST param:param success:^(id json){
         
-        NSLog(@"success with json: %@", json);
+        NSLog(@"success with json:\n %@", json);
         
         NSDictionary *dict = json;
         
         if (dict) {
             NSString *result = [dict objectForKey:@"result"];
             if (result && [@"1" isEqualToString:result]) {
-                //注册成功
-                [DataUtil setDefaultUser:userid];
-                [self performSegueWithIdentifier:@"PushToMain" sender:nil];
+#pragma warning 添加默认用户
+//                [DataUtil setDefaultUser:userid];
+                [self dismissViewControllerAnimated:YES completion:nil];
             } else {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
@@ -101,18 +103,17 @@
 //    NSString *activeCode = self.activeCodeField.text;
     
     NSString *opid = [Util generateUuid];
-    NSString *deviceId = [Util getUdid];
+    NSString *deviceId = [Util getUdid];    
     NSString *userid = [DataUtil getDefaultUser];
     
     //本地用户存储
-    //    [DataUtil setDefaultUser:deviceId];
     [self.hud show:YES];
     
     //    NSDictionary *param = [NetParamFactory registParam:opid userid:userid device:deviceId userCode:userid  deviceId:deviceId session:[Util generateUuid] verify:@"verify"];
     NSDictionary *param = [NetParamFactory verifyParam:opid userid:userid device:deviceId code:verifyCode user:userid];
     [NetManager postRequest:URL_VERIFY param:param success:^(id json){
         
-        NSLog(@"success with json: %@", json);
+        NSLog(@"success with json:\n %@", json);
         
         [self.hud hide:YES];
         
@@ -121,7 +122,6 @@
         NSString *str = [dict objectForKey:@"result"];
         if (str && [@"1" isEqualToString:str]) {
             //成功
-            
             NSDictionary *data = [dict objectForKey:@"data"];
             if (data) {
                 
@@ -147,12 +147,21 @@
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
                 
+                //登录成功的处理
+                [self loginSucceed];
+                
             }else {
                 NSString *message = [dict objectForKey:@"message"];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
             }
+        } else {
+//            NSString *message = @"请求失败！";
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//            [alert show];
             
+            //登录失败
+            [self loginNeedsVerify];
             
         }
         
@@ -161,6 +170,7 @@
         [self.hud hide:YES];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
+        
     }];
 
 }
@@ -195,11 +205,17 @@
     return 0.01f;
 }
 
+//试用按钮点击
 - (IBAction)trailButtonPressed:(id)sender
 {
+//    [self requestLoginFromNetwork:@"13700845991"];
+    
+    //设置默认用户为0,然后直接进入即可
+    [DataUtil setDefaultUser:@"0"];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+//登录按钮点击
 - (IBAction)loginButtonPressed:(id)sender
 {
     if (self.loginButton.alpha < 1.0f)
@@ -213,13 +229,14 @@
         return;
     }
 
-    // 发送网络登录请求
-    [self requestLoginFromNetwork:self.userCodeInput.text];
+    // 发送网络登录请求，verify接口。
+//    [self requestLoginFromNetwork:self.userCodeInput.text];
+    [self requestVerifyFromNetwork:self.userCodeInput.text];
     
 #warning 现在默认返回需要验证
-    [self loginNeedsVerify];
+//    [self loginNeedsVerify];
     // 如果返回登录成功直接调用
-    // [self loginSucceed];
+//     [self loginSucceed];
 }
 
 - (void)loginSucceed

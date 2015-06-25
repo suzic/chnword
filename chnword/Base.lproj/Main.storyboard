@@ -846,7 +846,6 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="wordNameLabel" destination="6xh-IP-jGO" id="oEd-Mh-tXI"/>
-                                    <segue destination="Pgb-X3-0cd" kind="show" identifier="showPlay" id="4Zf-ot-hio"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -865,7 +864,7 @@
         <!--PLAYER-->
         <scene sceneID="NXQ-3p-wLJ">
             <objects>
-                <viewController id="Pgb-X3-0cd" userLabel="PLAYER" customClass="PlayController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayController" id="Pgb-X3-0cd" userLabel="PLAYER" customClass="PlayController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="U2H-T0-XxU"/>
                         <viewControllerLayoutGuide type="bottom" id="eBN-pD-mWX"/>

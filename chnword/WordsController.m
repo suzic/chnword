@@ -78,9 +78,16 @@ static NSString * const reuseIdentifier = @"WordCell";
     if ([segue.identifier isEqualToString:@"showPlay"])
     {
 #warning 这里设置正确的播放动画资源
-        PlayController *player = (PlayController *)[segue destinationViewController];
-//        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
-        player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
+        
+        if (self.selectedIndex < 1) {
+            PlayController *player = (PlayController *)[segue destinationViewController];
+            //        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
+            player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"默认用户只能查看第一条数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+        }
+        
     }
 }
 
@@ -120,15 +127,32 @@ static NSString * const reuseIdentifier = @"WordCell";
 }
 */
 #pragma mark - UICollectionView Delegate Method
-- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    // 在highlight时就先记录选择
-    self.selectedIndex = indexPath.row;
-}
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     self.selectedIndex = indexPath.row;
+    
+    if ([@"0" isEqualToString:[DataUtil getDefaultUser]]) {
+        if (indexPath.row < 1) {
+            //        PlayController *player = (PlayController *)[segue destinationViewController];
+            PlayController *player = (PlayController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PlayController"];
+            
+            //        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
+            player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
+            [self.navigationController pushViewController:player animated:YES];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"默认用户只能查看第一条数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+        }
+    }else {
+        PlayController *player = (PlayController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PlayController"];
+        
+        //        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
+        player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
+    }
+    
+    
+
     
     
 }

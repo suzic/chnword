@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A796F5F71B3C3EC300F6DF83 /* libSDWebImage_universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A796F5F61B3C3EC300F6DF83 /* libSDWebImage_universal.a */; };
 		A7B0530E1B3996D0009A0CC2 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B052EA1B3996D0009A0CC2 /* AFHTTPRequestOperation.m */; };
 		A7B0530F1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B052EC1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.m */; };
 		A7B053101B3996D0009A0CC2 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B052EE1B3996D0009A0CC2 /* AFHTTPSessionManager.m */; };
@@ -73,6 +74,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A796F5EB1B3C3EC300F6DF83 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
+		A796F5EC1B3C3EC300F6DF83 /* SDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageCompat.h; sourceTree = "<group>"; };
+		A796F5ED1B3C3EC300F6DF83 /* SDWebImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDecoder.h; sourceTree = "<group>"; };
+		A796F5EE1B3C3EC300F6DF83 /* SDWebImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloader.h; sourceTree = "<group>"; };
+		A796F5EF1B3C3EC300F6DF83 /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
+		A796F5F01B3C3EC300F6DF83 /* SDWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageManager.h; sourceTree = "<group>"; };
+		A796F5F11B3C3EC300F6DF83 /* SDWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageOperation.h; sourceTree = "<group>"; };
+		A796F5F21B3C3EC300F6DF83 /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImagePrefetcher.h; sourceTree = "<group>"; };
+		A796F5F31B3C3EC300F6DF83 /* UIButton+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+WebCache.h"; sourceTree = "<group>"; };
+		A796F5F41B3C3EC300F6DF83 /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
+		A796F5F51B3C3EC300F6DF83 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
+		A796F5F61B3C3EC300F6DF83 /* libSDWebImage_universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSDWebImage_universal.a; sourceTree = "<group>"; };
 		A7B052E91B3996D0009A0CC2 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		A7B052EA1B3996D0009A0CC2 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		A7B052EB1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -184,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7EDBAEC1B3AEB6200016412 /* CoreTelephony.framework in Frameworks */,
+				A796F5F71B3C3EC300F6DF83 /* libSDWebImage_universal.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,9 +211,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A796F5E81B3C3EC300F6DF83 /* SDWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				A796F5E91B3C3EC300F6DF83 /* include */,
+				A796F5F61B3C3EC300F6DF83 /* libSDWebImage_universal.a */,
+			);
+			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		A796F5E91B3C3EC300F6DF83 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				A796F5EA1B3C3EC300F6DF83 /* SDWebImage */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		A796F5EA1B3C3EC300F6DF83 /* SDWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				A796F5EB1B3C3EC300F6DF83 /* SDImageCache.h */,
+				A796F5EC1B3C3EC300F6DF83 /* SDWebImageCompat.h */,
+				A796F5ED1B3C3EC300F6DF83 /* SDWebImageDecoder.h */,
+				A796F5EE1B3C3EC300F6DF83 /* SDWebImageDownloader.h */,
+				A796F5EF1B3C3EC300F6DF83 /* SDWebImageDownloaderOperation.h */,
+				A796F5F01B3C3EC300F6DF83 /* SDWebImageManager.h */,
+				A796F5F11B3C3EC300F6DF83 /* SDWebImageOperation.h */,
+				A796F5F21B3C3EC300F6DF83 /* SDWebImagePrefetcher.h */,
+				A796F5F31B3C3EC300F6DF83 /* UIButton+WebCache.h */,
+				A796F5F41B3C3EC300F6DF83 /* UIImageView+HighlightedWebCache.h */,
+				A796F5F51B3C3EC300F6DF83 /* UIImageView+WebCache.h */,
+			);
+			path = SDWebImage;
+			sourceTree = "<group>";
+		};
 		A7B052E61B3996D0009A0CC2 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				A796F5E81B3C3EC300F6DF83 /* SDWebImage */,
 				A7B0532D1B399DA8009A0CC2 /* MBProgressHUD */,
 				A7B052E71B3996D0009A0CC2 /* afnetworking */,
 			);
@@ -750,6 +800,10 @@
 				INFOPLIST_FILE = chnword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/chnword/libs/SDWebImage",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -765,6 +819,10 @@
 				INFOPLIST_FILE = chnword/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/chnword/libs/SDWebImage",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

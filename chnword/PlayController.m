@@ -14,6 +14,7 @@
 #import "Util.h"
 #import "DataUtil.h"
 #import "MBProgressHUD.h"
+#import "SDWebImageManager.h"
 
 @interface PlayController ()
 
@@ -166,28 +167,53 @@
                 
                 // 视图显示后开始设置GIF动画并自动执行
                 
-                // 设置图片模式的播放
-                if (self.framesArray != nil && self.framesArray.count > 0)
-                {
-                    self.frameViewer = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:(CGImageRef)self.framesArray[0]]];
-                    self.frameViewer.center = self.framePlayer.center;
-                    [self.view addSubview:self.frameViewer];
-                }
-                [self playButtonPressed:nil];
-                
                 if ([gifUrl containsString:@"http"]) {
-                    self.playViewer = [[GIFPlayer alloc] initWithCenter:self.framePlayer.center fileURL:[NSURL URLWithString:gifUrl]];
-                    NSString *message = [NSString stringWithFormat:@"无效的url: \n%@\n%@", gifUrl, videoUrl];
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                    [alert show];
+                    //通过网络请求
+                    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:gifUrl] options:nil progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                        
+                        
+                    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                        // 设置图片模式的播放
+                        if (self.framesArray != nil && self.framesArray.count > 0)
+                        {
+                            self.frameViewer = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:(CGImageRef)self.framesArray[0]]];
+                            self.frameViewer.center = self.framePlayer.center;
+                            [self.view addSubview:self.frameViewer];
+                        }
+                        [self playButtonPressed:nil];
+                        
+                    
+//                            self.playViewer = [[GIFPlayer alloc] initWithCenter:self.framePlayer.center fileURL:[NSURL URLWithString:gifUrl]];
+//                            NSString *message = [NSString stringWithFormat:@"无效的url: \n%@\n%@", gifUrl, videoUrl];
+//                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//                            [alert show];
+
+                        
+                        self.playViewer.backgroundColor = [UIColor clearColor];
+                        self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+                        [self.view addSubview:self.playViewer];
+                    }];
+
                 } else {
+                    //播放默认的
+                    if (self.framesArray != nil && self.framesArray.count > 0)
+                    {
+                        self.frameViewer = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:(CGImageRef)self.framesArray[0]]];
+                        self.frameViewer.center = self.framePlayer.center;
+                        [self.view addSubview:self.frameViewer];
+                    }
+                    [self playButtonPressed:nil];
+                    
                     self.playViewer = [[GIFPlayer alloc] initWithCenter:self.framePlayer.center fileURL:self.fileUrl];
+                    self.playViewer.backgroundColor = [UIColor clearColor];
+                    self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+                    [self.view addSubview:self.playViewer];
 
                 }
                 
-                self.playViewer.backgroundColor = [UIColor clearColor];
-                self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-                [self.view addSubview:self.playViewer];
+                
+                
+                
                 
                 
             }else {

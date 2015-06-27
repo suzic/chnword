@@ -467,6 +467,9 @@
                                                     <state key="normal" title="提交">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="registerUser:" destination="utr-gS-PDD" eventType="touchUpInside" id="zGq-Nv-yeR"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -517,6 +520,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="" image="TAB-User" id="KqQ-Rg-0vP"/>
+                    <connections>
+                        <outlet property="phoneNumberField" destination="5JB-hu-uwO" id="bL3-fx-dns"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6S-YN-hHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

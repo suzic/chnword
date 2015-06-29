@@ -46,6 +46,43 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
     }
 }
 
+/**
+ * @abstract C函数，解析给定的GIF返回关键帧、每帧持续时间、总播放时间、以及帧尺寸
+ */
+void getFrameInfoFromData(CFDataRef data, NSMutableArray *frames, NSMutableArray *delayTimes, CGFloat *totalTime,CGFloat *gifWidth, CGFloat *gifHeight)
+{
+//    CGImageSourceRef gifSource = CGImageSourceCreateWithURL(url, NULL);
+    CGImageSourceRef gifSource = CGImageSourceCreateWithData(data, NULL);
+    
+    // get frame count
+    size_t frameCount = CGImageSourceGetCount(gifSource);
+    for (size_t i = 0; i < frameCount; ++i)
+    {
+        // get each frame
+        CGImageRef frame = CGImageSourceCreateImageAtIndex(gifSource, i, NULL);
+        [frames addObject:(__bridge id)frame];
+        CGImageRelease(frame);
+        
+        // get gif info with each frame
+        NSDictionary *dict = (NSDictionary*)CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(gifSource, i, NULL));
+        NSLog(@"kCGImagePropertyGIFDictionary %@", [dict valueForKey:(NSString*)kCGImagePropertyGIFDictionary]);
+        
+        // get gif size
+        if (gifWidth != NULL && gifHeight != NULL)
+        {
+            *gifWidth = [[dict valueForKey:(NSString*)kCGImagePropertyPixelWidth] floatValue];
+            *gifHeight = [[dict valueForKey:(NSString*)kCGImagePropertyPixelHeight] floatValue];
+        }
+        
+        // kCGImagePropertyGIFDictionary中kCGImagePropertyGIFDelayTime，kCGImagePropertyGIFUnclampedDelayTime值是一样的
+        NSDictionary *gifDict = [dict valueForKey:(NSString*)kCGImagePropertyGIFDictionary];
+        [delayTimes addObject:[gifDict valueForKey:(NSString*)kCGImagePropertyGIFDelayTime]];
+        
+        if (totalTime)
+            *totalTime = *totalTime + [[gifDict valueForKey:(NSString*)kCGImagePropertyGIFDelayTime] floatValue];
+    }
+}
+
 @interface GIFPlayer()
 {
     NSMutableArray *_frames;
@@ -90,6 +127,18 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
     NSMutableArray *delays = [NSMutableArray arrayWithCapacity:3];
     
     getFrameInfo((__bridge CFURLRef)fileURL, frames, delays, NULL, NULL, NULL);
+    
+    return frames;
+}
+
++ (NSArray *) framesInImage:(UIImage *) image
+{
+    NSMutableArray *frames = [NSMutableArray arrayWithCapacity:3];
+    NSMutableArray *delays = [NSMutableArray arrayWithCapacity:3];
+    
+//    getFrameInfo((__bridge CFURLRef)fileURL, frames, delays, NULL, NULL, NULL);
+    getFrameInfoFromData((__bridge CFDataRef) UIImageJPEGRepresentation(image,1.0), frames, delays, NULL, NULL, NULL);
+    
     
     return frames;
 }

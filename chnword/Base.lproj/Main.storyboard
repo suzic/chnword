@@ -440,7 +440,7 @@
                             </tableViewSection>
                             <tableViewSection footerTitle="将您的用户码和手机号码绑定，从而以后您可以用手机号登录，避免因为记不清用户码带来的麻烦（仅对授权用户有效）" id="mQc-Yi-uzr">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="i9k-qE-T8k">
+                                    <tableViewCell hidden="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="i9k-qE-T8k">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i9k-qE-T8k" id="LUU-P0-aMk">
                                             <autoresizingMask key="autoresizingMask"/>

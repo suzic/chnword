@@ -250,16 +250,14 @@ static NSString * const reuseIdentifier = @"WordCell";
         [self.hud hide:YES];
         if (result && [result isEqualToString:@"1"]) {
             
-            NSDictionary *data = [dict objectForKey:@"data"];
-            NSArray *wArray = [data objectForKey:@"word"];
-            NSArray *wCode  = [data objectForKey:@"unicode"];
-            
-            if (data && wArray && wCode) {
-                [self.wordsList removeAllObjects];
-                for (NSInteger i = 0; i < wArray.count; i ++) {
+            NSArray *data = [dict objectForKey:@"data"];
+            if (data) {
+                
+                for (NSInteger i = 0; i < data.count; i ++) {
                     
-                    NSString *wordName = [wArray objectAtIndex:i];
-                    NSString *wordCode = [wCode  objectAtIndex:i];
+                    NSDictionary *word = [data objectAtIndex:i];
+                    NSString *wordName = [word objectForKey:@"word"];
+                    NSString *wordCode = [word objectForKey:@"unicode"];
                     
                     [self.wordsList addObject:@{@"wordName":wordName,
                                                 @"lockStatus":@"1",
@@ -267,11 +265,12 @@ static NSString * const reuseIdentifier = @"WordCell";
                                                 @"wordImageB":[NSString stringWithFormat:@"CATE_B_%02ld", i + 1],
                                                 @"wordCode": wordCode}];
                 }
+                
                 [self.collectionView reloadData];
                 
-                
             } else  {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无参数返回" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无结果返回" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
             }
             

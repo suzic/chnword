@@ -16,6 +16,8 @@
 #import "MBProgressHUD.h"
 #import "SDWebImageManager.h"
 
+
+
 @interface PlayController ()
 
 @property (strong, nonatomic) IBOutlet UIView *framePlayer;
@@ -160,34 +162,30 @@
             if ([result isEqualToString:@"1"]) {
                 NSDictionary *data = [dict objectForKey:@"data"];
                 
-                NSString *videoUrl = [data objectForKey:@"video"];
+//                NSString *videoUrl = [data objectForKey:@"video"];
                 NSString *gifUrl = [data objectForKey:@"gif"];
-                //                self.mediaPlayer.contentURL = [NSURL URLWithString:videoUrl];
-                //                [self.mediaPlayer play];
                 
                 // 视图显示后开始设置GIF动画并自动执行
                 
                 if ([gifUrl containsString:@"http"]) {
                     //通过网络请求
-                    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:gifUrl] options:nil progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                    gifUrl = @"http://img4.duitang.com/uploads/item/201303/15/20130315134323_PMTrz.thumb.600_0.gif";
+                    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:gifUrl] options:SDWebImageLowPriority progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                         
                         
                     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                        
+                        self.framesArray = [GIFPlayer framesInImage:image];
                         // 设置图片模式的播放
                         if (self.framesArray != nil && self.framesArray.count > 0)
                         {
+                            
                             self.frameViewer = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:(CGImageRef)self.framesArray[0]]];
+                            self.frameViewer.image = [UIImage imagewith]
                             self.frameViewer.center = self.framePlayer.center;
                             [self.view addSubview:self.frameViewer];
                         }
                         [self playButtonPressed:nil];
-                        
-                    
-//                            self.playViewer = [[GIFPlayer alloc] initWithCenter:self.framePlayer.center fileURL:[NSURL URLWithString:gifUrl]];
-//                            NSString *message = [NSString stringWithFormat:@"无效的url: \n%@\n%@", gifUrl, videoUrl];
-//                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-//                            [alert show];
-
                         
                         self.playViewer.backgroundColor = [UIColor clearColor];
                         self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
@@ -196,25 +194,9 @@
 
                 } else {
                     //播放默认的
-                    if (self.framesArray != nil && self.framesArray.count > 0)
-                    {
-                        self.frameViewer = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:(CGImageRef)self.framesArray[0]]];
-                        self.frameViewer.center = self.framePlayer.center;
-                        [self.view addSubview:self.frameViewer];
-                    }
-                    [self playButtonPressed:nil];
-                    
-                    self.playViewer = [[GIFPlayer alloc] initWithCenter:self.framePlayer.center fileURL:self.fileUrl];
-                    self.playViewer.backgroundColor = [UIColor clearColor];
-                    self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-                    [self.view addSubview:self.playViewer];
-
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                    [alert show];
                 }
-                
-                
-                
-                
-                
                 
             }else {
                 

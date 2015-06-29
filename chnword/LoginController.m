@@ -135,7 +135,7 @@
                 NSArray *zones = [dict objectForKey:@"unlock_zone"];
                 if (unlock_all && [@"1" isEqualToString:unlock_all]) {
                     //解锁全部的
-                    NSLog(@"unlock——all");
+                    NSLog(@"unlock_all");
                     [DataUtil setUnlockAllModelsForUser:[DataUtil getDefaultUser]];
                     
                     
@@ -224,16 +224,16 @@
 //登录按钮点击
 - (IBAction)loginButtonPressed:(id)sender
 {
-    if (self.loginButton.alpha < 1.0f)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                        message:@"请输入您的用户码然后再点击登录"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"确定"
-                                              otherButtonTitles:nil];
-        [alert show];
-        return;
-    }
+//    if (self.loginButton.alpha < 1.0f)
+//    {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+//                                                        message:@"请输入您的用户码然后再点击登录"
+//                                                       delegate:nil
+//                                              cancelButtonTitle:@"确定"
+//                                              otherButtonTitles:nil];
+//        [alert show];
+//        return;
+//    }
 
     // 发送网络登录请求，verify接口。
 //    [self requestLoginFromNetwork:self.userCodeInput.text];

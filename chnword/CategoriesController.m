@@ -181,29 +181,29 @@ static NSString * const reuseIdentifier = @"CategoryCell";
         
         if (result && [result isEqualToString:@"1"]) {
             
-            NSDictionary *data = [dict objectForKey:@"data"];
-            NSArray *array = [data objectForKey:@"name"];
-            NSArray *carray = [data objectForKey:@"cname"];
-            if (data && array) {
+            NSArray *data = [dict objectForKey:@"data"];
+            if (data) {
                 
-                [self.categoryList removeAllObjects];
-                for (NSInteger i = 0; i < array.count ; i ++) {
-                    NSString *modelName = [array objectAtIndex:i];
-                    NSString *moduleCode = [carray objectAtIndex:i];
-                    
-                    [self.categoryList addObject:@{@"cateName":modelName,
+                for (NSInteger i = 0; i < data.count; i ++) {
+                    NSDictionary *category = [data objectAtIndex:i];
+                    NSString *categoryName = [category objectForKey:@"name"];
+                    NSString *categoryCode = [category objectForKey:@"cname"];
+                    BOOL isLock = true;
+                    if (![category objectForKey:@"lock"]) {
+                        isLock = false;
+                    }
+                    [self.categoryList addObject:@{@"cateName":categoryName,
                                                    @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02ld", (i%10) + 1],
                                                    @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02ld", (i%10) + 1],
-                                                   @"cateCode":moduleCode}];
-                    
+                                                   @"cateCode":categoryCode}];
                 }
-                //更新数据
                 [self.collectionView reloadData];
+            
+            
             } else {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无参数" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
             }
-            
             
         }else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];

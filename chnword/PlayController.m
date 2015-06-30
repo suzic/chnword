@@ -51,6 +51,22 @@
     self.progressSlider.value = 0;
     self.inPlaying = NO;
     
+    self.frameViewer = [[UIImageView alloc] init];
+//
+    CGRect rect = CGRectMake(0, 0, 300, 300);
+    self.frameViewer.center = self.framePlayer.center;
+    self.frameViewer.backgroundColor = [UIColor redColor];
+    
+    [self.view addSubview:self.frameViewer];
+    [self.view bringSubviewToFront:self.frameViewer];
+    [self playButtonPressed:nil];
+    
+    
+    
+    self.playViewer.backgroundColor = [UIColor redColor];
+    self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [self.view addSubview:self.playViewer];
+    
     [self requestWord:self.wordCode];
 }
 
@@ -186,20 +202,7 @@
 //                        }
                         
                         if (finished) {
-                            self.frameViewer = [[UIImageView alloc] init];
                             self.frameViewer.image = [UIImage sd_animatedGIFWithData:UIImageJPEGRepresentation(image, 1.0)];
-                            CGRect rect = CGRectMake(0, 0, 300, 300);
-                            self.frameViewer.center = self.framePlayer.center;
-                            
-                            [self.view addSubview:self.frameViewer];
-                            [self.view bringSubviewToFront:self.frameViewer];
-                            [self playButtonPressed:nil];
-                            
-                            
-                            
-                            self.playViewer.backgroundColor = [UIColor redColor];
-                            self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-                            [self.view addSubview:self.playViewer];
                         }
                         
                     }];

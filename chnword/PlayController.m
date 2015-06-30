@@ -16,6 +16,8 @@
 #import "MBProgressHUD.h"
 #import "SDWebImageManager.h"
 
+#import "UIImage+GIF.h"
+
 
 
 @interface PlayController ()
@@ -175,21 +177,31 @@
                         
                     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                         
-                        self.framesArray = [GIFPlayer framesInImage:image];
+//                        self.framesArray = [GIFPlayer framesInImage:image];
                         // 设置图片模式的播放
-                        if (self.framesArray != nil && self.framesArray.count > 0)
-                        {
-                            
-                            self.frameViewer = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:(CGImageRef)self.framesArray[0]]];
-                            self.frameViewer.image = [UIImage imagewith]
-                            self.frameViewer.center = self.framePlayer.center;
-                            [self.view addSubview:self.frameViewer];
-                        }
-                        [self playButtonPressed:nil];
+//                        if (self.framesArray != nil && self.framesArray.count > 0)
+//                        {
+//                            
+//                            
+//                        }
                         
-                        self.playViewer.backgroundColor = [UIColor clearColor];
-                        self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-                        [self.view addSubview:self.playViewer];
+                        if (finished) {
+                            self.frameViewer = [[UIImageView alloc] init];
+                            self.frameViewer.image = [UIImage sd_animatedGIFWithData:UIImageJPEGRepresentation(image, 1.0)];
+                            CGRect rect = CGRectMake(0, 0, 300, 300);
+                            self.frameViewer.center = self.framePlayer.center;
+                            
+                            [self.view addSubview:self.frameViewer];
+                            [self.view bringSubviewToFront:self.frameViewer];
+                            [self playButtonPressed:nil];
+                            
+                            
+                            
+                            self.playViewer.backgroundColor = [UIColor redColor];
+                            self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+                            [self.view addSubview:self.playViewer];
+                        }
+                        
                     }];
 
                 } else {

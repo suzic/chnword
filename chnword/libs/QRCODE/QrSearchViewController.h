@@ -24,6 +24,7 @@
  */
 - (void) successedWithString:(NSString *) str;
 
+
 /**
  *  @abstract 验证
  */

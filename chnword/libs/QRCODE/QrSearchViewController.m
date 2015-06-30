@@ -8,7 +8,6 @@
 
 #import "QrSearchViewController.h"
 #import "QRUtil.h"
-#import "SoundTool.h"
 
 
 @interface QrSearchViewController ()
@@ -51,6 +50,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.captureType = AVCaptureDevicePositionBack;
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -152,7 +154,7 @@
  */
 - (void) successedWithString:(NSString *) str
 {
-    [SoundTool playAfterQrcode];
+    
 }
 
 /**
@@ -160,7 +162,7 @@
  */
 - (BOOL) verifyQrCode:(NSString *) code
 {
-    return NO;
+    return YES;
 }
 
 /**

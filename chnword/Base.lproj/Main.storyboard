@@ -526,7 +526,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6S-YN-hHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2381" y="1000"/>
+            <point key="canvasLocation" x="2304" y="1000"/>
         </scene>
         <!--产品商店-->
         <scene sceneID="3UY-tn-oGM">

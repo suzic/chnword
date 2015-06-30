@@ -54,8 +54,13 @@
 
 - (void)showLoginView:(NSNotification *)notification
 {
-    if (self.welcomeView.hidden == YES)
+    if (notification) {
         [self performSegueWithIdentifier:@"showLogin" sender:self];
+    } else {
+        if (self.welcomeView.hidden == YES)
+            [self performSegueWithIdentifier:@"showLogin" sender:self];
+
+    }
 }
 
 - (void)showWelcome:(NSNotification *)notification

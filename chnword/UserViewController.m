@@ -53,7 +53,10 @@
 
 - (IBAction)recallWelcome:(id)sender
 {
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowWelcome object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowLogin object:self];
+
 }
 
 

@@ -28,6 +28,11 @@
 		A7B053271B399A58009A0CC2 /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B053261B399A58009A0CC2 /* NetManager.m */; };
 		A7B0532A1B399A6D009A0CC2 /* NetParamFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B053291B399A6D009A0CC2 /* NetParamFactory.m */; };
 		A7B053301B399DA8009A0CC2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B0532F1B399DA8009A0CC2 /* MBProgressHUD.m */; };
+		A7B432D11B42CEA100CEFC58 /* DataMatrix.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7B432C81B42CEA100CEFC58 /* DataMatrix.mm */; };
+		A7B432D21B42CEA100CEFC58 /* QR_Encode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7B432C91B42CEA100CEFC58 /* QR_Encode.cpp */; };
+		A7B432D31B42CEA100CEFC58 /* QREncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7B432CC1B42CEA100CEFC58 /* QREncoder.mm */; };
+		A7B432D41B42CEA100CEFC58 /* QrSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B432CE1B42CEA100CEFC58 /* QrSearchViewController.m */; };
+		A7B432D51B42CEA100CEFC58 /* QRUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7B432D01B42CEA100CEFC58 /* QRUtil.mm */; };
 		A7D6780F1B419E4B00282EBD /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D677EF1B419E4B00282EBD /* MKAnnotationView+WebCache.m */; };
 		A7D678101B419E4B00282EBD /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D677F11B419E4B00282EBD /* NSData+ImageContentType.m */; };
 		A7D678111B419E4B00282EBD /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D677F31B419E4B00282EBD /* SDImageCache.m */; };
@@ -133,6 +138,16 @@
 		A7B053291B399A6D009A0CC2 /* NetParamFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetParamFactory.m; sourceTree = "<group>"; };
 		A7B0532E1B399DA8009A0CC2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A7B0532F1B399DA8009A0CC2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		A7B432C71B42CEA100CEFC58 /* DataMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataMatrix.h; sourceTree = "<group>"; };
+		A7B432C81B42CEA100CEFC58 /* DataMatrix.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DataMatrix.mm; sourceTree = "<group>"; };
+		A7B432C91B42CEA100CEFC58 /* QR_Encode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QR_Encode.cpp; sourceTree = "<group>"; };
+		A7B432CA1B42CEA100CEFC58 /* QR_Encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QR_Encode.h; sourceTree = "<group>"; };
+		A7B432CB1B42CEA100CEFC58 /* QREncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QREncoder.h; sourceTree = "<group>"; };
+		A7B432CC1B42CEA100CEFC58 /* QREncoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QREncoder.mm; sourceTree = "<group>"; };
+		A7B432CD1B42CEA100CEFC58 /* QrSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QrSearchViewController.h; sourceTree = "<group>"; };
+		A7B432CE1B42CEA100CEFC58 /* QrSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QrSearchViewController.m; sourceTree = "<group>"; };
+		A7B432CF1B42CEA100CEFC58 /* QRUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRUtil.h; sourceTree = "<group>"; };
+		A7B432D01B42CEA100CEFC58 /* QRUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QRUtil.mm; sourceTree = "<group>"; };
 		A7D677EE1B419E4B00282EBD /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MKAnnotationView+WebCache.h"; path = "chnword/libs/SDWebImage/MKAnnotationView+WebCache.h"; sourceTree = SOURCE_ROOT; };
 		A7D677EF1B419E4B00282EBD /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MKAnnotationView+WebCache.m"; path = "chnword/libs/SDWebImage/MKAnnotationView+WebCache.m"; sourceTree = SOURCE_ROOT; };
 		A7D677F01B419E4B00282EBD /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+ImageContentType.h"; path = "chnword/libs/SDWebImage/NSData+ImageContentType.h"; sourceTree = SOURCE_ROOT; };
@@ -305,6 +320,7 @@
 		A7B052E61B3996D0009A0CC2 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				A7B432C61B42CEA100CEFC58 /* QRCODE */,
 				A796F5E81B3C3EC300F6DF83 /* SDWebImage */,
 				A7B0532D1B399DA8009A0CC2 /* MBProgressHUD */,
 				A7B052E71B3996D0009A0CC2 /* afnetworking */,
@@ -379,6 +395,23 @@
 				A7B0532F1B399DA8009A0CC2 /* MBProgressHUD.m */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		A7B432C61B42CEA100CEFC58 /* QRCODE */ = {
+			isa = PBXGroup;
+			children = (
+				A7B432C71B42CEA100CEFC58 /* DataMatrix.h */,
+				A7B432C81B42CEA100CEFC58 /* DataMatrix.mm */,
+				A7B432C91B42CEA100CEFC58 /* QR_Encode.cpp */,
+				A7B432CA1B42CEA100CEFC58 /* QR_Encode.h */,
+				A7B432CB1B42CEA100CEFC58 /* QREncoder.h */,
+				A7B432CC1B42CEA100CEFC58 /* QREncoder.mm */,
+				A7B432CD1B42CEA100CEFC58 /* QrSearchViewController.h */,
+				A7B432CE1B42CEA100CEFC58 /* QrSearchViewController.m */,
+				A7B432CF1B42CEA100CEFC58 /* QRUtil.h */,
+				A7B432D01B42CEA100CEFC58 /* QRUtil.mm */,
+			);
+			path = QRCODE;
 			sourceTree = "<group>";
 		};
 		A7EDBAED1B3AFC6200016412 /* Frameworks */ = {
@@ -711,11 +744,13 @@
 				D07204D01B3673B0007C01E8 /* MainTabController.m in Sources */,
 				A7B053191B3996D0009A0CC2 /* UIAlertView+AFNetworking.m in Sources */,
 				A7D6781A1B419E4B00282EBD /* UIImage+MultiFormat.m in Sources */,
+				A7B432D41B42CEA100CEFC58 /* QrSearchViewController.m in Sources */,
 				A7D6780F1B419E4B00282EBD /* MKAnnotationView+WebCache.m in Sources */,
 				D07204D91B3680E4007C01E8 /* UserViewController.m in Sources */,
 				A7B053111B3996D0009A0CC2 /* AFNetworkReachabilityManager.m in Sources */,
 				D0B9472B1B37B49800A1DFD6 /* GIFPlayer.m in Sources */,
 				A7D678191B419E4B00282EBD /* UIImage+GIF.m in Sources */,
+				A7B432D21B42CEA100CEFC58 /* QR_Encode.cpp in Sources */,
 				A7B0531E1B3996D0009A0CC2 /* UIWebView+AFNetworking.m in Sources */,
 				D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */,
 				A7D6781E1B419E4B00282EBD /* UIView+WebCacheOperation.m in Sources */,
@@ -727,7 +762,9 @@
 				D07204BA1B3541D1007C01E8 /* LoginController.m in Sources */,
 				D0B947091B36940B00A1DFD6 /* CategoriesController.m in Sources */,
 				A7B0531A1B3996D0009A0CC2 /* UIButton+AFNetworking.m in Sources */,
+				A7B432D11B42CEA100CEFC58 /* DataMatrix.mm in Sources */,
 				D0B947301B37DF6600A1DFD6 /* ShopSuitController.m in Sources */,
+				A7B432D51B42CEA100CEFC58 /* QRUtil.mm in Sources */,
 				A7B0531C1B3996D0009A0CC2 /* UIProgressView+AFNetworking.m in Sources */,
 				D07204D61B3680D7007C01E8 /* ShopViewController.m in Sources */,
 				D07204C51B355B16007C01E8 /* NSObject+JSON.m in Sources */,
@@ -738,6 +775,7 @@
 				A7D678101B419E4B00282EBD /* NSData+ImageContentType.m in Sources */,
 				A7B053101B3996D0009A0CC2 /* AFHTTPSessionManager.m in Sources */,
 				A7B053271B399A58009A0CC2 /* NetManager.m in Sources */,
+				A7B432D31B42CEA100CEFC58 /* QREncoder.mm in Sources */,
 				A7D678181B419E4B00282EBD /* UIButton+WebCache.m in Sources */,
 				D07204C61B355B16007C01E8 /* Util.m in Sources */,
 				D0B947061B3693EB00A1DFD6 /* LessonsController.m in Sources */,

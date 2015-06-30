@@ -7,6 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "UMSocial.h"
+
+#import "UMSocialWechatHandler.h"
+
+
 
 @interface AppDelegate ()
 
@@ -20,6 +25,10 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    
+    //初始化友盟的sdk
+    [self setUpShareSDK];
 
     return YES;
 }
@@ -50,87 +59,258 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
 }
 
-#pragma mark - Core Data stack
-
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-
-- (NSURL *)applicationDocumentsDirectory {
-    // The directory the application uses to store the Core Data store file. This code uses a directory named "com.thousands.chnword" in the application's documents directory.
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+#pragma mark - shared sdk
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url];
 }
 
-- (NSManagedObjectModel *)managedObjectModel {
-    // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
-    }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"chnword" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return _managedObjectModel;
+#pragma mark - SetUpShareSDK
+
+/**
+ *  @abstract 配置sharedSDK
+ */
+- (void) setUpShareSDK
+{
+#warning 去掉注释
+    
+    //判断是通过平台配置还是程序配置
+    //注册appkey
+    [UMSocialData setAppKey:AppKey_ShareSDK];
+    
+    //设置平台信息
+    [self setUpShareSDKPlatforms];
+    
+    
 }
 
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-    // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it.
-    if (_persistentStoreCoordinator != nil) {
-        return _persistentStoreCoordinator;
+/**
+ *  @abstract 初始化平台信息——程序中判断
+ */
+- (void) setUpShareSDKPlatforms
+{
+    
+    
+    /**
+     连接新浪微博开放平台应用以使用相关功能，此应用需要引用SinaWeiboConnection.framework
+     http://open.weibo.com上注册新浪微博开放平台应用，并将相关信息填写到以下字段
+     **/
+    [ShareSDK connectSinaWeiboWithAppKey:@"568898243"
+                               appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3"
+                             redirectUri:@"http://www.sharesdk.cn"];
+    
+    //连接短信分享
+    [ShareSDK connectSMS];
+    
+    /**
+     连接微信应用以使用相关功能，http://open.weixin.qq.com上注册应用，并将相关信息填写以下字段
+     wx4868b35061f87885
+     64020361b8ec4c99936c0e3999a9f249
+     
+     下面是卡世的配置
+     **/
+    [ShareSDK connectWeChatWithAppId:@"wxf2b2211512834090"
+                           appSecret:@"5e8b5febc7004737e4afcb7316afe24f"
+                           wechatCls:[WXApi class]];
+    //导入微信需要的外部库类型，如果不需要微信分享可以不调用此方法
+    [ShareSDK importWeChatClass:[WXApi class]];
+    
+    /**
+     连接QQ应用以使用相关功能，http://mobile.qq.com/api/上注册应用，并将相关信息填写到以下字段
+     **/
+    [ShareSDK connectQQWithQZoneAppKey:@"100371282"
+                     qqApiInterfaceCls:[QQApiInterface class]
+                       tencentOAuthCls:[TencentOAuth class]];
+    
+    //连接邮件
+    [ShareSDK connectMail];
+    
+    /*
+     NSArray *shareList = [ShareSDK getShareListWithType:
+     ShareTypeWeixiSession,
+     ShareTypeWeixiTimeline,
+     ShareTypeSinaWeibo,
+     ShareTypeTencentWeibo,
+     ShareTypeQQ,
+     nil];
+     //定义容器
+     id<ISSContainer> container = [ShareSDK container];
+     
+     //    if ([[UIDevice currentDevice]])
+     //    {
+     //        [container setIPadContainerWithView:sender
+     //                                arrowDirect:UIPopoverArrowDirectionUp];
+     //    }
+     //    else
+     //    {
+     [container setIPhoneContainerWithViewController:self];
+     //    }
+     
+     //定义分享内容
+     id<ISSContent> publishContent = nil;
+     
+     NSString *contentString = @"This is a sample";
+     NSString *titleString   = @"title";
+     NSString *urlString     = @"http://www.ShareSDK.cn";
+     NSString *description   = @"Sample";
+     
+     publishContent = [ShareSDK content:contentString
+     defaultContent:@""
+     image:nil
+     title:titleString
+     url:urlString
+     description:description
+     mediaType:SSPublishContentMediaTypeText];
+     
+     //定义分享设置
+     id<ISSShareOptions> shareOptions = [ShareSDK simpleShareOptionsWithTitle:@"分享内容" shareViewDelegate:nil];
+     
+     [ShareSDK showShareActionSheet:container
+     shareList:shareList
+     content:publishContent
+     statusBarTips:NO
+     authOptions:nil
+     shareOptions:shareOptions
+     result:nil];
+     */
+}
+
+/**
+ *  @abstract 初始化平台信息——shareSDK进行判断
+ */
+- (void) setUpShareSDKTrustSheep
+{
+    //导入QQ互联和QQ好友分享需要的外部库类型，如果不需要QQ空间SSO和QQ好友分享可以不调用此方法
+    [ShareSDK importQQClass:[QQApiInterface class] tencentOAuthCls:[TencentOAuth class]];
+    
+    //导入微信需要的外部库类型，如果不需要微信分享可以不调用此方法
+    [ShareSDK importWeChatClass:[WXApi class]];
+}
+
+#pragma mark - ios 进程间通信delegete
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    DebugLog(@"%@", url);
+    return [ShareSDK handleOpenURL:url wxDelegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    DebugLog(@"%@", url);
+    return [ShareSDK handleOpenURL:url
+                 sourceApplication:sourceApplication
+                        annotation:annotation
+                        wxDelegate:self];
+}
+
+#pragma mark - 用户信息更新监听
+
+- (void)userInfoUpdateHandler:(NSNotification *)notif
+{
+    NSMutableArray *authList = [NSMutableArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/authListCache.plist",NSTemporaryDirectory()]];
+    if (authList == nil)
+    {
+        authList = [NSMutableArray array];
     }
     
-    // Create the coordinator and store
-    
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"chnword.sqlite"];
-    NSError *error = nil;
-    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        // Report any error we got.
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
-        dict[NSLocalizedFailureReasonErrorKey] = failureReason;
-        dict[NSUnderlyingErrorKey] = error;
-        error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
-        // Replace this with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+    NSString *platName = nil;
+    NSInteger plat = [[[notif userInfo] objectForKey:SSK_PLAT] integerValue];
+    switch (plat)
+    {
+        case ShareTypeSinaWeibo:
+            platName = NSLocalizedString(@"TEXT_SINA_WEIBO", @"新浪微博");
+            break;
+        case ShareType163Weibo:
+            platName = NSLocalizedString(@"TEXT_NETEASE_WEIBO", @"网易微博");
+            break;
+        case ShareTypeDouBan:
+            platName = NSLocalizedString(@"TEXT_DOUBAN", @"豆瓣");
+            break;
+        case ShareTypeFacebook:
+            platName = @"Facebook";
+            break;
+        case ShareTypeKaixin:
+            platName = NSLocalizedString(@"TEXT_KAIXIN", @"开心网");
+            break;
+        case ShareTypeQQSpace:
+            platName = NSLocalizedString(@"TEXT_QZONE", @"QQ空间");
+            break;
+        case ShareTypeRenren:
+            platName = NSLocalizedString(@"TEXT_RENREN", @"人人网");
+            break;
+        case ShareTypeSohuWeibo:
+            platName = NSLocalizedString(@"TEXT_SOHO_WEIBO", @"搜狐微博");
+            break;
+        case ShareTypeTencentWeibo:
+            platName = NSLocalizedString(@"TEXT_TENCENT_WEIBO", @"腾讯微博");
+            break;
+        case ShareTypeTwitter:
+            platName = @"Twitter";
+            break;
+        case ShareTypeInstapaper:
+            platName = @"Instapaper";
+            break;
+        case ShareTypeYouDaoNote:
+            platName = NSLocalizedString(@"TEXT_YOUDAO_NOTE", @"有道云笔记");
+            break;
+        case ShareTypeGooglePlus:
+            platName = @"Google+";
+            break;
+        case ShareTypeLinkedIn:
+            platName = @"LinkedIn";
+            break;
+        default:
+            platName = NSLocalizedString(@"TEXT_UNKNOWN", @"未知");
     }
     
-    return _persistentStoreCoordinator;
-}
-
-
-- (NSManagedObjectContext *)managedObjectContext {
-    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
-    }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (!coordinator) {
-        return nil;
-    }
-    _managedObjectContext = [[NSManagedObjectContext alloc] init];
-    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-    return _managedObjectContext;
-}
-
-#pragma mark - Core Data Saving support
-
-- (void)saveContext {
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        NSError *error = nil;
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+    id<ISSPlatformUser> userInfo = [[notif userInfo] objectForKey:SSK_USER_INFO];
+    BOOL hasExists = NO;
+    for (int i = 0; i < [authList count]; i++)
+    {
+        NSMutableDictionary *item = [authList objectAtIndex:i];
+        ShareType type = (ShareType)[[item objectForKey:@"type"] integerValue];
+        if (type == plat)
+        {
+            [item setObject:[userInfo nickname] forKey:@"username"];
+            hasExists = YES;
+            break;
         }
     }
+    
+    if (!hasExists)
+    {
+        NSDictionary *newItem = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 platName,
+                                 @"title",
+                                 [NSNumber numberWithInteger:plat],
+                                 @"type",
+                                 [userInfo nickname],
+                                 @"username",
+                                 nil];
+        [authList addObject:newItem];
+    }
+    
+    [authList writeToFile:[NSString stringWithFormat:@"%@/authListCache.plist",NSTemporaryDirectory()] atomically:YES];
 }
+
+#pragma mark - WXApiDelegate 微信接口
+
+-(void) onReq:(BaseReq*)req
+{
+    
+}
+
+-(void) onResp:(BaseResp*)resp
+{
+    
+}
+
 
 @end

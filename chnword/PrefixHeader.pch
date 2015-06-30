@@ -46,4 +46,16 @@
 #define NotiShowWelcome         @"NotiShowWelcome"
 #define NotiShowLogin           @"NotiShowLogin"
 
+
+#pragma mark - SharedSDK
+
+/*!
+ *  定义share sdk 配置宏，如果为1，就使用share sdk官网上的配置
+ */
+#ifndef ShareSDK_UsePlatforms
+    #define ShareSDK_UsePlatforms     0
+#endif //ShareSDK_UsePlatforms
+
+#define AppKey_ShareSDK         @""
+
 #endif

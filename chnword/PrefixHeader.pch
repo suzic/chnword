@@ -39,7 +39,7 @@
 #define URL_SUBLIST [NSString stringWithFormat:@"%@/%@", URL_BASE, @"sublist.php"]
 #define URL_WORD    [NSString stringWithFormat:@"%@/%@", URL_BASE, @"word.php"]
 #define URL_SHOW    [NSString stringWithFormat:@"%@/%@", URL_BASE, @"show.php"]
-#define URL_REGIST  [NSString stringWithFormat:@"%@/%@", URL_BASE, @"regist.php"]
+#define URL_LOGIN  [NSString stringWithFormat:@"%@/%@", URL_BASE, @"regist.php"]
 
 #pragma mark - Notifications
 
@@ -56,6 +56,6 @@
     #define ShareSDK_UsePlatforms     0
 #endif //ShareSDK_UsePlatforms
 
-#define AppKey_ShareSDK         @""
+#define AppKey_ShareSDK         @"5593eadb67e58e9f35003abb"
 
 #endif

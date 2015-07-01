@@ -67,7 +67,7 @@
                            deviceId:deviceId
                            session:[Util generateUuid]
                            verify:@"verify"];
-    [NetManager postRequest:URL_REGIST param:param success:^(id json){
+    [NetManager postRequest:URL_LOGIN param:param success:^(id json){
         
         NSLog(@"success with json:\n %@", json);
         
@@ -236,8 +236,8 @@
 //    }
 
     // 发送网络登录请求，verify接口。
-//    [self requestLoginFromNetwork:self.userCodeInput.text];
-    [self requestVerifyFromNetwork:self.userCodeInput.text];
+    [self requestLoginFromNetwork:self.userCodeInput.text];
+//    [self requestVerifyFromNetwork:self.userCodeInput.text];
     
 #warning 现在默认返回需要验证
 //    [self loginNeedsVerify];

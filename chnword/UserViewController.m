@@ -78,7 +78,7 @@
                            deviceId:deviceId
                            session:[Util generateUuid]
                            verify:@"verify"];
-    [NetManager postRequest:URL_REGIST param:param success:^(id json){
+    [NetManager postRequest:URL_LOGIN param:param success:^(id json){
         
         NSLog(@"success with json:\n %@", json);
         

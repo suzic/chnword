@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A76792C41B44B94E00B931F1 /* scan_box.png in Resources */ = {isa = PBXBuildFile; fileRef = A76792C21B44B94E00B931F1 /* scan_box.png */; };
+		A76792C51B44B94E00B931F1 /* scan_line.png in Resources */ = {isa = PBXBuildFile; fileRef = A76792C31B44B94E00B931F1 /* scan_line.png */; };
 		A7B0530E1B3996D0009A0CC2 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B052EA1B3996D0009A0CC2 /* AFHTTPRequestOperation.m */; };
 		A7B0530F1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B052EC1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.m */; };
 		A7B053101B3996D0009A0CC2 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B052EE1B3996D0009A0CC2 /* AFHTTPSessionManager.m */; };
@@ -61,6 +63,7 @@
 		A7B433351B42D9B900CEFC58 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B433341B42D9B900CEFC58 /* libsqlite3.dylib */; };
 		A7B433371B42D9D000CEFC58 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B433361B42D9D000CEFC58 /* libstdc++.dylib */; };
 		A7B433391B42D9DA00CEFC58 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B433381B42D9DA00CEFC58 /* libz.dylib */; };
+		A7B4333B1B42E73200CEFC58 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B4333A1B42E73200CEFC58 /* Reveal.framework */; };
 		A7D6780F1B419E4B00282EBD /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D677EF1B419E4B00282EBD /* MKAnnotationView+WebCache.m */; };
 		A7D678101B419E4B00282EBD /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D677F11B419E4B00282EBD /* NSData+ImageContentType.m */; };
 		A7D678111B419E4B00282EBD /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D677F31B419E4B00282EBD /* SDImageCache.m */; };
@@ -122,6 +125,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A76792C21B44B94E00B931F1 /* scan_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan_box.png; sourceTree = "<group>"; };
+		A76792C31B44B94E00B931F1 /* scan_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan_line.png; sourceTree = "<group>"; };
 		A7B052E91B3996D0009A0CC2 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		A7B052EA1B3996D0009A0CC2 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		A7B052EB1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -231,6 +236,7 @@
 		A7B433341B42D9B900CEFC58 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A7B433361B42D9D000CEFC58 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		A7B433381B42D9DA00CEFC58 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		A7B4333A1B42E73200CEFC58 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		A7D677EE1B419E4B00282EBD /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MKAnnotationView+WebCache.h"; path = "chnword/libs/SDWebImage/MKAnnotationView+WebCache.h"; sourceTree = SOURCE_ROOT; };
 		A7D677EF1B419E4B00282EBD /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MKAnnotationView+WebCache.m"; path = "chnword/libs/SDWebImage/MKAnnotationView+WebCache.m"; sourceTree = SOURCE_ROOT; };
 		A7D677F01B419E4B00282EBD /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+ImageContentType.h"; path = "chnword/libs/SDWebImage/NSData+ImageContentType.h"; sourceTree = SOURCE_ROOT; };
@@ -333,6 +339,7 @@
 				A7B433391B42D9DA00CEFC58 /* libz.dylib in Frameworks */,
 				A7B433371B42D9D000CEFC58 /* libstdc++.dylib in Frameworks */,
 				A7EDBAEC1B3AEB6200016412 /* CoreTelephony.framework in Frameworks */,
+				A7B4333B1B42E73200CEFC58 /* Reveal.framework in Frameworks */,
 				A7B433351B42D9B900CEFC58 /* libsqlite3.dylib in Frameworks */,
 				A7B433331B42D9A800CEFC58 /* CoreGraphics.framework in Frameworks */,
 				A7B433311B42D99600CEFC58 /* libiconv.dylib in Frameworks */,
@@ -360,6 +367,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A76792C11B44B94E00B931F1 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				A76792C21B44B94E00B931F1 /* scan_box.png */,
+				A76792C31B44B94E00B931F1 /* scan_line.png */,
+			);
+			name = Resource;
+			path = chnword/Resource;
+			sourceTree = "<group>";
+		};
 		A796F5E81B3C3EC300F6DF83 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +643,7 @@
 		A7EDBAED1B3AFC6200016412 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A7B4333A1B42E73200CEFC58 /* Reveal.framework */,
 				A7B433381B42D9DA00CEFC58 /* libz.dylib */,
 				A7B433361B42D9D000CEFC58 /* libstdc++.dylib */,
 				A7B433341B42D9B900CEFC58 /* libsqlite3.dylib */,
@@ -642,6 +660,7 @@
 		D066935A1B351A7D00B50D16 = {
 			isa = PBXGroup;
 			children = (
+				A76792C11B44B94E00B931F1 /* Resource */,
 				A7EDBAED1B3AFC6200016412 /* Frameworks */,
 				A7B052E61B3996D0009A0CC2 /* libs */,
 				D06693651B351A7D00B50D16 /* chnword */,
@@ -880,7 +899,7 @@
 				TargetAttributes = {
 					D06693621B351A7D00B50D16 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = XEW439Z58D;
+						DevelopmentTeam = 4NJ5Y66R9N;
 					};
 					D066937E1B351A7D00B50D16 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -925,10 +944,12 @@
 				D06693771B351A7D00B50D16 /* Images.xcassets in Resources */,
 				A7B432F41B42D0F400CEFC58 /* UMSCommentInputController.xib in Resources */,
 				A7B432FB1B42D0F400CEFC58 /* UMSocialSDKResourcesNew.bundle in Resources */,
+				A76792C51B44B94E00B931F1 /* scan_line.png in Resources */,
 				A7B432F31B42D0F400CEFC58 /* UMSCommentDetailController.xib in Resources */,
 				A7B432F61B42D0F400CEFC58 /* UMShareEditViewController.xib in Resources */,
 				A7B433231B42D3CE00CEFC58 /* WeiboSDK.bundle in Resources */,
 				A7B432F51B42D0F400CEFC58 /* UMSCommentInputControlleriPad.xib in Resources */,
+				A76792C41B44B94E00B931F1 /* scan_box.png in Resources */,
 				A7B432F11B42D0F400CEFC58 /* UMSocialLocalizable.strings in Resources */,
 				A7B432F91B42D0F400CEFC58 /* UMSnsAccountViewController.xib in Resources */,
 			);
@@ -1147,6 +1168,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/chnword/libs/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = chnword/PrefixHeader.pch;
@@ -1164,8 +1186,14 @@
 					"$(PROJECT_DIR)/chnword/libs/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/chnword/libs/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ObjC",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1178,6 +1206,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/chnword/libs/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = chnword/PrefixHeader.pch;
@@ -1195,8 +1224,14 @@
 					"$(PROJECT_DIR)/chnword/libs/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/chnword/libs/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ObjC",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

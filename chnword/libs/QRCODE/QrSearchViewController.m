@@ -154,7 +154,8 @@
  */
 - (void) successedWithString:(NSString *) str
 {
-    
+    NSLog(@"searched string. %@", str);
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /**

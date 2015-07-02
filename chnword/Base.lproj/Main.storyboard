@@ -336,6 +336,9 @@
                                                     <state key="normal" image="HOME-SCAN">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="pFy-qd-mVI" kind="modal" id="fdZ-qB-PpY"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -867,6 +870,97 @@
             </objects>
             <point key="canvasLocation" x="800" y="2963"/>
         </scene>
+        <!--Qr Search View Controller-->
+        <scene sceneID="Y0o-Zo-dTH">
+            <objects>
+                <viewController id="pFy-qd-mVI" customClass="QrSearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZBc-0I-2jX"/>
+                        <viewControllerLayoutGuide type="bottom" id="cxe-hj-Nm9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ndQ-z7-PwL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wiA-wM-52C">
+                                <rect key="frame" x="200" y="200" width="200" height="200"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="scan_box.png" translatesAutoresizingMaskIntoConstraints="NO" id="TbJ-i4-eTa">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="scan_line.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kwn-Oq-88P">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="2"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="fG1-kI-EYX"/>
+                                    <constraint firstAttribute="height" constant="200" id="kar-F4-rlb"/>
+                                </constraints>
+                            </view>
+                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YmZ-jn-zuf" userLabel="top">
+                                <rect key="frame" x="0.0" y="20" width="600" height="180"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIz-dG-Alt" userLabel="left">
+                                <rect key="frame" x="0.0" y="200" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2P-Td-cbO" userLabel="right">
+                                <rect key="frame" x="400" y="200" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMx-sF-DIE" userLabel="bottom">
+                                <rect key="frame" x="0.0" y="400" width="600" height="200"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="YmZ-jn-zuf" secondAttribute="trailing" id="0SB-qg-d3f"/>
+                            <constraint firstItem="wiA-wM-52C" firstAttribute="bottom" secondItem="EMx-sF-DIE" secondAttribute="top" id="CI5-OL-PgB"/>
+                            <constraint firstItem="bIz-dG-Alt" firstAttribute="top" secondItem="YmZ-jn-zuf" secondAttribute="bottom" id="EvI-1k-w2e"/>
+                            <constraint firstItem="wiA-wM-52C" firstAttribute="leading" secondItem="bIz-dG-Alt" secondAttribute="trailing" id="Gft-um-RiW"/>
+                            <constraint firstAttribute="centerX" secondItem="wiA-wM-52C" secondAttribute="centerX" id="MgC-P9-eLS"/>
+                            <constraint firstItem="wiA-wM-52C" firstAttribute="height" secondItem="bIz-dG-Alt" secondAttribute="height" id="Nvj-Nh-b95"/>
+                            <constraint firstItem="YmZ-jn-zuf" firstAttribute="leading" secondItem="ndQ-z7-PwL" secondAttribute="leading" id="PDJ-A9-2kw"/>
+                            <constraint firstItem="YmZ-jn-zuf" firstAttribute="leading" secondItem="ndQ-z7-PwL" secondAttribute="leadingMargin" id="VdC-6s-5qv"/>
+                            <constraint firstItem="bIz-dG-Alt" firstAttribute="leading" secondItem="ndQ-z7-PwL" secondAttribute="leading" id="WgW-QO-Gg0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EMx-sF-DIE" secondAttribute="trailing" constant="142" id="XFH-X0-fOf"/>
+                            <constraint firstItem="EMx-sF-DIE" firstAttribute="leading" secondItem="ndQ-z7-PwL" secondAttribute="leading" id="a0V-vB-Vkw"/>
+                            <constraint firstAttribute="trailing" secondItem="EMx-sF-DIE" secondAttribute="trailing" id="buc-5a-tZh"/>
+                            <constraint firstItem="o2P-Td-cbO" firstAttribute="leading" secondItem="wiA-wM-52C" secondAttribute="trailing" id="c6c-de-UOI"/>
+                            <constraint firstItem="wiA-wM-52C" firstAttribute="top" secondItem="YmZ-jn-zuf" secondAttribute="bottom" id="cmh-8e-AgO"/>
+                            <constraint firstItem="YmZ-jn-zuf" firstAttribute="leading" secondItem="ndQ-z7-PwL" secondAttribute="leading" id="dB0-eP-EDV"/>
+                            <constraint firstItem="bIz-dG-Alt" firstAttribute="leading" secondItem="ndQ-z7-PwL" secondAttribute="leadingMargin" id="dEX-EN-BQo"/>
+                            <constraint firstItem="EMx-sF-DIE" firstAttribute="leading" secondItem="ndQ-z7-PwL" secondAttribute="leadingMargin" constant="126" id="dOe-nY-lR0"/>
+                            <constraint firstAttribute="centerY" secondItem="wiA-wM-52C" secondAttribute="centerY" id="dUU-cE-Zfy"/>
+                            <constraint firstItem="YmZ-jn-zuf" firstAttribute="top" secondItem="ZBc-0I-2jX" secondAttribute="bottom" id="hQD-1z-DqW"/>
+                            <constraint firstItem="o2P-Td-cbO" firstAttribute="height" secondItem="wiA-wM-52C" secondAttribute="height" id="hTp-Ed-rzz"/>
+                            <constraint firstAttribute="trailing" secondItem="o2P-Td-cbO" secondAttribute="trailing" id="jSB-DG-Yuh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YmZ-jn-zuf" secondAttribute="trailing" id="qx6-Tu-N5I"/>
+                            <constraint firstAttribute="bottom" secondItem="EMx-sF-DIE" secondAttribute="bottom" id="tFi-lJ-WiO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="o2P-Td-cbO" secondAttribute="trailing" id="u9S-2r-HgY"/>
+                            <constraint firstItem="o2P-Td-cbO" firstAttribute="top" secondItem="YmZ-jn-zuf" secondAttribute="bottom" id="v5a-l5-7J4"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="VdC-6s-5qv"/>
+                                <exclude reference="dB0-eP-EDV"/>
+                                <exclude reference="qx6-Tu-N5I"/>
+                                <exclude reference="dEX-EN-BQo"/>
+                                <exclude reference="XFH-X0-fOf"/>
+                                <exclude reference="dOe-nY-lR0"/>
+                                <exclude reference="u9S-2r-HgY"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jxw-VR-mQC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1633" y="2975"/>
+        </scene>
         <!--PLAYER-->
         <scene sceneID="NXQ-3p-wLJ">
             <objects>
@@ -1277,5 +1371,7 @@
         <image name="TrialBanner" width="720" height="320"/>
         <image name="WordCell" width="137" height="137"/>
         <image name="WordCellSelected" width="137" height="137"/>
+        <image name="scan_box.png" width="291" height="290"/>
+        <image name="scan_line.png" width="291" height="6"/>
     </resources>
 </document>

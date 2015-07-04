@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "chnword/PlayController.m"
-            timestampString = "457285905.008644"
+            timestampString = "457368555.656602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "-requestWord:"
             landmarkType = "5">
          </BreakpointContent>

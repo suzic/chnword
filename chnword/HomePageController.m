@@ -7,14 +7,27 @@
 //
 
 #import "HomePageController.h"
+#import "QrSearchViewController.h"
 
-@interface HomePageController ()
+
+#import "NetParamFactory.h"
+#import "NetManager.h"
+#import "Util.h"
+#import "DataUtil.h"
+#import "MBProgressHUD.h"
+
+
+
+@interface HomePageController () <QrSearchViewControllerDelegate>
 
 @property (assign, nonatomic) CGFloat savedNavigationBarHeight;
 
 @property (assign, nonatomic) CGFloat rowHeight01;
 @property (assign, nonatomic) CGFloat rowHeight02;
 @property (assign, nonatomic) CGFloat rowHeight03;
+
+
+@property (nonatomic, retain) MBProgressHUD *hud;
 
 @end
 
@@ -96,6 +109,96 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([@"QRSEARCH" isEqualToString:segue.identifier]) {
+        QrSearchViewController *controller = (QrSearchViewController *) segue.destinationViewController;
+        controller.delegate = self;
+    }
+}
+
+#pragma mark - QRSEarchViewController Delegate Methods
+- (void) QRSearchViewControllerDidCanceled:(QrSearchViewController *) controller
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) QRSearchViewController:(QrSearchViewController *)controller successedWith:(NSString *) str
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+#pragma mark - net word interface
+- (void) requestWord:(NSString *) word
+{
+    NSDictionary *param = [NetParamFactory wordParam:[Util generateUuid] userid:@"1" device:@"1" word:@"1"];
+    
+    NSLog(@"%@", URL_WORD);
+    NSLog(@"%@", param);
+    
+    [self.hud show:YES];
+    [NetManager postRequest:URL_WORD param:param success:^(id json){
+        
+        NSLog(@"success with json: %@", json);
+        NSDictionary *dict = json;
+        
+        [self.hud hide:YES];
+        
+        if (dict) {
+            NSString *result = [dict objectForKey:@"result"];
+            
+            if ([result isEqualToString:@"1"]) {
+                NSDictionary *data = [dict objectForKey:@"data"];
+                
+                NSArray *wordName = [data objectForKey:@"word_name"];
+                NSArray *wordIndex = [data objectForKey:@"word_index"];
+                NSString *wordTip = [data objectForKey:@"word_tip"];
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:data delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+                
+                
+//                NSString *videoUrl = [data objectForKey:@"video"];
+//                NSString *gifUrl = [data objectForKey:@"gif"];
+                
+                
+            }else {
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+            }
+            
+            
+        } else {
+            [self.hud hide:YES];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
+        
+    }fail:^ (){
+        NSLog(@"fail ");
+        [self.hud hide:YES];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }];
+}
+
+
+#pragma mark - Getter Method
+- (MBProgressHUD *) hud {
+    if (!_hud) {
+        
+        _hud = [[MBProgressHUD alloc] initWithView:self.view];
+        _hud.color = [UIColor clearColor];//这儿表示无背景
+        //显示的文字
+        _hud.labelText = @"Test";
+        //细节文字
+        _hud.detailsLabelText = @"Test detail";
+        //是否有庶罩
+        _hud.dimBackground = YES;
+        [self.navigationController.view addSubview:_hud];
+    }
+    return _hud;
 }
 
 @end

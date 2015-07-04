@@ -131,7 +131,13 @@
     return nil;
 }
 
-
+#pragma mark - UIAction Event handler
+- (IBAction) cancelButtonClicked:(id)sender
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(QRSearchViewControllerDidCanceled:)]) {
+        [self.delegate QRSearchViewControllerDidCanceled:self];
+    }
+}
 
 #pragma mark
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate
@@ -154,8 +160,12 @@
  */
 - (void) successedWithString:(NSString *) str
 {
-    NSLog(@"searched string. %@", str);
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(QRSearchViewController:successedWith:)]) {
+        [self.delegate QRSearchViewController:self successedWith:str];
+    }
+    
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /**

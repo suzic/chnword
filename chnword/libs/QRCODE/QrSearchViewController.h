@@ -10,12 +10,32 @@
 #import <AVFoundation/AVFoundation.h>
 #import <QuartzCore/QuartzCore.h>
 
+@class QrSearchViewController;
+
+@protocol QrSearchViewControllerDelegate <NSObject>
+
+@optional
+
+- (void) QRSearchViewControllerDidCanceled:(QrSearchViewController *) controller;
+
+- (void) QRSearchViewController:(QrSearchViewController *)controller successedWith:(NSString *) str;
+
+@end
+
 
 
 //  二维码扫描视图控制器
 @interface QrSearchViewController : UIViewController <AVCaptureMetadataOutputObjectsDelegate>
 
 @property (nonatomic, assign) AVCaptureDevicePosition captureType;
+
+@property (nonatomic, assign) id<QrSearchViewControllerDelegate> delegate;
+
+
+
+
+
+- (IBAction) cancelButtonClicked:(id)sender;
 
 
 //子类应该重写的方法

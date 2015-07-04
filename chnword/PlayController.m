@@ -45,41 +45,42 @@
     [super viewDidLoad];
 
     // 设置播放控件
-    self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
-    self.progressSlider.minimumValue = 0;
-    self.progressSlider.maximumValue = self.framesArray.count - 1;
-    self.progressSlider.value = 0;
-    self.inPlaying = NO;
-    
-    self.frameViewer = [[UIImageView alloc] init];
-//
-    CGRect rect = CGRectMake(0, 0, 300, 300);
-    self.frameViewer.center = self.framePlayer.center;
-    self.frameViewer.backgroundColor = [UIColor redColor];
-    
-    [self.view addSubview:self.frameViewer];
-    [self.view bringSubviewToFront:self.frameViewer];
-    [self playButtonPressed:nil];
+//    self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
     
     
     
-    self.playViewer.backgroundColor = [UIColor redColor];
-    self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [self.view addSubview:self.playViewer];
-    
-    [self requestWord:self.wordCode];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+//    self.frameViewer = [[UIImageView alloc] init];
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
+    //
+//    CGRect rect = self.framePlayer.frame;
+//    self.frameViewer.frame = rect;
+    self.frameViewer.center = self.framePlayer.center;
+    self.frameViewer.backgroundColor = [UIColor redColor];
+    
+    
+    [self.view addSubview:self.frameViewer];
+    //    [self.framePlayer bringSubviewToFront:self.frameViewer];
+    //    [self playButtonPressed:nil];
+    
+    
+    self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [self.view addSubview:self.playViewer];
+    
+    [self requestWord:self.wordCode];
     
 }
 
@@ -201,8 +202,53 @@
 //                            
 //                        }
                         
+                        NSString *cacheKey = [[SDWebImageManager sharedManager] cacheKeyForURL:imageURL];
+                        SDImageCache *cache = [SDImageCache sharedImageCache];
+                        NSString *path = [cache defaultCachePathForKey:cacheKey];
+                        self.fileUrl = [NSURL fileURLWithPath:path];
+                        
                         if (finished) {
-                            self.frameViewer.image = [UIImage sd_animatedGIFWithData:UIImageJPEGRepresentation(image, 1.0)];
+//                            [self.view bringSubviewToFront:self.frameViewer];
+//                            
+//                            self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
+//                            // 设置图片模式的播放
+//                            if (self.framesArray != nil && self.framesArray.count > 0)
+//                            {
+//                                
+//                                self.frameViewer = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:(CGImageRef)self.framesArray[0]]];
+//                                self.frameViewer.center = self.framePlayer.center;
+//                                [self.view addSubview:self.frameViewer];
+//                            }
+//                            [self playButtonPressed:nil];
+                            
+                            
+                            self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
+                            
+                            self.progressSlider.minimumValue = 0;
+                            self.progressSlider.maximumValue = self.framesArray.count - 1;
+                            self.progressSlider.value = 0;
+                            self.inPlaying = NO;
+                            
+                            
+                            // 设置图片模式的播放
+                            if (self.framesArray != nil && self.framesArray.count > 0)
+                            {
+                                self.frameViewer = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:(CGImageRef)self.framesArray[0]]];
+                                self.frameViewer.center = self.framePlayer.center;
+                                [self.view addSubview:self.frameViewer];
+                            }
+                            
+                            // 视图显示后开始设置GIF动画并自动执行
+                            self.playViewer = [[GIFPlayer alloc] initWithCenter:self.framePlayer.center fileURL:self.fileUrl];
+                            self.playViewer.backgroundColor = [UIColor clearColor];
+                            self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+                            [self.view addSubview:self.playViewer];
+                            
+                            [self playButtonPressed:nil];
+                            
+                            
+                            
+                            
                         }
                         
                     }];

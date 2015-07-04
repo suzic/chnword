@@ -137,7 +137,7 @@ void getFrameInfoFromData(CFDataRef data, NSMutableArray *frames, NSMutableArray
     NSMutableArray *delays = [NSMutableArray arrayWithCapacity:3];
     
 //    getFrameInfo((__bridge CFURLRef)fileURL, frames, delays, NULL, NULL, NULL);
-    getFrameInfoFromData((__bridge CFDataRef) UIImageJPEGRepresentation(image,1.0), frames, delays, NULL, NULL, NULL);
+    getFrameInfoFromData((__bridge CFDataRef) UIImagePNGRepresentation(image), frames, delays, NULL, NULL, NULL);
     
     
     return frames;

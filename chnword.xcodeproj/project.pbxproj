@@ -63,7 +63,6 @@
 		A7B433351B42D9B900CEFC58 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B433341B42D9B900CEFC58 /* libsqlite3.dylib */; };
 		A7B433371B42D9D000CEFC58 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B433361B42D9D000CEFC58 /* libstdc++.dylib */; };
 		A7B433391B42D9DA00CEFC58 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B433381B42D9DA00CEFC58 /* libz.dylib */; };
-		A7B4333B1B42E73200CEFC58 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B4333A1B42E73200CEFC58 /* Reveal.framework */; };
 		A7D6780F1B419E4B00282EBD /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D677EF1B419E4B00282EBD /* MKAnnotationView+WebCache.m */; };
 		A7D678101B419E4B00282EBD /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D677F11B419E4B00282EBD /* NSData+ImageContentType.m */; };
 		A7D678111B419E4B00282EBD /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D677F31B419E4B00282EBD /* SDImageCache.m */; };
@@ -236,7 +235,6 @@
 		A7B433341B42D9B900CEFC58 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A7B433361B42D9D000CEFC58 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		A7B433381B42D9DA00CEFC58 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		A7B4333A1B42E73200CEFC58 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		A7D677EE1B419E4B00282EBD /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MKAnnotationView+WebCache.h"; path = "chnword/libs/SDWebImage/MKAnnotationView+WebCache.h"; sourceTree = SOURCE_ROOT; };
 		A7D677EF1B419E4B00282EBD /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MKAnnotationView+WebCache.m"; path = "chnword/libs/SDWebImage/MKAnnotationView+WebCache.m"; sourceTree = SOURCE_ROOT; };
 		A7D677F01B419E4B00282EBD /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+ImageContentType.h"; path = "chnword/libs/SDWebImage/NSData+ImageContentType.h"; sourceTree = SOURCE_ROOT; };
@@ -339,7 +337,6 @@
 				A7B433391B42D9DA00CEFC58 /* libz.dylib in Frameworks */,
 				A7B433371B42D9D000CEFC58 /* libstdc++.dylib in Frameworks */,
 				A7EDBAEC1B3AEB6200016412 /* CoreTelephony.framework in Frameworks */,
-				A7B4333B1B42E73200CEFC58 /* Reveal.framework in Frameworks */,
 				A7B433351B42D9B900CEFC58 /* libsqlite3.dylib in Frameworks */,
 				A7B433331B42D9A800CEFC58 /* CoreGraphics.framework in Frameworks */,
 				A7B433311B42D99600CEFC58 /* libiconv.dylib in Frameworks */,
@@ -643,7 +640,6 @@
 		A7EDBAED1B3AFC6200016412 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A7B4333A1B42E73200CEFC58 /* Reveal.framework */,
 				A7B433381B42D9DA00CEFC58 /* libz.dylib */,
 				A7B433361B42D9D000CEFC58 /* libstdc++.dylib */,
 				A7B433341B42D9B900CEFC58 /* libsqlite3.dylib */,

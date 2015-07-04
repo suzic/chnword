@@ -150,9 +150,8 @@
             if ([result isEqualToString:@"1"]) {
                 NSDictionary *data = [dict objectForKey:@"data"];
                 
-                NSArray *wordName = [data objectForKey:@"word_name"];
-                NSArray *wordIndex = [data objectForKey:@"word_index"];
-                NSString *wordTip = [data objectForKey:@"word_tip"];
+                NSArray *wordName = [data objectForKey:@"word"];
+                NSArray *wordIndex = [data objectForKey:@"unicode"];
                 
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:data delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];

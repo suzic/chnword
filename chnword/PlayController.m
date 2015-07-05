@@ -17,6 +17,7 @@
 #import "SDWebImageManager.h"
 
 #import "UIImage+GIF.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 
 
@@ -36,6 +37,10 @@
 
 @property (nonatomic, retain) MBProgressHUD *hud;
 
+@property (nonatomic, retain) NSString *videoUrl;
+@property (nonatomic, retain) NSString *gifUrl;
+@property (nonatomic, retain) MPMoviePlayerViewController * moviePlayerView;
+
 @end
 
 @implementation PlayController
@@ -47,7 +52,7 @@
     // 设置播放控件
 //    self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(playingDone) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
     
 }
 
@@ -65,20 +70,15 @@
 {
     [super viewDidAppear:animated];
     
-    //
-//    CGRect rect = self.framePlayer.frame;
-//    self.frameViewer.frame = rect;
-    self.frameViewer.center = self.framePlayer.center;
-    self.frameViewer.backgroundColor = [UIColor redColor];
     
-    
-    [self.view addSubview:self.frameViewer];
-    //    [self.framePlayer bringSubviewToFront:self.frameViewer];
-    //    [self playButtonPressed:nil];
-    
-    
-    self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [self.view addSubview:self.playViewer];
+//    self.frameViewer.center = self.framePlayer.center;
+//    self.frameViewer.backgroundColor = [UIColor redColor];
+//    
+//    
+//    [self.view addSubview:self.frameViewer];
+//    
+//    self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+//    [self.view addSubview:self.playViewer];
     
     [self requestWord:self.wordCode];
     
@@ -93,6 +93,26 @@
 - (IBAction)backward:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction) playVideo:(id)sender
+{
+    if (self.videoUrl) {
+        NSURL *url = [NSURL URLWithString:self.videoUrl];
+        self.moviePlayerView = [[MPMoviePlayerViewController alloc]
+                                                         initWithContentURL:url];
+        
+        self.moviePlayerView.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+        self.moviePlayerView.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
+        
+        [[[UIApplication sharedApplication] keyWindow] addSubview:self.moviePlayerView.view];
+    }
+}
+
+- (void) playingDone {
+    NSLog(@"播放完成");
+    [self.moviePlayerView.view removeFromSuperview];
+    self.moviePlayerView = nil;
 }
 
 #pragma mark - Animation Controls
@@ -181,50 +201,30 @@
             if ([result isEqualToString:@"1"]) {
                 NSDictionary *data = [dict objectForKey:@"data"];
                 
-//                NSString *videoUrl = [data objectForKey:@"video"];
-                NSString *gifUrl = [data objectForKey:@"gif"];
+                NSString *video = [data objectForKey:@"video"];
+                NSString *gif = [data objectForKey:@"gif"];
+                
+                self.gifUrl = gif;
+                self.videoUrl = video;
                 
                 // 视图显示后开始设置GIF动画并自动执行
                 
-                if ([gifUrl containsString:@"http"]) {
+                if ([gif containsString:@"http"]) {
                     //通过网络请求
-                    gifUrl = @"http://img4.duitang.com/uploads/item/201303/15/20130315134323_PMTrz.thumb.600_0.gif";
-                    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:gifUrl] options:SDWebImageLowPriority progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+//                    gif = @"http://img4.duitang.com/uploads/item/201303/15/20130315134323_PMTrz.thumb.600_0.gif";
+                    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:gif] options:SDWebImageLowPriority progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                         
                         
                     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                        
-//                        self.framesArray = [GIFPlayer framesInImage:image];
-                        // 设置图片模式的播放
-//                        if (self.framesArray != nil && self.framesArray.count > 0)
-//                        {
-//                            
-//                            
-//                        }
-                        
-                        
-                        
+                    
                         if (finished) {
-//                            [self.view bringSubviewToFront:self.frameViewer];
-//                            
-//                            self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
-//                            // 设置图片模式的播放
-//                            if (self.framesArray != nil && self.framesArray.count > 0)
-//                            {
-//                                
-//                                self.frameViewer = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:(CGImageRef)self.framesArray[0]]];
-//                                self.frameViewer.center = self.framePlayer.center;
-//                                [self.view addSubview:self.frameViewer];
-//                            }
-//                            [self playButtonPressed:nil];
-                            
                             
                             @try {
                                 NSString *cacheKey = [[SDWebImageManager sharedManager] cacheKeyForURL:imageURL];
                                 SDImageCache *cache = [SDImageCache sharedImageCache];
                                 NSString *path = [cache defaultCachePathForKey:cacheKey];
                                 NSURL *url = [NSURL fileURLWithPath:path];
-                                self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
+                                self.framesArray = [GIFPlayer framesInGif:url];
                             }
                             @catch (NSException *exception) {
                                 NSString *message = [NSString stringWithFormat:@"无效的gif文件:\n%@", imageURL];
@@ -257,9 +257,6 @@
                             [self.view addSubview:self.playViewer];
                             
                             [self playButtonPressed:nil];
-                            
-                            
-                            
                             
                         }
                         

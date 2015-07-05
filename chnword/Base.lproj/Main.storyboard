@@ -1024,6 +1024,21 @@
                                             <action selector="playButtonPressed:" destination="Pgb-X3-0cd" eventType="touchUpInside" id="tHl-y2-XxH"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRR-mS-cJj">
+                                        <rect key="frame" x="548" y="12" width="34" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="34" id="4Bd-eo-5rs"/>
+                                            <constraint firstAttribute="height" constant="33" id="Iut-bL-RYi"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="视频">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="playVideo:" destination="Pgb-X3-0cd" eventType="touchUpInside" id="EpJ-5f-6W8"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKU-rb-x7h">
                                         <rect key="frame" x="337" y="14" width="30" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -1051,7 +1066,9 @@
                                 <constraints>
                                     <constraint firstItem="Pp2-0Q-ZV3" firstAttribute="leading" secondItem="cCn-Xx-4DD" secondAttribute="leading" constant="30" id="2yb-TH-mXA"/>
                                     <constraint firstAttribute="trailing" secondItem="Pp2-0Q-ZV3" secondAttribute="trailing" constant="30" id="MDA-PY-u30"/>
+                                    <constraint firstAttribute="trailing" secondItem="eRR-mS-cJj" secondAttribute="trailing" constant="18" id="OMe-7n-RsW"/>
                                     <constraint firstItem="n8D-bJ-3D4" firstAttribute="centerY" secondItem="HUl-o4-G4w" secondAttribute="centerY" id="QbC-6e-VX3"/>
+                                    <constraint firstItem="eRR-mS-cJj" firstAttribute="top" secondItem="cCn-Xx-4DD" secondAttribute="top" constant="12" id="StB-tp-4hx"/>
                                     <constraint firstItem="n8D-bJ-3D4" firstAttribute="leading" secondItem="HUl-o4-G4w" secondAttribute="trailing" constant="20" id="YA6-Ux-aY1"/>
                                     <constraint firstItem="lKU-rb-x7h" firstAttribute="leading" secondItem="n8D-bJ-3D4" secondAttribute="trailing" constant="20" id="brp-4C-tei"/>
                                     <constraint firstItem="n8D-bJ-3D4" firstAttribute="centerX" secondItem="Pp2-0Q-ZV3" secondAttribute="centerX" id="mHZ-nl-5QQ"/>

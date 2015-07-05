@@ -202,10 +202,7 @@
 //                            
 //                        }
                         
-                        NSString *cacheKey = [[SDWebImageManager sharedManager] cacheKeyForURL:imageURL];
-                        SDImageCache *cache = [SDImageCache sharedImageCache];
-                        NSString *path = [cache defaultCachePathForKey:cacheKey];
-                        self.fileUrl = [NSURL fileURLWithPath:path];
+                        
                         
                         if (finished) {
 //                            [self.view bringSubviewToFront:self.frameViewer];
@@ -222,7 +219,22 @@
 //                            [self playButtonPressed:nil];
                             
                             
-                            self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
+                            @try {
+                                NSString *cacheKey = [[SDWebImageManager sharedManager] cacheKeyForURL:imageURL];
+                                SDImageCache *cache = [SDImageCache sharedImageCache];
+                                NSString *path = [cache defaultCachePathForKey:cacheKey];
+                                NSURL *url = [NSURL fileURLWithPath:path];
+                                self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
+                            }
+                            @catch (NSException *exception) {
+                                NSString *message = [NSString stringWithFormat:@"无效的gif文件:\n%@", imageURL];
+                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                                [alert show];
+                                self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
+                            }
+                            @finally {
+                                
+                            }
                             
                             self.progressSlider.minimumValue = 0;
                             self.progressSlider.maximumValue = self.framesArray.count - 1;

@@ -31,7 +31,7 @@
     
     
     //初始化友盟的sdk
-//    [self setUpShareSDK];
+    [self setUpShareSDK];
 
     return YES;
 }

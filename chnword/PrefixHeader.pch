@@ -56,6 +56,7 @@
     #define ShareSDK_UsePlatforms     0
 #endif //ShareSDK_UsePlatforms
 
-#define AppKey_ShareSDK         @"5593eadb67e58e9f35003abb"
+#define AppKey_ShareSDK         @"559bc88c67e58e6945001eea"
+#define AppKey_Android @"1C9C844A5A50519331D4B548422E31FC"
 
 #endif

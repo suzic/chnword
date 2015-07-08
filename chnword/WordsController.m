@@ -79,13 +79,25 @@ static NSString * const reuseIdentifier = @"WordCell";
     {
 #warning 这里设置正确的播放动画资源
         
-        if (self.selectedIndex < 1) {
+        if ([@"0" isEqualToString:[DataUtil getDefaultUser]]) {
+            if (self.selectedIndex < 2) {
+                PlayController *player = (PlayController *)[segue destinationViewController];
+                //        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
+                player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
+                player.canShare = YES;
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"默认用户只能查看第一条数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alert show];
+            }
+        }else {
             PlayController *player = (PlayController *)[segue destinationViewController];
             //        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
             player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"默认用户只能查看第一条数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            [alert show];
+            if (self.selectedIndex < 2) {
+                player.canShare = YES;
+            }
+            
+            
         }
         
     }

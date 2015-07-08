@@ -107,7 +107,7 @@
 {
     //在你的工程设置项,targets 一栏下,选中自己的 target,在 Info->URL Types 中添加 URL Schemes,添加xcode的url scheme为微信应用appId，例如“wxd9a39c7122aa6516”
     //设置微信AppId、appSecret，分享url
-    [UMSocialWechatHandler setWXAppId:@"wxd930ea5d5a258f4f" appSecret:@"db426a9829e4b49a0dcac7b4162da6b6" url:@"http://www.umeng.com/social"];
+    [UMSocialWechatHandler setWXAppId:@"wx523e7fec6968506f" appSecret:@"4a01f28bf8671d6b5487094caaffc72e" url:@"http://www.umeng.com/social"];
     
     //在你的工程设置项,targets 一栏下,选中自己的 target,在 Info->URL Types 中添加 URL Schemes,格式为“wb”+新浪appkey，例如“wb126663232”
     //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。若在新浪后台设置我们的回调地址，“http://sns.whalecloud.com/sina2/callback”，这里可以传nil
@@ -119,10 +119,6 @@
     
     //设置分享到QQ/Qzone的应用Id，和分享url 链接
     [UMSocialQQHandler setQQWithAppId:@"100424468" appKey:@"c7394704798a158208a74ab60104f0ba" url:@"http://www.umeng.com/social"];
-    
-    //使用友盟统计   sdk未添加
-//    [MobClick startWithAppkey:UmengAppkey];
-
     
 }
 

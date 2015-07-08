@@ -103,16 +103,21 @@
 
 - (IBAction) shareVideo:(id)sender
 {
-    self.canShare = YES;
+//    self.canShare = YES;
     if (self.canShare) {
         //进行分享
         [UMSocialSnsService presentSnsIconSheetView:self
-                                             appKey:@"507fcab25270157b37000010"
-                                          shareText:@"你要分享的文字"
-                                         shareImage:[UIImage imageNamed:@"jiafei.gif"]
+                                             appKey:nil
+                                          shareText:@"让国人羞愧，汉字原来如此简单……"
+                                         shareImage:[UIImage imageNamed:@"AppIcon"]
                                     shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina, UMShareToQzone, UMShareToQQ, UMShareToWechatSession, UMShareToWechatTimeline, UMShareToWechatFavorite, nil]
                                            delegate:self];
+        //分享video
+        [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeVideo url:self.videoUrl];
         
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您无法分享此内容" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
     }
 }
 
@@ -346,7 +351,12 @@
  */
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
-    
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+    }
 }
 
 /**

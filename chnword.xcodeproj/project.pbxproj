@@ -64,6 +64,7 @@
 		A7B433351B42D9B900CEFC58 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B433341B42D9B900CEFC58 /* libsqlite3.dylib */; };
 		A7B433371B42D9D000CEFC58 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B433361B42D9D000CEFC58 /* libstdc++.dylib */; };
 		A7B433391B42D9DA00CEFC58 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B433381B42D9DA00CEFC58 /* libz.dylib */; };
+		A7C3605E1B4EB3F90074E276 /* LOGO1.png in Resources */ = {isa = PBXBuildFile; fileRef = A7C3605D1B4EB3F90074E276 /* LOGO1.png */; };
 		A7D6780F1B419E4B00282EBD /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D677EF1B419E4B00282EBD /* MKAnnotationView+WebCache.m */; };
 		A7D678101B419E4B00282EBD /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D677F11B419E4B00282EBD /* NSData+ImageContentType.m */; };
 		A7D678111B419E4B00282EBD /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D677F31B419E4B00282EBD /* SDImageCache.m */; };
@@ -238,6 +239,7 @@
 		A7B433341B42D9B900CEFC58 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A7B433361B42D9D000CEFC58 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		A7B433381B42D9DA00CEFC58 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		A7C3605D1B4EB3F90074E276 /* LOGO1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO1.png; sourceTree = "<group>"; };
 		A7D677EE1B419E4B00282EBD /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MKAnnotationView+WebCache.h"; path = "chnword/libs/SDWebImage/MKAnnotationView+WebCache.h"; sourceTree = SOURCE_ROOT; };
 		A7D677EF1B419E4B00282EBD /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MKAnnotationView+WebCache.m"; path = "chnword/libs/SDWebImage/MKAnnotationView+WebCache.m"; sourceTree = SOURCE_ROOT; };
 		A7D677F01B419E4B00282EBD /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+ImageContentType.h"; path = "chnword/libs/SDWebImage/NSData+ImageContentType.h"; sourceTree = SOURCE_ROOT; };
@@ -371,6 +373,7 @@
 		A76792C11B44B94E00B931F1 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A7C3605D1B4EB3F90074E276 /* LOGO1.png */,
 				A76792C21B44B94E00B931F1 /* scan_box.png */,
 				A76792C31B44B94E00B931F1 /* scan_line.png */,
 			);
@@ -940,6 +943,7 @@
 				D0B947141B36AB1B00A1DFD6 /* Resource.xcassets in Resources */,
 				D06693751B351A7D00B50D16 /* Main.storyboard in Resources */,
 				A7B432FA1B42D0F400CEFC58 /* UMSShareListController.xib in Resources */,
+				A7C3605E1B4EB3F90074E276 /* LOGO1.png in Resources */,
 				A7B433261B42D3CE00CEFC58 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A7B432F81B42D0F400CEFC58 /* UMSLoginViewController.xib in Resources */,
 				D0B9472D1B37B4D600A1DFD6 /* jiafei.gif in Resources */,

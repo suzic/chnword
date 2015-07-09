@@ -103,13 +103,13 @@
 
 - (IBAction) shareVideo:(id)sender
 {
-//    self.canShare = YES;
+    self.canShare = YES;
     if (self.canShare) {
         //进行分享
         [UMSocialSnsService presentSnsIconSheetView:self
                                              appKey:nil
                                           shareText:@"让国人羞愧，汉字原来如此简单……"
-                                         shareImage:[UIImage imageNamed:@"AppIcon"]
+                                         shareImage:[UIImage imageNamed:@"LOGO1.png"]
                                     shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina, UMShareToQzone, UMShareToQQ, UMShareToWechatSession, UMShareToWechatTimeline, UMShareToWechatFavorite, nil]
                                            delegate:self];
         //分享video

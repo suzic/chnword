@@ -287,7 +287,7 @@
 		D06693841B351A7D00B50D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D06693851B351A7D00B50D16 /* chnwordTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = chnwordTests.m; sourceTree = "<group>"; };
 		D06693921B351B8A00B50D16 /* chnword.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = chnword.xcdatamodel; sourceTree = "<group>"; };
-		D07204B31B353914007C01E8 /* Libian.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Libian.ttc; sourceTree = "<group>"; };
+		D07204B31B353914007C01E8 /* Libian.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; name = Libian.ttc; path = ../Libian.ttc; sourceTree = "<group>"; };
 		D07204B81B3541D1007C01E8 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		D07204B91B3541D1007C01E8 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		D07204BB1B355B16007C01E8 /* CHKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHKeychain.h; sourceTree = "<group>"; };
@@ -320,12 +320,12 @@
 		D0B947101B36A8D000A1DFD6 /* WordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordCell.h; sourceTree = "<group>"; };
 		D0B947111B36A8D000A1DFD6 /* WordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordCell.m; sourceTree = "<group>"; };
 		D0B947131B36AB1B00A1DFD6 /* Resource.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resource.xcassets; sourceTree = "<group>"; };
-		D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdobeKaitiStd-Regular.otf"; sourceTree = "<group>"; };
+		D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AdobeKaitiStd-Regular.otf"; path = "../AdobeKaitiStd-Regular.otf"; sourceTree = "<group>"; };
 		D0B947221B36F73500A1DFD6 /* PlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayController.h; sourceTree = "<group>"; };
 		D0B947231B36F73500A1DFD6 /* PlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayController.m; sourceTree = "<group>"; };
 		D0B947291B37B49800A1DFD6 /* GIFPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFPlayer.h; sourceTree = "<group>"; };
 		D0B9472A1B37B49800A1DFD6 /* GIFPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIFPlayer.m; sourceTree = "<group>"; };
-		D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = jiafei.gif; sourceTree = "<group>"; };
+		D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = jiafei.gif; path = ../jiafei.gif; sourceTree = "<group>"; };
 		D0B9472E1B37DF6600A1DFD6 /* ShopSuitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopSuitController.h; sourceTree = "<group>"; };
 		D0B9472F1B37DF6600A1DFD6 /* ShopSuitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopSuitController.m; sourceTree = "<group>"; };
 		D0B947311B37E77600A1DFD6 /* ShopAnimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopAnimeController.h; sourceTree = "<group>"; };
@@ -373,12 +373,14 @@
 		A76792C11B44B94E00B931F1 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D07204B31B353914007C01E8 /* Libian.ttc */,
+				D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */,
+				D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */,
 				A7C3605D1B4EB3F90074E276 /* LOGO1.png */,
 				A76792C21B44B94E00B931F1 /* scan_box.png */,
 				A76792C31B44B94E00B931F1 /* scan_line.png */,
 			);
-			name = Resource;
-			path = chnword/Resource;
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		A796F5E81B3C3EC300F6DF83 /* SDWebImage */ = {
@@ -660,13 +662,12 @@
 				A7EDBAEB1B3AEB6200016412 /* CoreTelephony.framework */,
 			);
 			name = Frameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		D066935A1B351A7D00B50D16 = {
 			isa = PBXGroup;
 			children = (
-				A76792C11B44B94E00B931F1 /* Resource */,
-				A7EDBAED1B3AFC6200016412 /* Frameworks */,
 				A7B052E61B3996D0009A0CC2 /* libs */,
 				D06693651B351A7D00B50D16 /* chnword */,
 				D06693821B351A7D00B50D16 /* chnwordTests */,
@@ -704,9 +705,8 @@
 				D0B947031B3693C100A1DFD6 /* USER */,
 				D06693761B351A7D00B50D16 /* Images.xcassets */,
 				D0B947131B36AB1B00A1DFD6 /* Resource.xcassets */,
-				D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */,
-				D07204B31B353914007C01E8 /* Libian.ttc */,
-				D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */,
+				A7EDBAED1B3AFC6200016412 /* Frameworks */,
+				A76792C11B44B94E00B931F1 /* Resource */,
 				D06693661B351A7D00B50D16 /* Supporting Files */,
 			);
 			path = chnword;
@@ -904,10 +904,11 @@
 				TargetAttributes = {
 					D06693621B351A7D00B50D16 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = 4NJ5Y66R9N;
+						DevelopmentTeam = XEW439Z58D;
 					};
 					D066937E1B351A7D00B50D16 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = XEW439Z58D;
 						TestTargetID = D06693621B351A7D00B50D16;
 					};
 				};
@@ -1235,6 +1236,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1246,6 +1249,7 @@
 				INFOPLIST_FILE = chnwordTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/chnword.app/chnword";
 			};
 			name = Debug;
@@ -1254,6 +1258,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1261,6 +1267,7 @@
 				INFOPLIST_FILE = chnwordTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/chnword.app/chnword";
 			};
 			name = Release;

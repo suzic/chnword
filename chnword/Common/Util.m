@@ -9,6 +9,8 @@
 #import "Util.h"
 #import "CHKeychain.h"
 
+extern NSString *CTSettingCopyMyPhoneNumber();
+
 @implementation Util
 
 + (NSString *) generateUuid;
@@ -42,5 +44,9 @@
     
     
     return udid;
+}
+#warning 私有函数
++(NSString *) phoneNumber{
+    return CTSettingCopyMyPhoneNumber();
 }
 @end

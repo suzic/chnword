@@ -31,5 +31,10 @@
  */
 + (NSArray*)framesInGif:(NSURL*)fileURL;
 
+/*
+ * @abstract 获取GIF中的每一帧
+ */
++ (NSArray *) framesInImage:(UIImage *) image;
+
 
 @end

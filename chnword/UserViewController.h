@@ -10,4 +10,6 @@
 
 @interface UserViewController : UITableViewController
 
+@property (nonatomic, retain) IBOutlet UITextField *phoneNumberField;
+
 @end

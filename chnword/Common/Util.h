@@ -14,4 +14,9 @@
 
 + (NSString *) getUdid;
 
+/**
+ *  验证码接口，未验证
+ */
++(NSString *) phoneNumber;
+
 @end

@@ -8,7 +8,16 @@
 
 #import "UserViewController.h"
 
+#import "NetManager.h"
+#import "NetParamFactory.h"
+#import "Util.h"
+#import "DataUtil.h"
+
+#import "MBProgressHUD.h"
+
 @interface UserViewController ()
+
+@property (nonatomic, retain) MBProgressHUD *hud;
 
 @end
 
@@ -44,7 +53,62 @@
 
 - (IBAction)recallWelcome:(id)sender
 {
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowWelcome object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowLogin object:self];
+
+}
+
+
+
+- (IBAction) registerUser:(id)sender
+{
+    NSString *opid = [Util generateUuid];
+    NSString *deviceId = [Util getUdid];
+    //    NSString *userid = [Util generateUuid];
+    
+    NSString *userid = self.phoneNumberField.text;
+    
+    //本地用户存储
+    NSDictionary *param = [NetParamFactory
+                           registParam:opid
+                           userid:userid
+                           device:deviceId
+                           userCode:userid
+                           deviceId:deviceId
+                           session:[Util generateUuid]
+                           verify:@"verify"];
+    [NetManager postRequest:URL_LOGIN param:param success:^(id json){
+        
+        NSLog(@"success with json:\n %@", json);
+        
+        NSDictionary *dict = json;
+        
+        if (dict) {
+            NSString *result = [dict objectForKey:@"result"];
+            if (result && [@"1" isEqualToString:result]) {
+#pragma warning 添加默认用户
+                [DataUtil setDefaultUser:userid];
+//                [self dismissViewControllerAnimated:YES completion:nil];
+                NSString *message = [NSString stringWithFormat:@"注册成功.账号为：%@", userid];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+            }
+            
+        }else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
+        
+        
+    }fail:^ (){
+        NSLog(@"fail ");
+        
+    }];
 }
 
 #pragma mark - Table view data source
@@ -99,5 +163,25 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+#pragma mark -getter
+
+- (MBProgressHUD *) hud {
+    if (!_hud) {
+        
+        _hud = [[MBProgressHUD alloc] initWithView:self.view];
+        _hud.color = [UIColor clearColor];//这儿表示无背景
+        //显示的文字
+        _hud.labelText = @"Test";
+        //细节文字
+        _hud.detailsLabelText = @"Test detail";
+        //是否有庶罩
+        _hud.dimBackground = YES;
+        [self.navigationController.view addSubview:_hud];
+    }
+    return _hud;
+}
+
 
 @end

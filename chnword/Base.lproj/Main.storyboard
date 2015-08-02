@@ -116,7 +116,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rEc-Hm-84b" id="6Ke-Lg-SGF">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rys-2A-geI" userLabel="试用按钮">
+                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rys-2A-geI" userLabel="试用按钮">
                                                     <rect key="frame" x="0.0" y="-53" width="600" height="266"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Rys-2A-geI" secondAttribute="height" multiplier="9:4" id="j0J-QW-9Ao"/>
@@ -398,7 +398,7 @@
             </objects>
             <point key="canvasLocation" x="800" y="1000"/>
         </scene>
-        <!--User View Controller-->
+        <!--111-->
         <scene sceneID="G9n-97-RJd">
             <objects>
                 <tableViewController id="utr-gS-PDD" customClass="UserViewController" sceneMemberID="viewController">
@@ -523,6 +523,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="" image="TAB-User" id="KqQ-Rg-0vP"/>
+                    <navigationItem key="navigationItem" title="111" id="UGy-Su-6Rc"/>
                     <connections>
                         <outlet property="phoneNumberField" destination="5JB-hu-uwO" id="bL3-fx-dns"/>
                     </connections>
@@ -1396,25 +1397,25 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BUY_CATE_01" width="142" height="123"/>
-        <image name="BoyIcon" width="140" height="234"/>
-        <image name="BrandTitle" width="210" height="116"/>
-        <image name="CATE_A_01" width="192" height="192"/>
-        <image name="CATE_B_01" width="192" height="192"/>
-        <image name="HOME-ANIME" width="560" height="295"/>
-        <image name="HOME-SCAN" width="508" height="168"/>
-        <image name="HOME-WORDS" width="445" height="367"/>
-        <image name="InputBoxLine" width="624" height="19"/>
-        <image name="LoginButton" width="493" height="222"/>
-        <image name="PlayBackground" width="720" height="1280"/>
-        <image name="Player" width="720" height="639"/>
-        <image name="SHOP-BUY" width="289" height="272"/>
+        <image name="BUY_CATE_01" width="71" height="62"/>
+        <image name="BoyIcon" width="70" height="116"/>
+        <image name="BrandTitle" width="180" height="99"/>
+        <image name="CATE_A_01" width="96" height="96"/>
+        <image name="CATE_B_01" width="96" height="96"/>
+        <image name="HOME-ANIME" width="280" height="147"/>
+        <image name="HOME-SCAN" width="254" height="84"/>
+        <image name="HOME-WORDS" width="222" height="183"/>
+        <image name="InputBoxLine" width="312" height="9"/>
+        <image name="LoginButton" width="246" height="111"/>
+        <image name="PlayBackground" width="360" height="640"/>
+        <image name="Player" width="360" height="319"/>
+        <image name="SHOP-BUY" width="144" height="136"/>
         <image name="TAB-Main" width="42" height="40"/>
         <image name="TAB-Shop" width="42" height="40"/>
         <image name="TAB-User" width="42" height="40"/>
-        <image name="TrialBanner" width="720" height="320"/>
-        <image name="WordCell" width="137" height="137"/>
-        <image name="WordCellSelected" width="137" height="137"/>
+        <image name="TrialBanner" width="360" height="160"/>
+        <image name="WordCell" width="69" height="69"/>
+        <image name="WordCellSelected" width="69" height="69"/>
         <image name="scan_box.png" width="291" height="290"/>
         <image name="scan_line.png" width="291" height="6"/>
     </resources>

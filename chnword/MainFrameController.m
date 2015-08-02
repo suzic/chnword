@@ -79,6 +79,9 @@
 {
     CGFloat width = self.view.frame.size.width;
     CGFloat height = self.view.frame.size.height;
+    
+    CGRect windowBounds = self.view.window.bounds;
+    NSLog(@"%@", NSStringFromCGRect([UIScreen mainScreen].bounds));
 
     self.pageControl.currentPage = 0;
     self.pageControl.numberOfPages = 3;
@@ -93,7 +96,8 @@
         imageView.userInteractionEnabled = YES;
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.frame = CGRectMake(i * width, 0, width, height);
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
+//        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
         [self.pages addSubview:imageView];
     }
     

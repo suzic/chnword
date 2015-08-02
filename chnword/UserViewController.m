@@ -29,10 +29,7 @@
     [super viewDidLoad];
     
     // 设置背景图片
-//    CGRect frame = self.view.frame;
-//    frame.origin.y -= 64;
-//    frame.size.height += 64;
-    CGRect frame = self.view.bounds;
+    CGRect frame = self.view.frame;
     frame.size.height += 64;
     UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:frame];
     [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];

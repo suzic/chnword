@@ -34,12 +34,7 @@
     self.shopSuit.layer.cornerRadius = 8.0f;
     self.shopAnime.layer.cornerRadius = 8.0f;
     self.shopCard.layer.cornerRadius = 8.0f;
-    
-//    self.tableView.frame=CGRectMake (0, 0, self.view.frame.size.width, self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height);
-    
-    
-    
-    
+       
     
 }
 

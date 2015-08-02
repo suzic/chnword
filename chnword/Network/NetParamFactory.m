@@ -86,7 +86,7 @@
                            @"userid": userid,
                            @"device": deviceId,
                            @"param": @{
-                                   @"word_code": word}
+                                   @"word": word}
                            };
     
     return dict;

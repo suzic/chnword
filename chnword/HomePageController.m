@@ -9,6 +9,8 @@
 #import "HomePageController.h"
 #import "QrSearchViewController.h"
 
+#import "PlayController.h"
+
 
 #import "NetParamFactory.h"
 #import "NetManager.h"
@@ -120,18 +122,27 @@
 - (void) QRSearchViewControllerDidCanceled:(QrSearchViewController *) controller
 {
     [controller dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popoverPresentationController];
 }
 
 - (void) QRSearchViewController:(QrSearchViewController *)controller successedWith:(NSString *) str
 {
     [controller dismissViewControllerAnimated:YES completion:nil];
+    
+    [self requestWord:str];
+    
 }
 
 
 #pragma mark - net word interface
 - (void) requestWord:(NSString *) word
 {
-    NSDictionary *param = [NetParamFactory wordParam:[Util generateUuid] userid:@"1" device:@"1" word:@"1"];
+    
+    NSString *opid = [Util generateUuid];
+    NSString *userid = [DataUtil getDefaultUser];
+//    userid = @"userid";
+    NSString *deviceId = [Util getUdid];
+    NSDictionary *param = [NetParamFactory wordParam:[Util generateUuid] userid:userid device:deviceId word:word];
     
     NSLog(@"%@", URL_WORD);
     NSLog(@"%@", param);
@@ -152,18 +163,38 @@
                 
                 NSArray *wordName = [data objectForKey:@"word"];
                 NSArray *wordIndex = [data objectForKey:@"unicode"];
+                NSString *unicode ;
                 
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:data delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                [alert show];
+                for (NSInteger i = 0; i < wordName.count; i ++) {
+                    NSString *aWrod = [wordName objectAtIndex:i];
+                    if ([aWrod isEqualToString:word]) {
+                        unicode = [wordIndex objectAtIndex:i];
+                        
+                        break;
+                    }
+                }
+                
+                if (unicode) {
+                    PlayController *playController = [self.storyboard instantiateViewControllerWithIdentifier:@"PlayController"];
+                    
+                    
+                    //找wordCode
+                    playController.wordCode = unicode;
+                    playController.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
+                    
+                    [self.navigationController pushViewController:playController animated:YES];
+                } else {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无效的字符" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                    [alert show];
+                }
                 
                 
-//                NSString *videoUrl = [data objectForKey:@"video"];
-//                NSString *gifUrl = [data objectForKey:@"gif"];
                 
                 
             }else {
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                NSString *message = [dict objectForKey:@"message"];
+                NSLog(@"%@", message);
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
             }
             

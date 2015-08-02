@@ -195,7 +195,16 @@
 #pragma mark - net request
 - (void) requestWord:(NSString *) word
 {
-    NSDictionary *param = [NetParamFactory wordParam:[Util generateUuid] userid:@"1" device:@"1" word:@"1"];
+    NSString *opid = [Util generateUuid];
+    NSString *userid = [DataUtil getDefaultUser];
+    
+    NSString *deviceId = [Util getUdid];
+    
+    userid = @"1";
+    deviceId = @"1";
+    
+    NSDictionary *param ;//= [NetParamFactory showParam:[Util generateUuid] userid:@"1" device:@"1" word:@"1"];
+    param = [NetParamFactory showParam:opid userid:userid device:deviceId wordCode:word];
     
     NSLog(@"%@", URL_SHOW);
     NSLog(@"%@", param);
@@ -276,6 +285,10 @@
                     }];
 
                 } else {
+                    
+                    NSString *message = [dict objectForKey:@"message"];
+                    NSLog(@"%@", message);
+                    
                     //播放默认的
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                     [alert show];

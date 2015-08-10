@@ -10,6 +10,10 @@
 		A736729D1B48BA9200E88C52 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736729C1B48BA9200E88C52 /* MediaPlayer.framework */; };
 		A76792C41B44B94E00B931F1 /* scan_box.png in Resources */ = {isa = PBXBuildFile; fileRef = A76792C21B44B94E00B931F1 /* scan_box.png */; };
 		A76792C51B44B94E00B931F1 /* scan_line.png in Resources */ = {isa = PBXBuildFile; fileRef = A76792C31B44B94E00B931F1 /* scan_line.png */; };
+		A7AE1D191B78CA7E0043F21C /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7AE1D101B78CA7E0043F21C /* ApiXml.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A7AE1D1A1B78CA7E0043F21C /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7AE1D121B78CA7E0043F21C /* payRequsestHandler.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A7AE1D1B1B78CA7E0043F21C /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7AE1D141B78CA7E0043F21C /* WXUtil.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A7AE1D1C1B78CA7E0043F21C /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7AE1D161B78CA7E0043F21C /* libWeChatSDK.a */; };
 		A7B0530E1B3996D0009A0CC2 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B052EA1B3996D0009A0CC2 /* AFHTTPRequestOperation.m */; };
 		A7B0530F1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B052EC1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.m */; };
 		A7B053101B3996D0009A0CC2 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7B052EE1B3996D0009A0CC2 /* AFHTTPSessionManager.m */; };
@@ -130,6 +134,15 @@
 		A736729E1B48BB0F00E88C52 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		A76792C21B44B94E00B931F1 /* scan_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan_box.png; sourceTree = "<group>"; };
 		A76792C31B44B94E00B931F1 /* scan_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan_line.png; sourceTree = "<group>"; };
+		A7AE1D0F1B78CA7E0043F21C /* ApiXml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiXml.h; sourceTree = "<group>"; };
+		A7AE1D101B78CA7E0043F21C /* ApiXml.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApiXml.mm; sourceTree = "<group>"; };
+		A7AE1D111B78CA7E0043F21C /* payRequsestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = payRequsestHandler.h; sourceTree = "<group>"; };
+		A7AE1D121B78CA7E0043F21C /* payRequsestHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = payRequsestHandler.mm; sourceTree = "<group>"; };
+		A7AE1D131B78CA7E0043F21C /* WXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtil.h; sourceTree = "<group>"; };
+		A7AE1D141B78CA7E0043F21C /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
+		A7AE1D161B78CA7E0043F21C /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		A7AE1D171B78CA7E0043F21C /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		A7AE1D181B78CA7E0043F21C /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		A7B052E91B3996D0009A0CC2 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		A7B052EA1B3996D0009A0CC2 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		A7B052EB1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -351,6 +364,7 @@
 				A7B4332B1B42D85F00CEFC58 /* ImageIO.framework in Frameworks */,
 				A7B433251B42D3CE00CEFC58 /* TencentOpenAPI.framework in Frameworks */,
 				A7B433221B42D3CE00CEFC58 /* libWeiboSDK.a in Frameworks */,
+				A7AE1D1C1B78CA7E0043F21C /* libWeChatSDK.a in Frameworks */,
 				A7B433291B42D3CE00CEFC58 /* libWeChatSDK.a in Frameworks */,
 				A7B433211B42D3CE00CEFC58 /* libSocialSinaSSO.a in Frameworks */,
 				A7B433281B42D3CE00CEFC58 /* libSocialWechat.a in Frameworks */,
@@ -439,9 +453,42 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		A7AE1D0D1B78CA7E0043F21C /* WxPay */ = {
+			isa = PBXGroup;
+			children = (
+				A7AE1D0E1B78CA7E0043F21C /* lib */,
+				A7AE1D151B78CA7E0043F21C /* SDKExport */,
+			);
+			path = WxPay;
+			sourceTree = "<group>";
+		};
+		A7AE1D0E1B78CA7E0043F21C /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				A7AE1D0F1B78CA7E0043F21C /* ApiXml.h */,
+				A7AE1D101B78CA7E0043F21C /* ApiXml.mm */,
+				A7AE1D111B78CA7E0043F21C /* payRequsestHandler.h */,
+				A7AE1D121B78CA7E0043F21C /* payRequsestHandler.mm */,
+				A7AE1D131B78CA7E0043F21C /* WXUtil.h */,
+				A7AE1D141B78CA7E0043F21C /* WXUtil.mm */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		A7AE1D151B78CA7E0043F21C /* SDKExport */ = {
+			isa = PBXGroup;
+			children = (
+				A7AE1D161B78CA7E0043F21C /* libWeChatSDK.a */,
+				A7AE1D171B78CA7E0043F21C /* WXApi.h */,
+				A7AE1D181B78CA7E0043F21C /* WXApiObject.h */,
+			);
+			path = SDKExport;
+			sourceTree = "<group>";
+		};
 		A7B052E61B3996D0009A0CC2 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				A7AE1D0D1B78CA7E0043F21C /* WxPay */,
 				A7B432FC1B42D3CE00CEFC58 /* UMSocial_Sdk_Extra_Frameworks */,
 				A7B432D61B42D0F400CEFC58 /* UMSocial_Sdk_4.2.3 */,
 				A7B432C61B42CEA100CEFC58 /* QRCODE */,
@@ -1000,6 +1047,7 @@
 				A7B053241B399820009A0CC2 /* DataManager.m in Sources */,
 				D06693691B351A7D00B50D16 /* main.m in Sources */,
 				D07204D01B3673B0007C01E8 /* MainTabController.m in Sources */,
+				A7AE1D1B1B78CA7E0043F21C /* WXUtil.mm in Sources */,
 				A7B053191B3996D0009A0CC2 /* UIAlertView+AFNetworking.m in Sources */,
 				A7D6781A1B419E4B00282EBD /* UIImage+MultiFormat.m in Sources */,
 				A7B432D41B42CEA100CEFC58 /* QrSearchViewController.m in Sources */,
@@ -1028,6 +1076,7 @@
 				D07204C51B355B16007C01E8 /* NSObject+JSON.m in Sources */,
 				D0B947331B37E77600A1DFD6 /* ShopAnimeController.m in Sources */,
 				A7B053171B3996D0009A0CC2 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				A7AE1D191B78CA7E0043F21C /* ApiXml.mm in Sources */,
 				A7B053121B3996D0009A0CC2 /* AFSecurityPolicy.m in Sources */,
 				A7B0530F1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.m in Sources */,
 				A7D678101B419E4B00282EBD /* NSData+ImageContentType.m in Sources */,
@@ -1040,6 +1089,7 @@
 				A7D678141B419E4B00282EBD /* SDWebImageDownloader.m in Sources */,
 				A7B0530E1B3996D0009A0CC2 /* AFHTTPRequestOperation.m in Sources */,
 				D0B9470F1B36A8B300A1DFD6 /* WordsController.m in Sources */,
+				A7AE1D1A1B78CA7E0043F21C /* payRequsestHandler.mm in Sources */,
 				A7B053151B3996D0009A0CC2 /* AFURLResponseSerialization.m in Sources */,
 				D0B947361B37EADB00A1DFD6 /* ShopCell.m in Sources */,
 			);
@@ -1192,6 +1242,7 @@
 					"$(PROJECT_DIR)/chnword/libs/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/chnword/libs/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/chnword/libs/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/chnword/libs/WxPay/SDKExport",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1225,6 +1276,7 @@
 					"$(PROJECT_DIR)/chnword/libs/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/chnword/libs/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/chnword/libs/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/chnword/libs/WxPay/SDKExport",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

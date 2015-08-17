@@ -31,32 +31,16 @@
     // 设置背景图片
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background"]]];
     
-//    self.navigationController.navigationBar.hidden = NO;
-    
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-//    NSLog(@"%d, %d", self.navigationController.navigationBarHidden, self.navigationController.navigationBar.hidden);
-    
-    
+
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
 
-    
-    if (self.navigationController.navigationBarHidden) {
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-    }
-    
-    if (self.view.frame.origin.y == 0) {
-        CGRect frame = [UIScreen mainScreen].bounds;
-        frame.origin.y = 64;
-        frame.size.height -= 64;
-        self.tableView.frame = frame;
-    }
-    
-
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -24,6 +24,7 @@
     
     // 设置背景图片
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background"]]];
+        [self.navigationController setNavigationBarHidden:YES];
     
     self.shopSuit.layer.cornerRadius = 8.0f;
     self.shopAnime.layer.cornerRadius = 8.0f;
@@ -39,17 +40,7 @@
     [self.navigationItem setTitle:@"产品商店"];
 
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
-//    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    if (self.navigationController.navigationBarHidden) {
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-    }
-    
-    if (!self.view.frame.origin.y == 0) {
-        CGRect frame = [UIScreen mainScreen].bounds;
-        frame.origin.y = 64;
-        frame.size.height -= 64;
-        self.tableView.frame = frame;
-    }
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 
 }
 

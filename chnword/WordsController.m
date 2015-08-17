@@ -32,13 +32,15 @@ static NSString * const reuseIdentifier = @"WordCell";
     [super viewDidLoad];
    
     // 设置背景图片
-    CGRect frame = self.view.frame;
-    frame.origin.y -= 20; // 算上状态栏位置
-    frame.size.height += 20; // 算上状态栏位置
-    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:frame];
-    NSString *bgImageName = [NSString stringWithFormat:@"CATE_BG_%02d", (self.categoryIndex + 1)];
-    [bacgroundImageView setImage:[UIImage imageNamed:bgImageName]];
-    [self.view insertSubview:bacgroundImageView atIndex:0];
+//    CGRect frame = self.view.frame;
+//    frame.origin.y -= 20; // 算上状态栏位置
+//    frame.size.height += 20; // 算上状态栏位置
+//    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:frame];
+//    NSString *bgImageName = [NSString stringWithFormat:@"CATE_BG_%02d", (self.categoryIndex + 1)];
+//    [bacgroundImageView setImage:[UIImage imageNamed:bgImageName]];
+//    [self.view insertSubview:bacgroundImageView atIndex:0];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background"]]];
+
     
     [self setupWordsList];
 }
@@ -56,14 +58,14 @@ static NSString * const reuseIdentifier = @"WordCell";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    
-    CGRect orgFrame = self.navigationController.navigationBar.frame;
-    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
-    [self.navigationController.navigationBar setFrame:orgFrame];
-}
+//- (void)viewWillLayoutSubviews
+//{
+//    [super viewWillLayoutSubviews];
+//    
+//    CGRect orgFrame = self.navigationController.navigationBar.frame;
+//    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
+//    [self.navigationController.navigationBar setFrame:orgFrame];
+//}
 
 // 初始化分类列表
 - (void)setupWordsList

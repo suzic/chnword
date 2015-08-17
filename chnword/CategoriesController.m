@@ -38,12 +38,13 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     self.selectedIndex = NSNotFound;
     
     // 设置背景图片
-    CGRect frame = self.view.frame;
-    frame.origin.y -= 20; // 算上状态栏位置
-    frame.size.height += 20; // 算上状态栏位置
-    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:frame];
-    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
-    [self.view insertSubview:bacgroundImageView atIndex:0];
+//    CGRect frame = self.view.frame;
+//    frame.origin.y -= 20; // 算上状态栏位置
+//    frame.size.height += 20; // 算上状态栏位置
+//    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:frame];
+//    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
+//    [self.view insertSubview:bacgroundImageView atIndex:0];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background"]]];
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
     [self setupCategroyList];
@@ -54,28 +55,17 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     [super viewDidAppear:animated];
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
-
-    // 设置导航背景图片及过渡动画
-//    [UIView animateWithDuration:0.1f animations:^{
-//        self.navigationController.navigationBar.alpha = 0.2f;
-//    } completion:^(BOOL finished) {
-//        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
-//        [UIView animateWithDuration:0.1 animations:^{
-//            self.navigationController.navigationBar.alpha = 1.0f;
-//        }];
-//    }];
-
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    
-    CGRect orgFrame = self.navigationController.navigationBar.frame;
-    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
-    [self.navigationController.navigationBar setFrame:orgFrame];
-}
+//- (void)viewWillLayoutSubviews
+//{
+//    [super viewWillLayoutSubviews];
+//    
+//    CGRect orgFrame = self.navigationController.navigationBar.frame;
+//    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
+//    [self.navigationController.navigationBar setFrame:orgFrame];
+//}
 
 - (void)didReceiveMemoryWarning
 {

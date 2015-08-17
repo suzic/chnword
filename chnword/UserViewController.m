@@ -30,21 +30,37 @@
     
     // 设置背景图片
     CGRect frame = self.view.frame;
-    frame.size.height += 64;
-    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:frame];
-    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
-    [self.view insertSubview:bacgroundImageView atIndex:0];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background"]]];
     
+//    self.navigationController.navigationBar.hidden = NO;
     
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    NSLog(@"%d, %d", self.navigationController.navigationBarHidden, self.navigationController.navigationBar.hidden);
+    
+    if (self.navigationController.navigationBarHidden) {
+            }
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationItem setTitle:@"用户中心"];
+
+    CGRect frame = [UIScreen mainScreen].bounds;
+    frame.origin.y = 64;
+    frame.size.height -= 64;
+    self.tableView.frame = frame;
+    
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationItem setTitle:@"用户中心"];
+    
     
     
 }

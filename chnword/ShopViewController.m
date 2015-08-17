@@ -23,18 +23,13 @@
     [super viewDidLoad];
     
     // 设置背景图片
-    CGRect frame = self.view.bounds;
-    NSLog(@"%@", NSStringFromCGRect(frame));
-    frame.size.height += 64;
-    
-    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:frame];
-    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
-    [self.view insertSubview:bacgroundImageView atIndex:0];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background"]]];
     
     self.shopSuit.layer.cornerRadius = 8.0f;
     self.shopAnime.layer.cornerRadius = 8.0f;
     self.shopCard.layer.cornerRadius = 8.0f;
-       
+    
+//    self.navigationController.navigationBar.hidden = NO;
     
 }
 
@@ -42,10 +37,16 @@
 {
     [super viewWillAppear:animated];
     
+    NSLog(@"%d, %d", self.navigationController.navigationBarHidden, self.navigationController.navigationBar.hidden);
+    [self.navigationItem setTitle:@"产品商店"];
+
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationItem setTitle:@"产品商店"];
     
+    CGRect frame = [UIScreen mainScreen].bounds;
+    frame.origin.y = 64;
+    frame.size.height -= 64;
+    self.tableView.frame = frame;
     
 
 }

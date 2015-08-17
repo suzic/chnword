@@ -121,8 +121,9 @@
 #pragma mark - QRSEarchViewController Delegate Methods
 - (void) QRSearchViewControllerDidCanceled:(QrSearchViewController *) controller
 {
-    [controller dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popoverPresentationController];
+//    [controller dismissViewControllerAnimated:YES completion:nil];
+//    [controller.navigationController dismissViewControllerAnimated:YES completion:nil];
+//    [self.navigationController popoverPresentationController];
 }
 
 - (void) QRSearchViewController:(QrSearchViewController *)controller successedWith:(NSString *) str

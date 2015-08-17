@@ -53,6 +53,10 @@
     
     self.captureType = AVCaptureDevicePositionBack;
     
+    self.title = @"请扫描二维码";
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonClicked:)];
+    self.navigationItem.leftBarButtonItem = item;
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -134,6 +138,8 @@
 #pragma mark - UIAction Event handler
 - (IBAction) cancelButtonClicked:(id)sender
 {
+//    NSLog(@"%s", __func__);
+    [self dismissViewControllerAnimated:YES completion:nil];
     if (self.delegate && [self.delegate respondsToSelector:@selector(QRSearchViewControllerDidCanceled:)]) {
         [self.delegate QRSearchViewControllerDidCanceled:self];
     }

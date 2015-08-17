@@ -200,8 +200,8 @@
     
     NSString *deviceId = [Util getUdid];
     
-//    userid = @"1";
-//    deviceId = @"1";
+    userid = @"1";
+    deviceId = @"1";
     
     NSDictionary *param ;//= [NetParamFactory showParam:[Util generateUuid] userid:@"1" device:@"1" word:@"1"];
     param = [NetParamFactory showParam:opid userid:userid device:deviceId wordCode:word];

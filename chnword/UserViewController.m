@@ -44,16 +44,13 @@
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationItem setTitle:@"用户中心"];
+    self.title = @"用户中心";
+    [self.navigationController setTitle:@"用户中心"];
     
     if (self.navigationController.navigationBarHidden) {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
-    } else {
-        CGRect frame = [UIScreen mainScreen].bounds;
-        frame.origin.y = 64;
-        frame.size.height -= 64;
-        self.tableView.frame = frame;
     }
-        
+    
     if (self.view.frame.origin.y == 0) {
         CGRect frame = [UIScreen mainScreen].bounds;
         frame.origin.y = 64;

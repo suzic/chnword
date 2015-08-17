@@ -29,7 +29,6 @@
     self.shopAnime.layer.cornerRadius = 8.0f;
     self.shopCard.layer.cornerRadius = 8.0f;
     
-//    self.navigationController.navigationBar.hidden = NO;
     
 }
 
@@ -37,17 +36,20 @@
 {
     [super viewWillAppear:animated];
     
-    NSLog(@"%d, %d", self.navigationController.navigationBarHidden, self.navigationController.navigationBar.hidden);
     [self.navigationItem setTitle:@"产品商店"];
 
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    if (self.navigationController.navigationBarHidden) {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
     
-    CGRect frame = [UIScreen mainScreen].bounds;
-    frame.origin.y = 64;
-    frame.size.height -= 64;
-    self.tableView.frame = frame;
-    
+    if (!self.view.frame.origin.y == 0) {
+        CGRect frame = [UIScreen mainScreen].bounds;
+        frame.origin.y = 64;
+        frame.size.height -= 64;
+        self.tableView.frame = frame;
+    }
 
 }
 

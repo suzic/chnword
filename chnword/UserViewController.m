@@ -31,7 +31,11 @@
     // 设置背景图片
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background"]]];
     
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
+
+    
     [self.navigationController setNavigationBarHidden:YES];
+    self.navigationItem.title = @"个人设置";
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -46,9 +50,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    
-    
     
 }
 

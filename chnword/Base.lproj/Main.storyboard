@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -274,8 +273,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="b0h-VT-Gdu" kind="relationship" relationship="viewControllers" id="ghS-nN-SJs"/>
-                        <segue destination="HD2-aP-ycp" kind="relationship" relationship="viewControllers" id="R4H-eL-NV4"/>
-                        <segue destination="utr-gS-PDD" kind="relationship" relationship="viewControllers" id="Av4-2b-l7z"/>
+                        <segue destination="crI-sQ-UAw" kind="relationship" relationship="viewControllers" id="R4H-eL-NV4"/>
+                        <segue destination="UXZ-5C-6Wq" kind="relationship" relationship="viewControllers" id="Av4-2b-l7z"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3dC-e1-lCx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -522,14 +521,14 @@
                             <outlet property="delegate" destination="utr-gS-PDD" id="gzz-tU-mM7"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" image="TAB-User" id="KqQ-Rg-0vP"/>
+                    <navigationItem key="navigationItem" id="c0Q-Hi-ncP"/>
                     <connections>
                         <outlet property="phoneNumberField" destination="5JB-hu-uwO" id="bL3-fx-dns"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6S-YN-hHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2381" y="1000"/>
+            <point key="canvasLocation" x="4005" y="1000"/>
         </scene>
         <!--产品商店-->
         <scene sceneID="3UY-tn-oGM">
@@ -681,7 +680,6 @@
                             <outlet property="delegate" destination="HD2-aP-ycp" id="3EG-dz-yg1"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" image="TAB-Shop" id="nAw-UR-gcK"/>
                     <navigationItem key="navigationItem" title="产品商店" id="2E5-MP-aEU"/>
                     <connections>
                         <outlet property="shopAnime" destination="24H-1V-TXq" id="JZ2-s9-Lu3"/>
@@ -691,7 +689,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bUQ-l2-AxI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1600" y="1000"/>
+            <point key="canvasLocation" x="2412" y="1000"/>
         </scene>
         <!--《三千字》字课产品-->
         <scene sceneID="sGV-MD-KAy">
@@ -1411,6 +1409,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USt-23-l3C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1633" y="2975"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5gS-TJ-9HB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UXZ-5C-6Wq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="TAB-User" id="KqQ-Rg-0vP"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zNP-Ji-1nr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="utr-gS-PDD" kind="relationship" relationship="rootViewController" id="YBp-6l-kpn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y44-ua-jAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3193" y="1000"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hx1-CB-V2t">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="crI-sQ-UAw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="TAB-Shop" id="nAw-UR-gcK"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WXT-c5-AUY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HD2-aP-ycp" kind="relationship" relationship="rootViewController" id="8BP-HA-7TC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5hn-Uu-4Ni" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1600" y="1000"/>
         </scene>
     </scenes>
     <resources>

@@ -87,6 +87,7 @@
 		A7D6781D1B419E4B00282EBD /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D6780C1B419E4B00282EBD /* UIImageView+WebCache.m */; };
 		A7D6781E1B419E4B00282EBD /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D6780E1B419E4B00282EBD /* UIView+WebCacheOperation.m */; };
 		A7EDBAEC1B3AEB6200016412 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7EDBAEB1B3AEB6200016412 /* CoreTelephony.framework */; };
+		A7FD119C1B88BAD3003404B7 /* FeedbacjViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FD119B1B88BAD3003404B7 /* FeedbacjViewController.m */; };
 		D06693691B351A7D00B50D16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693681B351A7D00B50D16 /* main.m */; };
 		D066936C1B351A7D00B50D16 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D066936B1B351A7D00B50D16 /* AppDelegate.m */; };
 		D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693711B351A7D00B50D16 /* MainFrameController.m */; };
@@ -290,6 +291,8 @@
 		A7D6780D1B419E4B00282EBD /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCacheOperation.h"; path = "chnword/libs/SDWebImage/UIView+WebCacheOperation.h"; sourceTree = SOURCE_ROOT; };
 		A7D6780E1B419E4B00282EBD /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+WebCacheOperation.m"; path = "chnword/libs/SDWebImage/UIView+WebCacheOperation.m"; sourceTree = SOURCE_ROOT; };
 		A7EDBAEB1B3AEB6200016412 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		A7FD119A1B88BAD3003404B7 /* FeedbacjViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbacjViewController.h; sourceTree = "<group>"; };
+		A7FD119B1B88BAD3003404B7 /* FeedbacjViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbacjViewController.m; sourceTree = "<group>"; };
 		D06693631B351A7D00B50D16 /* chnword.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chnword.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06693671B351A7D00B50D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D06693681B351A7D00B50D16 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -403,6 +406,7 @@
 		A796F5E81B3C3EC300F6DF83 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
+				A7B052E71B3996D0009A0CC2 /* afnetworking */,
 				A796F5E91B3C3EC300F6DF83 /* include */,
 			);
 			path = SDWebImage;
@@ -497,7 +501,6 @@
 				A7B432C61B42CEA100CEFC58 /* QRCODE */,
 				A796F5E81B3C3EC300F6DF83 /* SDWebImage */,
 				A7B0532D1B399DA8009A0CC2 /* MBProgressHUD */,
-				A7B052E71B3996D0009A0CC2 /* afnetworking */,
 			);
 			name = libs;
 			path = chnword/libs;
@@ -509,7 +512,8 @@
 				A7B052E81B3996D0009A0CC2 /* AFNetworking */,
 				A7B052FC1B3996D0009A0CC2 /* UIKit+AFNetworking */,
 			);
-			path = afnetworking;
+			name = afnetworking;
+			path = ../afnetworking;
 			sourceTree = "<group>";
 		};
 		A7B052E81B3996D0009A0CC2 /* AFNetworking */ = {
@@ -870,6 +874,8 @@
 				D07204D81B3680E4007C01E8 /* UserViewController.m */,
 				A7A0A7A61B835E0D00041637 /* WebViewController.h */,
 				A7A0A7A71B835E0D00041637 /* WebViewController.m */,
+				A7FD119A1B88BAD3003404B7 /* FeedbacjViewController.h */,
+				A7FD119B1B88BAD3003404B7 /* FeedbacjViewController.m */,
 			);
 			name = USER;
 			sourceTree = "<group>";
@@ -1084,6 +1090,7 @@
 				A7B053171B3996D0009A0CC2 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				A7AE1D191B78CA7E0043F21C /* ApiXml.mm in Sources */,
 				A7B053121B3996D0009A0CC2 /* AFSecurityPolicy.m in Sources */,
+				A7FD119C1B88BAD3003404B7 /* FeedbacjViewController.m in Sources */,
 				A7B0530F1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.m in Sources */,
 				A7D678101B419E4B00282EBD /* NSData+ImageContentType.m in Sources */,
 				A7B053101B3996D0009A0CC2 /* AFHTTPSessionManager.m in Sources */,
@@ -1237,7 +1244,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = chnword/PrefixHeader.pch;
 				INFOPLIST_FILE = chnword/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1272,7 +1279,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = chnword/PrefixHeader.pch;
 				INFOPLIST_FILE = chnword/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

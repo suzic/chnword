@@ -124,76 +124,49 @@
     }];
 }
 
-#pragma mark - Table view data source
 
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    cell.backgroundColor = [UIColor clearColor];
-//}
 
-#pragma mark - TableViewDelegate Method
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (IBAction) showUserGuide:(id)sender
 {
-    NSInteger section = indexPath.section;
-    switch (section) {
-        case 0:
-        {
-            //ignore
-        }
-            break;
-            
-        case 1:{
-            
-            NSInteger row = indexPath.row;
-            WebViewController *webViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
-            NSString *urlString = nil;
-            if (row == 0) {
-                //会员特权
-                urlString = @"";
-                [self.navigationController pushViewController:webViewController animated:YES];
-            } else if (row == 1) {
-                //意见反馈
-                FeedbacjViewController *feedbackViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FeedbacjViewController"];
-                [self.navigationController pushViewController:feedbackViewController animated:YES];
-                
-            } else if (row == 2) {
-                //引导页面
-                
-                
-            } else if (row == 3) {
-                //邀请好友，就是进行分享
-                //进行分享
-                [UMSocialSnsService presentSnsIconSheetView:self
-                                                     appKey:nil
-                                                  shareText:@"三千字"
-                                                 shareImage:[UIImage imageNamed:@"LOGO1.png"]
-                                            shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina, UMShareToQzone, UMShareToQQ, UMShareToWechatSession, UMShareToWechatTimeline, UMShareToWechatFavorite, nil]
-                                                   delegate:self];
-                //分享video
-//                [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeVideo url:@"http://app.3000zi.com/web/download.php"];
-                [UMSocialData defaultData].urlResource.url = @"http://app.3000zi.com/web/download.php";
-            }
-            
-            
-            
-        }
-            break;
-            
-        case 2:{
-            
-            //关于
-            WebViewController *webViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
-            webViewController.urlString = URL_USER_ABOUT;
-            [self.navigationController pushViewController:webViewController animated:YES];
-            
-        }
-            break;
-        default:
-            break;
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowWelcome object:self];
 }
 
+- (IBAction) inviteShare:(id)sender
+{
+    //邀请好友，就是进行分享
+    //进行分享
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:nil
+                                      shareText:@"三千字"
+                                     shareImage:[UIImage imageNamed:@"LOGO1.png"]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina, UMShareToQzone, UMShareToQQ, UMShareToWechatSession, UMShareToWechatTimeline, UMShareToWechatFavorite, nil]
+                                       delegate:self];
+    
+    [UMSocialData defaultData].urlResource.url = @"http://app.3000zi.com/web/download.php";
+}
 
+- (IBAction) showFeedback:(id)sender
+{
+    //意见反馈
+    FeedbacjViewController *feedbackViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FeedbacjViewController"];
+    [self.navigationController pushViewController:feedbackViewController animated:YES];
+}
+
+- (IBAction) showUserVip:(id)sender
+{
+    //关于
+    WebViewController *webViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webViewController.urlString = URL_USER_LOGIN;
+    [self.navigationController pushViewController:webViewController animated:YES];
+}
+
+- (IBAction) showAbout:(id)sender
+{
+    //关于
+    WebViewController *webViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
+    webViewController.urlString = URL_USER_ABOUT;
+    [self.navigationController pushViewController:webViewController animated:YES];
+}
 
 
 #pragma mark -getter

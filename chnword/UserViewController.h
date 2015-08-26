@@ -12,4 +12,7 @@
 
 @property (nonatomic, retain) IBOutlet UITextField *phoneNumberField;
 
+@property (nonatomic, retain) IBOutlet UILabel *userInfoLabel;
+
+
 @end

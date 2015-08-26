@@ -10,6 +10,7 @@
 		A736729D1B48BA9200E88C52 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736729C1B48BA9200E88C52 /* MediaPlayer.framework */; };
 		A76792C41B44B94E00B931F1 /* scan_box.png in Resources */ = {isa = PBXBuildFile; fileRef = A76792C21B44B94E00B931F1 /* scan_box.png */; };
 		A76792C51B44B94E00B931F1 /* scan_line.png in Resources */ = {isa = PBXBuildFile; fileRef = A76792C31B44B94E00B931F1 /* scan_line.png */; };
+		A7A0A7A81B835E0D00041637 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A0A7A71B835E0D00041637 /* WebViewController.m */; };
 		A7AE1D191B78CA7E0043F21C /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7AE1D101B78CA7E0043F21C /* ApiXml.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A7AE1D1A1B78CA7E0043F21C /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7AE1D121B78CA7E0043F21C /* payRequsestHandler.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A7AE1D1B1B78CA7E0043F21C /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7AE1D141B78CA7E0043F21C /* WXUtil.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -86,6 +87,7 @@
 		A7D6781D1B419E4B00282EBD /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D6780C1B419E4B00282EBD /* UIImageView+WebCache.m */; };
 		A7D6781E1B419E4B00282EBD /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D6780E1B419E4B00282EBD /* UIView+WebCacheOperation.m */; };
 		A7EDBAEC1B3AEB6200016412 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7EDBAEB1B3AEB6200016412 /* CoreTelephony.framework */; };
+		A7FD119C1B88BAD3003404B7 /* FeedbacjViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FD119B1B88BAD3003404B7 /* FeedbacjViewController.m */; };
 		D06693691B351A7D00B50D16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693681B351A7D00B50D16 /* main.m */; };
 		D066936C1B351A7D00B50D16 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D066936B1B351A7D00B50D16 /* AppDelegate.m */; };
 		D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693711B351A7D00B50D16 /* MainFrameController.m */; };
@@ -134,6 +136,8 @@
 		A736729E1B48BB0F00E88C52 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		A76792C21B44B94E00B931F1 /* scan_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan_box.png; sourceTree = "<group>"; };
 		A76792C31B44B94E00B931F1 /* scan_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan_line.png; sourceTree = "<group>"; };
+		A7A0A7A61B835E0D00041637 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		A7A0A7A71B835E0D00041637 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		A7AE1D0F1B78CA7E0043F21C /* ApiXml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiXml.h; sourceTree = "<group>"; };
 		A7AE1D101B78CA7E0043F21C /* ApiXml.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApiXml.mm; sourceTree = "<group>"; };
 		A7AE1D111B78CA7E0043F21C /* payRequsestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = payRequsestHandler.h; sourceTree = "<group>"; };
@@ -287,6 +291,8 @@
 		A7D6780D1B419E4B00282EBD /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCacheOperation.h"; path = "chnword/libs/SDWebImage/UIView+WebCacheOperation.h"; sourceTree = SOURCE_ROOT; };
 		A7D6780E1B419E4B00282EBD /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+WebCacheOperation.m"; path = "chnword/libs/SDWebImage/UIView+WebCacheOperation.m"; sourceTree = SOURCE_ROOT; };
 		A7EDBAEB1B3AEB6200016412 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		A7FD119A1B88BAD3003404B7 /* FeedbacjViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbacjViewController.h; sourceTree = "<group>"; };
+		A7FD119B1B88BAD3003404B7 /* FeedbacjViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbacjViewController.m; sourceTree = "<group>"; };
 		D06693631B351A7D00B50D16 /* chnword.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chnword.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06693671B351A7D00B50D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D06693681B351A7D00B50D16 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -400,6 +406,7 @@
 		A796F5E81B3C3EC300F6DF83 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
+				A7B052E71B3996D0009A0CC2 /* afnetworking */,
 				A796F5E91B3C3EC300F6DF83 /* include */,
 			);
 			path = SDWebImage;
@@ -494,7 +501,6 @@
 				A7B432C61B42CEA100CEFC58 /* QRCODE */,
 				A796F5E81B3C3EC300F6DF83 /* SDWebImage */,
 				A7B0532D1B399DA8009A0CC2 /* MBProgressHUD */,
-				A7B052E71B3996D0009A0CC2 /* afnetworking */,
 			);
 			name = libs;
 			path = chnword/libs;
@@ -506,7 +512,8 @@
 				A7B052E81B3996D0009A0CC2 /* AFNetworking */,
 				A7B052FC1B3996D0009A0CC2 /* UIKit+AFNetworking */,
 			);
-			path = afnetworking;
+			name = afnetworking;
+			path = ../afnetworking;
 			sourceTree = "<group>";
 		};
 		A7B052E81B3996D0009A0CC2 /* AFNetworking */ = {
@@ -865,6 +872,10 @@
 			children = (
 				D07204D71B3680E4007C01E8 /* UserViewController.h */,
 				D07204D81B3680E4007C01E8 /* UserViewController.m */,
+				A7A0A7A61B835E0D00041637 /* WebViewController.h */,
+				A7A0A7A71B835E0D00041637 /* WebViewController.m */,
+				A7FD119A1B88BAD3003404B7 /* FeedbacjViewController.h */,
+				A7FD119B1B88BAD3003404B7 /* FeedbacjViewController.m */,
 			);
 			name = USER;
 			sourceTree = "<group>";
@@ -1024,6 +1035,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7B0532A1B399A6D009A0CC2 /* NetParamFactory.m in Sources */,
+				A7A0A7A81B835E0D00041637 /* WebViewController.m in Sources */,
 				A7B053141B3996D0009A0CC2 /* AFURLRequestSerialization.m in Sources */,
 				A7D6781D1B419E4B00282EBD /* UIImageView+WebCache.m in Sources */,
 				A7D678151B419E4B00282EBD /* SDWebImageDownloaderOperation.m in Sources */,
@@ -1078,6 +1090,7 @@
 				A7B053171B3996D0009A0CC2 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				A7AE1D191B78CA7E0043F21C /* ApiXml.mm in Sources */,
 				A7B053121B3996D0009A0CC2 /* AFSecurityPolicy.m in Sources */,
+				A7FD119C1B88BAD3003404B7 /* FeedbacjViewController.m in Sources */,
 				A7B0530F1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.m in Sources */,
 				A7D678101B419E4B00282EBD /* NSData+ImageContentType.m in Sources */,
 				A7B053101B3996D0009A0CC2 /* AFHTTPSessionManager.m in Sources */,
@@ -1226,6 +1239,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/chnword/libs/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)",
+					"/Users/khtc/Downloads/Reveal.app/Contents/SharedSupport/iOS-Libraries",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = chnword/PrefixHeader.pch;
@@ -1260,6 +1274,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/chnword/libs/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)",
+					"/Users/khtc/Downloads/Reveal.app/Contents/SharedSupport/iOS-Libraries",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = chnword/PrefixHeader.pch;

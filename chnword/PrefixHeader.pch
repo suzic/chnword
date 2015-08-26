@@ -41,6 +41,19 @@
 #define URL_SHOW    [NSString stringWithFormat:@"%@/%@", URL_BASE, @"show.php"]
 #define URL_LOGIN  [NSString stringWithFormat:@"%@/%@", URL_BASE, @"regist.php"]
 
+//设置页面特殊url
+
+#define URL_FEEDBACK [NSString stringWithFormat:@"%@/%@", URL_BASE, @"feedback.php"]
+
+//用户特权
+#define URL_USER_LOGIN @"http://app.3000zi.com/web/member.php"
+//邀请用户
+#define URL_USER_INVIDE @"http://app.3000zi.com/web/download.php"
+//关于
+#define URL_USER_ABOUT @"http://app.3000zi.com/web/download.php"
+
+
+
 #pragma mark - Notifications
 
 #define NotiShowWelcome         @"NotiShowWelcome"

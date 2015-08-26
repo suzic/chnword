@@ -56,6 +56,7 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationItem.title = @"列表";
 }
 
 //- (void)viewWillLayoutSubviews

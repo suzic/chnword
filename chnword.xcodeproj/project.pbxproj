@@ -93,7 +93,6 @@
 		D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693711B351A7D00B50D16 /* MainFrameController.m */; };
 		D06693751B351A7D00B50D16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D06693731B351A7D00B50D16 /* Main.storyboard */; };
 		D06693771B351A7D00B50D16 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D06693761B351A7D00B50D16 /* Images.xcassets */; };
-		D06693861B351A7D00B50D16 /* chnwordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693851B351A7D00B50D16 /* chnwordTests.m */; };
 		D06693951B351B8A00B50D16 /* chnword.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D06693911B351B8A00B50D16 /* chnword.xcdatamodeld */; };
 		D07204B41B353914007C01E8 /* Libian.ttc in Resources */ = {isa = PBXBuildFile; fileRef = D07204B31B353914007C01E8 /* Libian.ttc */; };
 		D07204BA1B3541D1007C01E8 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204B91B3541D1007C01E8 /* LoginController.m */; };
@@ -120,16 +119,6 @@
 		D0B947331B37E77600A1DFD6 /* ShopAnimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947321B37E77600A1DFD6 /* ShopAnimeController.m */; };
 		D0B947361B37EADB00A1DFD6 /* ShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947351B37EADB00A1DFD6 /* ShopCell.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D06693801B351A7D00B50D16 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D066935B1B351A7D00B50D16 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D06693621B351A7D00B50D16;
-			remoteInfo = chnword;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A736729C1B48BA9200E88C52 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -302,7 +291,6 @@
 		D06693711B351A7D00B50D16 /* MainFrameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainFrameController.m; sourceTree = "<group>"; };
 		D06693741B351A7D00B50D16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		D06693761B351A7D00B50D16 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D066937F1B351A7D00B50D16 /* chnwordTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = chnwordTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06693841B351A7D00B50D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D06693851B351A7D00B50D16 /* chnwordTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = chnwordTests.m; sourceTree = "<group>"; };
 		D06693921B351B8A00B50D16 /* chnword.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = chnword.xcdatamodel; sourceTree = "<group>"; };
@@ -377,13 +365,6 @@
 				A7B432F21B42D0F400CEFC58 /* libUMSocial_Sdk_4.2.3.a in Frameworks */,
 				A7B433241B42D3CE00CEFC58 /* libSocialQQ.a in Frameworks */,
 				A7B433201B42D3CE00CEFC58 /* libSocialSina.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D066937C1B351A7D00B50D16 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,7 +714,6 @@
 			isa = PBXGroup;
 			children = (
 				D06693631B351A7D00B50D16 /* chnword.app */,
-				D066937F1B351A7D00B50D16 /* chnwordTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -933,24 +913,6 @@
 			productReference = D06693631B351A7D00B50D16 /* chnword.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D066937E1B351A7D00B50D16 /* chnwordTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D066938C1B351A7D00B50D16 /* Build configuration list for PBXNativeTarget "chnwordTests" */;
-			buildPhases = (
-				D066937B1B351A7D00B50D16 /* Sources */,
-				D066937C1B351A7D00B50D16 /* Frameworks */,
-				D066937D1B351A7D00B50D16 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D06693811B351A7D00B50D16 /* PBXTargetDependency */,
-			);
-			name = chnwordTests;
-			productName = chnwordTests;
-			productReference = D066937F1B351A7D00B50D16 /* chnwordTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -963,11 +925,6 @@
 					D06693621B351A7D00B50D16 = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = XEW439Z58D;
-					};
-					D066937E1B351A7D00B50D16 = {
-						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = 5P2X2JD5KZ;
-						TestTargetID = D06693621B351A7D00B50D16;
 					};
 				};
 			};
@@ -986,7 +943,6 @@
 			projectRoot = "";
 			targets = (
 				D06693621B351A7D00B50D16 /* chnword */,
-				D066937E1B351A7D00B50D16 /* chnwordTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1017,13 +973,6 @@
 				A76792C41B44B94E00B931F1 /* scan_box.png in Resources */,
 				A7B432F11B42D0F400CEFC58 /* UMSocialLocalizable.strings in Resources */,
 				A7B432F91B42D0F400CEFC58 /* UMSnsAccountViewController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D066937D1B351A7D00B50D16 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1108,23 +1057,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D066937B1B351A7D00B50D16 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D06693861B351A7D00B50D16 /* chnwordTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D06693811B351A7D00B50D16 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D06693621B351A7D00B50D16 /* chnword */;
-			targetProxy = D06693801B351A7D00B50D16 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A7B432D71B42D0F400CEFC58 /* UMSocialLocalizable.strings */ = {
@@ -1299,46 +1232,6 @@
 			};
 			name = Release;
 		};
-		D066938D1B351A7D00B50D16 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = chnwordTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/chnword.app/chnword";
-			};
-			name = Debug;
-		};
-		D066938E1B351A7D00B50D16 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = chnwordTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/chnword.app/chnword";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1356,15 +1249,6 @@
 			buildConfigurations = (
 				D066938A1B351A7D00B50D16 /* Debug */,
 				D066938B1B351A7D00B50D16 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D066938C1B351A7D00B50D16 /* Build configuration list for PBXNativeTarget "chnwordTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D066938D1B351A7D00B50D16 /* Debug */,
-				D066938E1B351A7D00B50D16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -34,7 +34,10 @@
     [super viewDidLoad];
     
     // 设置背景图片
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background"]]];
+    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
+    bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.tableView.backgroundView = bacgroundImageView;
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
 
@@ -55,7 +58,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,20 +68,15 @@
 
 - (IBAction)recallWelcome:(id)sender
 {
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowWelcome object:self];
     [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowLogin object:self];
-
 }
 
-
-
-- (IBAction) registerUser:(id)sender
+- (IBAction)registerUser:(id)sender
 {
     NSString *opid = [Util generateUuid];
     NSString *deviceId = [Util getUdid];
     //    NSString *userid = [Util generateUuid];
-    
     NSString *userid = self.phoneNumberField.text;
     
     //本地用户存储

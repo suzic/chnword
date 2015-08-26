@@ -10,6 +10,5 @@
 
 @interface MainFrameController : UIViewController <UIScrollViewDelegate>
 
-
 @end
 

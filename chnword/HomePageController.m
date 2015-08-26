@@ -8,26 +8,19 @@
 
 #import "HomePageController.h"
 #import "QrSearchViewController.h"
-
 #import "PlayController.h"
-
-
 #import "NetParamFactory.h"
 #import "NetManager.h"
 #import "Util.h"
 #import "DataUtil.h"
 #import "MBProgressHUD.h"
 
-
-
 @interface HomePageController () <QrSearchViewControllerDelegate>
 
 @property (assign, nonatomic) CGFloat savedNavigationBarHeight;
-
 @property (assign, nonatomic) CGFloat rowHeight01;
 @property (assign, nonatomic) CGFloat rowHeight02;
 @property (assign, nonatomic) CGFloat rowHeight03;
-
 
 @property (nonatomic, retain) MBProgressHUD *hud;
 
@@ -44,11 +37,10 @@
     self.savedNavigationBarHeight = self.navigationController.navigationBar.frame.size.height;
 
     // 设置背景图片
-    CGRect frame = self.view.frame;
-    frame.origin.y -= 20; // 算上状态栏位置
-    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:frame];
+    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
-    [self.view insertSubview:bacgroundImageView atIndex:0];
+    bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.tableView.backgroundView = bacgroundImageView;
     
     self.rowHeight01 = (self.view.frame.size.width) * 59 / 122;
     self.rowHeight02 = (self.view.frame.size.width * 3 / 4) * 42 / 127;
@@ -136,9 +128,9 @@
 
 
 #pragma mark - net word interface
+
 - (void) requestWord:(NSString *) word
 {
-    
     NSString *opid = [Util generateUuid];
     NSString *userid = [DataUtil getDefaultUser];
 //    userid = @"userid";

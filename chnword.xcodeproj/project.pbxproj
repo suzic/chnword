@@ -291,8 +291,6 @@
 		D06693711B351A7D00B50D16 /* MainFrameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainFrameController.m; sourceTree = "<group>"; };
 		D06693741B351A7D00B50D16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		D06693761B351A7D00B50D16 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D06693841B351A7D00B50D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D06693851B351A7D00B50D16 /* chnwordTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = chnwordTests.m; sourceTree = "<group>"; };
 		D06693921B351B8A00B50D16 /* chnword.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = chnword.xcdatamodel; sourceTree = "<group>"; };
 		D07204B31B353914007C01E8 /* Libian.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; name = Libian.ttc; path = ../Libian.ttc; sourceTree = "<group>"; };
 		D07204B81B3541D1007C01E8 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
@@ -684,13 +682,13 @@
 		A7EDBAED1B3AFC6200016412 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A736729E1B48BB0F00E88C52 /* AVKit.framework */,
-				A736729C1B48BA9200E88C52 /* MediaPlayer.framework */,
 				A7B433381B42D9DA00CEFC58 /* libz.dylib */,
 				A7B433361B42D9D000CEFC58 /* libstdc++.dylib */,
 				A7B433341B42D9B900CEFC58 /* libsqlite3.dylib */,
-				A7B433321B42D9A800CEFC58 /* CoreGraphics.framework */,
 				A7B433301B42D99600CEFC58 /* libiconv.dylib */,
+				A736729C1B48BA9200E88C52 /* MediaPlayer.framework */,
+				A736729E1B48BB0F00E88C52 /* AVKit.framework */,
+				A7B433321B42D9A800CEFC58 /* CoreGraphics.framework */,
 				A7B4332E1B42D98900CEFC58 /* Security.framework */,
 				A7B4332C1B42D87B00CEFC58 /* SystemConfiguration.framework */,
 				A7B4332A1B42D85F00CEFC58 /* ImageIO.framework */,
@@ -705,7 +703,6 @@
 			children = (
 				A7B052E61B3996D0009A0CC2 /* libs */,
 				D06693651B351A7D00B50D16 /* chnword */,
-				D06693821B351A7D00B50D16 /* chnwordTests */,
 				D06693641B351A7D00B50D16 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -752,23 +749,6 @@
 				D06693671B351A7D00B50D16 /* Info.plist */,
 				D06693681B351A7D00B50D16 /* main.m */,
 				D07204CA1B357461007C01E8 /* PrefixHeader.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D06693821B351A7D00B50D16 /* chnwordTests */ = {
-			isa = PBXGroup;
-			children = (
-				D06693851B351A7D00B50D16 /* chnwordTests.m */,
-				D06693831B351A7D00B50D16 /* Supporting Files */,
-			);
-			path = chnwordTests;
-			sourceTree = "<group>";
-		};
-		D06693831B351A7D00B50D16 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D06693841B351A7D00B50D16 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

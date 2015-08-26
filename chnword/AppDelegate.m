@@ -14,21 +14,17 @@
 #import "UMSocialSinaHandler.h"
 #import "UMSocialSinaSSOHandler.h"
 
-
-
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    
     
     //初始化友盟的sdk
     [self setUpShareSDK];
@@ -60,13 +56,14 @@
 }
 
 #pragma mark - shared sdk
+
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     return  [UMSocialSnsService handleOpenURL:url];
 }
 
 /**
- 这里处理新浪微博SSO授权之后跳转回来，和微信分享完成之后跳转回来
+ * @abstract 这里处理新浪微博SSO授权之后跳转回来，和微信分享完成之后跳转回来
  */
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
@@ -74,7 +71,7 @@
 }
 
 /**
- 这里处理新浪微博SSO授权进入新浪微博客户端后进入后台，再返回原来应用
+ * @abstract 这里处理新浪微博SSO授权进入新浪微博客户端后进入后台，再返回原来应用
  */
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
@@ -119,7 +116,6 @@
     
     //设置分享到QQ/Qzone的应用Id，和分享url 链接
     [UMSocialQQHandler setQQWithAppId:@"1104685705" appKey:@"TaZo5RPmrGX11nPO" url:@"http://www.umeng.com/social"];
-    
 }
 
 

@@ -23,14 +23,16 @@
     [super viewDidLoad];
     
     // 设置背景图片
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background"]]];
-        [self.navigationController setNavigationBarHidden:YES];
+    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
+    bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.tableView.backgroundView = bacgroundImageView;
+    
+    [self.navigationController setNavigationBarHidden:YES];
     
     self.shopSuit.layer.cornerRadius = 8.0f;
     self.shopAnime.layer.cornerRadius = 8.0f;
     self.shopCard.layer.cornerRadius = 8.0f;
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated

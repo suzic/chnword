@@ -32,9 +32,11 @@ static NSString * const reuseIdentifier = @"WordCell";
     [super viewDidLoad];
    
     // 设置背景图片
+    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     NSString *bgImageName = [NSString stringWithFormat:@"CATE_BG_%02d", (int)(self.categoryIndex + 1)];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:bgImageName]]];
-
+    [bacgroundImageView setImage:[UIImage imageNamed:bgImageName]];
+    bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.collectionView.backgroundView = bacgroundImageView;
     
     [self setupWordsList];
 }

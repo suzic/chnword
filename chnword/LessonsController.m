@@ -25,24 +25,39 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // 设置背景图片
-    CGRect frame = self.view.frame;
-    frame.origin.y -= 64; // 算上导航栏位置
-    frame.size.height += 64; // 算上导航栏位置
-    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:frame];
+    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
-    [self.view insertSubview:bacgroundImageView atIndex:0];
+    bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.tableView.backgroundView = bacgroundImageView;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [UIView animateWithDuration:0.5f animations:^{
+        self.navigationController.navigationBar.alpha = 1.0f;
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationController.navigationBar.alpha = 1.0f;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    CGRect orgFrame = self.navigationController.navigationBar.frame;
+    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
+    [self.navigationController.navigationBar setFrame:orgFrame];
 }
 
 #pragma mark - Table view data source

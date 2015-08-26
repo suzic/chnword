@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "UMSocial.h"
-
 #import "UMSocialWechatHandler.h"
 #import "UMSocialQQHandler.h"
 #import "UMSocialSinaHandler.h"
@@ -78,7 +77,6 @@
     [UMSocialSnsService  applicationDidBecomeActive];
 }
 
-
 #pragma mark - SetUpShareSDK
 
 /**
@@ -109,14 +107,11 @@
     //在你的工程设置项,targets 一栏下,选中自己的 target,在 Info->URL Types 中添加 URL Schemes,格式为“wb”+新浪appkey，例如“wb126663232”
     //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。若在新浪后台设置我们的回调地址，“http://sns.whalecloud.com/sina2/callback”，这里可以传nil
     
-    
-    
     //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。若在新浪后台设置我们的回调地址，“http://sns.whalecloud.com/sina2/callback”，这里可以传nil
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     
     //设置分享到QQ/Qzone的应用Id，和分享url 链接
     [UMSocialQQHandler setQQWithAppId:@"1104685705" appKey:@"TaZo5RPmrGX11nPO" url:@"http://www.umeng.com/social"];
 }
-
 
 @end

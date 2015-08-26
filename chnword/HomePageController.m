@@ -17,7 +17,6 @@
 
 @interface HomePageController () <QrSearchViewControllerDelegate>
 
-@property (assign, nonatomic) CGFloat savedNavigationBarHeight;
 @property (assign, nonatomic) CGFloat rowHeight01;
 @property (assign, nonatomic) CGFloat rowHeight02;
 @property (assign, nonatomic) CGFloat rowHeight03;
@@ -31,10 +30,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 
-    self.savedNavigationBarHeight = self.navigationController.navigationBar.frame.size.height;
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    self.navigationController.navigationBar.alpha = 0.01f;
 
     // 设置背景图片
     UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
@@ -42,25 +40,56 @@
     bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.tableView.backgroundView = bacgroundImageView;
     
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"]
+                                                  forBarMetrics:UIBarMetricsDefault];
+
     self.rowHeight01 = (self.view.frame.size.width) * 59 / 122;
     self.rowHeight02 = (self.view.frame.size.width * 3 / 4) * 42 / 127;
     self.rowHeight03 = (self.view.frame.size.width * 2 / 3) * 367 / 445;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [UIView animateWithDuration:0.5f animations:^{
+        self.navigationController.navigationBar.alpha = 0.01f;
+    }];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    CGRect orgFrame = self.navigationController.navigationBar.frame;
-    orgFrame.size.height = self.savedNavigationBarHeight;
-    [self.navigationController.navigationBar setFrame:orgFrame];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    self.navigationController.navigationBar.alpha = 0.01f;
 }
+
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//}
+//
+//- (void)viewDidDisappear:(BOOL)animated
+//{
+//    [super viewDidDisappear:animated];
+//    
+//    [UIView animateWithDuration:0.5f animations:^{
+//        self.navigationController.navigationBar.alpha = 1.0f;
+//    }];
+//}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    CGRect orgFrame = self.navigationController.navigationBar.frame;
+    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
+    [self.navigationController.navigationBar setFrame:orgFrame];
+    self.navigationController.navigationBar.alpha = 0.01f;
 }
 
 #pragma mark - Table view data source
@@ -87,7 +116,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    CGFloat screenHeight = self.view.frame.size.height - 49.0f;
+    CGFloat screenHeight = self.view.frame.size.height - 39.0f;
     CGFloat sectionHeight = (screenHeight - self.rowHeight01 - self.rowHeight02 - self.rowHeight03) / 3;
     return sectionHeight > 0 ? sectionHeight : 0.01f;
 }
@@ -111,25 +140,23 @@
 }
 
 #pragma mark - QRSEarchViewController Delegate Methods
-- (void) QRSearchViewControllerDidCanceled:(QrSearchViewController *) controller
+
+- (void)QRSearchViewControllerDidCanceled:(QrSearchViewController *) controller
 {
 //    [controller dismissViewControllerAnimated:YES completion:nil];
 //    [controller.navigationController dismissViewControllerAnimated:YES completion:nil];
 //    [self.navigationController popoverPresentationController];
 }
 
-- (void) QRSearchViewController:(QrSearchViewController *)controller successedWith:(NSString *) str
+- (void)QRSearchViewController:(QrSearchViewController *)controller successedWith:(NSString *) str
 {
     [controller dismissViewControllerAnimated:YES completion:nil];
-    
     [self requestWord:str];
-    
 }
-
 
 #pragma mark - net word interface
 
-- (void) requestWord:(NSString *) word
+- (void)requestWord:(NSString *) word
 {
     NSString *opid = [Util generateUuid];
     NSString *userid = [DataUtil getDefaultUser];
@@ -206,18 +233,19 @@
     }];
 }
 
-
 #pragma mark - Getter Method
-- (MBProgressHUD *) hud {
-    if (!_hud) {
-        
+
+- (MBProgressHUD *)hud
+{
+    if (!_hud)
+    {
         _hud = [[MBProgressHUD alloc] initWithView:self.view];
         _hud.color = [UIColor clearColor];//这儿表示无背景
         //显示的文字
-        _hud.labelText = @"Test";
+        _hud.labelText = @"加载数据中";
         //细节文字
-        _hud.detailsLabelText = @"Test detail";
-        //是否有庶罩
+        _hud.detailsLabelText = @""; //@"Test detail";
+        //是否有遮罩
         _hud.dimBackground = YES;
         [self.navigationController.view addSubview:_hud];
     }

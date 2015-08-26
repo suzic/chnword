@@ -30,9 +30,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showWelcome:) name:NotiShowWelcome object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginView:) name:NotiShowLogin object:nil];
     
-    if ([DataUtil isFirstLogin]){
+    if ([DataUtil isFirstLogin])
+    {
         [self showWelcome:nil];
-    }else if ( [@"0" isEqualToString:[DataUtil getDefaultUser]]){
+    }
+    else if ( [@"0" isEqualToString:[DataUtil getDefaultUser]])
+    {
         [self performBlock:^{ [self showLoginView:nil]; } afterDelay:0.5];        
     }
 }
@@ -54,9 +57,12 @@
 
 - (void)showLoginView:(NSNotification *)notification
 {
-    if (notification) {
+    if (notification)
+    {
         [self performSegueWithIdentifier:@"showLogin" sender:self];
-    } else {
+    }
+    else
+    {
         if (self.welcomeView.hidden == YES)
             [self performSegueWithIdentifier:@"showLogin" sender:self];
     }

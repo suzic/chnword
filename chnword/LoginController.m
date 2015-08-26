@@ -38,9 +38,10 @@
     rowHeight = screenWidth * 4 / 9;
     
     // 设置背景图片
-    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
+    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
-    [self.view insertSubview:bacgroundImageView atIndex:0];
+    bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.tableView.backgroundView = bacgroundImageView;
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,7 +101,7 @@
 // 在这里写登录请求验证码
 - (void)requestVerifyFromNetwork:(NSString *)verifyCode
 {
-//    NSString *activeCode = self.activeCodeField.text;
+    //    NSString *activeCode = self.activeCodeField.text;
     
     NSString *opid = [Util generateUuid];
     NSString *deviceId = [Util getUdid];    
@@ -110,7 +111,6 @@
         [DataUtil setDefaultUser:@"0"];
         userid = @"0";
     }
-    
     
     //本地用户存储
     [self.hud show:YES];
@@ -161,24 +161,24 @@
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
             }
-        } else {
+        }
+        else
+        {
 //            NSString *message = @"请求失败！";
 //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
 //            [alert show];
-            
+
             //登录失败
             [self loginNeedsVerify];
-            
         }
         
-    }fail:^ (){
+    } fail:^ ()
+    {
         NSLog(@"fail ");
         [self.hud hide:YES];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
-        
     }];
-
 }
 
 #pragma mark - Table view data source
@@ -211,7 +211,7 @@
     return 0.01f;
 }
 
-//试用按钮点击
+// 试用按钮点击
 - (IBAction)trailButtonPressed:(id)sender
 {
 //    [self requestLoginFromNetwork:@"13700845991"];
@@ -221,7 +221,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-//登录按钮点击
+// 登录按钮点击
 - (IBAction)loginButtonPressed:(id)sender
 {
 //    if (self.loginButton.alpha < 1.0f)
@@ -269,7 +269,6 @@
                                           otherButtonTitles:@"确定", nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alert show];
-    
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -306,24 +305,23 @@
         self.loginButton.alpha = 1.0f;
 }
 
-
 #pragma mark -getter
 
-- (MBProgressHUD *) hud {
-    if (!_hud) {
-        
+- (MBProgressHUD *) hud
+{
+    if (!_hud)
+    {
         _hud = [[MBProgressHUD alloc] initWithView:self.view];
-        _hud.color = [UIColor clearColor];//这儿表示无背景
+        _hud.color = [UIColor clearColor]; //这儿表示无背景
         //显示的文字
-        _hud.labelText = @"Test";
+        _hud.labelText = @"登录中...";
         //细节文字
-        _hud.detailsLabelText = @"Test detail";
+        _hud.detailsLabelText = @""; //@"Test detail";
         //是否有庶罩
         _hud.dimBackground = YES;
         [self.navigationController.view addSubview:_hud];
     }
     return _hud;
 }
-
 
 @end

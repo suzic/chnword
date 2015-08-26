@@ -8,15 +8,11 @@
 
 #import "CategoriesController.h"
 #import "WordsController.h"
-
 #import "NetManager.h"
 #import "NetParamFactory.h"
 #import "Util.h"
 #import "DataUtil.h"
-
 #import "MBProgressHUD.h"
-
-
 
 @interface CategoriesController ()
 
@@ -38,16 +34,18 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     self.selectedIndex = NSNotFound;
     
     // 设置背景图片
-//    CGRect frame = self.view.frame;
-//    frame.origin.y -= 20; // 算上状态栏位置
-//    frame.size.height += 20; // 算上状态栏位置
-//    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:frame];
-//    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
-//    [self.view insertSubview:bacgroundImageView atIndex:0];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background"]]];
+    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
+    bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.collectionView.backgroundView = bacgroundImageView;
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
     [self setupCategroyList];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -55,18 +53,23 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     [super viewDidAppear:animated];
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.navigationItem.title = @"列表";
+    // [self.navigationController setNavigationBarHidden:NO animated:YES];
+    // self.navigationItem.title = @"列表";
+    
+    [UIView animateWithDuration:0.5f animations:^{
+        self.navigationController.navigationBar.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+    }];
 }
 
-//- (void)viewWillLayoutSubviews
-//{
-//    [super viewWillLayoutSubviews];
-//    
-//    CGRect orgFrame = self.navigationController.navigationBar.frame;
-//    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
-//    [self.navigationController.navigationBar setFrame:orgFrame];
-//}
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+
+    CGRect orgFrame = self.navigationController.navigationBar.frame;
+    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
+    [self.navigationController.navigationBar setFrame:orgFrame];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -99,7 +102,6 @@ static NSString * const reuseIdentifier = @"CategoryCell";
         WordsController *wordController = (WordsController *)[segue destinationViewController];
         wordController.categoryIndex = self.selectedIndex;
         wordController.moduleCode = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateCode"];
-        
     }
 }
 
@@ -141,17 +143,16 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     self.selectedIndex = indexPath.row;
     
     // 设置导航背景图片及过渡动画
-//    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02ld", (self.selectedIndex + 1)];
-    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02ld", self.categoryList.count - indexPath.row];
+    // NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02ld", (self.selectedIndex + 1)];
+    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02u", self.categoryList.count - indexPath.row];
 
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:headerImageName] forBarMetrics:UIBarMetricsDefault];
 }
 
-
 #pragma mark - request net work
 
-- (void) requestModules {
-    
+- (void)requestModules
+{
     NSString *opid = [Util generateUuid];
     NSString *userid = [DataUtil getDefaultUser];
     NSString *deviceId = [Util getUdid];
@@ -213,6 +214,7 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 }
 
 #pragma mark - Getter Method
+
 - (NSMutableArray *) categoryList
 {
     if (!_categoryList) {
@@ -221,15 +223,16 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     return _categoryList;
 }
 
-- (MBProgressHUD *) hud {
-    if (!_hud) {
-        
+- (MBProgressHUD *) hud
+{
+    if (!_hud)
+    {
         _hud = [[MBProgressHUD alloc] initWithView:self.view];
         _hud.color = [UIColor clearColor];//这儿表示无背景
         //显示的文字
-        _hud.labelText = @"Test";
+        _hud.labelText = @"正在加载";
         //细节文字
-        _hud.detailsLabelText = @"Test detail";
+        _hud.detailsLabelText = @"";//@"Test detail";
         //是否有庶罩
         _hud.dimBackground = YES;
         [self.navigationController.view addSubview:_hud];

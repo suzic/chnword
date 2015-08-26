@@ -28,7 +28,7 @@
     bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.tableView.backgroundView = bacgroundImageView;
     
-    [self.navigationController setNavigationBarHidden:YES];
+    //[self.navigationController setNavigationBarHidden:YES];
     
     self.shopSuit.layer.cornerRadius = 8.0f;
     self.shopAnime.layer.cornerRadius = 8.0f;
@@ -39,27 +39,34 @@
 {
     [super viewWillAppear:animated];
     
-    [self.navigationItem setTitle:@"产品商店"];
-
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-
+    //[self.navigationItem setTitle:@"产品商店"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    CGRect rect = self.tableView.frame;
-    rect.size.height -= 49;
-    self.tableView.frame = rect;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"]
+                                                  forBarMetrics:UIBarMetricsDefault];
     
+    [UIView animateWithDuration:0.5f animations:^{
+        self.navigationController.navigationBar.alpha = 1.0f;
+    }];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    CGRect orgFrame = self.navigationController.navigationBar.frame;
+    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
+    [self.navigationController.navigationBar setFrame:orgFrame];
 }
 
 #pragma mark - Table view data source

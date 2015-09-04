@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CategoryCell.h"
 
-@interface CategoriesController : UICollectionViewController
+@interface CategoriesController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end

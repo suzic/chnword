@@ -6,45 +6,47 @@
 //  Copyright (c) 2015年 Suzic. All rights reserved.
 //
 
-#import "FeedbacjViewController.h"
+#import "FeedbackViewController.h"
 
 #import "MBProgressHUD.h"
 
 
-@interface FeedbacjViewController ()
+@interface FeedbackViewController ()
 
 @property (nonatomic, retain) MBProgressHUD *hud;
 
 @end
 
-@implementation FeedbacjViewController
+@implementation FeedbackViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)naviBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
-- (IBAction) submitFeedBack:(id)sender
+- (IBAction)submitFeedBack:(id)sender
 {
     //提交feedBack，提交成功，回退，否则，不回退。
-    
     [self.hud show:YES];
-    
-    
     [self.hud hide:YES];
-    
-    
 }
 
 #pragma mark -getter
 
-- (MBProgressHUD *) hud {
+- (MBProgressHUD *) hud
+{
     if (!_hud) {
         
         _hud = [[MBProgressHUD alloc] initWithView:self.view];
@@ -59,11 +61,5 @@
     }
     return _hud;
 }
-
-
-
-
-
-
 
 @end

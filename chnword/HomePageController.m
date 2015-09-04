@@ -32,64 +32,27 @@
     [super viewDidLoad];
 
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    self.navigationController.navigationBar.alpha = 0.01f;
 
     // 设置背景图片
     UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
     bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.tableView.backgroundView = bacgroundImageView;
-    
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"]
+
+    self.navigationController.navigationBar.alpha = 0.01f;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"NaviBack"]
                                                   forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController setNavigationBarHidden:YES];
 
     self.rowHeight01 = (self.view.frame.size.width) * 59 / 122;
     self.rowHeight02 = (self.view.frame.size.width * 3 / 4) * 42 / 127;
     self.rowHeight03 = (self.view.frame.size.width * 2 / 3) * 367 / 445;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [UIView animateWithDuration:0.5f animations:^{
-        self.navigationController.navigationBar.alpha = 0.01f;
-    }];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    self.navigationController.navigationBar.alpha = 0.01f;
-}
-
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//    [super viewWillDisappear:animated];
-//}
-//
-//- (void)viewDidDisappear:(BOOL)animated
-//{
-//    [super viewDidDisappear:animated];
-//    
-//    [UIView animateWithDuration:0.5f animations:^{
-//        self.navigationController.navigationBar.alpha = 1.0f;
-//    }];
-//}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    
-    CGRect orgFrame = self.navigationController.navigationBar.frame;
-    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
-    [self.navigationController.navigationBar setFrame:orgFrame];
-    self.navigationController.navigationBar.alpha = 0.01f;
 }
 
 #pragma mark - Table view data source

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShopAnimeController : UITableViewController
+@interface ShopAnimeController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

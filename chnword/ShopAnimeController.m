@@ -24,14 +24,6 @@
     
     self.selectedIndex = NSNotFound;
     
-    // 设置背景图片
-    CGRect frame = self.view.frame;
-    frame.origin.y -= 64;
-    frame.size.height += 64;
-    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:frame];
-    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
-    [self.view insertSubview:bacgroundImageView atIndex:0];
-
     [self setupCategroyList];
 }
 
@@ -54,6 +46,11 @@
                                        @"itemCode":[NSString stringWithFormat:@"%d", i],
                                        @"itemImage":[NSString stringWithFormat:@"BUY_CATE_%02d", i + 1]}];
     }
+}
+
+- (IBAction)naviBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source

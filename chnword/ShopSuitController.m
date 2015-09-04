@@ -17,14 +17,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // 设置背景图片
-    CGRect frame = self.view.frame;
-    frame.origin.y -= 64;
-    frame.size.height += 64;
-    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:frame];
-    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
-    [self.view insertSubview:bacgroundImageView atIndex:0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -33,11 +25,52 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)naviBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     cell.backgroundColor = [UIColor clearColor];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row) {
+        case 0:
+            return [tableView dequeueReusableCellWithIdentifier:@"cellSuit"];
+        case 1:
+            return [tableView dequeueReusableCellWithIdentifier:@"cellIntro"];
+        case 2:
+        default:
+            return [tableView dequeueReusableCellWithIdentifier:@"cellBuy"];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row) {
+        case 0:
+            return 210;
+        case 1:
+            return 140;
+        case 2:
+        default:
+            return 100;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

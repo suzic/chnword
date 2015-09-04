@@ -12,13 +12,15 @@
 #import "NetParamFactory.h"
 #import "Util.h"
 #import "DataUtil.h"
-
 #import "MBProgressHUD.h"
-
 #import "WebViewController.h"
-#import "FeedbacjViewController.h"
-
+#import "FeedbackViewController.h"
 #import "UMSocial.h"
+
+#import "ShopHeaderCell.h"
+#import "UserCell.h"
+#import "SettingsCell.h"
+#import "AboutCell.h"
 
 @interface UserViewController () <UMSocialUIDelegate>
 
@@ -27,7 +29,6 @@
 @end
 
 @implementation UserViewController
-
 
 - (void)viewDidLoad
 {
@@ -38,27 +39,18 @@
     [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
     bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.tableView.backgroundView = bacgroundImageView;
-    
-    // [self.navigationController setNavigationBarHidden:YES];
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
-//    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationController.navigationBar.alpha = 0.01f;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    
-    [UIView animateWithDuration:0.5f animations:^{
-        self.navigationController.navigationBar.alpha = 1.0f;
-    }];
+    self.navigationController.navigationBar.alpha = 0.01f;
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,18 +59,138 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillLayoutSubviews
+#pragma mark - UITable View delegate & datasource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    [super viewWillLayoutSubviews];
-    
-    CGRect orgFrame = self.navigationController.navigationBar.frame;
-    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
-    [self.navigationController.navigationBar setFrame:orgFrame];
+    return 4;
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    switch (section) {
+        case 1:
+            return 1;
+        case 2:
+            return 4;
+        case 3:
+            return 1;
+        case 0:
+        default:
+            return 1;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 2)
+    {
+        switch (indexPath.row)
+        {
+            case 0:
+                // 会员特权
+                [self showUserVip];
+                break;
+            case 1:
+                // 意见反馈
+                [self showFeedback];
+                break;
+            case 2:
+                // 引导页
+                [self showUserGuide];
+                break;
+            case 3:
+                // 邀请好友
+                [self inviteShare];
+                break;
+            default:
+                break;
+        }
+    }
+    else if (indexPath.section == 3)
+    {
+        // ABOUT
+        [self showAbout];
+    }
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0)
+    {
+        ShopHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
+        return cell;
+    }
+    else if (indexPath.section == 1)
+    {
+        UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userCell"];
+        return cell;
+    }
+    else if (indexPath.section == 2)
+    {
+        SettingsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"functionCell"];
+        switch (indexPath.row) {
+            case 0:
+                [cell.functionTitle setText:@"会员特权"];
+                break;
+            case 1:
+                [cell.functionTitle setText:@"用户反馈"];
+                break;
+            case 2:
+                [cell.functionTitle setText:@"产品介绍"];
+                break;
+            case 3:
+                [cell.functionTitle setText:@"邀请好友"];
+                break;
+        }
+        return cell;
+    }
+    else
+    {
+        AboutCell *cell = [tableView dequeueReusableCellWithIdentifier:@"aboutCell"];
+        return cell;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView* view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView* view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0)
+        return kScreenWidth * 100.0f / 360.0f;
+    return 44.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+        return 0.01f;
+    return 11.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 11.0f;
+}
+
+#pragma mark - Setting functions
 
 - (IBAction)recallWelcome:(id)sender
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowWelcome object:self];
+    // [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowWelcome object:self];
     [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowLogin object:self];
 }
 
@@ -109,11 +221,11 @@
             if (result && [@"1" isEqualToString:result]) {
 #pragma warning 添加默认用户
                 [DataUtil setDefaultUser:userid];
-//                [self dismissViewControllerAnimated:YES completion:nil];
+                //                [self dismissViewControllerAnimated:YES completion:nil];
                 NSString *message = [NSString stringWithFormat:@"注册成功.账号为：%@", userid];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
-
+                
             } else {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
@@ -131,12 +243,12 @@
     }];
 }
 
-- (IBAction) showUserGuide:(id)sender
+- (void)showUserGuide
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowWelcome object:self];
 }
 
-- (IBAction) inviteShare:(id)sender
+- (void)inviteShare
 {
     //邀请好友，就是进行分享
     //进行分享
@@ -150,26 +262,28 @@
     [UMSocialData defaultData].urlResource.url = @"http://app.3000zi.com/web/download.php";
 }
 
-- (IBAction) showFeedback:(id)sender
+- (void)showFeedback
 {
     //意见反馈
-    FeedbacjViewController *feedbackViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FeedbacjViewController"];
+    FeedbackViewController *feedbackViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FeedbacjViewController"];
     [self.navigationController pushViewController:feedbackViewController animated:YES];
 }
 
-- (IBAction) showUserVip:(id)sender
+- (void)showUserVip
 {
     //关于
     WebViewController *webViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
     webViewController.urlString = URL_USER_LOGIN;
+    webViewController.titleText = @"会员特权";
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
-- (IBAction) showAbout:(id)sender
+- (void)showAbout
 {
     //关于
     WebViewController *webViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
     webViewController.urlString = URL_USER_ABOUT;
+    webViewController.titleText = @"关于";
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
@@ -243,7 +357,7 @@
  * @param platformName 点击分享平台
  * @param socialData   分享内容
  */
--(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
+- (void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
 {
     if (platformName == UMShareToSina)
     {
@@ -268,7 +382,7 @@
  * @result 设置是否需要弹出分享内容编辑页面，默认需要
  *
  */
--(BOOL)isDirectShareInIconActionSheet
+- (BOOL)isDirectShareInIconActionSheet
 {
     return YES;
 }

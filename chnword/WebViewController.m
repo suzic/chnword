@@ -14,18 +14,26 @@
 
 @implementation WebViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     NSURL *url = [NSURL URLWithString:self.urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [self.webTitle setTitle:self.titleText forState:UIControlStateNormal];
     [self.webView loadRequest:request];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)naviBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*

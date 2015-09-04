@@ -32,12 +32,12 @@ static NSString * const reuseIdentifier = @"WordCell";
     [super viewDidLoad];
    
     // 设置背景图片
-    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     NSString *bgImageName = [NSString stringWithFormat:@"CATE_BG_%02d", (int)(self.categoryIndex + 1)];
-    [bacgroundImageView setImage:[UIImage imageNamed:bgImageName]];
-    bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.collectionView.backgroundView = bacgroundImageView;
+    [self.backgroundImage setImage:[UIImage imageNamed:bgImageName]];
     
+    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02d", (self.categoryIndex + 1)];
+    [self.headerImage setImage:[UIImage imageNamed:headerImageName]];
+
     [self setupWordsList];
 }
 
@@ -50,8 +50,11 @@ static NSString * const reuseIdentifier = @"WordCell";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+}
 
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+- (IBAction)naviBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //- (void)viewWillLayoutSubviews
@@ -77,27 +80,29 @@ static NSString * const reuseIdentifier = @"WordCell";
     {
 #warning 这里设置正确的播放动画资源
         
-        if ([@"0" isEqualToString:[DataUtil getDefaultUser]]) {
+        if ([@"0" isEqualToString:[DataUtil getDefaultUser]])
+        {
             if (self.selectedIndex < 2) {
                 PlayController *player = (PlayController *)[segue destinationViewController];
                 //        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
                 player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
                 player.canShare = YES;
-            } else {
+            }
+            else
+            {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"默认用户只能查看第一条数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
                 [alert show];
             }
-        }else {
+        }
+        else
+        {
             PlayController *player = (PlayController *)[segue destinationViewController];
             //        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
             player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
             if (self.selectedIndex < 2) {
                 player.canShare = YES;
             }
-            
-            
         }
-        
     }
 }
 
@@ -160,14 +165,7 @@ static NSString * const reuseIdentifier = @"WordCell";
         player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
         player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
     }
-    
-    
-
-    
-    
 }
-
-
 
 #pragma mark - net request
 

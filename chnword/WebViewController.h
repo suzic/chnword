@@ -12,5 +12,7 @@
 
 @property (nonatomic, retain) NSString *urlString;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) NSString *titleText;
+@property (strong, nonatomic) IBOutlet UIButton *webTitle;
 
 @end

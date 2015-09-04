@@ -87,7 +87,7 @@
 		A7D6781D1B419E4B00282EBD /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D6780C1B419E4B00282EBD /* UIImageView+WebCache.m */; };
 		A7D6781E1B419E4B00282EBD /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D6780E1B419E4B00282EBD /* UIView+WebCacheOperation.m */; };
 		A7EDBAEC1B3AEB6200016412 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7EDBAEB1B3AEB6200016412 /* CoreTelephony.framework */; };
-		A7FD119C1B88BAD3003404B7 /* FeedbacjViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FD119B1B88BAD3003404B7 /* FeedbacjViewController.m */; };
+		A7FD119C1B88BAD3003404B7 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FD119B1B88BAD3003404B7 /* FeedbackViewController.m */; };
 		D06693691B351A7D00B50D16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693681B351A7D00B50D16 /* main.m */; };
 		D066936C1B351A7D00B50D16 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D066936B1B351A7D00B50D16 /* AppDelegate.m */; };
 		D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693711B351A7D00B50D16 /* MainFrameController.m */; };
@@ -118,6 +118,11 @@
 		D0B947301B37DF6600A1DFD6 /* ShopSuitController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9472F1B37DF6600A1DFD6 /* ShopSuitController.m */; };
 		D0B947331B37E77600A1DFD6 /* ShopAnimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947321B37E77600A1DFD6 /* ShopAnimeController.m */; };
 		D0B947361B37EADB00A1DFD6 /* ShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947351B37EADB00A1DFD6 /* ShopCell.m */; };
+		D0D207C91B99AD51001E4C04 /* ShopItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207C81B99AD51001E4C04 /* ShopItemCell.m */; };
+		D0D207CC1B99AD70001E4C04 /* ShopHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207CB1B99AD70001E4C04 /* ShopHeaderCell.m */; };
+		D0D207CF1B99B6FE001E4C04 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207CE1B99B6FE001E4C04 /* UserCell.m */; };
+		D0D207D21B99B70A001E4C04 /* SettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207D11B99B70A001E4C04 /* SettingsCell.m */; };
+		D0D207D51B99B716001E4C04 /* AboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207D41B99B716001E4C04 /* AboutCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -280,8 +285,8 @@
 		A7D6780D1B419E4B00282EBD /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCacheOperation.h"; path = "chnword/libs/SDWebImage/UIView+WebCacheOperation.h"; sourceTree = SOURCE_ROOT; };
 		A7D6780E1B419E4B00282EBD /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+WebCacheOperation.m"; path = "chnword/libs/SDWebImage/UIView+WebCacheOperation.m"; sourceTree = SOURCE_ROOT; };
 		A7EDBAEB1B3AEB6200016412 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		A7FD119A1B88BAD3003404B7 /* FeedbacjViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbacjViewController.h; sourceTree = "<group>"; };
-		A7FD119B1B88BAD3003404B7 /* FeedbacjViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbacjViewController.m; sourceTree = "<group>"; };
+		A7FD119A1B88BAD3003404B7 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		A7FD119B1B88BAD3003404B7 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		D06693631B351A7D00B50D16 /* chnword.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chnword.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06693671B351A7D00B50D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D06693681B351A7D00B50D16 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -337,6 +342,16 @@
 		D0B947321B37E77600A1DFD6 /* ShopAnimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopAnimeController.m; sourceTree = "<group>"; };
 		D0B947341B37EADB00A1DFD6 /* ShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCell.h; sourceTree = "<group>"; };
 		D0B947351B37EADB00A1DFD6 /* ShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCell.m; sourceTree = "<group>"; };
+		D0D207C71B99AD51001E4C04 /* ShopItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopItemCell.h; sourceTree = "<group>"; };
+		D0D207C81B99AD51001E4C04 /* ShopItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopItemCell.m; sourceTree = "<group>"; };
+		D0D207CA1B99AD70001E4C04 /* ShopHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopHeaderCell.h; sourceTree = "<group>"; };
+		D0D207CB1B99AD70001E4C04 /* ShopHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopHeaderCell.m; sourceTree = "<group>"; };
+		D0D207CD1B99B6FE001E4C04 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
+		D0D207CE1B99B6FE001E4C04 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
+		D0D207D01B99B70A001E4C04 /* SettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsCell.h; sourceTree = "<group>"; };
+		D0D207D11B99B70A001E4C04 /* SettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCell.m; sourceTree = "<group>"; };
+		D0D207D31B99B716001E4C04 /* AboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutCell.h; sourceTree = "<group>"; };
+		D0D207D41B99B716001E4C04 /* AboutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -823,6 +838,10 @@
 				D0B947321B37E77600A1DFD6 /* ShopAnimeController.m */,
 				D0B947341B37EADB00A1DFD6 /* ShopCell.h */,
 				D0B947351B37EADB00A1DFD6 /* ShopCell.m */,
+				D0D207C71B99AD51001E4C04 /* ShopItemCell.h */,
+				D0D207C81B99AD51001E4C04 /* ShopItemCell.m */,
+				D0D207CA1B99AD70001E4C04 /* ShopHeaderCell.h */,
+				D0D207CB1B99AD70001E4C04 /* ShopHeaderCell.m */,
 			);
 			name = SHOP;
 			sourceTree = "<group>";
@@ -834,8 +853,14 @@
 				D07204D81B3680E4007C01E8 /* UserViewController.m */,
 				A7A0A7A61B835E0D00041637 /* WebViewController.h */,
 				A7A0A7A71B835E0D00041637 /* WebViewController.m */,
-				A7FD119A1B88BAD3003404B7 /* FeedbacjViewController.h */,
-				A7FD119B1B88BAD3003404B7 /* FeedbacjViewController.m */,
+				A7FD119A1B88BAD3003404B7 /* FeedbackViewController.h */,
+				A7FD119B1B88BAD3003404B7 /* FeedbackViewController.m */,
+				D0D207CD1B99B6FE001E4C04 /* UserCell.h */,
+				D0D207CE1B99B6FE001E4C04 /* UserCell.m */,
+				D0D207D01B99B70A001E4C04 /* SettingsCell.h */,
+				D0D207D11B99B70A001E4C04 /* SettingsCell.m */,
+				D0D207D31B99B716001E4C04 /* AboutCell.h */,
+				D0D207D41B99B716001E4C04 /* AboutCell.m */,
 			);
 			name = USER;
 			sourceTree = "<group>";
@@ -965,6 +990,7 @@
 			files = (
 				A7B0532A1B399A6D009A0CC2 /* NetParamFactory.m in Sources */,
 				A7A0A7A81B835E0D00041637 /* WebViewController.m in Sources */,
+				D0D207CF1B99B6FE001E4C04 /* UserCell.m in Sources */,
 				A7B053141B3996D0009A0CC2 /* AFURLRequestSerialization.m in Sources */,
 				A7D6781D1B419E4B00282EBD /* UIImageView+WebCache.m in Sources */,
 				A7D678151B419E4B00282EBD /* SDWebImageDownloaderOperation.m in Sources */,
@@ -973,8 +999,10 @@
 				A7D6781B1B419E4B00282EBD /* UIImage+WebP.m in Sources */,
 				D0B947241B36F73500A1DFD6 /* PlayController.m in Sources */,
 				A7D678121B419E4B00282EBD /* SDWebImageCompat.m in Sources */,
+				D0D207C91B99AD51001E4C04 /* ShopItemCell.m in Sources */,
 				D066936C1B351A7D00B50D16 /* AppDelegate.m in Sources */,
 				D07204C91B355B20007C01E8 /* DataUtil.m in Sources */,
+				D0D207D21B99B70A001E4C04 /* SettingsCell.m in Sources */,
 				A7D678171B419E4B00282EBD /* SDWebImagePrefetcher.m in Sources */,
 				A7D678111B419E4B00282EBD /* SDImageCache.m in Sources */,
 				A7B053131B3996D0009A0CC2 /* AFURLConnectionOperation.m in Sources */,
@@ -999,7 +1027,9 @@
 				A7D678191B419E4B00282EBD /* UIImage+GIF.m in Sources */,
 				A7B432D21B42CEA100CEFC58 /* QR_Encode.cpp in Sources */,
 				A7B0531E1B3996D0009A0CC2 /* UIWebView+AFNetworking.m in Sources */,
+				D0D207CC1B99AD70001E4C04 /* ShopHeaderCell.m in Sources */,
 				D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */,
+				D0D207D51B99B716001E4C04 /* AboutCell.m in Sources */,
 				A7D6781E1B419E4B00282EBD /* UIView+WebCacheOperation.m in Sources */,
 				A7B053301B399DA8009A0CC2 /* MBProgressHUD.m in Sources */,
 				A7D678161B419E4B00282EBD /* SDWebImageManager.m in Sources */,
@@ -1019,7 +1049,7 @@
 				A7B053171B3996D0009A0CC2 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				A7AE1D191B78CA7E0043F21C /* ApiXml.mm in Sources */,
 				A7B053121B3996D0009A0CC2 /* AFSecurityPolicy.m in Sources */,
-				A7FD119C1B88BAD3003404B7 /* FeedbacjViewController.m in Sources */,
+				A7FD119C1B88BAD3003404B7 /* FeedbackViewController.m in Sources */,
 				A7B0530F1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.m in Sources */,
 				A7D678101B419E4B00282EBD /* NSData+ImageContentType.m in Sources */,
 				A7B053101B3996D0009A0CC2 /* AFHTTPSessionManager.m in Sources */,

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShopSuitController : UITableViewController
+@interface ShopSuitController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

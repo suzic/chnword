@@ -34,12 +34,11 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     self.selectedIndex = NSNotFound;
     
     // 设置背景图片
-    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
-    bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.collectionView.backgroundView = bacgroundImageView;
+//    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+//    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
+//    bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+//    self.collectionView.backgroundView = bacgroundImageView;
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
     [self setupCategroyList];
 }
 
@@ -48,33 +47,38 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     [super viewWillAppear:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
-    // [self.navigationController setNavigationBarHidden:NO animated:YES];
-    // self.navigationItem.title = @"列表";
-    
-    [UIView animateWithDuration:0.5f animations:^{
-        self.navigationController.navigationBar.alpha = 1.0f;
-    } completion:^(BOOL finished) {
-    }];
-}
-
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-
-    CGRect orgFrame = self.navigationController.navigationBar.frame;
-    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
-    [self.navigationController.navigationBar setFrame:orgFrame];
-}
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
+//    // [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    // self.navigationItem.title = @"列表";
+//    
+//    [UIView animateWithDuration:0.5f animations:^{
+//        self.navigationController.navigationBar.alpha = 1.0f;
+//    } completion:^(BOOL finished) {
+//    }];
+//}
+//
+//- (void)viewWillLayoutSubviews
+//{
+//    [super viewWillLayoutSubviews];
+//
+//    CGRect orgFrame = self.navigationController.navigationBar.frame;
+//    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
+//    [self.navigationController.navigationBar setFrame:orgFrame];
+//}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)naviBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 // 初始化分类列表
@@ -144,9 +148,9 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     
     // 设置导航背景图片及过渡动画
     // NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02ld", (self.selectedIndex + 1)];
-    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02u", self.categoryList.count - indexPath.row];
-
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:headerImageName] forBarMetrics:UIBarMetricsDefault];
+//    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02u", self.categoryList.count - indexPath.row];
+//
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:headerImageName] forBarMetrics:UIBarMetricsDefault];
 }
 
 #pragma mark - request net work

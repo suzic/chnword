@@ -61,11 +61,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
 //    self.frameViewer = [[UIImageView alloc] init];
-    
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated

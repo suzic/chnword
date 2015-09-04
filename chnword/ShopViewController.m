@@ -7,12 +7,10 @@
 //
 
 #import "ShopViewController.h"
+#import "ShopHeaderCell.h"
+#import "ShopItemCell.h"
 
 @interface ShopViewController ()
-
-@property (strong, nonatomic) IBOutlet UIView *shopSuit;
-@property (strong, nonatomic) IBOutlet UIView *shopAnime;
-@property (strong, nonatomic) IBOutlet UIView *shopCard;
 
 @end
 
@@ -27,12 +25,6 @@
     [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
     bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.tableView.backgroundView = bacgroundImageView;
-    
-    //[self.navigationController setNavigationBarHidden:YES];
-    
-    self.shopSuit.layer.cornerRadius = 8.0f;
-    self.shopAnime.layer.cornerRadius = 8.0f;
-    self.shopCard.layer.cornerRadius = 8.0f;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -45,13 +37,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    
-    [UIView animateWithDuration:0.5f animations:^{
-        self.navigationController.navigationBar.alpha = 1.0f;
-    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,16 +45,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillLayoutSubviews
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    [super viewWillLayoutSubviews];
-    
-    CGRect orgFrame = self.navigationController.navigationBar.frame;
-    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
-    [self.navigationController.navigationBar setFrame:orgFrame];
+    return 1;
 }
 
-#pragma mark - Table view data source
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -78,7 +64,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0.01f;
+    return kScreenWidth * 100.0f / 360.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -86,5 +72,63 @@
     return 0.01f;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 140.0f;
+}
+
+// 创建section头部
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    ShopHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
+    cell.contentView.tag = section;
+
+    NSArray *gestures = [NSArray arrayWithArray:cell.contentView.gestureRecognizers];
+    for (UIGestureRecognizer *gs in gestures)
+        [cell.contentView removeGestureRecognizer:gs];
+    
+    return cell.contentView;
+}
+
+// 创建表格中的单元格
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ShopItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contentCell"];
+    cell.cellImage.layer.cornerRadius = 8.0f;
+
+    switch (indexPath.row)
+    {
+        case 0:
+            [cell.cellTitle setText:@"三千字超值套装"];
+            break;
+        case 1:
+            [cell.cellTitle setText:@"动画资源库"];
+            break;
+        case 2:
+            [cell.cellTitle setText:@"实体汉字卡片"];
+            break;
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    switch (indexPath.row)
+    {
+        case 0:
+            [self performSegueWithIdentifier:@"showSuit" sender:self];
+            break;
+        case 1:
+            [self performSegueWithIdentifier:@"showCategory" sender:self];
+            break;
+        case 2:
+            // [self performSegueWithIdentifier:@"showSuit" sender:self];
+            break;
+            
+        default:
+            break;
+    }
+}
 
 @end

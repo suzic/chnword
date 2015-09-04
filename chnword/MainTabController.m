@@ -47,9 +47,9 @@
 //    tabFrame.origin.y = self.view.frame.size.height - 60;
 //    self.tabBar.frame = tabFrame;
     
-    CGRect orgFrame = self.navigationController.navigationBar.frame;
-    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
-    [self.navigationController.navigationBar setFrame:orgFrame];
+//    CGRect orgFrame = self.navigationController.navigationBar.frame;
+//    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
+//    [self.navigationController.navigationBar setFrame:orgFrame];
 }
 
 @end

@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "WordCell.h"
 
-@interface WordsController : UICollectionViewController
+@interface WordsController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (assign, nonatomic) NSInteger categoryIndex;
 @property (nonatomic, retain) NSString *moduleCode;
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UIImageView *backgroundImage;
+@property (strong, nonatomic) IBOutlet UIImageView *headerImage;
 
 @end

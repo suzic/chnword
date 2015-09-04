@@ -8,12 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FeedbacjViewController : UIViewController
+@interface FeedbackViewController : UIViewController
 
 @property (nonatomic, retain) IBOutlet UITextField *contactTextField;
 
 @property (nonatomic, retain) IBOutlet UITextView *infoTextView;
-
-- (IBAction) submitFeedBack:(id)sender;
 
 @end

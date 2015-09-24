@@ -55,7 +55,7 @@
 {
     NSString *opid = [Util generateUuid];
     NSString *deviceId = [Util getUdid];
-//    NSString *userid = [Util generateUuid];
+    // NSString *userid = [Util generateUuid];
 
     NSString *userid = userCode;
 
@@ -68,19 +68,21 @@
                            deviceId:deviceId
                            session:[Util generateUuid]
                            verify:@"verify"];
+    
     [NetManager postRequest:URL_LOGIN param:param success:^(id json){
-        
         NSLog(@"success with json:\n %@", json);
-        
         NSDictionary *dict = json;
         
         if (dict) {
             NSString *result = [dict objectForKey:@"result"];
             if (result && [@"1" isEqualToString:result]) {
-#pragma warning 添加默认用户
-//                [DataUtil setDefaultUser:userid];
+
+#warning 添加默认用户
+                // [DataUtil setDefaultUser:userid];
                 [self dismissViewControllerAnimated:YES completion:nil];
-            } else {
+            }
+            else
+            {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
             }
@@ -183,6 +185,13 @@
 
 #pragma mark - Table view data source
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+        return @"你并不一定真正认识汉字，不信？试试看！\n体验用户，请点击——";
+    return @"";
+}
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     cell.backgroundColor = [UIColor clearColor];
@@ -190,6 +199,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 1)
+        return rowHeight - 30;
     if (indexPath.section == 2)
         return rowHeight - 40;
     return rowHeight;
@@ -197,6 +208,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (section == 0)
+        return 80;
+    
     CGFloat screenHeight = self.view.frame.size.height;
     CGFloat totalHeaderAndFooterSpace = screenHeight - rowHeight * 3;
     if (totalHeaderAndFooterSpace < 0)
@@ -207,7 +221,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (section == 2)
-        return 40.0f;
+        return 20.0f;
     return 0.01f;
 }
 

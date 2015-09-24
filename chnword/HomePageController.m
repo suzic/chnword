@@ -19,7 +19,6 @@
 
 @property (assign, nonatomic) CGFloat rowHeight01;
 @property (assign, nonatomic) CGFloat rowHeight02;
-@property (assign, nonatomic) CGFloat rowHeight03;
 
 @property (nonatomic, retain) MBProgressHUD *hud;
 
@@ -35,18 +34,12 @@
 
     // 设置背景图片
     UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
+    [bacgroundImageView setImage:[UIImage imageNamed:@"MainPageBG"]];
     bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.tableView.backgroundView = bacgroundImageView;
 
-    self.navigationController.navigationBar.alpha = 0.01f;
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"NaviBack"]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController setNavigationBarHidden:YES];
-
-    self.rowHeight01 = (self.view.frame.size.width) * 59 / 122;
-    self.rowHeight02 = (self.view.frame.size.width * 3 / 4) * 42 / 127;
-    self.rowHeight03 = (self.view.frame.size.width * 2 / 3) * 367 / 445;
+    self.rowHeight01 = (self.view.frame.size.height - 64 - 49) / 2;
+    self.rowHeight02 = (self.view.frame.size.height - 64 - 49) / 2;
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,8 +63,6 @@
             return self.rowHeight01;
         case 1:
             return self.rowHeight02;
-        case 2:
-            return self.rowHeight03;
         default:
             return 0.01f;
     }
@@ -79,8 +70,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    return 0.01f;
     CGFloat screenHeight = self.view.frame.size.height - 39.0f;
-    CGFloat sectionHeight = (screenHeight - self.rowHeight01 - self.rowHeight02 - self.rowHeight03) / 3;
+    CGFloat sectionHeight = (screenHeight - self.rowHeight01 - self.rowHeight02) / 2;
     return sectionHeight > 0 ? sectionHeight : 0.01f;
 }
 

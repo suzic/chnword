@@ -30,13 +30,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginView:) name:NotiShowLogin object:nil];
     
     if ([DataUtil isFirstLogin])
-    {
         [self showWelcome:nil];
-    }
     else if ( [@"0" isEqualToString:[DataUtil getDefaultUser]])
-    {
-        [self performBlock:^{ [self showLoginView:nil]; } afterDelay:0.5];        
-    }
+        [self performBlock:^{ [self showLoginView:nil]; } afterDelay:0.5];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -70,13 +66,20 @@
 - (void)showWelcome:(NSNotification *)notification
 {
     self.welcomeView.hidden = NO;
+    [UIView animateWithDuration:0.5f animations:^{
+        self.welcomeView.alpha = 1.0f;
+    }];
 }
 
 - (void)buttonClicked:(id) sender
 {
-    self.welcomeView.hidden = YES;
-    if (![DataUtil getDefaultUser])
-        [self showLoginView:nil];
+    [UIView animateWithDuration:0.5f animations:^{
+        self.welcomeView.alpha = 0.0f;
+    } completion:^(BOOL finished) {
+        self.welcomeView.hidden = YES;
+        if (![DataUtil getDefaultUser])
+            [self showLoginView:nil];
+    }];
 }
 
 - (void)setupPages
@@ -87,10 +90,10 @@
     NSLog(@"%@", NSStringFromCGRect([UIScreen mainScreen].bounds));
 
     self.pageControl.currentPage = 0;
-    self.pageControl.numberOfPages = 3;
-    self.pages.contentSize = CGSizeMake(width * 3, height);
+    self.pageControl.numberOfPages = 4;
+    self.pages.contentSize = CGSizeMake(width * 4 + 100, height);
     
-    for (int i = 0; i < 3; i ++)
+    for (int i = 0; i < 4; i ++)
     {
         NSString *imageName = [NSString stringWithFormat:@"PageIntro%02d", i + 1];
         UIImage *image = [UIImage imageNamed:imageName];
@@ -99,18 +102,17 @@
         imageView.userInteractionEnabled = YES;
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.frame = CGRectMake(i * width, 0, width, height);
-//      imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         [self.pages addSubview:imageView];
+        
+        if (i == 3)
+        {
+            // 引导页最后的一页的点击即关闭
+            UITapGestureRecognizer *hiddenWelcomeImage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonClicked:)];
+            [imageView addGestureRecognizer:hiddenWelcomeImage];
+            hiddenWelcomeImage.numberOfTapsRequired = 1;
+        }
     }
-    
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake( 0, 0, 200, 100)];
-    button.center = CGPointMake(2.5 * width, height - 100);
-    [button setTitle:@"进入三千字的世界" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.pages addSubview:button];
 }
 
 - (IBAction)pageControlValueChanged:(id)sender
@@ -122,12 +124,21 @@
 
 #pragma mark - UIScrollViewDelegate
 
-- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     CGRect screen = scrollView.frame;
     float width = screen.size.width;
     int i = (int)((scrollView.contentOffset.x) / width);
     self.pageControl.currentPage = i;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if ((scrollView.contentOffset.x - kScreenWidth * 3) > 20)
+    {
+        //向右轻扫做的事情
+        [self buttonClicked:nil];
+    }
 }
 
 @end

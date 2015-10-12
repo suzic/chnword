@@ -25,7 +25,6 @@
 
     // 仅显示TabBar图片，枚举所有子项调整图片偏移位置
     [self.viewControllers enumerateObjectsUsingBlock:^(UIViewController *vc, NSUInteger idx, BOOL *stop) {
-        vc.title = nil;
         vc.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
     }];
 }

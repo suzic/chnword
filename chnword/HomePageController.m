@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
 
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    //[[UIApplication sharedApplication] setStatusBarHidden:NO];
 
     // 设置背景图片
     UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
@@ -38,8 +38,8 @@
     bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.tableView.backgroundView = bacgroundImageView;
 
-    self.rowHeight01 = (self.view.frame.size.height - 64 - 49) / 2;
-    self.rowHeight02 = (self.view.frame.size.height - 64 - 49) / 2;
+    self.rowHeight01 = (self.view.frame.size.height - 44 - 49) / 2;
+    self.rowHeight02 = (self.view.frame.size.height - 44 - 49) / 2;
 }
 
 - (void)didReceiveMemoryWarning

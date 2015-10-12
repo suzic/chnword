@@ -44,13 +44,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.alpha = 0.01f;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.navigationController.navigationBar.alpha = 0.01f;
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,19 +61,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case 1:
-            return 1;
-        case 2:
-            return 4;
-        case 3:
-            return 1;
         case 0:
+            return 1;
+        case 1:
+            return 5;
         default:
             return 1;
     }
@@ -84,23 +79,26 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 2)
+    if (indexPath.section == 1)
     {
         switch (indexPath.row)
         {
             case 0:
+                break;
+                
+            case 1:
                 // 会员特权
                 [self showUserVip];
                 break;
-            case 1:
+            case 2:
                 // 意见反馈
                 [self showFeedback];
                 break;
-            case 2:
+            case 3:
                 // 引导页
                 [self showUserGuide];
                 break;
-            case 3:
+            case 4:
                 // 邀请好友
                 [self inviteShare];
                 break;
@@ -108,10 +106,10 @@
                 break;
         }
     }
-    else if (indexPath.section == 3)
+    else if (indexPath.section == 2)
     {
         // ABOUT
-        [self showAbout];
+        //[self showAbout];
     }
 }
 
@@ -119,29 +117,27 @@
 {
     if (indexPath.section == 0)
     {
-        ShopHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
+        UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userCell"];
         return cell;
     }
     else if (indexPath.section == 1)
     {
-        UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userCell"];
-        return cell;
-    }
-    else if (indexPath.section == 2)
-    {
         SettingsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"functionCell"];
         switch (indexPath.row) {
             case 0:
-                [cell.functionTitle setText:@"会员特权"];
+                [cell.functionTitle setText:@"会员登录"];
                 break;
             case 1:
-                [cell.functionTitle setText:@"用户反馈"];
+                [cell.functionTitle setText:@"用户FAQ"];
                 break;
             case 2:
-                [cell.functionTitle setText:@"产品介绍"];
+                [cell.functionTitle setText:@"信息反馈"];
                 break;
             case 3:
-                [cell.functionTitle setText:@"邀请好友"];
+                [cell.functionTitle setText:@"分享好友"];
+                break;
+            case 4:
+                [cell.functionTitle setText:@"有偿推广"];
                 break;
         }
         return cell;
@@ -170,20 +166,18 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0)
-        return kScreenWidth * 100.0f / 360.0f;
-    return 44.0f;
+        return 170.0f;
+    return 60.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0)
-        return 0.01f;
-    return 11.0f;
+    return 0.01f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 11.0f;
+    return 0.01f;
 }
 
 #pragma mark - Setting functions
@@ -278,14 +272,14 @@
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
-- (void)showAbout
-{
-    //关于
-    WebViewController *webViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
-    webViewController.urlString = URL_USER_ABOUT;
-    webViewController.titleText = @"关于";
-    [self.navigationController pushViewController:webViewController animated:YES];
-}
+//- (void)showAbout
+//{
+//    //关于
+//    WebViewController *webViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];
+//    webViewController.urlString = URL_USER_ABOUT;
+//    webViewController.titleText = @"关于";
+//    [self.navigationController pushViewController:webViewController animated:YES];
+//}
 
 #pragma mark -getter
 

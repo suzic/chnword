@@ -25,7 +25,7 @@
     [super viewDidLoad];
     
     [self setupPages];
-    
+        
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showWelcome:) name:NotiShowWelcome object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginView:) name:NotiShowLogin object:nil];
     

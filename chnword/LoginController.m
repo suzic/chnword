@@ -238,6 +238,7 @@
 // 登录按钮点击
 - (IBAction)loginButtonPressed:(id)sender
 {
+    [self.errorContainer showLoginErrorTooMany];
 //    if (self.loginButton.alpha < 1.0f)
 //    {
 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"

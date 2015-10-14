@@ -88,6 +88,7 @@
 		A7D6781E1B419E4B00282EBD /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D6780E1B419E4B00282EBD /* UIView+WebCacheOperation.m */; };
 		A7EDBAEC1B3AEB6200016412 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7EDBAEB1B3AEB6200016412 /* CoreTelephony.framework */; };
 		A7FD119C1B88BAD3003404B7 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FD119B1B88BAD3003404B7 /* FeedbackViewController.m */; };
+		D01F9B3D1BCE5169002B4C08 /* LoginHolderController.m in Sources */ = {isa = PBXBuildFile; fileRef = D01F9B3C1BCE5169002B4C08 /* LoginHolderController.m */; settings = {ASSET_TAGS = (); }; };
 		D06693691B351A7D00B50D16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693681B351A7D00B50D16 /* main.m */; };
 		D066936C1B351A7D00B50D16 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D066936B1B351A7D00B50D16 /* AppDelegate.m */; };
 		D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693711B351A7D00B50D16 /* MainFrameController.m */; };
@@ -287,6 +288,8 @@
 		A7EDBAEB1B3AEB6200016412 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		A7FD119A1B88BAD3003404B7 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
 		A7FD119B1B88BAD3003404B7 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		D01F9B3B1BCE5169002B4C08 /* LoginHolderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginHolderController.h; sourceTree = "<group>"; };
+		D01F9B3C1BCE5169002B4C08 /* LoginHolderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginHolderController.m; sourceTree = "<group>"; };
 		D06693631B351A7D00B50D16 /* chnword.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chnword.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06693671B351A7D00B50D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D06693681B351A7D00B50D16 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -742,6 +745,8 @@
 				D066936B1B351A7D00B50D16 /* AppDelegate.m */,
 				D06693701B351A7D00B50D16 /* MainFrameController.h */,
 				D06693711B351A7D00B50D16 /* MainFrameController.m */,
+				D01F9B3B1BCE5169002B4C08 /* LoginHolderController.h */,
+				D01F9B3C1BCE5169002B4C08 /* LoginHolderController.m */,
 				D07204B81B3541D1007C01E8 /* LoginController.h */,
 				D07204B91B3541D1007C01E8 /* LoginController.m */,
 				D07204CE1B3673B0007C01E8 /* MainTabController.h */,
@@ -1061,6 +1066,7 @@
 				A7D678141B419E4B00282EBD /* SDWebImageDownloader.m in Sources */,
 				A7B0530E1B3996D0009A0CC2 /* AFHTTPRequestOperation.m in Sources */,
 				D0B9470F1B36A8B300A1DFD6 /* WordsController.m in Sources */,
+				D01F9B3D1BCE5169002B4C08 /* LoginHolderController.m in Sources */,
 				A7AE1D1A1B78CA7E0043F21C /* payRequsestHandler.mm in Sources */,
 				A7B053151B3996D0009A0CC2 /* AFURLResponseSerialization.m in Sources */,
 				D0B947361B37EADB00A1DFD6 /* ShopCell.m in Sources */,

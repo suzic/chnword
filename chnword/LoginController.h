@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginHolderController.h"
 
 @interface LoginController : UITableViewController
+
+@property (nonatomic, retain) LoginHolderController *errorContainer;
 
 @end

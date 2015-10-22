@@ -61,17 +61,13 @@
     return  [UMSocialSnsService handleOpenURL:url];
 }
 
-/**
- * @abstract 这里处理新浪微博SSO授权之后跳转回来，和微信分享完成之后跳转回来
- */
+// 这里处理新浪微博SSO授权之后跳转回来，和微信分享完成之后跳转回来
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
 }
 
-/**
- * @abstract 这里处理新浪微博SSO授权进入新浪微博客户端后进入后台，再返回原来应用
- */
+// 这里处理新浪微博SSO授权进入新浪微博客户端后进入后台，再返回原来应用
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     [UMSocialSnsService  applicationDidBecomeActive];
@@ -79,10 +75,8 @@
 
 #pragma mark - SetUpShareSDK
 
-/**
- *  @abstract 配置sharedSDK
- */
-- (void) setUpShareSDK
+// 配置sharedSDK
+- (void)setUpShareSDK
 {
     //判断是通过平台配置还是程序配置
     //注册appkey
@@ -95,10 +89,8 @@
     [self setUpShareSDKPlatforms];
 }
 
-/**
- *  @abstract 初始化平台信息——程序中判断
- */
-- (void) setUpShareSDKPlatforms
+// 初始化平台信息——程序中判断
+- (void)setUpShareSDKPlatforms
 {
     //在你的工程设置项,targets 一栏下,选中自己的 target,在 Info->URL Types 中添加 URL Schemes,添加xcode的url scheme为微信应用appId，例如“wxd9a39c7122aa6516”
     //设置微信AppId、appSecret，分享url

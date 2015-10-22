@@ -20,6 +20,7 @@
 
 @implementation MainFrameController
 
+// 主框架加载，用于判断第一次登录显示欢迎页，以及尝试加载默认用户，无默认用户就进入登录页面
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -50,6 +51,9 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - Show pages
+
+// 显示登录页面
 - (void)showLoginView:(NSNotification *)notification
 {
     if (notification)
@@ -63,6 +67,7 @@
     }
 }
 
+// 显示欢迎页面
 - (void)showWelcome:(NSNotification *)notification
 {
     self.welcomeView.hidden = NO;
@@ -71,6 +76,7 @@
     }];
 }
 
+// 欢迎页面确认，然后根据是否有默认用户来决定显示登录界面
 - (void)buttonClicked:(id) sender
 {
     [UIView animateWithDuration:0.5f animations:^{
@@ -82,6 +88,7 @@
     }];
 }
 
+// 初始化欢迎页面
 - (void)setupPages
 {
     CGFloat width = self.view.frame.size.width;
@@ -115,6 +122,7 @@
     }
 }
 
+// 欢迎页面的页面控制
 - (IBAction)pageControlValueChanged:(id)sender
 {
     NSInteger i = self.pageControl.currentPage;

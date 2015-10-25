@@ -1,5 +1,5 @@
 //
-//  ShopSuitController.h
+//  ShopAllController.h
 //  chnword
 //
 //  Created by 苏智 on 15/10/26.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShopSuitController : UITableViewController
+@interface ShopAllController : UIViewController
 
 @end

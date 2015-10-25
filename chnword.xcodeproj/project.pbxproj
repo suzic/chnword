@@ -114,7 +114,6 @@
 		D0B947241B36F73500A1DFD6 /* PlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947231B36F73500A1DFD6 /* PlayController.m */; };
 		D0B9472B1B37B49800A1DFD6 /* GIFPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9472A1B37B49800A1DFD6 /* GIFPlayer.m */; };
 		D0B9472D1B37B4D600A1DFD6 /* jiafei.gif in Resources */ = {isa = PBXBuildFile; fileRef = D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */; };
-		D0B947301B37DF6600A1DFD6 /* ShopSuitController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9472F1B37DF6600A1DFD6 /* ShopSuitController.m */; };
 		D0B947331B37E77600A1DFD6 /* ShopAnimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947321B37E77600A1DFD6 /* ShopAnimeController.m */; };
 		D0B947361B37EADB00A1DFD6 /* ShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947351B37EADB00A1DFD6 /* ShopCell.m */; };
 		D0D207C91B99AD51001E4C04 /* ShopItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207C81B99AD51001E4C04 /* ShopItemCell.m */; };
@@ -122,6 +121,9 @@
 		D0D207CF1B99B6FE001E4C04 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207CE1B99B6FE001E4C04 /* UserCell.m */; };
 		D0D207D21B99B70A001E4C04 /* SettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207D11B99B70A001E4C04 /* SettingsCell.m */; };
 		D0D207D51B99B716001E4C04 /* AboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207D41B99B716001E4C04 /* AboutCell.m */; };
+		D0E0C9DE1BDD3C3F00B5071F /* ShopSuitController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9DD1BDD3C3F00B5071F /* ShopSuitController.m */; settings = {ASSET_TAGS = (); }; };
+		D0E0C9E11BDD3E2C00B5071F /* ShopAllController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9E01BDD3E2C00B5071F /* ShopAllController.m */; settings = {ASSET_TAGS = (); }; };
+		D0E0C9E41BDD46B500B5071F /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9E31BDD46B500B5071F /* HeaderCell.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -335,8 +337,6 @@
 		D0B947291B37B49800A1DFD6 /* GIFPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFPlayer.h; sourceTree = "<group>"; };
 		D0B9472A1B37B49800A1DFD6 /* GIFPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIFPlayer.m; sourceTree = "<group>"; };
 		D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = jiafei.gif; path = ../jiafei.gif; sourceTree = "<group>"; };
-		D0B9472E1B37DF6600A1DFD6 /* ShopSuitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopSuitController.h; sourceTree = "<group>"; };
-		D0B9472F1B37DF6600A1DFD6 /* ShopSuitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopSuitController.m; sourceTree = "<group>"; };
 		D0B947311B37E77600A1DFD6 /* ShopAnimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopAnimeController.h; sourceTree = "<group>"; };
 		D0B947321B37E77600A1DFD6 /* ShopAnimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopAnimeController.m; sourceTree = "<group>"; };
 		D0B947341B37EADB00A1DFD6 /* ShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCell.h; sourceTree = "<group>"; };
@@ -351,6 +351,12 @@
 		D0D207D11B99B70A001E4C04 /* SettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCell.m; sourceTree = "<group>"; };
 		D0D207D31B99B716001E4C04 /* AboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutCell.h; sourceTree = "<group>"; };
 		D0D207D41B99B716001E4C04 /* AboutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutCell.m; sourceTree = "<group>"; };
+		D0E0C9DC1BDD3C3F00B5071F /* ShopSuitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopSuitController.h; sourceTree = "<group>"; };
+		D0E0C9DD1BDD3C3F00B5071F /* ShopSuitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopSuitController.m; sourceTree = "<group>"; };
+		D0E0C9DF1BDD3E2C00B5071F /* ShopAllController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopAllController.h; sourceTree = "<group>"; };
+		D0E0C9E01BDD3E2C00B5071F /* ShopAllController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopAllController.m; sourceTree = "<group>"; };
+		D0E0C9E21BDD46B500B5071F /* HeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderCell.h; sourceTree = "<group>"; };
+		D0E0C9E31BDD46B500B5071F /* HeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -831,8 +837,10 @@
 			children = (
 				D07204D41B3680D7007C01E8 /* ShopViewController.h */,
 				D07204D51B3680D7007C01E8 /* ShopViewController.m */,
-				D0B9472E1B37DF6600A1DFD6 /* ShopSuitController.h */,
-				D0B9472F1B37DF6600A1DFD6 /* ShopSuitController.m */,
+				D0E0C9DF1BDD3E2C00B5071F /* ShopAllController.h */,
+				D0E0C9E01BDD3E2C00B5071F /* ShopAllController.m */,
+				D0E0C9DC1BDD3C3F00B5071F /* ShopSuitController.h */,
+				D0E0C9DD1BDD3C3F00B5071F /* ShopSuitController.m */,
 				D0B947311B37E77600A1DFD6 /* ShopAnimeController.h */,
 				D0B947321B37E77600A1DFD6 /* ShopAnimeController.m */,
 				D0B947341B37EADB00A1DFD6 /* ShopCell.h */,
@@ -841,6 +849,8 @@
 				D0D207C81B99AD51001E4C04 /* ShopItemCell.m */,
 				D0D207CA1B99AD70001E4C04 /* ShopHeaderCell.h */,
 				D0D207CB1B99AD70001E4C04 /* ShopHeaderCell.m */,
+				D0E0C9E21BDD46B500B5071F /* HeaderCell.h */,
+				D0E0C9E31BDD46B500B5071F /* HeaderCell.m */,
 			);
 			name = SHOP;
 			sourceTree = "<group>";
@@ -990,6 +1000,7 @@
 				D0D207CF1B99B6FE001E4C04 /* UserCell.m in Sources */,
 				A7B053141B3996D0009A0CC2 /* AFURLRequestSerialization.m in Sources */,
 				A7D6781D1B419E4B00282EBD /* UIImageView+WebCache.m in Sources */,
+				D0E0C9DE1BDD3C3F00B5071F /* ShopSuitController.m in Sources */,
 				A7D678151B419E4B00282EBD /* SDWebImageDownloaderOperation.m in Sources */,
 				D0B9470C1B369C6B00A1DFD6 /* CategoryCell.m in Sources */,
 				A7B0531D1B3996D0009A0CC2 /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -1024,6 +1035,7 @@
 				A7D678191B419E4B00282EBD /* UIImage+GIF.m in Sources */,
 				A7B432D21B42CEA100CEFC58 /* QR_Encode.cpp in Sources */,
 				A7B0531E1B3996D0009A0CC2 /* UIWebView+AFNetworking.m in Sources */,
+				D0E0C9E41BDD46B500B5071F /* HeaderCell.m in Sources */,
 				D0D207CC1B99AD70001E4C04 /* ShopHeaderCell.m in Sources */,
 				D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */,
 				D0D207D51B99B716001E4C04 /* AboutCell.m in Sources */,
@@ -1037,7 +1049,6 @@
 				D0B947091B36940B00A1DFD6 /* CategoriesController.m in Sources */,
 				A7B0531A1B3996D0009A0CC2 /* UIButton+AFNetworking.m in Sources */,
 				A7B432D11B42CEA100CEFC58 /* DataMatrix.mm in Sources */,
-				D0B947301B37DF6600A1DFD6 /* ShopSuitController.m in Sources */,
 				A7B432D51B42CEA100CEFC58 /* QRUtil.mm in Sources */,
 				A7B0531C1B3996D0009A0CC2 /* UIProgressView+AFNetworking.m in Sources */,
 				D07204D61B3680D7007C01E8 /* ShopViewController.m in Sources */,
@@ -1050,6 +1061,7 @@
 				A7B0530F1B3996D0009A0CC2 /* AFHTTPRequestOperationManager.m in Sources */,
 				A7D678101B419E4B00282EBD /* NSData+ImageContentType.m in Sources */,
 				A7B053101B3996D0009A0CC2 /* AFHTTPSessionManager.m in Sources */,
+				D0E0C9E11BDD3E2C00B5071F /* ShopAllController.m in Sources */,
 				A7B053271B399A58009A0CC2 /* NetManager.m in Sources */,
 				A7B432D31B42CEA100CEFC58 /* QREncoder.mm in Sources */,
 				A7D678181B419E4B00282EBD /* UIButton+WebCache.m in Sources */,

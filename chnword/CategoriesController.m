@@ -47,54 +47,25 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     [super viewWillAppear:animated];
 }
 
-//- (void)viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BrandTitle"] forBarMetrics:UIBarMetricsDefault];
-//    // [self.navigationController setNavigationBarHidden:NO animated:YES];
-//    // self.navigationItem.title = @"列表";
-//    
-//    [UIView animateWithDuration:0.5f animations:^{
-//        self.navigationController.navigationBar.alpha = 1.0f;
-//    } completion:^(BOOL finished) {
-//    }];
-//}
-//
-//- (void)viewWillLayoutSubviews
-//{
-//    [super viewWillLayoutSubviews];
-//
-//    CGRect orgFrame = self.navigationController.navigationBar.frame;
-//    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
-//    [self.navigationController.navigationBar setFrame:orgFrame];
-//}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)naviBack:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 // 初始化分类列表
 - (void)setupCategroyList
 {
-//    self.categoryList = [NSMutableArray arrayWithCapacity:10];
-//    NSArray *cateNames = @[@"天文篇", @"地理篇", @"植物篇", @"动物篇", @"人姿篇", @"身体篇", @"生理篇", @"生活篇", @"活动篇", @"文化篇"];
-//    for (int i = 0; i < 10; i++)
-//    {
-//        [self.categoryList addObject:@{@"cateName":cateNames[i],
-//                                       @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02d", i + 1],
-//                                       @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02d", i + 1]}];
-//    }
+    self.categoryList = [NSMutableArray arrayWithCapacity:10];
+    NSArray *cateNames = @[@"天文篇", @"地理篇", @"植物篇", @"动物篇", @"人姿篇", @"身体篇", @"生理篇", @"生活篇", @"活动篇", @"文化篇"];
+    for (int i = 0; i < 10; i++)
+    {
+        [self.categoryList addObject:@{@"cateName":cateNames[i],
+                                       @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02d", i + 1],
+                                       @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02d", i + 1]}];
+    }
     
-    [self requestModules];
-    
+    // [self requestModules];
 }
 
 #pragma mark - Navigation

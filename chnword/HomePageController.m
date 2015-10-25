@@ -97,6 +97,15 @@
     }
 }
 
+- (IBAction)enterCategory:(id)sender
+{
+    AppDelegate* appDelegate = [AppDelegate sharedDelegate];
+    if (appDelegate.isLogin == NO)
+        [self performSegueWithIdentifier:@"freeCategory" sender:self];
+    else
+        [self performSegueWithIdentifier:@"payedCategory" sender:self];
+}
+
 - (IBAction)enterScan:(id)sender
 {
     AppDelegate* appDelegate = [AppDelegate sharedDelegate];

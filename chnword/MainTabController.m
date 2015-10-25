@@ -18,6 +18,9 @@
 {
     [super viewDidLoad];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showShop:) name:NotiShowShop object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showShop:) name:NotiShowShopSuit object:nil];
+
     // 调整TabBar颜色
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -49,6 +52,11 @@
 //    CGRect orgFrame = self.navigationController.navigationBar.frame;
 //    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
 //    [self.navigationController.navigationBar setFrame:orgFrame];
+}
+
+- (void)showShop:(NSNotification *)notification
+{
+    self.selectedIndex = 1;
 }
 
 @end

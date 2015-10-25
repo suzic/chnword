@@ -18,6 +18,7 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @property (assign, nonatomic) BOOL isLogin;
+@property (assign, nonatomic) BOOL goSuit;
 
 /**
  * @abstract 获取静态单例应用代理对象

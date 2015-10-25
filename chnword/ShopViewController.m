@@ -7,9 +7,11 @@
 //
 
 #import "ShopViewController.h"
+#import "AppDelegate.h"
 
 @interface ShopViewController ()
 
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (strong, nonatomic) IBOutlet UIImageView *segmentPicture;
 @property (strong, nonatomic) IBOutlet UIView *page00;
 @property (strong, nonatomic) IBOutlet UIView *page01;
@@ -22,11 +24,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.page00.hidden = NO;
+    self.page01.hidden = YES;
+    self.page02.hidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    AppDelegate* appDelegate = [AppDelegate sharedDelegate];
+    if (appDelegate.goSuit)
+    {
+        [self.segmentControl setSelectedSegmentIndex:2];
+        [self segementChanged:self.segmentControl];
+        appDelegate.goSuit = NO;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

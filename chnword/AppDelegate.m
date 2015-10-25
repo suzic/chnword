@@ -27,6 +27,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.isLogin = NO;
+    self.goSuit = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showShopSuit:) name:NotiShowShopSuit object:nil];
+
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
@@ -110,6 +114,11 @@
     
     //设置分享到QQ/Qzone的应用Id，和分享url 链接
     [UMSocialQQHandler setQQWithAppId:@"1104685705" appKey:@"TaZo5RPmrGX11nPO" url:@"http://www.umeng.com/social"];
+}
+
+- (void)showShopSuit:(NSNotification *)notification
+{
+    self.goSuit = YES;
 }
 
 @end

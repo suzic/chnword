@@ -112,10 +112,19 @@
     [self showLoginView:nil];
 }
 
+- (IBAction)enterBuySuit:(id)sender
+{
+    [self closeError:sender];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowShopSuit object:self];
+}
+
 
 // 欢迎页面确认，然后根据是否有默认用户来决定显示登录界面
 - (void)buttonClicked:(id) sender
 {
+    self.pageControl.currentPage = 0;
+    self.pages.contentOffset = CGPointMake(0, 0);
+
     [UIView animateWithDuration:0.5f animations:^{
         self.welcomeView.alpha = 0.0f;
     } completion:^(BOOL finished) {

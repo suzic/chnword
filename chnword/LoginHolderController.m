@@ -73,6 +73,14 @@
     }];
 }
 
+- (IBAction)gotoBuy:(id)sender
+{
+    [self closeError:sender];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowShop object:self];
+    }];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

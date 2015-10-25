@@ -62,6 +62,8 @@
 #define NotiShowWelcome         @"NotiShowWelcome"
 #define NotiShowLogin           @"NotiShowLogin"
 #define NotiDisable             @"NotiDisable"
+#define NotiShowShop            @"NotiShowShop"
+#define NotiShowShopSuit        @"NotiShowShopSuit"
 
 
 #pragma mark - SharedSDK

@@ -17,6 +17,13 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (assign, nonatomic) BOOL isLogin;
+
+/**
+ * @abstract 获取静态单例应用代理对象
+ */
++ (AppDelegate *)sharedDelegate;
+
 //- (NSURL *)applicationDocumentsDirectory;
 
 @end

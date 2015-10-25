@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 Suzic. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "LoginController.h"
 #import "NetManager.h"
 #import "NetParamFactory.h"
@@ -13,6 +14,8 @@
 #import "DataUtil.h"
 
 #import "MBProgressHUD.h"
+
+#define TEST_CODE 9999
 
 @interface LoginController () <UITextFieldDelegate, UIAlertViewDelegate>
 {
@@ -60,14 +63,13 @@
     NSString *userid = userCode;
 
     //本地用户存储
-    NSDictionary *param = [NetParamFactory
-                           registParam:opid
-                           userid:userid
-                           device:deviceId
-                           userCode:userCode
-                           deviceId:deviceId
-                           session:[Util generateUuid]
-                           verify:@"verify"];
+    NSDictionary *param = [NetParamFactory registParam:opid
+                                                userid:userid
+                                                device:deviceId
+                                              userCode:userCode
+                                              deviceId:deviceId
+                                               session:[Util generateUuid]
+                                                verify:@"verify"];
     
     [NetManager postRequest:URL_LOGIN param:param success:^(id json){
         NSLog(@"success with json:\n %@", json);
@@ -228,9 +230,9 @@
 // 试用按钮点击
 - (IBAction)trailButtonPressed:(id)sender
 {
-//    [self requestLoginFromNetwork:@"13700845991"];
+    // [self requestLoginFromNetwork:@"13700845991"];
     
-    //设置默认用户为0,然后直接进入即可
+    // 设置默认用户为0,然后直接进入即可
     [DataUtil setDefaultUser:@"0"];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -238,7 +240,9 @@
 // 登录按钮点击
 - (IBAction)loginButtonPressed:(id)sender
 {
-    [self.errorContainer showLoginErrorTooMany];
+#warning 测试登录出错效果
+    [self testErrorResult];
+    
 //    if (self.loginButton.alpha < 1.0f)
 //    {
 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
@@ -252,7 +256,7 @@
 
     // 发送网络登录请求，verify接口。
     [self requestLoginFromNetwork:self.userCodeInput.text];
-//    [self requestVerifyFromNetwork:self.userCodeInput.text];
+    // [self requestVerifyFromNetwork:self.userCodeInput.text];
     
 #warning 现在默认返回需要验证
 //    [self loginNeedsVerify];
@@ -260,36 +264,63 @@
 //     [self loginSucceed];
 }
 
+#warning Test only
+- (void)testErrorResult
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"[功能测试]"
+                                                     message:@""
+                                                    delegate:self
+                                           cancelButtonTitle:@"登录成功"
+                                           otherButtonTitles:@"过多设备",@"用户码错",nil];
+    alert.tag = TEST_CODE;
+    [alert show];
+
+}
+
 - (void)loginSucceed
 {
+    AppDelegate *appDelegate = [AppDelegate sharedDelegate];
+    appDelegate.isLogin = YES;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)loginFailed:(NSString *)errMessage
+- (void)loginFailed
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                    message:errMessage
-                                                   delegate:nil
-                                          cancelButtonTitle:@"确定"
-                                          otherButtonTitles:nil];
-    [alert show];
+    AppDelegate *appDelegate = [AppDelegate sharedDelegate];
+    appDelegate.isLogin = NO;
+    [self.errorContainer showLoginErrorWrong];
 }
 
 - (void)loginNeedsVerify
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您已经在超过两台设备上登录"
-                                                    message:@"系统将向该用户码绑定的手机发送验证码，得到验证码后请在下方输入："
-                                                   delegate:self
-                                          cancelButtonTitle:@"取消"
-                                          otherButtonTitles:@"确定", nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alert show];
+    AppDelegate *appDelegate = [AppDelegate sharedDelegate];
+    appDelegate.isLogin = NO;
+    [self.errorContainer showLoginErrorTooMany];
 }
 
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (alertView.tag == TEST_CODE)
+    {
+        switch (buttonIndex)
+        {
+            case 1:
+                [self loginNeedsVerify];
+                break;
+            case 2:
+                [self loginFailed];
+                break;
+            case 0:
+            default:
+                [self loginSucceed];
+                break;
+        }
+        
+        return;
+    }
+    
     if (buttonIndex != 0)
     {
         UITextField *tf = [alertView textFieldAtIndex:0];

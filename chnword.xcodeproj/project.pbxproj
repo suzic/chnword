@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A736729D1B48BA9200E88C52 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736729C1B48BA9200E88C52 /* MediaPlayer.framework */; };
-		A76792C41B44B94E00B931F1 /* scan_box.png in Resources */ = {isa = PBXBuildFile; fileRef = A76792C21B44B94E00B931F1 /* scan_box.png */; };
-		A76792C51B44B94E00B931F1 /* scan_line.png in Resources */ = {isa = PBXBuildFile; fileRef = A76792C31B44B94E00B931F1 /* scan_line.png */; };
 		A7A0A7A81B835E0D00041637 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A0A7A71B835E0D00041637 /* WebViewController.m */; };
 		A7AE1D191B78CA7E0043F21C /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7AE1D101B78CA7E0043F21C /* ApiXml.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A7AE1D1A1B78CA7E0043F21C /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = A7AE1D121B78CA7E0043F21C /* payRequsestHandler.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -129,8 +127,6 @@
 /* Begin PBXFileReference section */
 		A736729C1B48BA9200E88C52 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		A736729E1B48BB0F00E88C52 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
-		A76792C21B44B94E00B931F1 /* scan_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan_box.png; sourceTree = "<group>"; };
-		A76792C31B44B94E00B931F1 /* scan_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan_line.png; sourceTree = "<group>"; };
 		A7A0A7A61B835E0D00041637 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		A7A0A7A71B835E0D00041637 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		A7AE1D0F1B78CA7E0043F21C /* ApiXml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiXml.h; sourceTree = "<group>"; };
@@ -394,8 +390,6 @@
 				D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */,
 				D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */,
 				A7C3605D1B4EB3F90074E276 /* LOGO1.png */,
-				A76792C21B44B94E00B931F1 /* scan_box.png */,
-				A76792C31B44B94E00B931F1 /* scan_line.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -975,12 +969,10 @@
 				D06693771B351A7D00B50D16 /* Images.xcassets in Resources */,
 				A7B432F41B42D0F400CEFC58 /* UMSCommentInputController.xib in Resources */,
 				A7B432FB1B42D0F400CEFC58 /* UMSocialSDKResourcesNew.bundle in Resources */,
-				A76792C51B44B94E00B931F1 /* scan_line.png in Resources */,
 				A7B432F31B42D0F400CEFC58 /* UMSCommentDetailController.xib in Resources */,
 				A7B432F61B42D0F400CEFC58 /* UMShareEditViewController.xib in Resources */,
 				A7B433231B42D3CE00CEFC58 /* WeiboSDK.bundle in Resources */,
 				A7B432F51B42D0F400CEFC58 /* UMSCommentInputControlleriPad.xib in Resources */,
-				A76792C41B44B94E00B931F1 /* scan_box.png in Resources */,
 				A7B432F11B42D0F400CEFC58 /* UMSocialLocalizable.strings in Resources */,
 				A7B432F91B42D0F400CEFC58 /* UMSnsAccountViewController.xib in Resources */,
 			);

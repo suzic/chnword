@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 Suzic. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "UserViewController.h"
-
 #import "NetManager.h"
 #import "NetParamFactory.h"
 #import "Util.h"
@@ -22,9 +22,11 @@
 #import "SettingsCell.h"
 #import "AboutCell.h"
 
-@interface UserViewController () <UMSocialUIDelegate>
+@interface UserViewController () <UMSocialUIDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, retain) MBProgressHUD *hud;
+@property (nonatomic, weak) UserCell* userCell;
+@property (nonatomic, assign) NSInteger userLevel;
 
 @end
 
@@ -33,6 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.userLevel = 1;
     
     // 设置背景图片
     UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
@@ -44,6 +48,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -79,11 +84,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    AppDelegate *appDelegate = [AppDelegate sharedDelegate];
     if (indexPath.section == 1)
     {
         switch (indexPath.row)
         {
             case 0:
+                if (appDelegate.isLogin)
+                    [self bindingPhone];
+                else
+                    [self showLogin];
                 break;
                 
             case 1:
@@ -95,49 +106,79 @@
                 [self showFeedback];
                 break;
             case 3:
-                // 引导页
-                [self showUserGuide];
-                break;
-            case 4:
                 // 邀请好友
                 [self inviteShare];
+                break;
+            case 4:
+                // 引导页
+                [self showUserGuide];
+
                 break;
             default:
                 break;
         }
     }
-    else if (indexPath.section == 2)
+    else if (indexPath.section == 0)
     {
-        // ABOUT
+#warning Demo Only
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"[测试功能]"
+                                                        message:@"设置用户等级（若当前用户未登录，本功能无效）"
+                                                       delegate:self
+                                              cancelButtonTitle:@"用户登出"
+                                              otherButtonTitles:@"1级", @"2级", @"3级", @"4级", nil];
+        [alert show];
+        
         //[self showAbout];
     }
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    AppDelegate *appDelegate = [AppDelegate sharedDelegate];
+
     if (indexPath.section == 0)
     {
         UserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userCell"];
+        if (!appDelegate.isLogin)
+        {
+            cell.currentUser.hidden = YES;
+            self.userLevel = 0;
+        }
+        else
+        {
+            cell.currentUser.hidden = NO;
+#warning 用于演示设置，请读取正确当前用户等级
+            if (self.userLevel == 0)
+                self.userLevel = 1;
+        }
+        
+        self.userCell = cell;
         return cell;
     }
     else if (indexPath.section == 1)
     {
         SettingsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"functionCell"];
+
         switch (indexPath.row) {
             case 0:
-                [cell.functionTitle setText:@"会员登录"];
+                [cell.functionTitle setText:(appDelegate.isLogin ? @"手机绑定": @"会员登录")];
+                [cell.functionIcon setImage:[UIImage imageNamed:(appDelegate.isLogin ? @"User01": @"User00")]];
                 break;
             case 1:
                 [cell.functionTitle setText:@"用户FAQ"];
+                [cell.functionIcon setImage:[UIImage imageNamed:@"User02"]];
                 break;
             case 2:
                 [cell.functionTitle setText:@"信息反馈"];
+                [cell.functionIcon setImage:[UIImage imageNamed:@"User03"]];
                 break;
             case 3:
                 [cell.functionTitle setText:@"分享好友"];
+                [cell.functionIcon setImage:[UIImage imageNamed:@"User04"]];
                 break;
             case 4:
                 [cell.functionTitle setText:@"有偿推广"];
+                [cell.functionIcon setImage:[UIImage imageNamed:@"User05"]];
                 break;
         }
         return cell;
@@ -182,13 +223,17 @@
 
 #pragma mark - Setting functions
 
-- (IBAction)recallWelcome:(id)sender
+- (void)showLogin
 {
-    // [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowWelcome object:self];
     [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowLogin object:self];
 }
 
-- (IBAction)registerUser:(id)sender
+- (void)bindingPhone
+{
+    
+}
+
+- (void)registerUser
 {
     NSString *opid = [Util generateUuid];
     NSString *deviceId = [Util getUdid];
@@ -280,6 +325,25 @@
 //    webViewController.titleText = @"关于";
 //    [self.navigationController pushViewController:webViewController animated:YES];
 //}
+
+- (void)setUserLevel:(NSInteger)userLevel
+{
+    _userLevel = userLevel;
+    if (_userLevel == 0)
+    {
+        AppDelegate* appDelegate = [AppDelegate sharedDelegate];
+        appDelegate.isLogin = NO;
+    }
+    [self.userCell setUserLevelImage:userLevel];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (self.userCell == nil)
+        return;
+    self.userLevel = buttonIndex;
+    [self.tableView reloadData];
+}
 
 #pragma mark -getter
 

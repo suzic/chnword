@@ -16,6 +16,9 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *pages;
 @property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
 
+@property (strong, nonatomic) IBOutlet UIView *infoLayer;
+@property (strong, nonatomic) IBOutlet UIView *infoContent;
+
 @end
 
 @implementation MainFrameController
@@ -25,9 +28,13 @@
 {
     [super viewDidLoad];
     
+    self.infoLayer.hidden = YES;
+    self.infoContent.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ErrorBG"]];
+
     [self setupPages];
         
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showWelcome:) name:NotiShowWelcome object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showDisable:) name:NotiDisable object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginView:) name:NotiShowLogin object:nil];
     
     if ([DataUtil isFirstLogin])
@@ -75,6 +82,36 @@
         self.welcomeView.alpha = 1.0f;
     }];
 }
+
+- (void)showDisable:(NSNotification *)notification
+{
+    CGRect showPos = CGRectMake(0, kScreenHeight - self.infoContent.frame.size.height, kScreenWidth, self.infoContent.frame.size.height);
+    CGRect hidePos = CGRectMake(0, kScreenHeight, kScreenWidth, self.infoContent.frame.size.height);
+    
+    self.infoLayer.hidden = NO;
+    self.infoContent.frame = hidePos;
+    [UIView animateWithDuration:0.2f animations:^{
+        self.infoContent.frame = showPos;
+    } completion:nil];
+}
+
+- (IBAction)closeError:(id)sender
+{
+    CGRect hidePos = CGRectMake(0, kScreenHeight, kScreenWidth, self.infoContent.frame.size.height);
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.infoContent.frame = hidePos;
+    } completion:^(BOOL finished) {
+        self.infoLayer.hidden = YES;
+    }];
+}
+
+- (IBAction)gotoLogin:(id)sender
+{
+    [self closeError:sender];
+    [self showLoginView:nil];
+}
+
 
 // 欢迎页面确认，然后根据是否有默认用户来决定显示登录界面
 - (void)buttonClicked:(id) sender

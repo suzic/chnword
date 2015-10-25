@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 Suzic. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "HomePageController.h"
 #import "QrSearchViewController.h"
 #import "PlayController.h"
@@ -88,10 +89,21 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    if ([@"QRSEARCH" isEqualToString:segue.identifier]) {
-        QrSearchViewController *controller = (QrSearchViewController *) segue.destinationViewController;
+    if ([@"toCamera" isEqualToString:segue.identifier])
+    {
+        UINavigationController *nc = segue.destinationViewController;
+        QrSearchViewController *controller = (QrSearchViewController *)[nc topViewController];
         controller.delegate = self;
     }
+}
+
+- (IBAction)enterScan:(id)sender
+{
+    AppDelegate* appDelegate = [AppDelegate sharedDelegate];
+    if (appDelegate.isLogin == NO)
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotiDisable object:self];
+    else
+        [self performSegueWithIdentifier:@"toCamera" sender:self];
 }
 
 #pragma mark - QRSEarchViewController Delegate Methods

@@ -11,5 +11,6 @@
 @interface SettingsCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *functionTitle;
+@property (strong, nonatomic) IBOutlet UIImageView *functionIcon;
 
 @end

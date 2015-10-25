@@ -11,5 +11,8 @@
 @interface UserCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *currentUser;
+@property (strong, nonatomic) IBOutlet UIImageView *userLevel;
+
+- (void)setUserLevelImage:(NSInteger)level;
 
 @end

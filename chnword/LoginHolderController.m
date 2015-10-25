@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *errorView;
 @property (strong, nonatomic) IBOutlet UIView *errorContent;
+@property (strong, nonatomic) IBOutlet UIView *errorBuy;
 
 @end
 
@@ -24,6 +25,7 @@
 
     self.errorView.hidden = YES;
     self.errorContent.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ErrorBG"]];
+    self.errorBuy.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ErrorBG"]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,6 +40,7 @@
     CGRect hidePos = CGRectMake(0, kScreenHeight, kScreenWidth, self.errorContent.frame.size.height);
 
     self.errorContent.frame = hidePos;
+    self.errorBuy.frame = hidePos;
     self.errorView.hidden = NO;
     [UIView animateWithDuration:0.2f animations:^{
         self.errorContent.frame = showPos;
@@ -50,9 +53,10 @@
     CGRect hidePos = CGRectMake(0, kScreenHeight, kScreenWidth, self.errorContent.frame.size.height);
     
     self.errorContent.frame = hidePos;
+    self.errorBuy.frame = hidePos;
     self.errorView.hidden = NO;
     [UIView animateWithDuration:0.2f animations:^{
-        self.errorContent.frame = showPos;
+        self.errorBuy.frame = showPos;
     } completion:nil];
 }
 
@@ -61,10 +65,9 @@
     CGRect showPos = CGRectMake(0, kScreenHeight - self.errorContent.frame.size.height, kScreenWidth, self.errorContent.frame.size.height);
     CGRect hidePos = CGRectMake(0, kScreenHeight, kScreenWidth, self.errorContent.frame.size.height);
     
-    self.errorContent.frame = showPos;
-    
     [UIView animateWithDuration:0.3f animations:^{
         self.errorContent.frame = hidePos;
+        self.errorBuy.frame = hidePos;
     } completion:^(BOOL finished) {
         self.errorView.hidden = YES;
     }];

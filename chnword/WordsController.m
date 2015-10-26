@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 Suzic. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "WordsController.h"
 #import "PlayController.h"
 #import "NetParamFactory.h"
@@ -57,6 +58,12 @@ static NSString * const reuseIdentifier = @"WordCell";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+}
+
+- (IBAction)shopBuyCategory:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowLogin object:self];
 }
 
 - (IBAction)naviBack:(id)sender

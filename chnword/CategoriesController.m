@@ -6,6 +6,8 @@
 //  Copyright (c) 2015年 Suzic. All rights reserved.
 //
 
+#import "AppDelegate.h"
+#import "ShopAnimeController.h"
 #import "CategoriesController.h"
 #import "WordsController.h"
 #import "NetManager.h"
@@ -14,7 +16,7 @@
 #import "DataUtil.h"
 #import "MBProgressHUD.h"
 
-@interface CategoriesController ()
+@interface CategoriesController () <UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *categoryList;
 @property (assign, nonatomic) NSInteger selectedIndex;
@@ -32,12 +34,8 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     [super viewDidLoad];
     
     self.selectedIndex = NSNotFound;
-    
-    // 设置背景图片
-//    UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-//    [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
-//    bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-//    self.collectionView.backgroundView = bacgroundImageView;
+    AppDelegate* appDelegate = [AppDelegate sharedDelegate];
+    self.navigationItem.title = appDelegate.isLogin ? @"三千字课体系" : @"免费体验";
     
     [self setupCategroyList];
 }
@@ -56,13 +54,28 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 // 初始化分类列表
 - (void)setupCategroyList
 {
+    AppDelegate* appDelegate = [AppDelegate sharedDelegate];
+    
     self.categoryList = [NSMutableArray arrayWithCapacity:10];
     NSArray *cateNames = @[@"天文篇", @"地理篇", @"植物篇", @"动物篇", @"人姿篇", @"身体篇", @"生理篇", @"生活篇", @"活动篇", @"文化篇"];
+#warning 解锁数据需要从服务器获取
+    NSArray *cateUnlocked = @[@"0", @"1", @"1", @"0", @"0", @"0", @"0", @"0", @"1", @"0"];
+
     for (int i = 0; i < 10; i++)
     {
-        [self.categoryList addObject:@{@"cateName":cateNames[i],
-                                       @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02d", i + 1],
-                                       @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02d", i + 1]}];
+        if (appDelegate.isLogin)
+        {
+            [self.categoryList addObject:@{@"cateName":cateNames[i],
+                                           @"cateUnlocked":cateUnlocked[i],
+                                           @"cateImageA":[NSString stringWithFormat:@"CATE_L_%02d", i + 1],
+                                           @"cateImageB":[NSString stringWithFormat:@"CATE_U_%02d", i + 1]}];
+        }
+        else
+        {
+            [self.categoryList addObject:@{@"cateName":cateNames[i],
+                                           @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02d", i + 1],
+                                           @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02d", i + 1]}];
+        }
     }
     
     // [self requestModules];
@@ -98,8 +111,21 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     CategoryCell *cell = (CategoryCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     NSDictionary *cateDic = self.categoryList[indexPath.row];
     [cell.categoryName setText:cateDic[@"cateName"]];
-    [cell.categoryImage setImage:[UIImage imageNamed:cateDic[@"cateImageA"]]];
-    [cell.categoryImage setHighlightedImage:[UIImage imageNamed:cateDic[@"cateImageB"]]];
+    
+    AppDelegate* appDelegate = [AppDelegate sharedDelegate];
+    if (appDelegate.isLogin)
+    {
+        if ([cateDic[@"cateUnlocked"] isEqualToString:@"0"])
+            [cell.categoryImage setImage:[UIImage imageNamed:cateDic[@"cateImageA"]]];
+        else
+            [cell.categoryImage setImage:[UIImage imageNamed:cateDic[@"cateImageB"]]];
+        [cell.categoryImage setHighlightedImage:nil];
+    }
+    else
+    {
+        [cell.categoryImage setImage:[UIImage imageNamed:cateDic[@"cateImageA"]]];
+        [cell.categoryImage setHighlightedImage:[UIImage imageNamed:cateDic[@"cateImageB"]]];
+    }
     return cell;
 }
 
@@ -117,6 +143,46 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectedIndex = indexPath.row;
+    
+    AppDelegate* appDelegate = [AppDelegate sharedDelegate];
+    if (appDelegate.isLogin)
+    {
+        NSDictionary *cateDic = self.categoryList[indexPath.row];
+        if ([cateDic[@"cateUnlocked"] isEqualToString:@"0"])
+            [self gotoShopBuy:indexPath.row];
+        else
+            [self performSegueWithIdentifier:@"goCategory" sender:self];
+    }
+    else
+    {
+        [self performSegueWithIdentifier:@"goSample" sender:self];
+    }
+}
+
+- (void)gotoShopBuy:(NSInteger)categoryIndex
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"该分组未解锁"
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:@"查看免费体验字课"
+                                          otherButtonTitles:@"购买该分类", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        [self performSegueWithIdentifier:@"goSample" sender:self];
+    }
+    else
+    {
+        UINavigationController *navi = (UINavigationController *) [self.storyboard instantiateViewControllerWithIdentifier:@"buyCategory"];
+        ShopAnimeController* shop = (ShopAnimeController*)[navi topViewController];
+        shop.selectedCategory = self.selectedIndex;
+        [self presentViewController:navi animated:YES completion:^{
+        }];
+    }
 }
 
 #pragma mark - request net work

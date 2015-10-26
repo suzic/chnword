@@ -28,7 +28,7 @@
 {
     self.isLogin = NO;
     self.goSuit = NO;
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showShopSuit:) name:NotiShowShopSuit object:nil];
 
     [[UIApplication sharedApplication] setStatusBarHidden:YES];

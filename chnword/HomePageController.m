@@ -72,9 +72,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 0.01f;
-    CGFloat screenHeight = self.view.frame.size.height - 39.0f;
-    CGFloat sectionHeight = (screenHeight - self.rowHeight01 - self.rowHeight02) / 2;
-    return sectionHeight > 0 ? sectionHeight : 0.01f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -95,15 +92,6 @@
         QrSearchViewController *controller = (QrSearchViewController *)[nc topViewController];
         controller.delegate = self;
     }
-}
-
-- (IBAction)enterCategory:(id)sender
-{
-    AppDelegate* appDelegate = [AppDelegate sharedDelegate];
-    if (appDelegate.isLogin == NO)
-        [self performSegueWithIdentifier:@"freeCategory" sender:self];
-    else
-        [self performSegueWithIdentifier:@"payedCategory" sender:self];
 }
 
 - (IBAction)enterScan:(id)sender

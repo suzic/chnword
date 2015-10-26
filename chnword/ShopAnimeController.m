@@ -6,13 +6,16 @@
 //  Copyright (c) 2015年 Suzic. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "ShopAnimeController.h"
 #import "ShopCell.h"
+#import "HeaderCell.h"
+#import "FooterCell.h"
 
 @interface ShopAnimeController ()
 
 @property (strong, nonatomic) NSMutableArray *categoryList;
-@property (assign, nonatomic) NSInteger selectedIndex;
+@property (weak, nonatomic) FooterCell* footer;
 
 @end
 
@@ -21,10 +24,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
-    self.selectedIndex = NSNotFound;
-    
-    [self setupCategroyList];
+    if (self.selectedCategory != NSNotFound)
+    {
+        // 设置背景图片
+        UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
+        bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.tableView.backgroundView = bacgroundImageView;
+    }
+    [self setupCategroyList:self.selectedCategory];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,18 +48,40 @@
 }
 
 // 初始化分类列表
-- (void)setupCategroyList
+- (void)setupCategroyList:(NSInteger)selectedIndex
 {
     self.categoryList = [NSMutableArray arrayWithCapacity:10];
     NSArray *cateNames = @[@"天文篇", @"地理篇", @"植物篇", @"动物篇", @"人姿篇",
                            @"身体篇", @"生理篇", @"生活篇", @"活动篇", @"文化篇"];
     for (int i = 0; i < 10; i++)
     {
-        [self.categoryList addObject:@{@"itemName":cateNames[i],
-                                       @"itemPrice":@"¥ 18.00",
-                                       @"itemCode":[NSString stringWithFormat:@"%d", i],
-                                       @"itemImage":[NSString stringWithFormat:@"BUY_CATE_%02d", i + 1]}];
+        [self.categoryList addObject:[NSMutableDictionary dictionaryWithDictionary:@{@"itemName":cateNames[i],
+                                                                                     @"itemPrice":@(18),
+                                                                                     @"itemCode":[NSString stringWithFormat:@"%d", i],
+                                                                                     @"itemImage":[NSString stringWithFormat:@"BUY_CATE_%02d", i + 1],
+                                                                                     @"itemSelected":((selectedIndex - 1) == i) ? @"1" : @"0"}]];
     }
+    [self.tableView reloadData];
+}
+
+- (CGFloat)calTotalPrice
+{
+    CGFloat totalValue = 0;
+    for (NSDictionary *dic in self.categoryList)
+    {
+        if ([dic[@"itemSelected"] isEqualToString:@"1"])
+        {
+            NSNumber *price = dic[@"itemPrice"];
+            totalValue += price.floatValue;
+        }
+    }
+    return totalValue;
+}
+
+- (IBAction)buy:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"进入购买页" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 #pragma mark - Table view data source
@@ -71,8 +107,9 @@
     }
     else if (indexPath.row == self.categoryList.count + 1)
     {
-        UITableViewCell* footer = [tableView dequeueReusableCellWithIdentifier:@"shopBottom"];
-        return footer;
+        self.footer = [tableView dequeueReusableCellWithIdentifier:@"shopBottom"];
+        [self.footer.totalPrice setText:[NSString stringWithFormat:@"¥ %02.02lf", [self calTotalPrice]]];
+        return self.footer;
     }
     ShopCell *cell = (ShopCell *)[tableView dequeueReusableCellWithIdentifier:@"shopCell" forIndexPath:indexPath];
     NSDictionary *cateDic = self.categoryList[indexPath.row - 1];
@@ -83,8 +120,10 @@
         cell.backgroundColor = [UIColor colorWithRed:1  green:1  blue:1 alpha:0.5f];
     [cell.itemName setText:cateDic[@"itemName"]];
     [cell.itemImage setImage:[UIImage imageNamed:cateDic[@"itemImage"]]];
-    [cell.itemPrice setText:cateDic[@"itemPrice"]];
-    cell.itemBuy.hidden = (self.selectedIndex != indexPath.row);
+    NSNumber *price = cateDic[@"itemPrice"];
+    [cell.itemPrice setText:[NSString stringWithFormat:@"¥ %02.02lf", price.floatValue]];
+    UIImage *buttonImage = [UIImage imageNamed:@"CheckMark"];
+    [cell.itemBuy setImage:([cateDic[@"itemSelected"] isEqualToString:@"0"] ? nil : buttonImage)];
     return cell;
 }
 
@@ -98,17 +137,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.selectedIndex == indexPath.row)
-    {
-        self.selectedIndex = NSNotFound;
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    }
-    else
-    {
-        NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:self.selectedIndex inSection:0];
-        self.selectedIndex = indexPath.row;
-        [tableView reloadRowsAtIndexPaths:@[indexPath, lastIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 0 || indexPath.row == self.categoryList.count + 1)
+        return;
+    
+    NSMutableDictionary *cateDic = self.categoryList[indexPath.row - 1];
+    cateDic[@"itemSelected"] = [cateDic[@"itemSelected"] isEqualToString:@"0"] ? @"1" : @"0";
+    ShopCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UIImage *buttonImage = [UIImage imageNamed:@"CheckMark"];
+    [cell.itemBuy setImage:([cateDic[@"itemSelected"] isEqualToString:@"0"] ? nil : buttonImage)];
+    [tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.categoryList.count + 1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end

@@ -11,5 +11,6 @@
 @interface ShopAnimeController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (assign, nonatomic) NSInteger selectedCategory;
 
 @end

@@ -86,7 +86,7 @@
 		A7D6781E1B419E4B00282EBD /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D6780E1B419E4B00282EBD /* UIView+WebCacheOperation.m */; };
 		A7EDBAEC1B3AEB6200016412 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7EDBAEB1B3AEB6200016412 /* CoreTelephony.framework */; };
 		A7FD119C1B88BAD3003404B7 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FD119B1B88BAD3003404B7 /* FeedbackViewController.m */; };
-		D01F9B3D1BCE5169002B4C08 /* LoginHolderController.m in Sources */ = {isa = PBXBuildFile; fileRef = D01F9B3C1BCE5169002B4C08 /* LoginHolderController.m */; settings = {ASSET_TAGS = (); }; };
+		D01F9B3D1BCE5169002B4C08 /* LoginHolderController.m in Sources */ = {isa = PBXBuildFile; fileRef = D01F9B3C1BCE5169002B4C08 /* LoginHolderController.m */; };
 		D06693691B351A7D00B50D16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693681B351A7D00B50D16 /* main.m */; };
 		D066936C1B351A7D00B50D16 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D066936B1B351A7D00B50D16 /* AppDelegate.m */; };
 		D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693711B351A7D00B50D16 /* MainFrameController.m */; };
@@ -121,9 +121,10 @@
 		D0D207CF1B99B6FE001E4C04 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207CE1B99B6FE001E4C04 /* UserCell.m */; };
 		D0D207D21B99B70A001E4C04 /* SettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207D11B99B70A001E4C04 /* SettingsCell.m */; };
 		D0D207D51B99B716001E4C04 /* AboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207D41B99B716001E4C04 /* AboutCell.m */; };
-		D0E0C9DE1BDD3C3F00B5071F /* ShopSuitController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9DD1BDD3C3F00B5071F /* ShopSuitController.m */; settings = {ASSET_TAGS = (); }; };
-		D0E0C9E11BDD3E2C00B5071F /* ShopAllController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9E01BDD3E2C00B5071F /* ShopAllController.m */; settings = {ASSET_TAGS = (); }; };
-		D0E0C9E41BDD46B500B5071F /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9E31BDD46B500B5071F /* HeaderCell.m */; settings = {ASSET_TAGS = (); }; };
+		D0E0C9DE1BDD3C3F00B5071F /* ShopSuitController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9DD1BDD3C3F00B5071F /* ShopSuitController.m */; };
+		D0E0C9E11BDD3E2C00B5071F /* ShopAllController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9E01BDD3E2C00B5071F /* ShopAllController.m */; };
+		D0E0C9E41BDD46B500B5071F /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9E31BDD46B500B5071F /* HeaderCell.m */; };
+		D0FD984E1BDE234D00ECC368 /* FooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FD984D1BDE234D00ECC368 /* FooterCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -357,6 +358,8 @@
 		D0E0C9E01BDD3E2C00B5071F /* ShopAllController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopAllController.m; sourceTree = "<group>"; };
 		D0E0C9E21BDD46B500B5071F /* HeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderCell.h; sourceTree = "<group>"; };
 		D0E0C9E31BDD46B500B5071F /* HeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderCell.m; sourceTree = "<group>"; };
+		D0FD984C1BDE234D00ECC368 /* FooterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FooterCell.h; sourceTree = "<group>"; };
+		D0FD984D1BDE234D00ECC368 /* FooterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -851,6 +854,8 @@
 				D0D207CB1B99AD70001E4C04 /* ShopHeaderCell.m */,
 				D0E0C9E21BDD46B500B5071F /* HeaderCell.h */,
 				D0E0C9E31BDD46B500B5071F /* HeaderCell.m */,
+				D0FD984C1BDE234D00ECC368 /* FooterCell.h */,
+				D0FD984D1BDE234D00ECC368 /* FooterCell.m */,
 			);
 			name = SHOP;
 			sourceTree = "<group>";
@@ -1049,6 +1054,7 @@
 				D0B947091B36940B00A1DFD6 /* CategoriesController.m in Sources */,
 				A7B0531A1B3996D0009A0CC2 /* UIButton+AFNetworking.m in Sources */,
 				A7B432D11B42CEA100CEFC58 /* DataMatrix.mm in Sources */,
+				D0FD984E1BDE234D00ECC368 /* FooterCell.m in Sources */,
 				A7B432D51B42CEA100CEFC58 /* QRUtil.mm in Sources */,
 				A7B0531C1B3996D0009A0CC2 /* UIProgressView+AFNetworking.m in Sources */,
 				D07204D61B3680D7007C01E8 /* ShopViewController.m in Sources */,

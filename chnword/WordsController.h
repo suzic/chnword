@@ -11,9 +11,12 @@
 
 @interface WordsController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 
+@property (assign, nonatomic) BOOL lockMore;
+
 @property (assign, nonatomic) NSInteger categoryIndex;
 @property (nonatomic, retain) NSString *moduleCode;
-@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, retain) NSString *cateName;
+
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (strong, nonatomic) IBOutlet UIImageView *headerImage;
 

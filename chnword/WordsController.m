@@ -20,6 +20,8 @@
 
 @property (nonatomic, retain) MBProgressHUD *hud;
 @property (assign, nonatomic) NSInteger selectedIndex;
+@property (strong, nonatomic) IBOutlet UIView *SplitBar;
+@property (strong, nonatomic) IBOutlet UILabel *categoryName;
 
 @end
 
@@ -31,14 +33,19 @@ static NSString * const reuseIdentifier = @"WordCell";
 {
     [super viewDidLoad];
    
+    self.lockMore = NO;
+    self.SplitBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"GraphicLine"]];
+    self.categoryName.text = [NSString stringWithFormat:@"《%@》", self.cateName];
+    self.navigationItem.title = self.cateName;
+    
     // 设置背景图片
     NSString *bgImageName = [NSString stringWithFormat:@"CATE_BG_%02d", (int)(self.categoryIndex + 1)];
     [self.backgroundImage setImage:[UIImage imageNamed:bgImageName]];
     
-    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02d", (self.categoryIndex + 1)];
+    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02d", (int)(self.categoryIndex + 1)];
     [self.headerImage setImage:[UIImage imageNamed:headerImageName]];
 
-    [self setupWordsList];
+    //[self setupWordsList];
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,6 +149,7 @@ static NSString * const reuseIdentifier = @"WordCell";
 }
 */
 #pragma mark - UICollectionView Delegate Method
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
@@ -233,9 +241,8 @@ static NSString * const reuseIdentifier = @"WordCell";
     }];
 }
 
-
-- (void) requestWordsList:(NSString *) moduleCode {
-    
+- (void) requestWordsList:(NSString *) moduleCode
+{
     NSString *opid = [Util generateUuid];
     NSString *userid = [DataUtil getDefaultUser];
     NSString *deviceId = [Util getUdid];
@@ -274,7 +281,7 @@ static NSString * const reuseIdentifier = @"WordCell";
                                                 @"wordCode": wordCode}];
                 }
                 
-                [self.collectionView reloadData];
+                //[self.collectionView reloadData];
                 
             } else  {
                 
@@ -300,9 +307,11 @@ static NSString * const reuseIdentifier = @"WordCell";
 }
 
 #pragma mark - Getter Method
-- (MBProgressHUD *) hud {
-    if (!_hud) {
-        
+
+- (MBProgressHUD *) hud
+{
+    if (!_hud)
+    {
         _hud = [[MBProgressHUD alloc] initWithView:self.view];
         _hud.color = [UIColor clearColor];//这儿表示无背景
         //显示的文字
@@ -316,7 +325,8 @@ static NSString * const reuseIdentifier = @"WordCell";
     return _hud;
 }
 
-- (NSMutableArray *) wordsList {
+- (NSMutableArray *) wordsList
+{
     if (!_wordsList) {
         _wordsList = [NSMutableArray array];
     }

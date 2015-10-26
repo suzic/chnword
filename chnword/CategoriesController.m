@@ -77,6 +77,7 @@ static NSString * const reuseIdentifier = @"CategoryCell";
         WordsController *wordController = (WordsController *)[segue destinationViewController];
         wordController.categoryIndex = self.selectedIndex;
         wordController.moduleCode = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateCode"];
+        wordController.cateName = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateName"];
     }
 }
 
@@ -116,12 +117,6 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectedIndex = indexPath.row;
-    
-    // 设置导航背景图片及过渡动画
-    // NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02ld", (self.selectedIndex + 1)];
-//    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02u", self.categoryList.count - indexPath.row];
-//
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:headerImageName] forBarMetrics:UIBarMetricsDefault];
 }
 
 #pragma mark - request net work

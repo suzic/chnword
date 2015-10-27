@@ -36,6 +36,7 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     self.selectedIndex = NSNotFound;
     AppDelegate* appDelegate = [AppDelegate sharedDelegate];
     self.navigationItem.title = appDelegate.isLogin ? @"三千字课体系" : @"免费体验";
+    self.navigationItem.backBarButtonItem.title = @"";
     
     [self setupCategroyList];
 }
@@ -57,22 +58,19 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     AppDelegate* appDelegate = [AppDelegate sharedDelegate];
     
     self.categoryList = [NSMutableArray arrayWithCapacity:10];
-    NSArray *cateNames = @[@"天文篇", @"地理篇", @"植物篇", @"动物篇", @"人姿篇", @"身体篇", @"生理篇", @"生活篇", @"活动篇", @"文化篇"];
-#warning 解锁数据需要从服务器获取
-    NSArray *cateUnlocked = @[@"0", @"1", @"1", @"0", @"0", @"0", @"0", @"0", @"1", @"0"];
 
     for (int i = 0; i < 10; i++)
     {
         if (appDelegate.isLogin)
         {
-            [self.categoryList addObject:@{@"cateName":cateNames[i],
-                                           @"cateUnlocked":cateUnlocked[i],
+            [self.categoryList addObject:@{@"cateName":appDelegate.cateNames[i],
+                                           @"cateUnlocked":appDelegate.cateUnlocked[i],
                                            @"cateImageA":[NSString stringWithFormat:@"CATE_L_%02d", i + 1],
                                            @"cateImageB":[NSString stringWithFormat:@"CATE_U_%02d", i + 1]}];
         }
         else
         {
-            [self.categoryList addObject:@{@"cateName":cateNames[i],
+            [self.categoryList addObject:@{@"cateName":appDelegate.cateNames[i],
                                            @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02d", i + 1],
                                            @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02d", i + 1]}];
         }
@@ -85,13 +83,10 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"gotoCategory"])
-    {
-        WordsController *wordController = (WordsController *)[segue destinationViewController];
-        wordController.categoryIndex = self.selectedIndex;
-        wordController.moduleCode = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateCode"];
-        wordController.cateName = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateName"];
-    }
+    WordsController *wordController = (WordsController *)[segue destinationViewController];
+    wordController.categoryIndex = self.selectedIndex;
+    wordController.moduleCode = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateCode"];
+    wordController.cateName = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateName"];
 }
 
 #pragma mark <UICollectionViewDataSource>

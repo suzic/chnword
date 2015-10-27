@@ -17,6 +17,8 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (strong, nonatomic) NSArray* cateNames;
+@property (strong, nonatomic) NSArray* cateUnlocked;
 @property (assign, nonatomic) BOOL isLogin;
 @property (assign, nonatomic) BOOL goSuit;
 

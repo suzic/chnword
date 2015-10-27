@@ -21,8 +21,6 @@
 
 @property (nonatomic, retain) MBProgressHUD *hud;
 @property (assign, nonatomic) NSInteger selectedIndex;
-@property (strong, nonatomic) IBOutlet UIView *SplitBar;
-@property (strong, nonatomic) IBOutlet UILabel *categoryName;
 
 @end
 
@@ -34,17 +32,11 @@ static NSString * const reuseIdentifier = @"WordCell";
 {
     [super viewDidLoad];
    
-    self.lockMore = NO;
-    self.SplitBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"GraphicLine"]];
-    self.categoryName.text = [NSString stringWithFormat:@"《%@》", self.cateName];
     self.navigationItem.title = self.cateName;
     
     // 设置背景图片
     NSString *bgImageName = [NSString stringWithFormat:@"CATE_BG_%02d", (int)(self.categoryIndex + 1)];
     [self.backgroundImage setImage:[UIImage imageNamed:bgImageName]];
-    
-    NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02d", (int)(self.categoryIndex + 1)];
-    [self.headerImage setImage:[UIImage imageNamed:headerImageName]];
 
     //[self setupWordsList];
 }
@@ -59,26 +51,6 @@ static NSString * const reuseIdentifier = @"WordCell";
 {
     [super viewDidAppear:animated];
 }
-
-- (IBAction)shopBuyCategory:(id)sender
-{
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowLogin object:self];
-}
-
-- (IBAction)naviBack:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-//- (void)viewWillLayoutSubviews
-//{
-//    [super viewWillLayoutSubviews];
-//    
-//    CGRect orgFrame = self.navigationController.navigationBar.frame;
-//    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
-//    [self.navigationController.navigationBar setFrame:orgFrame];
-//}
 
 // 初始化分类列表
 - (void)setupWordsList
@@ -162,19 +134,17 @@ static NSString * const reuseIdentifier = @"WordCell";
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     self.selectedIndex = indexPath.row;
     
-    if ([@"0" isEqualToString:[DataUtil getDefaultUser]]) {
-        if (indexPath.row < 1) {
-            //        PlayController *player = (PlayController *)[segue destinationViewController];
-            PlayController *player = (PlayController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PlayController"];
+    if ([@"0" isEqualToString:[DataUtil getDefaultUser]])
+    {
+        // PlayController *player = (PlayController *)[segue destinationViewController];
+        PlayController *player = (PlayController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PlayController"];
             
-            player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
-            player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
-            [self.navigationController pushViewController:player animated:YES];
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"默认用户只能查看第一条数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            [alert show];
-        }
-    }else {
+        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
+        player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
+        [self.navigationController pushViewController:player animated:YES];
+    }
+    else
+    {
         PlayController *player = (PlayController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PlayController"];
         
         player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];

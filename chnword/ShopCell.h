@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *itemImage;
 @property (strong, nonatomic) IBOutlet UILabel *itemName;
 @property (strong, nonatomic) IBOutlet UILabel *itemPrice;
-@property (strong, nonatomic) IBOutlet UIImageView *itemBuy;
+@property (strong, nonatomic) IBOutlet UIView *itemBuy;
+@property (strong, nonatomic) IBOutlet UIImageView *itemCheck;
 
 @end

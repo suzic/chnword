@@ -104,6 +104,7 @@
 		D07204D01B3673B0007C01E8 /* MainTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204CF1B3673B0007C01E8 /* MainTabController.m */; };
 		D07204D61B3680D7007C01E8 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204D51B3680D7007C01E8 /* ShopViewController.m */; };
 		D07204D91B3680E4007C01E8 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204D81B3680E4007C01E8 /* UserViewController.m */; };
+		D0746D1B1BDF466700BF6129 /* SampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0746D1A1BDF466700BF6129 /* SampleController.m */; };
 		D0B947061B3693EB00A1DFD6 /* LessonsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947051B3693EB00A1DFD6 /* LessonsController.m */; };
 		D0B947091B36940B00A1DFD6 /* CategoriesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947081B36940B00A1DFD6 /* CategoriesController.m */; };
 		D0B9470C1B369C6B00A1DFD6 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9470B1B369C6B00A1DFD6 /* CategoryCell.m */; };
@@ -321,6 +322,8 @@
 		D07204D51B3680D7007C01E8 /* ShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewController.m; sourceTree = "<group>"; };
 		D07204D71B3680E4007C01E8 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		D07204D81B3680E4007C01E8 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		D0746D191BDF466700BF6129 /* SampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleController.h; sourceTree = "<group>"; };
+		D0746D1A1BDF466700BF6129 /* SampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleController.m; sourceTree = "<group>"; };
 		D0B947041B3693EB00A1DFD6 /* LessonsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonsController.h; sourceTree = "<group>"; };
 		D0B947051B3693EB00A1DFD6 /* LessonsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonsController.m; sourceTree = "<group>"; };
 		D0B947071B36940B00A1DFD6 /* CategoriesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesController.h; sourceTree = "<group>"; };
@@ -893,6 +896,8 @@
 		D0B947211B36E86800A1DFD6 /* List-Word */ = {
 			isa = PBXGroup;
 			children = (
+				D0746D191BDF466700BF6129 /* SampleController.h */,
+				D0746D1A1BDF466700BF6129 /* SampleController.m */,
 				D0B9470D1B36A8B300A1DFD6 /* WordsController.h */,
 				D0B9470E1B36A8B300A1DFD6 /* WordsController.m */,
 				D0B947101B36A8D000A1DFD6 /* WordCell.h */,
@@ -1041,6 +1046,7 @@
 				A7B432D21B42CEA100CEFC58 /* QR_Encode.cpp in Sources */,
 				A7B0531E1B3996D0009A0CC2 /* UIWebView+AFNetworking.m in Sources */,
 				D0E0C9E41BDD46B500B5071F /* HeaderCell.m in Sources */,
+				D0746D1B1BDF466700BF6129 /* SampleController.m in Sources */,
 				D0D207CC1B99AD70001E4C04 /* ShopHeaderCell.m in Sources */,
 				D06693721B351A7D00B50D16 /* MainFrameController.m in Sources */,
 				D0D207D51B99B716001E4C04 /* AboutCell.m in Sources */,

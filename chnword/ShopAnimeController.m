@@ -29,7 +29,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     if (self.selectedCategory != NSNotFound)
     {
         // 设置背景图片
@@ -47,19 +46,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setSelectedCategory:(NSInteger)selectedCategory
+{
+    if (_selectedCategory == selectedCategory)
+        return;
+    _selectedCategory = selectedCategory;
+    [self setupCategroyList:_selectedCategory];
+}
+
 // 初始化分类列表
 - (void)setupCategroyList:(NSInteger)selectedIndex
 {
+    AppDelegate* appDelegate = [AppDelegate sharedDelegate];
     self.categoryList = [NSMutableArray arrayWithCapacity:10];
-    NSArray *cateNames = @[@"天文篇", @"地理篇", @"植物篇", @"动物篇", @"人姿篇",
-                           @"身体篇", @"生理篇", @"生活篇", @"活动篇", @"文化篇"];
     for (int i = 0; i < 10; i++)
     {
-        [self.categoryList addObject:[NSMutableDictionary dictionaryWithDictionary:@{@"itemName":cateNames[i],
-                                                                                     @"itemPrice":@(18),
+        [self.categoryList addObject:[NSMutableDictionary dictionaryWithDictionary:@{@"itemName":appDelegate.cateNames[i],
+                                                                                     @"itemPrice":[appDelegate.cateUnlocked[i] isEqualToString:@"1"] ? @(0) : @(18),
                                                                                      @"itemCode":[NSString stringWithFormat:@"%d", i],
                                                                                      @"itemImage":[NSString stringWithFormat:@"BUY_CATE_%02d", i + 1],
-                                                                                     @"itemSelected":((selectedIndex - 1) == i) ? @"1" : @"0"}]];
+                                                                                     @"itemSelected":(selectedIndex == i) ? @"1" : @"0"}]];
     }
     [self.tableView reloadData];
 }
@@ -76,6 +82,11 @@
         }
     }
     return totalValue;
+}
+
+- (IBAction)stopPressed:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)buy:(id)sender
@@ -120,10 +131,21 @@
         cell.backgroundColor = [UIColor colorWithRed:1  green:1  blue:1 alpha:0.5f];
     [cell.itemName setText:cateDic[@"itemName"]];
     [cell.itemImage setImage:[UIImage imageNamed:cateDic[@"itemImage"]]];
+    
+    // 关于已购买的差别
     NSNumber *price = cateDic[@"itemPrice"];
     [cell.itemPrice setText:[NSString stringWithFormat:@"¥ %02.02lf", price.floatValue]];
-    UIImage *buttonImage = [UIImage imageNamed:@"CheckMark"];
-    [cell.itemBuy setImage:([cateDic[@"itemSelected"] isEqualToString:@"0"] ? nil : buttonImage)];
+    if ([price isEqualToNumber:@(0)])
+    {
+        cell.itemBuy.hidden = YES;
+        cell.itemPrice.text = @"已购买";
+    }
+    else
+    {
+        cell.itemBuy.hidden = NO;
+        UIImage *buttonImage = [UIImage imageNamed:@"CheckMark"];
+        [cell.itemCheck setImage:([cateDic[@"itemSelected"] isEqualToString:@"0"] ? nil : buttonImage)];
+    }
     return cell;
 }
 
@@ -145,7 +167,7 @@
     cateDic[@"itemSelected"] = [cateDic[@"itemSelected"] isEqualToString:@"0"] ? @"1" : @"0";
     ShopCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     UIImage *buttonImage = [UIImage imageNamed:@"CheckMark"];
-    [cell.itemBuy setImage:([cateDic[@"itemSelected"] isEqualToString:@"0"] ? nil : buttonImage)];
+    [cell.itemCheck setImage:([cateDic[@"itemSelected"] isEqualToString:@"0"] ? nil : buttonImage)];
     [tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.categoryList.count + 1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
 }
 

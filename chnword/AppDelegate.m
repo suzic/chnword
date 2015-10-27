@@ -29,6 +29,10 @@
     self.isLogin = NO;
     self.goSuit = NO;
 
+#warning 最终需要从服务器获取
+    self.cateNames = @[@"天文篇", @"地理篇", @"植物篇", @"动物篇", @"人姿篇", @"身体篇", @"生理篇", @"生活篇", @"活动篇", @"文化篇"];
+    self.cateUnlocked = @[@"0", @"1", @"1", @"0", @"0", @"0", @"0", @"0", @"1", @"0"];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showShopSuit:) name:NotiShowShopSuit object:nil];
 
     [[UIApplication sharedApplication] setStatusBarHidden:YES];

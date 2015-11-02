@@ -83,10 +83,13 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    WordsController *wordController = (WordsController *)[segue destinationViewController];
-    wordController.categoryIndex = self.selectedIndex;
-    wordController.moduleCode = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateCode"];
-    wordController.cateName = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateName"];
+    if ([segue.identifier isEqualToString:@"goCategory"])
+    {
+        WordsController *wordController = (WordsController *)[segue destinationViewController];
+        wordController.categoryIndex = self.selectedIndex;
+        wordController.moduleCode = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateCode"];
+        wordController.cateName = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateName"];
+    }
 }
 
 #pragma mark <UICollectionViewDataSource>

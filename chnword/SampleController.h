@@ -10,7 +10,7 @@
 
 @interface SampleController : UIViewController
 
-@property (assign, nonatomic) BOOL lockMore;
+@property (assign, nonatomic) BOOL unlockMore;
 
 @property (assign, nonatomic) NSInteger categoryIndex;
 @property (nonatomic, retain) NSString *moduleCode;

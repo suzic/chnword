@@ -18,5 +18,6 @@
 @property (nonatomic, retain) NSString *cateName;
 
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImage;
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end

@@ -22,6 +22,14 @@
 @property (strong, nonatomic) IBOutlet UIView *SplitBar;
 @property (strong, nonatomic) IBOutlet UILabel *categoryName;
 
+@property (strong, nonatomic) IBOutlet UIImageView *freeWordBG;
+@property (strong, nonatomic) IBOutlet UILabel *freeWord;
+@property (strong, nonatomic) IBOutlet UIImageView *freeWordMoreBG;
+@property (strong, nonatomic) IBOutlet UILabel *freeWordMore;
+
+@property (strong, nonatomic) IBOutlet UIImageView *shareTip;
+@property (strong, nonatomic) IBOutlet UILabel *shareInfo;
+
 @end
 
 @implementation SampleController
@@ -30,7 +38,7 @@
 {
     [super viewDidLoad];
 
-    self.lockMore = NO;
+    self.unlockMore = NO;
     self.SplitBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"GraphicLine"]];
     self.categoryName.text = [NSString stringWithFormat:@"《%@》", self.cateName];
     self.navigationItem.title = self.cateName;
@@ -47,6 +55,24 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    if (self.unlockMore)
+    {
+        self.freeWordMoreBG.hidden = NO;
+        self.freeWordMore.hidden = NO;
+        self.shareInfo.hidden = YES;
+        self.shareTip.hidden = YES;
+    }
+    else
+    {
+        self.freeWordMoreBG.hidden = YES;
+        self.freeWordMore.hidden = YES;
+        self.shareInfo.hidden = NO;
+        self.shareTip.hidden = NO;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

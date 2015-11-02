@@ -19,6 +19,8 @@
 
 @property (strong, nonatomic) NSArray* cateNames;
 @property (strong, nonatomic) NSArray* cateUnlocked;
+@property (strong, nonatomic) NSArray* wordInTianWen;
+@property (strong, nonatomic) NSArray* wordInTianWenDemo;
 @property (assign, nonatomic) BOOL isLogin;
 @property (assign, nonatomic) BOOL goSuit;
 

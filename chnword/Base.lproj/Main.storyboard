@@ -9,6 +9,8 @@
     <customFonts key="customFonts">
         <mutableArray key="AdobeKaitiStd-Regular.otf">
             <string>AdobeKaitiStd-Regular</string>
+            <string>AdobeKaitiStd-Regular</string>
+            <string>AdobeKaitiStd-Regular</string>
         </mutableArray>
         <mutableArray key="Libian.ttc">
             <string>STLibian-SC-Regular</string>
@@ -921,7 +923,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WordCell3" translatesAutoresizingMaskIntoConstraints="NO" id="A6L-Mt-xHK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WordCell3" translatesAutoresizingMaskIntoConstraints="NO" id="A6L-Mt-xHK" userLabel="WordCellEtc">
                                 <rect key="frame" x="235" y="104" width="210" height="61"/>
                                 <animations/>
                                 <constraints>
@@ -935,6 +937,55 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="qXt-79-Cew" secondAttribute="height" multiplier="127:128" id="O3I-gV-hvG"/>
                                     <constraint firstAttribute="width" constant="60" id="cY1-aC-apW"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKW-zi-TFw" userLabel="免费字">
+                                <rect key="frame" x="160" y="104" width="60" height="60"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="nKW-zi-TFw" secondAttribute="height" multiplier="1:1" id="5hS-N6-T5W"/>
+                                    <constraint firstAttribute="width" constant="60" id="I9C-CJ-MTk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AdobeKaitiStd-Regular" family="Adobe Kaiti Std" pointSize="60"/>
+                                <color key="highlightedColor" red="0.1071597629" green="0.57070707070000004" blue="0.42465431679999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WordCell" translatesAutoresizingMaskIntoConstraints="NO" id="VLU-cF-x8r" userLabel="WordCellMore">
+                                <rect key="frame" x="235" y="104" width="60" height="60"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="AKM-1m-387"/>
+                                    <constraint firstAttribute="width" secondItem="VLU-cF-x8r" secondAttribute="height" multiplier="127:128" id="UhR-aJ-gty"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jja-W2-Lbo" userLabel="免费字更多">
+                                <rect key="frame" x="235" y="104" width="60" height="60"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="R0X-fy-kL7"/>
+                                    <constraint firstAttribute="width" secondItem="jja-W2-Lbo" secondAttribute="height" multiplier="1:1" id="jwj-R6-AgW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AdobeKaitiStd-Regular" family="Adobe Kaiti Std" pointSize="60"/>
+                                <color key="highlightedColor" red="0.1071597629" green="0.57070707070000004" blue="0.42465431679999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zK5-Fn-qAE">
+                                <rect key="frame" x="390" y="119" width="200" height="50"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="df3-Q4-GtY"/>
+                                    <constraint firstAttribute="width" constant="200" id="efh-zO-tDS"/>
+                                </constraints>
+                                <string key="text">点击右上角，分享给朋友
+自动获取更多免费内容…</string>
+                                <fontDescription key="fontDescription" name="STLibian-SC-Regular" family="Libian SC" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ShareTip" translatesAutoresizingMaskIntoConstraints="NO" id="CNx-Nl-szS">
+                                <rect key="frame" x="520" y="74" width="60" height="62"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="fwz-RT-uKy"/>
+                                    <constraint firstAttribute="width" secondItem="CNx-Nl-szS" secondAttribute="height" multiplier="274:280" id="mUG-vu-w4m"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wuQ-65-TjF">
@@ -978,32 +1029,12 @@
                                     <action selector="shopBuyCategory:" destination="Iwd-7B-Bxh" eventType="touchUpInside" id="gma-yx-tHM"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zK5-Fn-qAE">
-                                <rect key="frame" x="390" y="119" width="200" height="50"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="df3-Q4-GtY"/>
-                                    <constraint firstAttribute="width" constant="200" id="efh-zO-tDS"/>
-                                </constraints>
-                                <string key="text">点击右上角，分享给朋友
-自动获取更多免费内容…</string>
-                                <fontDescription key="fontDescription" name="STLibian-SC-Regular" family="Libian SC" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ShareTip" translatesAutoresizingMaskIntoConstraints="NO" id="CNx-Nl-szS">
-                                <rect key="frame" x="520" y="74" width="60" height="62"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="fwz-RT-uKy"/>
-                                    <constraint firstAttribute="width" secondItem="CNx-Nl-szS" secondAttribute="height" multiplier="274:280" id="mUG-vu-w4m"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="aNp-2K-bxW" secondAttribute="centerX" id="Dw0-Mh-Pkh"/>
+                            <constraint firstItem="VLU-cF-x8r" firstAttribute="centerX" secondItem="T1s-Jh-Ogg" secondAttribute="centerX" constant="-35" id="F2V-qk-oQC"/>
                             <constraint firstAttribute="height" secondItem="aNp-2K-bxW" secondAttribute="height" id="Fsa-uh-xj4"/>
                             <constraint firstItem="eoc-2E-ZG6" firstAttribute="top" secondItem="Sll-Ex-PFe" secondAttribute="bottom" constant="15" id="Fy8-u6-x72"/>
                             <constraint firstItem="wuQ-65-TjF" firstAttribute="leading" secondItem="T1s-Jh-Ogg" secondAttribute="leading" id="HHC-nd-ls5"/>
@@ -1012,7 +1043,10 @@
                             <constraint firstAttribute="width" secondItem="aNp-2K-bxW" secondAttribute="width" id="N9V-nD-48L"/>
                             <constraint firstItem="8nL-Ow-x6u" firstAttribute="centerX" secondItem="T1s-Jh-Ogg" secondAttribute="centerX" constant="50" id="NjO-UJ-vmu"/>
                             <constraint firstItem="0a2-2G-mNI" firstAttribute="bottom" secondItem="eoc-2E-ZG6" secondAttribute="bottom" id="OCK-OJ-fP1"/>
+                            <constraint firstItem="jja-W2-Lbo" firstAttribute="top" secondItem="qBk-ho-pWk" secondAttribute="bottom" constant="40" id="Pa6-Kg-sy5"/>
+                            <constraint firstItem="jja-W2-Lbo" firstAttribute="centerX" secondItem="T1s-Jh-Ogg" secondAttribute="centerX" constant="-35" id="QmG-zu-17l"/>
                             <constraint firstItem="CNx-Nl-szS" firstAttribute="top" secondItem="qBk-ho-pWk" secondAttribute="bottom" constant="10" id="SFI-hh-Vbv"/>
+                            <constraint firstItem="VLU-cF-x8r" firstAttribute="top" secondItem="qBk-ho-pWk" secondAttribute="bottom" constant="40" id="WhN-mk-1RC"/>
                             <constraint firstItem="A6L-Mt-xHK" firstAttribute="centerX" secondItem="T1s-Jh-Ogg" secondAttribute="centerX" constant="40" id="Wjy-vc-Rcu"/>
                             <constraint firstItem="Sll-Ex-PFe" firstAttribute="top" secondItem="wuQ-65-TjF" secondAttribute="bottom" constant="20" id="YRT-aY-AuK"/>
                             <constraint firstAttribute="centerY" secondItem="aNp-2K-bxW" secondAttribute="centerY" id="ZAk-fS-7ZQ"/>
@@ -1025,6 +1059,8 @@
                             <constraint firstAttribute="trailing" secondItem="zK5-Fn-qAE" secondAttribute="trailing" constant="10" id="f0p-hA-HFK"/>
                             <constraint firstItem="wuQ-65-TjF" firstAttribute="top" secondItem="qBk-ho-pWk" secondAttribute="bottom" constant="150" id="fEB-70-Usp"/>
                             <constraint firstItem="qXt-79-Cew" firstAttribute="centerX" secondItem="T1s-Jh-Ogg" secondAttribute="centerX" constant="-110" id="fiZ-hq-1gB"/>
+                            <constraint firstItem="nKW-zi-TFw" firstAttribute="centerX" secondItem="T1s-Jh-Ogg" secondAttribute="centerX" constant="-110" id="lt9-zj-d7q"/>
+                            <constraint firstItem="nKW-zi-TFw" firstAttribute="top" secondItem="qBk-ho-pWk" secondAttribute="bottom" constant="40" id="nI8-ZW-0tX"/>
                             <constraint firstItem="qXt-79-Cew" firstAttribute="top" secondItem="qBk-ho-pWk" secondAttribute="bottom" constant="40" id="sLv-U5-eC3"/>
                             <constraint firstAttribute="trailing" secondItem="wuQ-65-TjF" secondAttribute="trailing" id="tCz-2Y-KhI"/>
                             <constraint firstItem="A6L-Mt-xHK" firstAttribute="top" secondItem="qBk-ho-pWk" secondAttribute="bottom" constant="40" id="vKb-ty-Siq"/>
@@ -1034,7 +1070,13 @@
                         <outlet property="SplitBar" destination="wuQ-65-TjF" id="tlw-D4-f9l"/>
                         <outlet property="backgroundImage" destination="aNp-2K-bxW" id="kxM-9K-xiM"/>
                         <outlet property="categoryName" destination="0a2-2G-mNI" id="xrA-vt-UrN"/>
+                        <outlet property="freeWord" destination="nKW-zi-TFw" id="3tF-vd-yZy"/>
+                        <outlet property="freeWordBG" destination="qXt-79-Cew" id="ehN-HY-oHB"/>
+                        <outlet property="freeWordMore" destination="jja-W2-Lbo" id="nMD-Ha-ewy"/>
+                        <outlet property="freeWordMoreBG" destination="VLU-cF-x8r" id="ChH-bN-yXk"/>
                         <outlet property="headerImage" destination="eoc-2E-ZG6" id="cLR-9N-7R1"/>
+                        <outlet property="shareInfo" destination="zK5-Fn-qAE" id="g7P-QD-Jon"/>
+                        <outlet property="shareTip" destination="CNx-Nl-szS" id="RH6-aT-0B1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqk-kn-XZe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1723,7 +1765,7 @@
                                 <rect key="frame" x="10" y="84" width="68" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wlz-0n-i3D" userLabel="OrderList">
@@ -1763,7 +1805,7 @@
                                 <rect key="frame" x="160" y="374" width="68" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Orv-yC-WFJ" userLabel="PayMethod">
@@ -1880,7 +1922,7 @@
                                         <rect key="frame" x="394" y="208" width="51" height="21"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 999 元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4T-qQ-b02">
@@ -2558,6 +2600,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="zqE-Ls-sh9" id="i2a-sN-6QJ"/>
+                                    <outlet property="delegate" destination="zqE-Ls-sh9" id="C60-9L-kuA"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <animations/>
@@ -2575,6 +2621,7 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImage" destination="ITa-VG-d4i" id="08C-4o-si6"/>
+                        <outlet property="collectionView" destination="wh3-yE-qfr" id="vlL-nD-t2I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Frt-ms-PER" userLabel="First Responder" sceneMemberID="firstResponder"/>

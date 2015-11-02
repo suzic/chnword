@@ -38,7 +38,7 @@ static NSString * const reuseIdentifier = @"WordCell";
     NSString *bgImageName = [NSString stringWithFormat:@"CATE_BG_%02d", (int)(self.categoryIndex + 1)];
     [self.backgroundImage setImage:[UIImage imageNamed:bgImageName]];
 
-    //[self setupWordsList];
+    [self setupWordsList];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,7 +55,11 @@ static NSString * const reuseIdentifier = @"WordCell";
 // 初始化分类列表
 - (void)setupWordsList
 {
-    [self requestWordsList:self.moduleCode];
+#warning 选择天文分类时，进行单机模拟
+    if (self.categoryIndex == 0)
+        [self setupTianWenWords];
+    else
+        [self requestWordsList:self.moduleCode];
 }
 
 #pragma mark - Navigation
@@ -154,7 +158,22 @@ static NSString * const reuseIdentifier = @"WordCell";
 
 #pragma mark - net request
 
-- (void) requestWord:(NSString *) word
+- (void)setupTianWenWords
+{
+    AppDelegate* appDelegate = [AppDelegate sharedDelegate];
+    [self.wordsList removeAllObjects];
+    for (NSString *word in appDelegate.wordInTianWen)
+    {
+        [self.wordsList addObject:@{@"wordName":word,
+                                    @"lockStatus":@"1",
+                                    @"wordImageA":@"",
+                                    @"wordImageB":@"",
+                                    @"wordCode": @"0"}];
+    }
+    [self.collectionView reloadData];
+}
+
+- (void)requestWord:(NSString *)word
 {
     NSDictionary *param = [NetParamFactory wordParam:[Util generateUuid] userid:@"1" device:@"1" word:@"1"];
     
@@ -169,7 +188,8 @@ static NSString * const reuseIdentifier = @"WordCell";
         
         [self.hud hide:YES];
         
-        if (dict) {
+        if (dict)
+        {
             NSString *result = [dict objectForKey:@"result"];
             
             if ([result isEqualToString:@"1"]) {
@@ -177,8 +197,8 @@ static NSString * const reuseIdentifier = @"WordCell";
                 
                 NSString *videoUrl = [data objectForKey:@"video"];
                 NSString *gifUrl = [data objectForKey:@"gif"];
-                //                self.mediaPlayer.contentURL = [NSURL URLWithString:videoUrl];
-                //                [self.mediaPlayer play];
+                // self.mediaPlayer.contentURL = [NSURL URLWithString:videoUrl];
+                // [self.mediaPlayer play];
                 
                 // 视图显示后开始设置GIF动画并自动执行
                 
@@ -195,8 +215,6 @@ static NSString * const reuseIdentifier = @"WordCell";
 //                self.playViewer.backgroundColor = [UIColor clearColor];
 //                self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
 //                [self.view addSubview:self.playViewer];
-                
-                
             }else {
                 
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
@@ -227,7 +245,6 @@ static NSString * const reuseIdentifier = @"WordCell";
     NSString *str = moduleCode;
     
     NSDictionary *param = [NetParamFactory subListParam:opid userid:userid device:deviceId zone:str page:0 size:0];
-    
     
     [self.hud show:YES];
     
@@ -278,7 +295,6 @@ static NSString * const reuseIdentifier = @"WordCell";
         [self.hud hide:YES];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
-        
     }];
     
 }

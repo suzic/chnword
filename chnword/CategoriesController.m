@@ -10,6 +10,7 @@
 #import "ShopAnimeController.h"
 #import "CategoriesController.h"
 #import "WordsController.h"
+#import "SampleController.h"
 #import "NetManager.h"
 #import "NetParamFactory.h"
 #import "Util.h"
@@ -20,7 +21,6 @@
 
 @property (strong, nonatomic) NSMutableArray *categoryList;
 @property (assign, nonatomic) NSInteger selectedIndex;
-
 @property (nonatomic, retain) MBProgressHUD *hud;
 
 @end
@@ -29,6 +29,7 @@
 
 static NSString * const reuseIdentifier = @"CategoryCell";
 
+// 初始化UI元素, 根据付费、免费用户（isLogin == NO)，显示不同的布局
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,28 +38,21 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     AppDelegate* appDelegate = [AppDelegate sharedDelegate];
     self.navigationItem.title = appDelegate.isLogin ? @"三千字课体系" : @"免费体验";
     self.navigationItem.backBarButtonItem.title = @"";
-    
-    [self setupCategroyList];
 }
 
+// 显示界面时调用初始化分类列表功能，创造两个不同的界面
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self setupCategroyList];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-// 初始化分类列表
+// 初始化分类列表，根据付费、免费用户进行区分，设置初始数据。collectionView重建时将用到这些数据。
 - (void)setupCategroyList
 {
+#warning 直接用测试数据填写分类
     AppDelegate* appDelegate = [AppDelegate sharedDelegate];
-    
     self.categoryList = [NSMutableArray arrayWithCapacity:10];
-
     for (int i = 0; i < 10; i++)
     {
         if (appDelegate.isLogin)
@@ -76,11 +70,13 @@ static NSString * const reuseIdentifier = @"CategoryCell";
         }
     }
     
+#warning 通过网络调用模块。
     // [self requestModules];
 }
 
 #pragma mark - Navigation
 
+// 导航到付费或免费用户的二级页面
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"goCategory"])
@@ -89,6 +85,13 @@ static NSString * const reuseIdentifier = @"CategoryCell";
         wordController.categoryIndex = self.selectedIndex;
         wordController.moduleCode = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateCode"];
         wordController.cateName = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateName"];
+    }
+    else
+    {
+        SampleController *sampleController = (SampleController *)[segue destinationViewController];
+        sampleController.categoryIndex = self.selectedIndex;
+        sampleController.moduleCode = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateCode"];
+        sampleController.cateName = [[self.categoryList objectAtIndex:self.selectedIndex] objectForKey:@"cateName"];
     }
 }
 
@@ -157,6 +160,9 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     }
 }
 
+#pragma mark - User actions
+
+// 提示进入商店
 - (void)gotoShopBuy:(NSInteger)categoryIndex
 {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"该分组未解锁"
@@ -167,6 +173,7 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     [alert show];
 }
 
+// 对提示进入商店的结果响应
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0)
@@ -185,6 +192,7 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 
 #pragma mark - request net work
 
+#warning 获取分类信息，需要调整方法
 - (void)requestModules
 {
     NSString *opid = [Util generateUuid];
@@ -202,54 +210,51 @@ static NSString * const reuseIdentifier = @"CategoryCell";
         NSDictionary *dict = json;
         NSString *result = [dict objectForKey:@"result"];
         [self.hud hide:YES];
-        
         NSLog(@"%@", dict);
         
-        if (result && [result isEqualToString:@"1"]) {
-            
+        if (result && [result isEqualToString:@"1"])
+        {
             NSArray *data = [dict objectForKey:@"data"];
-            if (data) {
-                
-                for (NSInteger i = 0; i < data.count; i ++) {
+            if (data)
+            {
+                for (NSInteger i = 0; i < data.count; i ++)
+                {
                     NSDictionary *category = [data objectAtIndex:i];
                     NSString *categoryName = [category objectForKey:@"name"];
                     NSString *categoryCode = [category objectForKey:@"cname"];
                     BOOL isLock = true;
-                    if (![category objectForKey:@"lock"]) {
+                    if (![category objectForKey:@"lock"])
                         isLock = false;
-                    }
                     [self.categoryList addObject:@{@"cateName":categoryName,
-                                                   @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02ld", (i%10) + 1],
-                                                   @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02ld", (i%10) + 1],
+                                                   @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02d", (int)((i%10) + 1)],
+                                                   @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02d", (int)((i%10) + 1)],
                                                    @"cateCode":categoryCode}];
                 }
                 [self.collectionView reloadData];
-            
-            
-            } else {
+            }
+            else
+            {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无参数" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
             }
-            
-        }else {
+        }
+        else
+        {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [alert show];
         }
-        
-        
-    }fail:^ (){
+    } fail:^ (){
         NSLog(@"fail ");
         
         [self.hud hide:YES];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
-        
     }];
 }
 
 #pragma mark - Getter Method
 
-- (NSMutableArray *) categoryList
+- (NSMutableArray *)categoryList
 {
     if (!_categoryList) {
         _categoryList = [NSMutableArray array];
@@ -257,7 +262,7 @@ static NSString * const reuseIdentifier = @"CategoryCell";
     return _categoryList;
 }
 
-- (MBProgressHUD *) hud
+- (MBProgressHUD *)hud
 {
     if (!_hud)
     {

@@ -28,28 +28,24 @@
 
 static NSString * const reuseIdentifier = @"WordCell";
 
+// 初始化界面元素
 - (void)viewDidLoad
 {
     [super viewDidLoad];
    
     self.navigationItem.title = self.cateName;
+    self.navigationItem.backBarButtonItem.title = @"";
     
     // 设置背景图片
     NSString *bgImageName = [NSString stringWithFormat:@"CATE_BG_%02d", (int)(self.categoryIndex + 1)];
     [self.backgroundImage setImage:[UIImage imageNamed:bgImageName]];
+}
 
+// 界面显示时更新分类列表。
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self setupWordsList];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
 }
 
 // 初始化分类列表
@@ -57,13 +53,19 @@ static NSString * const reuseIdentifier = @"WordCell";
 {
 #warning 选择天文分类时，进行单机模拟
     if (self.categoryIndex == 0)
+    {
         [self setupTianWenWords];
+    }
     else
-        [self requestWordsList:self.moduleCode];
+    {
+        // 暂时屏蔽
+        // [self requestWordsList:self.moduleCode];
+    }
 }
 
 #pragma mark - Navigation
 
+// 导航准备
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showPlay"])
@@ -96,7 +98,7 @@ static NSString * const reuseIdentifier = @"WordCell";
     }
 }
 
-#pragma mark <UICollectionViewDataSource>
+#pragma mark - UICollection View DataSource & Delegate
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -116,23 +118,6 @@ static NSString * const reuseIdentifier = @"WordCell";
     return cell;
 }
 
-/*
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    if (kind == UICollectionElementKindSectionHeader)
-    {
-        CategoryHeaderView *sectionHeader = (CategoryHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-                                                                                                     withReuseIdentifier:@"CategoryHeader"
-                                                                                                            forIndexPath:indexPath];
-        NSString *headerImageName = [NSString stringWithFormat:@"CATE_HEADER_%02d", (self.categoryIndex + 1)];
-        [sectionHeader.headerImage setImage:[UIImage imageNamed:headerImageName]];
-        return sectionHeader;
-    }
-    return nil;
-}
-*/
-#pragma mark - UICollectionView Delegate Method
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
@@ -140,24 +125,22 @@ static NSString * const reuseIdentifier = @"WordCell";
     
     if ([@"0" isEqualToString:[DataUtil getDefaultUser]])
     {
-        // PlayController *player = (PlayController *)[segue destinationViewController];
         PlayController *player = (PlayController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PlayController"];
-            
-        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
+        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"loading" withExtension:@"gif"];
         player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
         [self.navigationController pushViewController:player animated:YES];
     }
     else
     {
         PlayController *player = (PlayController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PlayController"];
-        
-        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
+        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"loading" withExtension:@"gif"];
         player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
     }
 }
 
 #pragma mark - net request
 
+// 测试：直接写天文分类的字列表
 - (void)setupTianWenWords
 {
     AppDelegate* appDelegate = [AppDelegate sharedDelegate];
@@ -173,6 +156,8 @@ static NSString * const reuseIdentifier = @"WordCell";
     [self.collectionView reloadData];
 }
 
+#warning TO DO
+// 请求一个具体的字信息
 - (void)requestWord:(NSString *)word
 {
     NSDictionary *param = [NetParamFactory wordParam:[Util generateUuid] userid:@"1" device:@"1" word:@"1"];
@@ -236,7 +221,9 @@ static NSString * const reuseIdentifier = @"WordCell";
     }];
 }
 
-- (void) requestWordsList:(NSString *) moduleCode
+#warning TO DO
+// 请求当前的字列表
+- (void)requestWordsList:(NSString *) moduleCode
 {
     NSString *opid = [Util generateUuid];
     NSString *userid = [DataUtil getDefaultUser];
@@ -301,7 +288,7 @@ static NSString * const reuseIdentifier = @"WordCell";
 
 #pragma mark - Getter Method
 
-- (MBProgressHUD *) hud
+- (MBProgressHUD *)hud
 {
     if (!_hud)
     {
@@ -318,11 +305,10 @@ static NSString * const reuseIdentifier = @"WordCell";
     return _hud;
 }
 
-- (NSMutableArray *) wordsList
+- (NSMutableArray *)wordsList
 {
-    if (!_wordsList) {
+    if (!_wordsList)
         _wordsList = [NSMutableArray array];
-    }
     return _wordsList;
 }
 

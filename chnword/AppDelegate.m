@@ -19,21 +19,33 @@
 
 @implementation AppDelegate
 
+// 静态成员，用于程序内部其他地方便捷地引用到主程序代理
 + (AppDelegate *)sharedDelegate
 {
     return (AppDelegate *)[UIApplication sharedApplication].delegate;
 }
+
+// 消息处理：下一个进入商店使用直接进入套装购买界面的标记设为YES
+- (void)showShopSuit:(NSNotification *)notification
+{
+    self.goSuit = YES;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Normal overwrite for the application delegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.isLogin = NO;
     self.goSuit = NO;
 
-#warning 最终需要从服务器获取
-    self.cateNames = @[@"天文篇", @"地理篇", @"植物篇", @"动物篇", @"人姿篇", @"身体篇", @"生理篇", @"生活篇", @"活动篇", @"文化篇"];
-    self.cateUnlocked = @[@"1", @"1", @"1", @"0", @"0", @"0", @"0", @"0", @"1", @"0"];
+#warning 天文分类仅用于测试
     self.wordInTianWen = @[@"日", @"月", @"夕", @"星", @"云", @"气", @"雨", @"电", @"风", @"雪", @"旦", @"朝", @"早", @"暮", @"昏"];
     self.wordInTianWenDemo = @[@"0", @"0", @"0", @"0", @"0", @"1", @"0", @"0", @"0", @"0", @"0", @"0", @"1", @"0", @"0"];
+
+#warning 这里的分类信息最终需要从服务器获取
+    self.cateNames = @[@"天文篇", @"地理篇", @"植物篇", @"动物篇", @"人姿篇", @"身体篇", @"生理篇", @"生活篇", @"活动篇", @"文化篇"];
+    self.cateUnlocked = @[@"1", @"1", @"1", @"0", @"0", @"0", @"0", @"0", @"1", @"0"];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showShopSuit:) name:NotiShowShopSuit object:nil];
 
@@ -70,8 +82,10 @@
     // Saves changes in the application's managed object context before the application terminates.
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - shared sdk
 
+// 处理打开URL的方式
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     return  [UMSocialSnsService handleOpenURL:url];
@@ -120,11 +134,6 @@
     
     //设置分享到QQ/Qzone的应用Id，和分享url 链接
     [UMSocialQQHandler setQQWithAppId:@"1104685705" appKey:@"TaZo5RPmrGX11nPO" url:@"http://www.umeng.com/social"];
-}
-
-- (void)showShopSuit:(NSNotification *)notification
-{
-    self.goSuit = YES;
 }
 
 @end

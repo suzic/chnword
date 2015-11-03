@@ -105,7 +105,6 @@
 		D07204D61B3680D7007C01E8 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204D51B3680D7007C01E8 /* ShopViewController.m */; };
 		D07204D91B3680E4007C01E8 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204D81B3680E4007C01E8 /* UserViewController.m */; };
 		D0746D1B1BDF466700BF6129 /* SampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0746D1A1BDF466700BF6129 /* SampleController.m */; };
-		D0B947061B3693EB00A1DFD6 /* LessonsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947051B3693EB00A1DFD6 /* LessonsController.m */; };
 		D0B947091B36940B00A1DFD6 /* CategoriesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947081B36940B00A1DFD6 /* CategoriesController.m */; };
 		D0B9470C1B369C6B00A1DFD6 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9470B1B369C6B00A1DFD6 /* CategoryCell.m */; };
 		D0B9470F1B36A8B300A1DFD6 /* WordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9470E1B36A8B300A1DFD6 /* WordsController.m */; };
@@ -114,7 +113,6 @@
 		D0B9471F1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */; };
 		D0B947241B36F73500A1DFD6 /* PlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947231B36F73500A1DFD6 /* PlayController.m */; };
 		D0B9472B1B37B49800A1DFD6 /* GIFPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9472A1B37B49800A1DFD6 /* GIFPlayer.m */; };
-		D0B9472D1B37B4D600A1DFD6 /* jiafei.gif in Resources */ = {isa = PBXBuildFile; fileRef = D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */; };
 		D0B947331B37E77600A1DFD6 /* ShopAnimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947321B37E77600A1DFD6 /* ShopAnimeController.m */; };
 		D0B947361B37EADB00A1DFD6 /* ShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947351B37EADB00A1DFD6 /* ShopCell.m */; };
 		D0D207C91B99AD51001E4C04 /* ShopItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207C81B99AD51001E4C04 /* ShopItemCell.m */; };
@@ -122,6 +120,7 @@
 		D0D207CF1B99B6FE001E4C04 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207CE1B99B6FE001E4C04 /* UserCell.m */; };
 		D0D207D21B99B70A001E4C04 /* SettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207D11B99B70A001E4C04 /* SettingsCell.m */; };
 		D0D207D51B99B716001E4C04 /* AboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207D41B99B716001E4C04 /* AboutCell.m */; };
+		D0DC8FF61BE8A9FF006AE6FE /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = D0DC8FF51BE8A9FF006AE6FE /* loading.gif */; };
 		D0E0C9DE1BDD3C3F00B5071F /* ShopSuitController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9DD1BDD3C3F00B5071F /* ShopSuitController.m */; };
 		D0E0C9E11BDD3E2C00B5071F /* ShopAllController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9E01BDD3E2C00B5071F /* ShopAllController.m */; };
 		D0E0C9E41BDD46B500B5071F /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9E31BDD46B500B5071F /* HeaderCell.m */; };
@@ -324,8 +323,6 @@
 		D07204D81B3680E4007C01E8 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		D0746D191BDF466700BF6129 /* SampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleController.h; sourceTree = "<group>"; };
 		D0746D1A1BDF466700BF6129 /* SampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleController.m; sourceTree = "<group>"; };
-		D0B947041B3693EB00A1DFD6 /* LessonsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonsController.h; sourceTree = "<group>"; };
-		D0B947051B3693EB00A1DFD6 /* LessonsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonsController.m; sourceTree = "<group>"; };
 		D0B947071B36940B00A1DFD6 /* CategoriesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesController.h; sourceTree = "<group>"; };
 		D0B947081B36940B00A1DFD6 /* CategoriesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesController.m; sourceTree = "<group>"; };
 		D0B9470A1B369C6B00A1DFD6 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
@@ -340,7 +337,6 @@
 		D0B947231B36F73500A1DFD6 /* PlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayController.m; sourceTree = "<group>"; };
 		D0B947291B37B49800A1DFD6 /* GIFPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFPlayer.h; sourceTree = "<group>"; };
 		D0B9472A1B37B49800A1DFD6 /* GIFPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIFPlayer.m; sourceTree = "<group>"; };
-		D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = jiafei.gif; path = ../jiafei.gif; sourceTree = "<group>"; };
 		D0B947311B37E77600A1DFD6 /* ShopAnimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopAnimeController.h; sourceTree = "<group>"; };
 		D0B947321B37E77600A1DFD6 /* ShopAnimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopAnimeController.m; sourceTree = "<group>"; };
 		D0B947341B37EADB00A1DFD6 /* ShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCell.h; sourceTree = "<group>"; };
@@ -355,6 +351,7 @@
 		D0D207D11B99B70A001E4C04 /* SettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCell.m; sourceTree = "<group>"; };
 		D0D207D31B99B716001E4C04 /* AboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutCell.h; sourceTree = "<group>"; };
 		D0D207D41B99B716001E4C04 /* AboutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutCell.m; sourceTree = "<group>"; };
+		D0DC8FF51BE8A9FF006AE6FE /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		D0E0C9DC1BDD3C3F00B5071F /* ShopSuitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopSuitController.h; sourceTree = "<group>"; };
 		D0E0C9DD1BDD3C3F00B5071F /* ShopSuitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopSuitController.m; sourceTree = "<group>"; };
 		D0E0C9DF1BDD3E2C00B5071F /* ShopAllController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopAllController.h; sourceTree = "<group>"; };
@@ -399,8 +396,8 @@
 			isa = PBXGroup;
 			children = (
 				D07204B31B353914007C01E8 /* Libian.ttc */,
+				D0DC8FF51BE8A9FF006AE6FE /* loading.gif */,
 				D0B9471E1B36DCBF00A1DFD6 /* AdobeKaitiStd-Regular.otf */,
-				D0B9472C1B37B4D600A1DFD6 /* jiafei.gif */,
 				A7C3605D1B4EB3F90074E276 /* LOGO1.png */,
 			);
 			path = Resource;
@@ -829,8 +826,6 @@
 			children = (
 				D07204CB1B3579D4007C01E8 /* HomePageController.h */,
 				D07204CC1B3579D4007C01E8 /* HomePageController.m */,
-				D0B947041B3693EB00A1DFD6 /* LessonsController.h */,
-				D0B947051B3693EB00A1DFD6 /* LessonsController.m */,
 				D0B947201B36E84000A1DFD6 /* List-Cate */,
 				D0B947211B36E86800A1DFD6 /* List-Word */,
 				D0B947251B37B03F00A1DFD6 /* Player */,
@@ -985,7 +980,6 @@
 				A7C3605E1B4EB3F90074E276 /* LOGO1.png in Resources */,
 				A7B433261B42D3CE00CEFC58 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A7B432F81B42D0F400CEFC58 /* UMSLoginViewController.xib in Resources */,
-				D0B9472D1B37B4D600A1DFD6 /* jiafei.gif in Resources */,
 				D06693771B351A7D00B50D16 /* Images.xcassets in Resources */,
 				A7B432F41B42D0F400CEFC58 /* UMSCommentInputController.xib in Resources */,
 				A7B432FB1B42D0F400CEFC58 /* UMSocialSDKResourcesNew.bundle in Resources */,
@@ -993,6 +987,7 @@
 				A7B432F61B42D0F400CEFC58 /* UMShareEditViewController.xib in Resources */,
 				A7B433231B42D3CE00CEFC58 /* WeiboSDK.bundle in Resources */,
 				A7B432F51B42D0F400CEFC58 /* UMSCommentInputControlleriPad.xib in Resources */,
+				D0DC8FF61BE8A9FF006AE6FE /* loading.gif in Resources */,
 				A7B432F11B42D0F400CEFC58 /* UMSocialLocalizable.strings in Resources */,
 				A7B432F91B42D0F400CEFC58 /* UMSnsAccountViewController.xib in Resources */,
 			);
@@ -1078,7 +1073,6 @@
 				A7B432D31B42CEA100CEFC58 /* QREncoder.mm in Sources */,
 				A7D678181B419E4B00282EBD /* UIButton+WebCache.m in Sources */,
 				D07204C61B355B16007C01E8 /* Util.m in Sources */,
-				D0B947061B3693EB00A1DFD6 /* LessonsController.m in Sources */,
 				A7D678141B419E4B00282EBD /* SDWebImageDownloader.m in Sources */,
 				A7B0530E1B3996D0009A0CC2 /* AFHTTPRequestOperation.m in Sources */,
 				D0B9470F1B36A8B300A1DFD6 /* WordsController.m in Sources */,

@@ -14,6 +14,7 @@
 
 @implementation MainTabController
 
+// Tab控制器的初始化，置入一些自定义外观、自动跳转事件监听的内容
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -32,28 +33,7 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    
-    // 如果需要调整TabBar高度则使用这部分代码
-
-//    CGRect tabFrame = self.tabBar.frame; //self.TabBar is IBOutlet of your TabBar
-//    tabFrame.size.height = 60;
-//    tabFrame.origin.y = self.view.frame.size.height - 60;
-//    self.tabBar.frame = tabFrame;
-    
-//    CGRect orgFrame = self.navigationController.navigationBar.frame;
-//    orgFrame.size.height = self.view.frame.size.width * 532 / 1440 - 20;
-//    [self.navigationController.navigationBar setFrame:orgFrame];
-}
-
+// 直接进入商店Tab的方法
 - (void)showShop:(NSNotification *)notification
 {
     self.selectedIndex = 1;

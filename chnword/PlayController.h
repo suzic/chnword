@@ -15,8 +15,14 @@
  */
 @property (strong, nonatomic) NSURL *fileUrl;
 
+/**
+ * @abstract 将要播放的动画的字的编码
+ */
 @property (nonatomic, retain) NSString *wordCode;
 
+/**
+ * @abstract 该动画是否可以分享（仅免费体验字可以分享）
+ */
 @property (nonatomic, assign) BOOL canShare;
 
 @end

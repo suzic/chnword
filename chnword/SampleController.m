@@ -19,14 +19,13 @@
 
 @property (nonatomic, retain) MBProgressHUD *hud;
 @property (assign, nonatomic) NSInteger selectedIndex;
+
 @property (strong, nonatomic) IBOutlet UIView *SplitBar;
 @property (strong, nonatomic) IBOutlet UILabel *categoryName;
-
 @property (strong, nonatomic) IBOutlet UIImageView *freeWordBG;
-@property (strong, nonatomic) IBOutlet UILabel *freeWord;
+@property (strong, nonatomic) IBOutlet UIButton *freeWord;
 @property (strong, nonatomic) IBOutlet UIImageView *freeWordMoreBG;
-@property (strong, nonatomic) IBOutlet UILabel *freeWordMore;
-
+@property (strong, nonatomic) IBOutlet UIButton *freeWordMore;
 @property (strong, nonatomic) IBOutlet UIImageView *shareTip;
 @property (strong, nonatomic) IBOutlet UILabel *shareInfo;
 
@@ -34,14 +33,15 @@
 
 @implementation SampleController
 
+// 初始化数据，主要是名称和UI的固定设置初始化
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    self.unlockMore = NO;
     self.SplitBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"GraphicLine"]];
     self.categoryName.text = [NSString stringWithFormat:@"《%@》", self.cateName];
     self.navigationItem.title = self.cateName;
+    self.navigationItem.backBarButtonItem.title = @"";
     
     // 设置背景图片
     NSString *bgImageName = [NSString stringWithFormat:@"CATE_BG_%02d", (int)(self.categoryIndex + 1)];
@@ -51,13 +51,64 @@
     [self.headerImage setImage:[UIImage imageNamed:headerImageName]];
 }
 
-- (void)didReceiveMemoryWarning
+// 处理免费数据的初始化
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewWillAppear:animated];
+    [self setupSampleData];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+// 显示完成的处理
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+// 在该界面下，如果选择获取用户码，直接进入登陆界面。
+- (IBAction)shopBuyCategory:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowLogin object:self];
+}
+
+// 设置体验数据
+- (void)setupSampleData
+{
+    AppDelegate* appDelegate = [AppDelegate sharedDelegate];
+    if (self.categoryIndex == 0)
+    {
+#warning 这里默认天文组数据是解锁更多的状态，其他则是最小体验状态。该数据应当从本地配置文件进行存储和读取。
+        // 根据配置文件决定显示内容
+        NSInteger findCount = 0;
+        NSInteger count = appDelegate.wordInTianWen.count;
+        for (int i = 0; i < count; i++)
+        {
+            if (findCount == 0 && [appDelegate.wordInTianWenDemo[i] isEqualToString:@"1"])
+            {
+                findCount++;
+                [self.freeWord setTitle:appDelegate.wordInTianWen[i] forState:UIControlStateNormal];
+#warning 将wordCode作为Tag写进字按钮
+                [self.freeWord setTag:0];
+                [self.freeWord setEnabled:YES];
+            }
+            else
+            {
+                self.unlockMore = YES;
+                [self.freeWordMore setTitle:appDelegate.wordInTianWen[i] forState:UIControlStateNormal];
+#warning 将wordCode作为Tag写进字按钮
+                [self.freeWordMore setTag:0];
+                [self.freeWordMore setEnabled:YES];
+            }
+        }
+    }
+    else
+        self.unlockMore = NO;
+    
+    [self setupUnlockStyle];
+}
+
+// 解锁更多项目与否对UI界面的影响（是否显示第二个免费体验字并对应隐藏分享提示信息等
+- (void)setupUnlockStyle
 {
     if (self.unlockMore)
     {
@@ -75,25 +126,26 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
+// 点击第一个免费体验字
+- (IBAction)pressFree:(id)sender
 {
-    [super viewDidAppear:animated];
+    [self showWordPlayer:[NSString stringWithFormat:@"%ld", (long)self.freeWord.tag]];
 }
 
-- (IBAction)shopBuyCategory:(id)sender
+// 点击第二个免费体验字
+- (IBAction)pressFreeMore:(id)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowLogin object:self];
+    [self showWordPlayer:[NSString stringWithFormat:@"%ld", (long)self.freeWordMore.tag]];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+// 导航至汉字页面
+- (void)showWordPlayer:(NSString*)wordCode
+{
+    PlayController *player = (PlayController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PlayController"];
+#warning 这里的文件Url，出于测试目的，先写了一个；正式联网场合下不应该写默认值
+    player.fileUrl = [[NSBundle mainBundle] URLForResource:@"loading" withExtension:@"gif"];
+    player.wordCode = wordCode;
+    [self.navigationController pushViewController:player animated:YES];
 }
-*/
 
 @end

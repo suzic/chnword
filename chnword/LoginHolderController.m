@@ -19,6 +19,7 @@
 
 @implementation LoginHolderController
 
+// 初始化登录容器界面
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -28,12 +29,7 @@
     self.errorBuy.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ErrorBG"]];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
+// 显示同一个用户号码在太多设备上登录
 - (void)showLoginErrorTooMany
 {
     CGRect showPos = CGRectMake(0, kScreenHeight - self.errorContent.frame.size.height, kScreenWidth, self.errorContent.frame.size.height);
@@ -47,6 +43,7 @@
     } completion:nil];
 }
 
+// 显示错误的用户码输入
 - (void)showLoginErrorWrong
 {
     CGRect showPos = CGRectMake(0, kScreenHeight - self.errorContent.frame.size.height, kScreenWidth, self.errorContent.frame.size.height);
@@ -60,9 +57,9 @@
     } completion:nil];
 }
 
+// 关闭错误提示界面
 - (IBAction)closeError:(id)sender
 {
-    CGRect showPos = CGRectMake(0, kScreenHeight - self.errorContent.frame.size.height, kScreenWidth, self.errorContent.frame.size.height);
     CGRect hidePos = CGRectMake(0, kScreenHeight, kScreenWidth, self.errorContent.frame.size.height);
     
     [UIView animateWithDuration:0.3f animations:^{
@@ -73,6 +70,7 @@
     }];
 }
 
+// 进入商店
 - (IBAction)gotoBuy:(id)sender
 {
     [self closeError:sender];
@@ -83,7 +81,7 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+// 内嵌导航到实际登录窗口并告知其错误处理代理
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"loginContent"])

@@ -25,6 +25,7 @@
 
 @interface PlayController () <UMSocialUIDelegate>
 
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topSpace;
 @property (strong, nonatomic) IBOutlet UIView *framePlayer;
 @property (strong, nonatomic) UIImageView *frameViewer;
 @property (strong, nonatomic) GIFPlayer *playViewer;
@@ -52,43 +53,39 @@
     [super viewDidLoad];
 
     // 设置播放控件
-//    self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
-    
+    self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
+    self.progressSlider.minimumValue = 0;
+    self.progressSlider.maximumValue = self.framesArray.count - 1;
+    self.progressSlider.value = 0;
+    self.inPlaying = NO;
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(playingDone) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    self.frameViewer = [[UIImageView alloc] init];
+    self.frameViewer = [[UIImageView alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self requestWord:self.wordCode];
-    
+    //[self requestWord:self.wordCode];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillLayoutSubviews
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewWillLayoutSubviews];
+    self.topSpace.constant = (kScreenHeight - 64.0f - 150.0f - kScreenWidth * 3 / 4.0f) / 2.0f;
 }
 
-- (IBAction)backward:(id)sender
+- (IBAction)playVideo:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (IBAction) playVideo:(id)sender
-{
-    if (self.videoUrl) {
+    if (self.videoUrl)
+    {
         NSURL *url = [NSURL URLWithString:self.videoUrl];
-        self.moviePlayerView = [[MPMoviePlayerViewController alloc]
-                                                         initWithContentURL:url];
+        self.moviePlayerView = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
         
         self.moviePlayerView.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
         self.moviePlayerView.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
@@ -97,7 +94,7 @@
     }
 }
 
-- (IBAction) shareVideo:(id)sender
+- (IBAction)shareVideo:(id)sender
 {
     self.canShare = YES;
     if (self.canShare) {
@@ -117,8 +114,8 @@
     }
 }
 
-
-- (void) playingDone {
+- (void)playingDone
+{
     NSLog(@"播放完成");
     [self.moviePlayerView.view removeFromSuperview];
     self.moviePlayerView = nil;
@@ -189,7 +186,8 @@
 }
 
 #pragma mark - net request
-- (void) requestWord:(NSString *) word
+
+- (void)requestWord:(NSString *) word
 {
     NSString *opid = [Util generateUuid];
     NSString *userid = [DataUtil getDefaultUser];
@@ -312,9 +310,11 @@
 }
 
 #pragma mark - Getter Method
-- (MBProgressHUD *) hud {
-    if (!_hud) {
-        
+
+- (MBProgressHUD *)hud
+{
+    if (!_hud)
+    {
         _hud = [[MBProgressHUD alloc] initWithView:self.view];
         _hud.color = [UIColor clearColor];//这儿表示无背景
         //显示的文字
@@ -328,35 +328,29 @@
     return _hud;
 }
 
-
 #pragma mark - UMSocial delegate method
+
 /**
- 自定义关闭授权页面事件
- 
- @param navigationCtroller 关闭当前页面的navigationCtroller对象
- 
+ *  @abstract 自定义关闭授权页面事件
+ *  @param navigationCtroller 关闭当前页面的navigationCtroller对象
  */
--(BOOL)closeOauthWebViewController:(UINavigationController *)navigationCtroller socialControllerService:(UMSocialControllerService *)socialControllerService
+- (BOOL)closeOauthWebViewController:(UINavigationController *)navigationCtroller socialControllerService:(UMSocialControllerService *)socialControllerService
 {
     return NO;
 }
 
 /**
- 关闭当前页面之后
- 
- @param fromViewControllerType 关闭的页面类型
- 
+ *  @abstract 关闭当前页面之后
+ *  @param fromViewControllerType 关闭的页面类型
  */
--(void)didCloseUIViewController:(UMSViewControllerType)fromViewControllerType
+- (void)didCloseUIViewController:(UMSViewControllerType)fromViewControllerType
 {
-
     
 }
 
 /**
- 各个页面执行授权完成、分享完成、或者评论完成时的回调函数
- 
- @param response 返回`UMSocialResponseEntity`对象，`UMSocialResponseEntity`里面的viewControllerType属性可以获得页面类型
+ * @abstract 各个页面执行授权完成、分享完成、或者评论完成时的回调函数
+ * @param response 返回`UMSocialResponseEntity`对象，`UMSocialResponseEntity`里面的viewControllerType属性可以获得页面类型
  */
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
@@ -369,49 +363,49 @@
 }
 
 /**
- 点击分享列表页面，之后的回调方法，你可以通过判断不同的分享平台，来设置分享内容。
- 例如：
- 
- -(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
- {
- if (platformName == UMShareToSina) {
- socialData.shareText = @"分享到新浪微博的文字内容";
- }
- else{
- socialData.shareText = @"分享到其他平台的文字内容";
- }
- }
- 
- @param platformName 点击分享平台
- 
- @prarm socialData   分享内容
+ * 点击分享列表页面，之后的回调方法，你可以通过判断不同的分享平台，来设置分享内容。
+ * 例如：
+ *
+ *  - (void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
+ *  {
+ *      if (platformName == UMShareToSina)
+ *      {
+ *          socialData.shareText = @"分享到新浪微博的文字内容";
+ *      }
+ *      else
+ *      {
+ *          socialData.shareText = @"分享到其他平台的文字内容";
+ *      }
+ *  }
+ *
+ * @param   platformName  点击分享平台
+ * @param   socialData    分享内容
  */
 -(void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData
 {
-    if (platformName == UMShareToSina) {
-        
+    if (platformName == UMShareToSina)
+    {
         socialData.shareText = @"分享到新浪微博的文字内容";
-        
-    } else if (platformName == UMShareToWechatSession) {
-        
+    }
+    else if (platformName == UMShareToWechatSession)
+    {
         socialData.shareText = @"分享到微信好友的文字内容";
-        
-    }else if (platformName == UMShareToWechatTimeline) {
+    }
+    else if (platformName == UMShareToWechatTimeline)
+    {
         socialData.shareText = @"分享到微信朋友圈的文字内容";
     }
-    else{
+    else
+    {
         socialData.shareText = @"分享到其他平台的文字内容";
     }
 }
 
-
 /**
- 配置点击分享列表后是否弹出分享内容编辑页面，再弹出分享，默认需要弹出分享编辑页面
- 
- @result 设置是否需要弹出分享内容编辑页面，默认需要
- 
+ * @abstract 配置点击分享列表后是否弹出分享内容编辑页面，再弹出分享，默认需要弹出分享编辑页面
+ * @result 设置是否需要弹出分享内容编辑页面，默认需要
  */
--(BOOL)isDirectShareInIconActionSheet
+- (BOOL)isDirectShareInIconActionSheet
 {
     return YES;
 }

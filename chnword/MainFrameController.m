@@ -43,21 +43,7 @@
         [self performBlock:^{ [self showLoginView:nil]; } afterDelay:0.5];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Show pages
 
 // 显示登录页面
@@ -83,6 +69,7 @@
     }];
 }
 
+// 显示功能屏蔽提示界面
 - (void)showDisable:(NSNotification *)notification
 {
     CGRect showPos = CGRectMake(0, kScreenHeight - self.infoContent.frame.size.height, kScreenWidth, self.infoContent.frame.size.height);
@@ -95,6 +82,7 @@
     } completion:nil];
 }
 
+// 关闭错误信息界面
 - (IBAction)closeError:(id)sender
 {
     CGRect hidePos = CGRectMake(0, kScreenHeight, kScreenWidth, self.infoContent.frame.size.height);
@@ -106,18 +94,19 @@
     }];
 }
 
+// 直接跳转到登录界面
 - (IBAction)gotoLogin:(id)sender
 {
     [self closeError:sender];
     [self showLoginView:nil];
 }
 
+// 直接跳转到商店购买界面
 - (IBAction)enterBuySuit:(id)sender
 {
     [self closeError:sender];
     [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowShopSuit object:self];
 }
-
 
 // 欢迎页面确认，然后根据是否有默认用户来决定显示登录界面
 - (void)buttonClicked:(id) sender
@@ -133,6 +122,9 @@
             [self showLoginView:nil];
     }];
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - The functions of welcome informations
 
 // 初始化欢迎页面
 - (void)setupPages
@@ -176,8 +168,7 @@
     self.pages.contentOffset = CGPointMake(i * width, 0);
 }
 
-#pragma mark - UIScrollViewDelegate
-
+// 滚动欢迎界面的操作
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     CGRect screen = scrollView.frame;
@@ -186,6 +177,7 @@
     self.pageControl.currentPage = i;
 }
 
+// 滚动欢迎界面的操作
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if ((scrollView.contentOffset.x - kScreenWidth * 3) > 20)

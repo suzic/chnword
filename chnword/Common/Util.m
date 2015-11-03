@@ -45,8 +45,10 @@ extern NSString *CTSettingCopyMyPhoneNumber();
     
     return udid;
 }
+
 #warning 私有函数
-+(NSString *) phoneNumber{
++ (NSString *)phoneNumber
+{
     return CTSettingCopyMyPhoneNumber();
 }
 @end

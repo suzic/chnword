@@ -31,6 +31,7 @@
 
 @implementation LoginController
 
+// 登录界面的初始设置
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -45,12 +46,6 @@
     [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
     bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.tableView.backgroundView = bacgroundImageView;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 // 在这里写调用登录请求
@@ -72,46 +67,52 @@
                                                 verify:@"verify"];
     
     [NetManager postRequest:URL_LOGIN param:param success:^(id json){
+        
         NSLog(@"success with json:\n %@", json);
         NSDictionary *dict = json;
-        
-        if (dict) {
+        if (dict != nil)
+        {
             NSString *result = [dict objectForKey:@"result"];
-            if (result && [@"1" isEqualToString:result]) {
-
+            if (result && [@"1" isEqualToString:result])
+            {
 #warning 添加默认用户
                 // [DataUtil setDefaultUser:userid];
                 [self dismissViewControllerAnimated:YES completion:nil];
             }
             else
             {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:@"注册失败"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles: nil];
                 [alert show];
             }
-            
-        }else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"网络连接失败"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil];
             [alert show];
         }
-        
-        
     }fail:^ (){
-        NSLog(@"fail ");
-        
+        NSLog(@"Login Failed.");
     }];
-
 }
 
 // 在这里写登录请求验证码
 - (void)requestVerifyFromNetwork:(NSString *)verifyCode
 {
-    //    NSString *activeCode = self.activeCodeField.text;
-    
+    // NSString *activeCode = self.activeCodeField.text;
     NSString *opid = [Util generateUuid];
     NSString *deviceId = [Util getUdid];    
     NSString *userid = [DataUtil getDefaultUser];
     
-    if (!userid) {
+    if (!userid)
+    {
         [DataUtil setDefaultUser:@"0"];
         userid = @"0";
     }
@@ -119,39 +120,35 @@
     //本地用户存储
     [self.hud show:YES];
     
-    //    NSDictionary *param = [NetParamFactory registParam:opid userid:userid device:deviceId userCode:userid  deviceId:deviceId session:[Util generateUuid] verify:@"verify"];
+    // NSDictionary *param = [NetParamFactory registParam:opid userid:userid device:deviceId userCode:userid  deviceId:deviceId session:[Util generateUuid] verify:@"verify"];
     NSDictionary *param = [NetParamFactory verifyParam:opid userid:userid device:deviceId code:verifyCode user:userid];
     [NetManager postRequest:URL_VERIFY param:param success:^(id json){
         
         NSLog(@"success with json:\n %@", json);
         
         [self.hud hide:YES];
-        
         NSDictionary *dict = json;
-        
         NSString *str = [dict objectForKey:@"result"];
-        if (str && [@"1" isEqualToString:str]) {
+        if (str && [@"1" isEqualToString:str])
+        {
             //成功
             NSDictionary *data = [dict objectForKey:@"data"];
-            if (data) {
-                
+            if (data)
+            {
                 NSString *unlock_all = [dict objectForKey:@"unlock_all"];
                 NSArray *zones = [dict objectForKey:@"unlock_zone"];
-                if (unlock_all && [@"1" isEqualToString:unlock_all]) {
+                if (unlock_all && [@"1" isEqualToString:unlock_all])
+                {
                     //解锁全部的
                     NSLog(@"unlock_all");
                     [DataUtil setUnlockAllModelsForUser:[DataUtil getDefaultUser]];
-                    
-                    
-                } else {
+                }
+                else
+                {
                     //得到解锁的其他条目,处理unlock_zone.
-                    for (NSString *unlocked in zones) {
+                    for (NSString *unlocked in zones)
                         NSLog(@"unlocked %@", unlocked);
-                    }
-                    
                     [DataUtil setUnlockModel:userid models:zones];
-                    
-                    
                 }
                 NSString *message = [NSString stringWithFormat:@"解锁成功：\n data \n %@", data];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
@@ -159,8 +156,9 @@
                 
                 //登录成功的处理
                 [self loginSucceed];
-                
-            }else {
+            }
+            else
+            {
                 NSString *message = [dict objectForKey:@"message"];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
@@ -168,17 +166,14 @@
         }
         else
         {
-//            NSString *message = @"请求失败！";
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-//            [alert show];
-
-            //登录失败
+            // NSString *message = @"请求失败！";
+            // UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            // [alert show];
+            // 登录失败
             [self loginNeedsVerify];
         }
-        
-    } fail:^ ()
-    {
-        NSLog(@"fail ");
+    } fail:^ () {
+        NSLog(@"Login Failed.");
         [self.hud hide:YES];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
@@ -227,6 +222,8 @@
     return 0.01f;
 }
 
+#pragma mark - User actions
+
 // 试用按钮点击
 - (IBAction)trailButtonPressed:(id)sender
 {
@@ -259,24 +256,12 @@
     // [self requestVerifyFromNetwork:self.userCodeInput.text];
     
 #warning 现在默认返回需要验证
-//    [self loginNeedsVerify];
+    // [self loginNeedsVerify];
     // 如果返回登录成功直接调用
-//     [self loginSucceed];
+    // [self loginSucceed];
 }
 
-#warning Test only
-- (void)testErrorResult
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"[功能测试]"
-                                                     message:@""
-                                                    delegate:self
-                                           cancelButtonTitle:@"登录成功"
-                                           otherButtonTitles:@"过多设备",@"用户码错",nil];
-    alert.tag = TEST_CODE;
-    [alert show];
-
-}
-
+// 登录成功处理
 - (void)loginSucceed
 {
     AppDelegate *appDelegate = [AppDelegate sharedDelegate];
@@ -284,6 +269,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+// 登录失败处理
 - (void)loginFailed
 {
     AppDelegate *appDelegate = [AppDelegate sharedDelegate];
@@ -291,6 +277,7 @@
     [self.errorContainer showLoginErrorWrong];
 }
 
+// 登录需要验证
 - (void)loginNeedsVerify
 {
     AppDelegate *appDelegate = [AppDelegate sharedDelegate];
@@ -300,8 +287,10 @@
 
 #pragma mark - UIAlertViewDelegate
 
+// 提示信息用户操作反馈
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    // 当提示信息是测试对话框时
     if (alertView.tag == TEST_CODE)
     {
         switch (buttonIndex)
@@ -320,7 +309,8 @@
         
         return;
     }
-    
+
+    // 关于验证窗口的提示结果
     if (buttonIndex != 0)
     {
         UITextField *tf = [alertView textFieldAtIndex:0];
@@ -368,6 +358,20 @@
         [self.navigationController.view addSubview:_hud];
     }
     return _hud;
+}
+
+#pragma mark - Functions for test only
+
+// 直接提示出各种登录错误结果
+- (void)testErrorResult
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"[功能测试]"
+                                                    message:@""
+                                                   delegate:self
+                                          cancelButtonTitle:@"登录成功"
+                                          otherButtonTitles:@"过多设备",@"用户码错",nil];
+    alert.tag = TEST_CODE;
+    [alert show];
 }
 
 @end

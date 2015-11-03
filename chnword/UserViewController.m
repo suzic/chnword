@@ -238,7 +238,7 @@
     NSString *opid = [Util generateUuid];
     NSString *deviceId = [Util getUdid];
     //    NSString *userid = [Util generateUuid];
-    NSString *userid = self.phoneNumberField.text;
+    NSString *userid = @"";//self.phoneNumberField.text;
     
     //本地用户存储
     NSDictionary *param = [NetParamFactory

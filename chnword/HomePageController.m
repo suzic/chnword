@@ -20,13 +20,13 @@
 
 @property (assign, nonatomic) CGFloat rowHeight01;
 @property (assign, nonatomic) CGFloat rowHeight02;
-
 @property (nonatomic, retain) MBProgressHUD *hud;
 
 @end
 
 @implementation HomePageController
 
+// 主页初始化
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,12 +41,6 @@
 
     self.rowHeight01 = (self.view.frame.size.height - 44 - 49) / 2;
     self.rowHeight02 = (self.view.frame.size.height - 44 - 49) / 2;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -81,11 +75,9 @@
 
 #pragma mark - Navigation
 
+// 配置二维码扫描的结果
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
     if ([@"toCamera" isEqualToString:segue.identifier])
     {
         UINavigationController *nc = segue.destinationViewController;
@@ -94,6 +86,7 @@
     }
 }
 
+// 点击进入扫描界面的检查。对于免费体验用户，功能不开放，提示购买
 - (IBAction)enterScan:(id)sender
 {
     AppDelegate* appDelegate = [AppDelegate sharedDelegate];
@@ -105,13 +98,13 @@
 
 #pragma mark - QRSEarchViewController Delegate Methods
 
+// 扫描撤销
 - (void)QRSearchViewControllerDidCanceled:(QrSearchViewController *) controller
 {
-//    [controller dismissViewControllerAnimated:YES completion:nil];
-//    [controller.navigationController dismissViewControllerAnimated:YES completion:nil];
-//    [self.navigationController popoverPresentationController];
+    // 目前不必对撤销操作进行何种提示
 }
 
+// 扫描成功
 - (void)QRSearchViewController:(QrSearchViewController *)controller successedWith:(NSString *) str
 {
     [controller dismissViewControllerAnimated:YES completion:nil];
@@ -120,11 +113,11 @@
 
 #pragma mark - net word interface
 
+#warning 该方法获取汉字魔卡的卡字。该方法需要通过网络，得到是否支持该汉字的提示；如果不支持对应汉字，则给出错误提示，要求用户扫描“汉字魔卡”而不是其他
 - (void)requestWord:(NSString *) word
 {
     NSString *opid = [Util generateUuid];
     NSString *userid = [DataUtil getDefaultUser];
-//    userid = @"userid";
     NSString *deviceId = [Util getUdid];
     NSDictionary *param = [NetParamFactory wordParam:[Util generateUuid] userid:userid device:deviceId word:word];
     
@@ -139,51 +132,53 @@
         
         [self.hud hide:YES];
         
-        if (dict) {
+        if (dict)
+        {
             NSString *result = [dict objectForKey:@"result"];
             
-            if ([result isEqualToString:@"1"]) {
+            if ([result isEqualToString:@"1"])
+            {
                 NSDictionary *data = [dict objectForKey:@"data"];
-                
                 NSArray *wordName = [data objectForKey:@"word"];
                 NSArray *wordIndex = [data objectForKey:@"unicode"];
                 NSString *unicode ;
                 
-                for (NSInteger i = 0; i < wordName.count; i ++) {
+                for (NSInteger i = 0; i < wordName.count; i ++)
+                {
                     NSString *aWrod = [wordName objectAtIndex:i];
-                    if ([aWrod isEqualToString:word]) {
+                    if ([aWrod isEqualToString:word])
+                    {
                         unicode = [wordIndex objectAtIndex:i];
-                        
                         break;
                     }
                 }
                 
-                if (unicode) {
+                if (unicode)
+                {
                     PlayController *playController = [self.storyboard instantiateViewControllerWithIdentifier:@"PlayController"];
-                    
-                    
+
                     //找wordCode
                     playController.wordCode = unicode;
                     playController.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
                     
                     [self.navigationController pushViewController:playController animated:YES];
-                } else {
+                }
+                else
+                {
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无效的字符" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                     [alert show];
                 }
-                
-                
-                
-                
-            }else {
+            }
+            else
+            {
                 NSString *message = [dict objectForKey:@"message"];
                 NSLog(@"%@", message);
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
             }
-            
-            
-        } else {
+        }
+        else
+        {
             [self.hud hide:YES];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [alert show];

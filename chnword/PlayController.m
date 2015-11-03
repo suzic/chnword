@@ -114,6 +114,11 @@
     }
 }
 
+- (IBAction)showList:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowList object:self];
+}
+
 - (void)playingDone
 {
     NSLog(@"播放完成");

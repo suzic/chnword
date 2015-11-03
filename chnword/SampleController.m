@@ -138,6 +138,11 @@
     [self showWordPlayer:[NSString stringWithFormat:@"%ld", (long)self.freeWordMore.tag]];
 }
 
+- (IBAction)showList:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowList object:self];
+}
+
 // 导航至汉字页面
 - (void)showWordPlayer:(NSString*)wordCode
 {

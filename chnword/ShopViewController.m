@@ -77,4 +77,9 @@
     }
 }
 
+- (IBAction)showList:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowList object:self];
+}
+
 @end

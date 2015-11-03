@@ -61,6 +61,7 @@
 
 #define NotiShowWelcome         @"NotiShowWelcome"
 #define NotiShowLogin           @"NotiShowLogin"
+#define NotiShowList            @"NotiShowList"
 #define NotiDisable             @"NotiDisable"
 #define NotiShowShop            @"NotiShowShop"
 #define NotiShowShopSuit        @"NotiShowShopSuit"

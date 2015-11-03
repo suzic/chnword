@@ -9,8 +9,9 @@
 #import "MainFrameController.h"
 #import "NSObject+Delay.h"
 #import "DataUtil.h"
+#import "ShortCutCell.h"
 
-@interface MainFrameController ()
+@interface MainFrameController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *welcomeView;
 @property (strong, nonatomic) IBOutlet UIScrollView *pages;
@@ -18,6 +19,8 @@
 
 @property (strong, nonatomic) IBOutlet UIView *infoLayer;
 @property (strong, nonatomic) IBOutlet UIView *infoContent;
+@property (strong, nonatomic) IBOutlet UIView *listContent;
+@property (strong, nonatomic) IBOutlet UITableView *shortcutTable;
 
 @end
 
@@ -30,17 +33,21 @@
     
     self.infoLayer.hidden = YES;
     self.infoContent.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ErrorBG"]];
+    self.listContent.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ErrorBG"]];
 
     [self setupPages];
         
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showWelcome:) name:NotiShowWelcome object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showDisable:) name:NotiDisable object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginView:) name:NotiShowLogin object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showList:) name:NotiShowList object:nil];
     
     if ([DataUtil isFirstLogin])
         [self showWelcome:nil];
     else if ( [@"0" isEqualToString:[DataUtil getDefaultUser]])
         [self performBlock:^{ [self showLoginView:nil]; } afterDelay:0.5];
+    
+    self.shortcutTable.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"TileBackground"]];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,10 +82,29 @@
     CGRect showPos = CGRectMake(0, kScreenHeight - self.infoContent.frame.size.height, kScreenWidth, self.infoContent.frame.size.height);
     CGRect hidePos = CGRectMake(0, kScreenHeight, kScreenWidth, self.infoContent.frame.size.height);
     
+    self.listContent.hidden = YES;
+    self.infoContent.hidden = NO;
+    
     self.infoLayer.hidden = NO;
     self.infoContent.frame = hidePos;
     [UIView animateWithDuration:0.2f animations:^{
         self.infoContent.frame = showPos;
+    } completion:nil];
+}
+
+// 显示快捷菜单
+- (void)showList:(NSNotification *)notification
+{
+    CGRect showPos = CGRectMake(0, 0, kScreenWidth, self.listContent.frame.size.height);
+    CGRect hidePos = CGRectMake(0, -self.listContent.frame.size.height, kScreenWidth, self.listContent.frame.size.height);
+    
+    self.listContent.hidden = NO;
+    self.infoContent.hidden = YES;
+
+    self.infoLayer.hidden = NO;
+    self.listContent.frame = hidePos;
+    [UIView animateWithDuration:0.2f animations:^{
+        self.listContent.frame = showPos;
     } completion:nil];
 }
 
@@ -92,6 +118,27 @@
     } completion:^(BOOL finished) {
         self.infoLayer.hidden = YES;
     }];
+}
+
+// 关闭快捷列表
+- (void)closeList
+{
+    CGRect hidePos = CGRectMake(0, -self.listContent.frame.size.height, kScreenWidth, self.listContent.frame.size.height);
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.listContent.frame = hidePos;
+    } completion:^(BOOL finished) {
+        self.infoLayer.hidden = YES;
+    }];
+}
+
+// 点击空地就关闭
+- (IBAction)touchOutside:(id)sender
+{
+    if (self.listContent.hidden == NO)
+        [self closeList];
+    else
+        [self closeError:sender];
 }
 
 // 直接跳转到登录界面
@@ -185,6 +232,82 @@
         //向右轻扫做的事情
         [self buttonClicked:nil];
     }
+}
+
+#pragma mark - UITableView DataSource & Delegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ShortCutCell* cell = [tableView dequeueReusableCellWithIdentifier:@"shortCutCell"];
+    switch (indexPath.row)
+    {
+        case 0:
+            cell.cellTitle.text = @"在线产品订购";
+            break;
+        case 1:
+            cell.cellTitle.text = @"三千字课特点";
+            break;
+        case 2:
+            cell.cellTitle.text = @"会员尊享权益";
+            break;
+        case 3:
+            cell.cellTitle.text = @"知识创富计划";
+            break;
+        case 4:
+            cell.cellTitle.text = @"关于中隼华源";
+            break;
+        default:
+            break;
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UIViewController *vc = nil;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Intro" bundle:nil];
+
+    switch (indexPath.row)
+    {
+        case 0:
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowShop object:self];
+            break;
+        case 1:
+            vc = [storyboard instantiateViewControllerWithIdentifier:@"listIntro"];
+            break;
+        case 2:
+            vc = [storyboard instantiateViewControllerWithIdentifier:@"listBenifit"];
+            break;
+        case 3:
+            vc = [storyboard instantiateViewControllerWithIdentifier:@"listCreate"];
+            break;
+        case 4:
+            vc = [storyboard instantiateViewControllerWithIdentifier:@"listAbout"];
+            break;
+        default:
+            break;
+    }
+    
+    if (indexPath.row > 0)
+    {
+        [self presentViewController:vc animated:YES completion:^{
+            [self touchOutside:tableView];
+        }];
+    }
+    else
+        [self touchOutside:tableView];
 }
 
 @end

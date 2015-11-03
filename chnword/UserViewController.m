@@ -62,6 +62,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)showList:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowList object:self];
+}
+
 #pragma mark - UITable View delegate & datasource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

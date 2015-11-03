@@ -121,6 +121,11 @@
 		D0D207D21B99B70A001E4C04 /* SettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207D11B99B70A001E4C04 /* SettingsCell.m */; };
 		D0D207D51B99B716001E4C04 /* AboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D207D41B99B716001E4C04 /* AboutCell.m */; };
 		D0DC8FF61BE8A9FF006AE6FE /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = D0DC8FF51BE8A9FF006AE6FE /* loading.gif */; };
+		D0DC8FF91BE8C420006AE6FE /* ShortCutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0DC8FF81BE8C420006AE6FE /* ShortCutCell.m */; };
+		D0DC8FFD1BE8C9FF006AE6FE /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DC8FFB1BE8C9FF006AE6FE /* Intro.storyboard */; };
+		D0DC90001BE8CAC4006AE6FE /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0DC8FFF1BE8CAC4006AE6FE /* IntroViewController.m */; };
+		D0DC90021BE8CC21006AE6FE /* Intro.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0DC90011BE8CC21006AE6FE /* Intro.xcassets */; };
+		D0DC90051BE8D21B006AE6FE /* ListIntroController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0DC90041BE8D21B006AE6FE /* ListIntroController.m */; };
 		D0E0C9DE1BDD3C3F00B5071F /* ShopSuitController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9DD1BDD3C3F00B5071F /* ShopSuitController.m */; };
 		D0E0C9E11BDD3E2C00B5071F /* ShopAllController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9E01BDD3E2C00B5071F /* ShopAllController.m */; };
 		D0E0C9E41BDD46B500B5071F /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E0C9E31BDD46B500B5071F /* HeaderCell.m */; };
@@ -352,6 +357,14 @@
 		D0D207D31B99B716001E4C04 /* AboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutCell.h; sourceTree = "<group>"; };
 		D0D207D41B99B716001E4C04 /* AboutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutCell.m; sourceTree = "<group>"; };
 		D0DC8FF51BE8A9FF006AE6FE /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
+		D0DC8FF71BE8C420006AE6FE /* ShortCutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortCutCell.h; sourceTree = "<group>"; };
+		D0DC8FF81BE8C420006AE6FE /* ShortCutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortCutCell.m; sourceTree = "<group>"; };
+		D0DC8FFC1BE8C9FF006AE6FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = chnword/Base.lproj/Intro.storyboard; sourceTree = "<group>"; };
+		D0DC8FFE1BE8CAC4006AE6FE /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
+		D0DC8FFF1BE8CAC4006AE6FE /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
+		D0DC90011BE8CC21006AE6FE /* Intro.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Intro.xcassets; sourceTree = "<group>"; };
+		D0DC90031BE8D21B006AE6FE /* ListIntroController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListIntroController.h; sourceTree = "<group>"; };
+		D0DC90041BE8D21B006AE6FE /* ListIntroController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListIntroController.m; sourceTree = "<group>"; };
 		D0E0C9DC1BDD3C3F00B5071F /* ShopSuitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopSuitController.h; sourceTree = "<group>"; };
 		D0E0C9DD1BDD3C3F00B5071F /* ShopSuitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopSuitController.m; sourceTree = "<group>"; };
 		D0E0C9DF1BDD3E2C00B5071F /* ShopAllController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopAllController.h; sourceTree = "<group>"; };
@@ -740,6 +753,7 @@
 			isa = PBXGroup;
 			children = (
 				D06693731B351A7D00B50D16 /* Main.storyboard */,
+				D0DC8FFB1BE8C9FF006AE6FE /* Intro.storyboard */,
 				D06693941B351B8A00B50D16 /* Plugins */,
 				D06693931B351B8A00B50D16 /* Network */,
 				D06693901B351B8A00B50D16 /* Database */,
@@ -754,10 +768,12 @@
 				D07204B91B3541D1007C01E8 /* LoginController.m */,
 				D07204CE1B3673B0007C01E8 /* MainTabController.h */,
 				D07204CF1B3673B0007C01E8 /* MainTabController.m */,
+				D0DC8FFA1BE8C6E9006AE6FE /* ShortCut */,
 				D0B947011B3693B200A1DFD6 /* HOME */,
 				D0B947021B3693BB00A1DFD6 /* SHOP */,
 				D0B947031B3693C100A1DFD6 /* USER */,
 				D06693761B351A7D00B50D16 /* Images.xcassets */,
+				D0DC90011BE8CC21006AE6FE /* Intro.xcassets */,
 				D0B947131B36AB1B00A1DFD6 /* Resource.xcassets */,
 				A7EDBAED1B3AFC6200016412 /* Frameworks */,
 				A76792C11B44B94E00B931F1 /* Resource */,
@@ -912,6 +928,19 @@
 			name = Player;
 			sourceTree = "<group>";
 		};
+		D0DC8FFA1BE8C6E9006AE6FE /* ShortCut */ = {
+			isa = PBXGroup;
+			children = (
+				D0DC8FF71BE8C420006AE6FE /* ShortCutCell.h */,
+				D0DC8FF81BE8C420006AE6FE /* ShortCutCell.m */,
+				D0DC8FFE1BE8CAC4006AE6FE /* IntroViewController.h */,
+				D0DC8FFF1BE8CAC4006AE6FE /* IntroViewController.m */,
+				D0DC90031BE8D21B006AE6FE /* ListIntroController.h */,
+				D0DC90041BE8D21B006AE6FE /* ListIntroController.m */,
+			);
+			name = ShortCut;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -988,8 +1017,10 @@
 				A7B433231B42D3CE00CEFC58 /* WeiboSDK.bundle in Resources */,
 				A7B432F51B42D0F400CEFC58 /* UMSCommentInputControlleriPad.xib in Resources */,
 				D0DC8FF61BE8A9FF006AE6FE /* loading.gif in Resources */,
+				D0DC90021BE8CC21006AE6FE /* Intro.xcassets in Resources */,
 				A7B432F11B42D0F400CEFC58 /* UMSocialLocalizable.strings in Resources */,
 				A7B432F91B42D0F400CEFC58 /* UMSnsAccountViewController.xib in Resources */,
+				D0DC8FFD1BE8C9FF006AE6FE /* Intro.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1013,8 +1044,10 @@
 				D0B947241B36F73500A1DFD6 /* PlayController.m in Sources */,
 				A7D678121B419E4B00282EBD /* SDWebImageCompat.m in Sources */,
 				D0D207C91B99AD51001E4C04 /* ShopItemCell.m in Sources */,
+				D0DC90001BE8CAC4006AE6FE /* IntroViewController.m in Sources */,
 				D066936C1B351A7D00B50D16 /* AppDelegate.m in Sources */,
 				D07204C91B355B20007C01E8 /* DataUtil.m in Sources */,
+				D0DC90051BE8D21B006AE6FE /* ListIntroController.m in Sources */,
 				D0D207D21B99B70A001E4C04 /* SettingsCell.m in Sources */,
 				A7D678171B419E4B00282EBD /* SDWebImagePrefetcher.m in Sources */,
 				A7D678111B419E4B00282EBD /* SDImageCache.m in Sources */,
@@ -1031,6 +1064,7 @@
 				D07204D01B3673B0007C01E8 /* MainTabController.m in Sources */,
 				A7AE1D1B1B78CA7E0043F21C /* WXUtil.mm in Sources */,
 				A7B053191B3996D0009A0CC2 /* UIAlertView+AFNetworking.m in Sources */,
+				D0DC8FF91BE8C420006AE6FE /* ShortCutCell.m in Sources */,
 				A7D6781A1B419E4B00282EBD /* UIImage+MultiFormat.m in Sources */,
 				A7B432D41B42CEA100CEFC58 /* QrSearchViewController.m in Sources */,
 				A7D6780F1B419E4B00282EBD /* MKAnnotationView+WebCache.m in Sources */,
@@ -1101,6 +1135,15 @@
 				D06693741B351A7D00B50D16 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D0DC8FFB1BE8C9FF006AE6FE /* Intro.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0DC8FFC1BE8C9FF006AE6FE /* Base */,
+			);
+			name = Intro.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

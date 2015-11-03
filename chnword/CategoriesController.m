@@ -162,6 +162,11 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 
 #pragma mark - User actions
 
+- (IBAction)showList:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowList object:self];
+}
+
 // 提示进入商店
 - (void)gotoShopBuy:(NSInteger)categoryIndex
 {

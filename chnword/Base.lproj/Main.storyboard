@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="AdobeKaitiStd-Regular.otf">
@@ -74,6 +75,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oao-gq-hi4" userLabel="INFO">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEU-Hl-I7L">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                        <animations/>
+                                        <connections>
+                                            <action selector="touchOutside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8aC-m8-oQ4"/>
+                                        </connections>
+                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMH-CQ-Mlj" userLabel="content">
                                         <rect key="frame" x="0.0" y="150" width="600" height="450"/>
                                         <subviews>
@@ -166,13 +174,73 @@
                                             <constraint firstItem="VJl-hm-OBr" firstAttribute="centerX" secondItem="RMH-CQ-Mlj" secondAttribute="centerX" id="xqp-DQ-zJP"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naT-Pr-UFo" userLabel="list">
+                                        <rect key="frame" x="0.0" y="44" width="600" height="250"/>
+                                        <subviews>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lIi-4Z-Co3">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
+                                                <animations/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="shortCutCell" id="JSI-59-zI4" customClass="ShortCutCell">
+                                                        <rect key="frame" x="0.0" y="28" width="600" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JSI-59-zI4" id="UCL-ed-yPl">
+                                                            <rect key="frame" x="0.0" y="0.0" width="567" height="49"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快捷列表条目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hca-L4-CjU">
+                                                                    <rect key="frame" x="224" y="13" width="120" height="24"/>
+                                                                    <animations/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstItem="Hca-L4-CjU" firstAttribute="centerX" secondItem="UCL-ed-yPl" secondAttribute="centerX" id="dZs-bA-uBf"/>
+                                                                <constraint firstItem="Hca-L4-CjU" firstAttribute="centerY" secondItem="UCL-ed-yPl" secondAttribute="centerY" id="jzh-Fm-six"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <animations/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <connections>
+                                                            <outlet property="cellTitle" destination="Hca-L4-CjU" id="Wwn-vY-DVW"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="qaP-Ub-La2"/>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="WOr-ah-0fP"/>
+                                                </connections>
+                                            </tableView>
+                                        </subviews>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="lIi-4Z-Co3" firstAttribute="width" secondItem="naT-Pr-UFo" secondAttribute="width" id="KZg-wU-KRY"/>
+                                            <constraint firstAttribute="height" constant="250" id="jsw-N4-Lpf"/>
+                                            <constraint firstItem="lIi-4Z-Co3" firstAttribute="top" secondItem="naT-Pr-UFo" secondAttribute="top" id="kI3-2j-P0F"/>
+                                            <constraint firstAttribute="bottom" secondItem="lIi-4Z-Co3" secondAttribute="bottom" id="qgv-P5-bsf"/>
+                                            <constraint firstItem="lIi-4Z-Co3" firstAttribute="centerX" secondItem="naT-Pr-UFo" secondAttribute="centerX" id="wLZ-uW-5QK"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.29698057430000002" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="eEU-Hl-I7L" firstAttribute="width" secondItem="oao-gq-hi4" secondAttribute="width" id="0xF-GW-Etw"/>
+                                    <constraint firstItem="naT-Pr-UFo" firstAttribute="top" secondItem="oao-gq-hi4" secondAttribute="top" constant="44" id="2sG-dE-vNt"/>
                                     <constraint firstItem="RMH-CQ-Mlj" firstAttribute="centerX" secondItem="oao-gq-hi4" secondAttribute="centerX" id="3WN-Tv-A2U"/>
+                                    <constraint firstItem="eEU-Hl-I7L" firstAttribute="height" secondItem="oao-gq-hi4" secondAttribute="height" id="4Xt-Cc-1g5"/>
                                     <constraint firstAttribute="bottom" secondItem="RMH-CQ-Mlj" secondAttribute="bottom" id="J9C-xH-9x4"/>
+                                    <constraint firstItem="eEU-Hl-I7L" firstAttribute="centerY" secondItem="oao-gq-hi4" secondAttribute="centerY" id="JYa-Y7-D6Z"/>
+                                    <constraint firstItem="naT-Pr-UFo" firstAttribute="centerX" secondItem="oao-gq-hi4" secondAttribute="centerX" id="T4Y-Yu-RpG"/>
                                     <constraint firstItem="RMH-CQ-Mlj" firstAttribute="width" secondItem="oao-gq-hi4" secondAttribute="width" id="Uu1-4z-kfi"/>
+                                    <constraint firstItem="eEU-Hl-I7L" firstAttribute="centerX" secondItem="oao-gq-hi4" secondAttribute="centerX" id="XRH-xx-Ffs"/>
+                                    <constraint firstItem="naT-Pr-UFo" firstAttribute="width" secondItem="oao-gq-hi4" secondAttribute="width" id="pRd-Af-rWT"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -197,8 +265,10 @@
                     <connections>
                         <outlet property="infoContent" destination="RMH-CQ-Mlj" id="wsI-LM-bmi"/>
                         <outlet property="infoLayer" destination="oao-gq-hi4" id="zFu-Vv-eN8"/>
+                        <outlet property="listContent" destination="naT-Pr-UFo" id="1yH-GS-UtA"/>
                         <outlet property="pageControl" destination="ilf-WA-XDk" id="iEX-UP-9a8"/>
                         <outlet property="pages" destination="Y55-W5-ZoP" id="Jt2-DT-GJt"/>
+                        <outlet property="shortcutTable" destination="lIi-4Z-Co3" id="zf7-Ll-nNv"/>
                         <outlet property="welcomeView" destination="aDl-8h-rEY" id="Uw2-z6-WRY"/>
                         <segue destination="1dS-ER-JGa" kind="presentation" identifier="showLogin" id="8H6-Pc-mI7"/>
                     </connections>
@@ -716,6 +786,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="三千字" id="PNy-EI-yEO">
                         <barButtonItem key="backBarButtonItem" title=" " id="sYu-Wq-IZ7"/>
+                        <barButtonItem key="rightBarButtonItem" image="ListButton" id="SXt-xK-QzE">
+                            <inset key="imageInsets" minX="15" minY="5" maxX="0.0" maxY="5"/>
+                            <connections>
+                                <action selector="showList:" destination="b0h-VT-Gdu" id="C7Y-3D-o18"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="Srf-eL-0ZH" kind="presentation" identifier="toCamera" id="KMO-2L-XMp"/>
@@ -893,7 +969,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="免费体验" id="qv9-ew-lE1">
-                        <barButtonItem key="backBarButtonItem" title=" " id="9Si-qG-09s"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="Qy0-Tf-B1y"/>
+                        <barButtonItem key="rightBarButtonItem" image="ListButton" id="yyE-9W-8aw">
+                            <inset key="imageInsets" minX="15" minY="5" maxX="0.0" maxY="5"/>
+                            <connections>
+                                <action selector="showList:" destination="Ifk-01-thX" id="1su-1H-6IR"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -1075,6 +1157,20 @@
                             <constraint firstItem="A6L-Mt-xHK" firstAttribute="top" secondItem="qBk-ho-pWk" secondAttribute="bottom" constant="40" id="vKb-ty-Siq"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="免费体验" id="kod-gI-b3q">
+                        <barButtonItem key="backBarButtonItem" title=" " id="3kE-f7-ZPg"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="ShareButton" id="lQw-DN-9lf">
+                                <inset key="imageInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                            </barButtonItem>
+                            <barButtonItem image="ListButton" id="1PS-91-9z6">
+                                <inset key="imageInsets" minX="15" minY="5" maxX="0.0" maxY="5"/>
+                                <connections>
+                                    <action selector="showList:" destination="Iwd-7B-Bxh" id="TcN-Fq-0hB"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="SplitBar" destination="wuQ-65-TjF" id="tlw-D4-f9l"/>
                         <outlet property="backgroundImage" destination="aNp-2K-bxW" id="kxM-9K-xiM"/>
@@ -1229,12 +1325,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="播放动图" id="CWX-ga-qP3">
-                        <barButtonItem key="rightBarButtonItem" image="ShareButton" id="VY1-DK-7sT">
-                            <inset key="imageInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                            <connections>
-                                <action selector="shareVideo:" destination="Pgb-X3-0cd" id="VOp-js-2eT"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="ShareButton" id="VY1-DK-7sT">
+                                <inset key="imageInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <connections>
+                                    <action selector="shareVideo:" destination="Pgb-X3-0cd" id="VOp-js-2eT"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="ListButton" id="p3u-3c-hdu">
+                                <inset key="imageInsets" minX="15" minY="5" maxX="0.0" maxY="5"/>
+                                <connections>
+                                    <action selector="showList:" destination="Pgb-X3-0cd" id="tNn-Uw-ZQ5"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="framePlayer" destination="zd5-aq-ydI" id="rPN-qM-FHm"/>
@@ -1377,6 +1481,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="在线订购" id="dz0-ry-66o">
                         <barButtonItem key="backBarButtonItem" title=" " id="XWK-Ml-qsL"/>
+                        <barButtonItem key="rightBarButtonItem" image="ListButton" id="b9h-Oy-lhg">
+                            <inset key="imageInsets" minX="15" minY="5" maxX="0.0" maxY="5"/>
+                            <connections>
+                                <action selector="showList:" destination="4ES-o9-jEZ" id="oQo-dl-PgX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="page00" destination="Q3w-nR-4ct" id="x0k-FT-scf"/>
@@ -2347,6 +2457,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="用户中心" id="c0Q-Hi-ncP">
                         <barButtonItem key="backBarButtonItem" title=" " id="dJR-M2-UbC"/>
+                        <barButtonItem key="rightBarButtonItem" image="ListButton" id="B28-Rl-gVs">
+                            <inset key="imageInsets" minX="15" minY="5" maxX="0.0" maxY="5"/>
+                            <connections>
+                                <action selector="showList:" destination="utr-gS-PDD" id="ZsW-PQ-VKT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="mEa-hm-CfY" kind="show" id="d6F-p4-Cd6"/>
@@ -2613,6 +2729,12 @@
                             <constraint firstItem="Q9B-Ih-dQt" firstAttribute="top" secondItem="wh3-yE-qfr" secondAttribute="bottom" id="y2a-ww-LbF"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="会员" id="tNg-xt-9Qc">
+                        <barButtonItem key="backBarButtonItem" title=" " id="UZi-XM-ASQ"/>
+                        <barButtonItem key="rightBarButtonItem" image="ListButton" id="Rip-67-VFr">
+                            <inset key="imageInsets" minX="15" minY="5" maxX="0.0" maxY="5"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="backgroundImage" destination="ITa-VG-d4i" id="08C-4o-si6"/>
                         <outlet property="collectionView" destination="wh3-yE-qfr" id="vlL-nD-t2I"/>
@@ -2646,6 +2768,7 @@
         <image name="HOME-ANIME" width="371" height="230"/>
         <image name="HOME-SCAN" width="369" height="254"/>
         <image name="InputBoxLine" width="312" height="9"/>
+        <image name="ListButton" width="40" height="32"/>
         <image name="LoginButton" width="246" height="111"/>
         <image name="NaviBack" width="360" height="57"/>
         <image name="Order" width="264" height="77"/>

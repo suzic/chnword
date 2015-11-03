@@ -96,6 +96,11 @@
         [self performSegueWithIdentifier:@"toCamera" sender:self];
 }
 
+- (IBAction)showList:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowList object:self];
+}
+
 #pragma mark - QRSEarchViewController Delegate Methods
 
 // 扫描撤销

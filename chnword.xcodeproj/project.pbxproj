@@ -86,6 +86,7 @@
 		A7D6781E1B419E4B00282EBD /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D6780E1B419E4B00282EBD /* UIView+WebCacheOperation.m */; };
 		A7EDBAEC1B3AEB6200016412 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7EDBAEB1B3AEB6200016412 /* CoreTelephony.framework */; };
 		A7FD119C1B88BAD3003404B7 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7FD119B1B88BAD3003404B7 /* FeedbackViewController.m */; };
+		D01BFC1E1BEEF4AE00707C55 /* ShopConfirmController.m in Sources */ = {isa = PBXBuildFile; fileRef = D01BFC1D1BEEF4AE00707C55 /* ShopConfirmController.m */; };
 		D01F9B3D1BCE5169002B4C08 /* LoginHolderController.m in Sources */ = {isa = PBXBuildFile; fileRef = D01F9B3C1BCE5169002B4C08 /* LoginHolderController.m */; };
 		D06693691B351A7D00B50D16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D06693681B351A7D00B50D16 /* main.m */; };
 		D066936C1B351A7D00B50D16 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D066936B1B351A7D00B50D16 /* AppDelegate.m */; };
@@ -292,6 +293,8 @@
 		A7EDBAEB1B3AEB6200016412 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		A7FD119A1B88BAD3003404B7 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
 		A7FD119B1B88BAD3003404B7 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		D01BFC1C1BEEF4AE00707C55 /* ShopConfirmController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopConfirmController.h; sourceTree = "<group>"; };
+		D01BFC1D1BEEF4AE00707C55 /* ShopConfirmController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopConfirmController.m; sourceTree = "<group>"; };
 		D01F9B3B1BCE5169002B4C08 /* LoginHolderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginHolderController.h; sourceTree = "<group>"; };
 		D01F9B3C1BCE5169002B4C08 /* LoginHolderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginHolderController.m; sourceTree = "<group>"; };
 		D06693631B351A7D00B50D16 /* chnword.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chnword.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -854,6 +857,8 @@
 			children = (
 				D07204D41B3680D7007C01E8 /* ShopViewController.h */,
 				D07204D51B3680D7007C01E8 /* ShopViewController.m */,
+				D01BFC1C1BEEF4AE00707C55 /* ShopConfirmController.h */,
+				D01BFC1D1BEEF4AE00707C55 /* ShopConfirmController.m */,
 				D0E0C9DF1BDD3E2C00B5071F /* ShopAllController.h */,
 				D0E0C9E01BDD3E2C00B5071F /* ShopAllController.m */,
 				D0E0C9DC1BDD3C3F00B5071F /* ShopSuitController.h */,
@@ -1081,6 +1086,7 @@
 				D0D207D51B99B716001E4C04 /* AboutCell.m in Sources */,
 				A7D6781E1B419E4B00282EBD /* UIView+WebCacheOperation.m in Sources */,
 				A7B053301B399DA8009A0CC2 /* MBProgressHUD.m in Sources */,
+				D01BFC1E1BEEF4AE00707C55 /* ShopConfirmController.m in Sources */,
 				A7D678161B419E4B00282EBD /* SDWebImageManager.m in Sources */,
 				A7B053161B3996D0009A0CC2 /* AFURLSessionManager.m in Sources */,
 				D07204C31B355B16007C01E8 /* CHKeychain.m in Sources */,

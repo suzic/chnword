@@ -21,6 +21,7 @@
 #import "UserCell.h"
 #import "SettingsCell.h"
 #import "AboutCell.h"
+#import "IntroViewController.h"
 
 @interface UserViewController () <UMSocialUIDelegate, UIAlertViewDelegate>
 
@@ -104,19 +105,19 @@
                 
             case 1:
                 // 会员特权
-                [self showUserVip];
+                [self showFAQ];
                 break;
             case 2:
                 // 意见反馈
                 [self showFeedback];
                 break;
             case 3:
-                // 邀请好友
+                // 分享好友
                 [self inviteShare];
                 break;
             case 4:
-                // 引导页
-                [self showUserGuide];
+                // 有偿推广
+                [self showBonus];
 
                 break;
             default:
@@ -287,9 +288,12 @@
     }];
 }
 
-- (void)showUserGuide
+- (void)showBonus
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowWelcome object:self];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Intro" bundle:nil];
+    IntroViewController *vc = (IntroViewController*)[storyboard instantiateViewControllerWithIdentifier:@"IntroViewController"];
+    vc.hideClose = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)inviteShare
@@ -313,7 +317,7 @@
     [self.navigationController pushViewController:feedbackViewController animated:YES];
 }
 
-- (void)showUserVip
+- (void)showFAQ
 {
     //关于
     WebViewController *webViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WebViewController"];

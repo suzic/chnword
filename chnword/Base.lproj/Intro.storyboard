@@ -27,7 +27,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="271"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_title" translatesAutoresizingMaskIntoConstraints="NO" id="70w-bY-UXw">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="intro_title" translatesAutoresizingMaskIntoConstraints="NO" id="70w-bY-UXw">
                                                     <rect key="frame" x="2" y="1" width="596" height="268"/>
                                                     <animations/>
                                                     <constraints>
@@ -591,7 +591,7 @@
         <!--知识创富计划-->
         <scene sceneID="jf7-yO-rQM">
             <objects>
-                <tableViewController id="QD0-xK-W0e" customClass="IntroViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="IntroViewController" hidesBottomBarWhenPushed="YES" id="QD0-xK-W0e" customClass="IntroViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6xu-ld-zB4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

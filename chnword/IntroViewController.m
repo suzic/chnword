@@ -17,16 +17,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     UIImageView *bacgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     [bacgroundImageView setImage:[UIImage imageNamed:@"Background"]];
     bacgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.tableView.backgroundView = bacgroundImageView;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    if (self.hideClose)
+        self.navigationItem.leftBarButtonItem = nil;
 }
 
 - (IBAction)close:(id)sender

@@ -10,4 +10,6 @@
 
 @interface IntroViewController : UITableViewController
 
+@property (assign, nonatomic) BOOL hideClose;
+
 @end

@@ -227,8 +227,6 @@
 // 试用按钮点击
 - (IBAction)trailButtonPressed:(id)sender
 {
-    // [self requestLoginFromNetwork:@"13700845991"];
-    
     // 设置默认用户为0,然后直接进入即可
     [DataUtil setDefaultUser:@"0"];
     [self dismissViewControllerAnimated:YES completion:nil];

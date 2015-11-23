@@ -10,42 +10,39 @@
 
 @interface NetParamFactory : NSObject
 
-
 /**
  *  验证接口
  */
-+ (NSDictionary *) verifyParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId code:(NSString *) code user:(NSString *) user;
++ (NSDictionary *)verifyParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId code:(NSString *) code user:(NSString *) user;
 
 /**
  *  一级模块接口
  */
-+ (NSDictionary *) listParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId page:(int) page size:(int) size;
++ (NSDictionary *)listParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId page:(int) page size:(int) size;
 
 /**
  *  @depressed
  */
-+ (NSDictionary *) subListParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId lists:(NSArray *) zoneList page:(int) page size:(int) size;
++ (NSDictionary *)subListParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId lists:(NSArray *) zoneList page:(int) page size:(int) size;
 
 /**
  *  二级模块接口
  */
-+ (NSDictionary *) subListParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId zone:(NSString *) zoneList page:(int) page size:(int) size;
++ (NSDictionary *)subListParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId zone:(NSString *) zoneList page:(int) page size:(int) size;
 
 /**
  *  word接口
  */
-+ (NSDictionary *) wordParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId word:(NSString *) word;
++ (NSDictionary *)wordParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId word:(NSString *) word;
 
 /**
  *  show接口
  */
-+ (NSDictionary *) showParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId wordCode:(NSString *) wordCode;
++ (NSDictionary *)showParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId wordCode:(NSString *) wordCode;
 
 /**
  *  注册接口
  */
-+ (NSDictionary *) registParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId userCode:(NSString *) userCode deviceId:(NSString *) deviceId session:(NSString *) sessionId verify:(NSString *) verifyCode;
-
-
++ (NSDictionary *)registParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId userCode:(NSString *) userCode deviceId:(NSString *) deviceId session:(NSString *) sessionId verify:(NSString *) verifyCode;
 
 @end

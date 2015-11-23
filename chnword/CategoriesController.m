@@ -44,13 +44,23 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+}
+
+// 显示界面时调用初始化分类列表功能，创造两个不同的界面
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self setupCategroyList];
 }
 
 // 初始化分类列表，根据付费、免费用户进行区分，设置初始数据。collectionView重建时将用到这些数据。
 - (void)setupCategroyList
 {
-#warning 直接用测试数据填写分类
+    [self requestModules];
+}
+
+- (void)updateCategoryList
+{
     AppDelegate* appDelegate = [AppDelegate sharedDelegate];
     self.categoryList = [NSMutableArray arrayWithCapacity:10];
     for (int i = 0; i < 10; i++)
@@ -69,9 +79,6 @@ static NSString * const reuseIdentifier = @"CategoryCell";
                                            @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02d", i + 1]}];
         }
     }
-    
-#warning 通过网络调用模块。
-    // [self requestModules];
 }
 
 #pragma mark - Navigation
@@ -197,13 +204,14 @@ static NSString * const reuseIdentifier = @"CategoryCell";
 
 #pragma mark - request net work
 
-#warning 获取分类信息，需要调整方法
 - (void)requestModules
 {
+    AppDelegate* appDelegate = [AppDelegate sharedDelegate];
+
     NSString *opid = [Util generateUuid];
     NSString *userid = [DataUtil getDefaultUser];
     NSString *deviceId = [Util getUdid];
-    NSDictionary *param = [NetParamFactory listParam:opid userid:userid device:deviceId page:0 size:0];
+    NSDictionary *param = [NetParamFactory listParam:opid userid:userid device:deviceId page:0 size:12];
     
     [self.hud show:YES];
     
@@ -222,18 +230,30 @@ static NSString * const reuseIdentifier = @"CategoryCell";
             NSArray *data = [dict objectForKey:@"data"];
             if (data)
             {
+                [self.categoryList removeAllObjects];
+                
                 for (NSInteger i = 0; i < data.count; i ++)
                 {
                     NSDictionary *category = [data objectAtIndex:i];
                     NSString *categoryName = [category objectForKey:@"name"];
                     NSString *categoryCode = [category objectForKey:@"cname"];
-                    BOOL isLock = true;
-                    if (![category objectForKey:@"lock"])
-                        isLock = false;
-                    [self.categoryList addObject:@{@"cateName":categoryName,
-                                                   @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02d", (int)((i%10) + 1)],
-                                                   @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02d", (int)((i%10) + 1)],
-                                                   @"cateCode":categoryCode}];
+                    NSString *categoryUnlocked = ((int)[category objectForKey:@"lock"] == 1) ? @"0" : @"1";
+
+                    if (appDelegate.isLogin)
+                    {
+                        [self.categoryList addObject:@{@"cateName":categoryName,
+                                                       @"cateUnlocked":categoryUnlocked,
+                                                       @"cateCode":categoryCode,
+                                                       @"cateImageA":[NSString stringWithFormat:@"CATE_L_%02d", i + 1],
+                                                       @"cateImageB":[NSString stringWithFormat:@"CATE_U_%02d", i + 1]}];
+                    }
+                    else
+                    {
+                        [self.categoryList addObject:@{@"cateName":categoryName,
+                                                       @"cateCode":categoryCode,
+                                                       @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02d", i + 1],
+                                                       @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02d", i + 1]}];
+                    }
                 }
                 [self.collectionView reloadData];
             }

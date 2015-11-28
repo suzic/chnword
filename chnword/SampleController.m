@@ -28,6 +28,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *freeWordMore;
 @property (strong, nonatomic) IBOutlet UIImageView *shareTip;
 @property (strong, nonatomic) IBOutlet UILabel *shareInfo;
+@property (strong, nonatomic) NSMutableArray *wordsList;
 
 @end
 
@@ -55,7 +56,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self setupSampleData];
+    [self requestWordsList:self.moduleCode];
 }
 
 // 显示完成的处理
@@ -74,37 +75,95 @@
 // 设置体验数据
 - (void)setupSampleData
 {
-    AppDelegate* appDelegate = [AppDelegate sharedDelegate];
-    if (self.categoryIndex == 0)
+    self.unlockMore = NO;
+    // 根据配置文件决定显示内容
+    NSInteger findCount = 0;
+    NSInteger count = self.wordsList.count;
+    for (int i = 0; i < count; i++)
     {
-#warning 这里默认天文组数据是解锁更多的状态，其他则是最小体验状态。该数据应当从本地配置文件进行存储和读取。
-        // 根据配置文件决定显示内容
-        NSInteger findCount = 0;
-        NSInteger count = appDelegate.wordInTianWen.count;
-        for (int i = 0; i < count; i++)
+        NSDictionary* word = self.wordsList[i];
+        if ([word[@"free"] intValue] != 0)
+            continue;
+        UIImageView *wordImage = [[UIImageView alloc] init];
+        [wordImage sd_setImageWithURL:[NSURL URLWithString:word[@"wordImage"]]];
+
+        if (findCount == 0)
         {
-            if (findCount == 0 && [appDelegate.wordInTianWenDemo[i] isEqualToString:@"1"])
+            findCount++;
+            [self.freeWord setImage:wordImage.image forState:UIControlStateNormal];
+            [self.freeWord setTitle:word[@"wordName"] forState:UIControlStateNormal];
+            [self.freeWord setTag:[word[@"unicode"] intValue]];
+            [self.freeWord setEnabled:YES];
+        }
+        else if (self.unlockMore)
+        {
+            [self.freeWord setImage:wordImage.image forState:UIControlStateNormal];
+            [self.freeWordMore setTag:[word[@"unicode"] intValue]];
+            [self.freeWordMore setEnabled:YES];
+        }
+    }
+
+    [self setupUnlockStyle];
+}
+
+// 请求当前的字列表
+- (void)requestWordsList:(NSString *) moduleCode
+{
+    NSString *opid = [Util generateUuid];
+    NSString *userid = [DataUtil getDefaultUser];
+    NSString *deviceId = [Util getUdid];
+    
+    NSString *str = moduleCode;
+    
+    NSDictionary *param = [NetParamFactory subListParam:opid userid:userid device:deviceId zone:str page:0 size:0];
+    
+    [self.hud show:YES];
+    
+    NSLog(@"%@", URL_SUBLIST);
+    NSLog(@"%@", param);
+    [NetManager postRequest:URL_SUBLIST param:param success:^(id json)
+    {
+        
+        NSLog(@"%@", json);
+        
+        NSDictionary *dict = json;
+        NSString *result = [dict objectForKey:@"result"];
+        [self.hud hide:YES];
+        if (result && [result isEqualToString:@"1"])
+        {
+            NSArray *data = [dict objectForKey:@"data"];
+            if (data != nil && [data isKindOfClass:[NSArray class]])
             {
-                findCount++;
-                [self.freeWord setTitle:appDelegate.wordInTianWen[i] forState:UIControlStateNormal];
-#warning 将wordCode作为Tag写进字按钮
-                [self.freeWord setTag:0];
-                [self.freeWord setEnabled:YES];
+                for (NSInteger i = 0; i < data.count; i ++)
+                {
+                    NSDictionary *word = [data objectAtIndex:i];
+                    [self.wordsList addObject:@{@"wordName":word[@"word"],
+                                                @"free":word[@"free"],
+                                                @"wordImage":word[@"icon"],
+                                                @"wordCode": word[@"unicode"]}];
+                }
+                [self setupSampleData];
             }
             else
             {
-                self.unlockMore = YES;
-                [self.freeWordMore setTitle:appDelegate.wordInTianWen[i] forState:UIControlStateNormal];
-#warning 将wordCode作为Tag写进字按钮
-                [self.freeWordMore setTag:0];
-                [self.freeWordMore setEnabled:YES];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无结果返回" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
             }
+            
+        }else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
         }
-    }
-    else
-        self.unlockMore = NO;
+        
+        
+    }fail:^ (){
+        NSLog(@"fail ");
+        
+        [self.hud hide:YES];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络参数不对" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }];
     
-    [self setupUnlockStyle];
 }
 
 // 解锁更多项目与否对UI界面的影响（是否显示第二个免费体验字并对应隐藏分享提示信息等
@@ -151,6 +210,13 @@
     player.fileUrl = [[NSBundle mainBundle] URLForResource:@"loading" withExtension:@"gif"];
     player.wordCode = wordCode;
     [self.navigationController pushViewController:player animated:YES];
+}
+
+- (NSMutableArray *)wordsList
+{
+    if (!_wordsList)
+        _wordsList = [NSMutableArray array];
+    return _wordsList;
 }
 
 @end

@@ -51,16 +51,7 @@ static NSString * const reuseIdentifier = @"WordCell";
 // 初始化分类列表
 - (void)setupWordsList
 {
-#warning 选择天文分类时，进行单机模拟
-    if (self.categoryIndex == 0)
-    {
-        [self setupTianWenWords];
-    }
-    else
-    {
-        // 暂时屏蔽
-        // [self requestWordsList:self.moduleCode];
-    }
+    [self requestWordsList:self.moduleCode];
 }
 
 #pragma mark - Navigation
@@ -257,8 +248,8 @@ static NSString * const reuseIdentifier = @"WordCell";
                     
                     [self.wordsList addObject:@{@"wordName":wordName,
                                                 @"lockStatus":@"1",
-                                                @"wordImageA":[NSString stringWithFormat:@"CATE_A_%02ld", i + 1],
-                                                @"wordImageB":[NSString stringWithFormat:@"CATE_B_%02ld", i + 1],
+                                                @"wordImageA":[NSString stringWithFormat:@"CATE_A_%02d", i + 1],
+                                                @"wordImageB":[NSString stringWithFormat:@"CATE_B_%02d", i + 1],
                                                 @"wordCode": wordCode}];
                 }
                 

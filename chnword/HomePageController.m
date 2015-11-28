@@ -164,7 +164,7 @@
 
                     //找wordCode
                     playController.wordCode = unicode;
-                    playController.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
+                    //playController.fileUrl = [[NSBundle mainBundle] URLForResource:@"jiafei" withExtension:@"gif"];
                     
                     [self.navigationController pushViewController:playController animated:YES];
                 }

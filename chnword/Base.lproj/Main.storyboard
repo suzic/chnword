@@ -1205,32 +1205,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Player" translatesAutoresizingMaskIntoConstraints="NO" id="ctK-fU-mCt" userLabel="PlayerEmpty">
-                                <rect key="frame" x="5" y="74" width="590" height="524"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WordCell" translatesAutoresizingMaskIntoConstraints="NO" id="ctK-fU-mCt" userLabel="PlayerEmpty">
+                                <rect key="frame" x="5" y="74" width="590" height="590"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="ctK-fU-mCt" secondAttribute="height" multiplier="80:71" id="cO0-hb-9Pb"/>
+                                    <constraint firstAttribute="width" secondItem="ctK-fU-mCt" secondAttribute="height" multiplier="1:1" id="cO0-hb-9Pb"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zd5-aq-ydI" userLabel="FramePlayer">
-                                <rect key="frame" x="5" y="115" width="590" height="443"/>
-                                <subviews>
-                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aN7-7b-MtL">
-                                        <rect key="frame" x="0.0" y="0.0" width="590" height="443"/>
-                                        <animations/>
-                                        <connections>
-                                            <action selector="playVideo:" destination="Pgb-X3-0cd" eventType="touchUpInside" id="LUY-p1-reu"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                                <rect key="frame" x="5" y="74" width="590" height="590"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="aN7-7b-MtL" firstAttribute="width" secondItem="zd5-aq-ydI" secondAttribute="width" id="2qW-Br-DOe"/>
-                                    <constraint firstItem="aN7-7b-MtL" firstAttribute="centerY" secondItem="zd5-aq-ydI" secondAttribute="centerY" id="Nwm-TE-6Fl"/>
-                                    <constraint firstItem="aN7-7b-MtL" firstAttribute="height" secondItem="zd5-aq-ydI" secondAttribute="height" id="QQc-de-MEa"/>
-                                    <constraint firstAttribute="width" secondItem="zd5-aq-ydI" secondAttribute="height" multiplier="4:3" id="dGE-Fa-yaH"/>
-                                    <constraint firstItem="aN7-7b-MtL" firstAttribute="centerX" secondItem="zd5-aq-ydI" secondAttribute="centerX" id="oWd-K1-AWM"/>
+                                    <constraint firstAttribute="width" secondItem="zd5-aq-ydI" secondAttribute="height" multiplier="1:1" id="dGE-Fa-yaH"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cCn-Xx-4DD" userLabel="Control">
@@ -1244,20 +1231,6 @@
                                             <action selector="gotoFrame:" destination="Pgb-X3-0cd" eventType="valueChanged" id="okN-Hh-pAf"/>
                                         </connections>
                                     </slider>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0E-VD-RNc" userLabel="Play Button">
-                                        <rect key="frame" x="200" y="54" width="200" height="76"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="puk-52-Nna"/>
-                                        </constraints>
-                                        <state key="normal" image="Player-Banner">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="playButtonPressed:" destination="Pgb-X3-0cd" eventType="touchUpInside" id="ypv-l5-zIa"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUl-o4-G4w">
                                         <rect key="frame" x="20" y="5" width="18" height="20"/>
                                         <animations/>
@@ -1273,19 +1246,49 @@
                                             <action selector="framePrev:" destination="Pgb-X3-0cd" eventType="touchUpInside" id="f4x-uz-Tmn"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8D-bJ-3D4" userLabel="Stop">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8D-bJ-3D4" userLabel="Next Button">
                                         <rect key="frame" x="562" y="5" width="18" height="20"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="18" id="4rr-96-e0d"/>
                                             <constraint firstAttribute="width" secondItem="n8D-bJ-3D4" secondAttribute="height" multiplier="10:11" id="BGe-Fz-COY"/>
                                         </constraints>
+                                        <state key="normal" image="Player-Advance">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="frameNext:" destination="Pgb-X3-0cd" eventType="touchUpInside" id="ab1-Up-qHA"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dB4-r3-UaI" userLabel="PlayAndStop">
+                                        <rect key="frame" x="282" y="-5" width="36" height="40"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="36" id="9rz-NZ-cOT"/>
+                                            <constraint firstAttribute="width" secondItem="dB4-r3-UaI" secondAttribute="height" multiplier="10:11" id="NKI-po-oYU"/>
+                                        </constraints>
                                         <state key="normal" image="Player-Pause">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="playButtonPressed:" destination="Pgb-X3-0cd" eventType="touchUpInside" id="lb9-tU-dFl"/>
+                                            <action selector="frameNext:" destination="Pgb-X3-0cd" eventType="touchUpInside" id="u56-p1-3ke"/>
+                                            <action selector="playButtonPressed:" destination="Pgb-X3-0cd" eventType="touchUpInside" id="wTt-Fq-LEF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0E-VD-RNc" userLabel="Go Video">
+                                        <rect key="frame" x="200" y="54" width="200" height="76"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="puk-52-Nna"/>
+                                        </constraints>
+                                        <state key="normal" image="Player-Banner">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="playVideo:" destination="Pgb-X3-0cd" eventType="touchUpInside" id="3M7-Fq-hvJ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1293,12 +1296,15 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Pp2-0Q-ZV3" firstAttribute="leading" secondItem="HUl-o4-G4w" secondAttribute="trailing" id="3A0-F1-SLK"/>
+                                    <constraint firstItem="dB4-r3-UaI" firstAttribute="width" secondItem="dB4-r3-UaI" secondAttribute="height" multiplier="10:11" id="6KK-Ub-6WF"/>
                                     <constraint firstItem="Pp2-0Q-ZV3" firstAttribute="top" secondItem="cCn-Xx-4DD" secondAttribute="top" id="7Pr-xG-SND"/>
                                     <constraint firstAttribute="bottom" secondItem="I0E-VD-RNc" secondAttribute="bottom" constant="20" id="C1l-55-sOW"/>
+                                    <constraint firstItem="dB4-r3-UaI" firstAttribute="centerY" secondItem="Pp2-0Q-ZV3" secondAttribute="centerY" id="EIg-yy-Tkj"/>
                                     <constraint firstItem="HUl-o4-G4w" firstAttribute="centerY" secondItem="Pp2-0Q-ZV3" secondAttribute="centerY" id="JDs-Kq-Es3"/>
                                     <constraint firstItem="I0E-VD-RNc" firstAttribute="width" secondItem="I0E-VD-RNc" secondAttribute="height" multiplier="668:255" id="Jr4-kN-IDU"/>
                                     <constraint firstItem="n8D-bJ-3D4" firstAttribute="centerY" secondItem="Pp2-0Q-ZV3" secondAttribute="centerY" id="N7H-X1-LNC"/>
                                     <constraint firstItem="I0E-VD-RNc" firstAttribute="centerX" secondItem="cCn-Xx-4DD" secondAttribute="centerX" id="RHD-6o-DPs"/>
+                                    <constraint firstItem="dB4-r3-UaI" firstAttribute="centerX" secondItem="Pp2-0Q-ZV3" secondAttribute="centerX" id="VOn-xK-FhB"/>
                                     <constraint firstItem="HUl-o4-G4w" firstAttribute="leading" secondItem="cCn-Xx-4DD" secondAttribute="leading" constant="20" id="ji6-E6-SO4"/>
                                     <constraint firstAttribute="height" constant="150" id="rgn-tK-UGs"/>
                                     <constraint firstItem="n8D-bJ-3D4" firstAttribute="leading" secondItem="Pp2-0Q-ZV3" secondAttribute="trailing" id="sMG-1d-nkl"/>
@@ -1342,7 +1348,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="framePlayer" destination="zd5-aq-ydI" id="rPN-qM-FHm"/>
-                        <outlet property="playAndStopButton" destination="I0E-VD-RNc" id="1Ma-4P-4Pz"/>
+                        <outlet property="nextButton" destination="n8D-bJ-3D4" id="8Wa-bi-PXC"/>
+                        <outlet property="playAndStopButton" destination="dB4-r3-UaI" id="rfj-zf-zTB"/>
                         <outlet property="prevButton" destination="HUl-o4-G4w" id="Dfs-Jh-OvT"/>
                         <outlet property="progressSlider" destination="Pp2-0Q-ZV3" id="x1i-eR-YFq"/>
                         <outlet property="topSpace" destination="JAc-Zo-ZJ0" id="9LM-H6-aXS"/>
@@ -2817,7 +2824,7 @@
         <image name="Order" width="264" height="77"/>
         <image name="PayAlipay" width="190" height="55"/>
         <image name="PayMicromsg" width="90" height="80"/>
-        <image name="Player" width="360" height="319"/>
+        <image name="Player-Advance" width="30" height="33"/>
         <image name="Player-Back" width="30" height="33"/>
         <image name="Player-Banner" width="334" height="127"/>
         <image name="Player-Pause" width="20" height="30"/>

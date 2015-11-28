@@ -8,6 +8,7 @@
 
 #import "PlayController.h"
 #import "GIFPlayer.h"
+#import "GifView.h"
 
 #import "NetParamFactory.h"
 #import "NetManager.h"
@@ -15,10 +16,9 @@
 #import "DataUtil.h"
 #import "MBProgressHUD.h"
 #import "SDWebImageManager.h"
-
 #import "UIImage+GIF.h"
 #import <MediaPlayer/MediaPlayer.h>
-
+#import "NSObject+Delay.h"
 
 #import "UMSocial.h"
 
@@ -29,6 +29,7 @@
 @property (strong, nonatomic) IBOutlet UIView *framePlayer;
 @property (strong, nonatomic) UIImageView *frameViewer;
 @property (strong, nonatomic) GIFPlayer *playViewer;
+@property (strong, nonatomic) GifView *gifViewer;
 @property (assign, nonatomic) BOOL inPlaying;
 
 @property (strong, nonatomic) NSArray *framesArray;
@@ -51,27 +52,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.inPlaying = YES;
+    self.frameViewer.hidden = YES;
 
-    // 设置播放控件
-    self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
-    self.progressSlider.minimumValue = 0;
-    self.progressSlider.maximumValue = self.framesArray.count - 1;
-    self.progressSlider.value = 0;
-    self.inPlaying = NO;
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(initPlayer:) name:NotiInitGIFPlayer object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(playingDone) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.frameViewer = [[UIImageView alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //[self requestWord:self.wordCode];
+    
+    [self requestWord:self.wordCode];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    if (self.gifViewer != nil)
+        [self.gifViewer stopGif];
 }
 
 - (void)viewWillLayoutSubviews
@@ -80,20 +85,35 @@
     self.topSpace.constant = (kScreenHeight - 64.0f - 150.0f - kScreenWidth * 3 / 4.0f) / 2.0f;
 }
 
-- (IBAction)playVideo:(id)sender
+- (void)initPlayer:(NSNotification *)notification
 {
-    if (self.videoUrl)
+    // 设置播放控件
+    self.framesArray = [GIFPlayer framesInGif:[NSURL fileURLWithPath:self.fileUrl]];
+    self.progressSlider.minimumValue = 0;
+    self.progressSlider.maximumValue = self.framesArray.count - 1;
+    self.progressSlider.value = 0;
+//    self.inPlaying = NO;
+    
+    // 设置图片模式的播放
+    if (self.framesArray != nil && self.framesArray.count > 0)
     {
-        NSURL *url = [NSURL URLWithString:self.videoUrl];
-        self.moviePlayerView = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
-        
-        self.moviePlayerView.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
-        self.moviePlayerView.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
-        
-        [[[UIApplication sharedApplication] keyWindow] addSubview:self.moviePlayerView.view];
+        self.frameViewer = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:(CGImageRef)self.framesArray[0]]];
+        self.frameViewer.frame = self.framePlayer.frame;
+        self.frameViewer.contentMode = UIViewContentModeScaleAspectFit;
+        self.frameViewer.hidden = NO;
+        [self.view addSubview:self.frameViewer];
     }
+
+    // 视图显示后开始设置GIF动画并自动执行
+//    self.playViewer = [[GIFPlayer alloc] initWithFrame:self.framePlayer.frame fileURL:self.fileUrl];
+//    self.playViewer.backgroundColor = [UIColor clearColor];
+//    self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+//    [self.view addSubview:self.playViewer];
+    
+//    [self playButtonPressed:nil];
 }
 
+// 顶部分享按钮
 - (IBAction)shareVideo:(id)sender
 {
     self.canShare = YES;
@@ -114,9 +134,24 @@
     }
 }
 
+// 顶部快捷菜单
 - (IBAction)showList:(id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowList object:self];
+}
+
+- (IBAction)playVideo:(id)sender
+{
+    if (self.videoUrl)
+    {
+        NSURL *url = [NSURL URLWithString:self.videoUrl];
+        self.moviePlayerView = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
+        
+        self.moviePlayerView.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+        self.moviePlayerView.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
+        
+        [[[UIApplication sharedApplication] keyWindow] addSubview:self.moviePlayerView.view];
+    }
 }
 
 - (void)playingDone
@@ -167,12 +202,14 @@
 
 - (void)animationDidStart:(CAAnimation *)anim
 {
+    self.frameViewer.hidden = YES;
     self.progressSlider.value = 0;
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     self.inPlaying = NO;
+    self.frameViewer.hidden = NO;
 }
 
 // 根据播放状态选择控制按钮的显示
@@ -181,9 +218,10 @@
     if (_inPlaying != inPlaying)
     {
         _inPlaying = inPlaying;
-        [self.playAndStopButton setTitle:inPlaying ? @"停止" : @"播放"
+        [self.playAndStopButton setImage:[UIImage imageNamed:(inPlaying ? @"Player-Pause" : @"Player-Advance")]
                                 forState:UIControlStateNormal];
         
+        self.playAndStopButton.hidden = _inPlaying;
         self.prevButton.hidden = _inPlaying;
         self.nextButton.hidden = _inPlaying;
         self.progressSlider.hidden = _inPlaying;
@@ -196,32 +234,29 @@
 {
     NSString *opid = [Util generateUuid];
     NSString *userid = [DataUtil getDefaultUser];
-    
     NSString *deviceId = [Util getUdid];
-    
-    userid = @"1";
-    deviceId = @"1";
-    
-    NSDictionary *param ;//= [NetParamFactory showParam:[Util generateUuid] userid:@"1" device:@"1" word:@"1"];
-    param = [NetParamFactory showParam:opid userid:userid device:deviceId wordCode:word];
+    NSDictionary *param = [NetParamFactory showParam:opid userid:userid device:deviceId wordCode:word];
     
     NSLog(@"%@", URL_SHOW);
     NSLog(@"%@", param);
     
     [self.hud show:YES];
-    [NetManager postRequest:URL_SHOW param:param success:^(id json){
-        
+    [NetManager postRequest:URL_SHOW
+                      param:param
+                    success:^(id json)
+    {
         NSLog(@"success with json: %@", json);
         NSDictionary *dict = json;
         
         [self.hud hide:YES];
         
-        if (dict) {
+        if (dict)
+        {
             NSString *result = [dict objectForKey:@"result"];
             
-            if ([result isEqualToString:@"1"]) {
+            if ([result isEqualToString:@"1"])
+            {
                 NSDictionary *data = [dict objectForKey:@"data"];
-                
                 NSString *video = [data objectForKey:@"video"];
                 NSString *gif = [data objectForKey:@"gif"];
                 
@@ -229,84 +264,63 @@
                 self.videoUrl = video;
                 
                 // 视图显示后开始设置GIF动画并自动执行
-                
-                if ([gif containsString:@"http"]) {
+                if ([gif containsString:@"http"])
+                {
                     //通过网络请求
-//                    gif = @"http://img4.duitang.com/uploads/item/201303/15/20130315134323_PMTrz.thumb.600_0.gif";
-                    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:gif] options:SDWebImageLowPriority progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                        
-                        
-                    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                    
-                        if (finished) {
-                            
-                            @try {
+                    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:gif]
+                                                                    options:SDWebImageLowPriority
+                                                                   progress:^(NSInteger receivedSize, NSInteger expectedSize) {}
+                                                                  completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL)
+                     {
+                        if (finished)
+                        {
+                            @try
+                            {
                                 NSString *cacheKey = [[SDWebImageManager sharedManager] cacheKeyForURL:imageURL];
                                 SDImageCache *cache = [SDImageCache sharedImageCache];
                                 NSString *path = [cache defaultCachePathForKey:cacheKey];
-                                NSURL *url = [NSURL fileURLWithPath:path];
-                                self.framesArray = [GIFPlayer framesInGif:url];
+                                self.fileUrl = path;
+
+                                [[NSNotificationCenter defaultCenter] postNotificationName:NotiInitGIFPlayer object:self];
+                                [self performBlock:^{
+                                    self.gifViewer = [[GifView alloc] initWithFrame:self.framePlayer.frame filePath:self.fileUrl];
+                                    [self.view addSubview:self.gifViewer];
+                                    self.frameViewer.hidden = YES;
+                                } afterDelay:0.5f];
                             }
-                            @catch (NSException *exception) {
+                            @catch (NSException *exception)
+                            {
                                 NSString *message = [NSString stringWithFormat:@"无效的gif文件:\n%@", imageURL];
                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                                 [alert show];
-                                self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
+                                // self.framesArray = [GIFPlayer framesInGif:self.fileUrl];
                             }
-                            @finally {
-                                
-                            }
-                            
-                            self.progressSlider.minimumValue = 0;
-                            self.progressSlider.maximumValue = self.framesArray.count - 1;
-                            self.progressSlider.value = 0;
-                            self.inPlaying = NO;
-                            
-                            
-                            // 设置图片模式的播放
-                            if (self.framesArray != nil && self.framesArray.count > 0)
-                            {
-                                self.frameViewer = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:(CGImageRef)self.framesArray[0]]];
-                                self.frameViewer.center = self.framePlayer.center;
-                                [self.view addSubview:self.frameViewer];
-                            }
-                            
-                            // 视图显示后开始设置GIF动画并自动执行
-                            self.playViewer = [[GIFPlayer alloc] initWithCenter:self.framePlayer.center fileURL:self.fileUrl];
-                            self.playViewer.backgroundColor = [UIColor clearColor];
-                            self.playViewer.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-                            [self.view addSubview:self.playViewer];
-                            
-                            [self playButtonPressed:nil];
-                            
                         }
-                        
                     }];
-
-                } else {
-                    
+                }
+                else
+                {
                     NSString *message = [dict objectForKey:@"message"];
                     NSLog(@"%@", message);
-                    
-                    //播放默认的
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无效的图片地址" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                     [alert show];
                 }
-                
-            }else {
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            }
+            else
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"返回结果错误" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
                 [alert show];
             }
-            
-            
-        } else {
+        }
+        else
+        {
             [self.hud hide:YES];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有返回数据" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
             [alert show];
         }
-        
-    }fail:^ (){
+    }
+                       fail:^ ()
+    {
         NSLog(@"fail ");
         [self.hud hide:YES];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络请求失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
@@ -323,9 +337,9 @@
         _hud = [[MBProgressHUD alloc] initWithView:self.view];
         _hud.color = [UIColor clearColor];//这儿表示无背景
         //显示的文字
-        _hud.labelText = @"Test";
+        _hud.labelText = @"加载动图";
         //细节文字
-        _hud.detailsLabelText = @"Test detail";
+        _hud.detailsLabelText = @"努力加载中";
         //是否有庶罩
         _hud.dimBackground = YES;
         [self.navigationController.view addSubview:_hud];

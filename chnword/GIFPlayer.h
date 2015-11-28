@@ -15,6 +15,7 @@
  * @abstract 构造初始化
  */
 - (id)initWithCenter:(CGPoint)center fileURL:(NSURL*)fileURL;
+- (id)initWithFrame:(CGRect)frame fileURL:(NSURL*)fileURL;
 
 /*
  * @abstract 开始播放，并设置一个动画代理

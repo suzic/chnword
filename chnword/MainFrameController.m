@@ -44,7 +44,7 @@
     
     if ([DataUtil isFirstLogin])
         [self showWelcome:nil];
-    else if ( [@"0" isEqualToString:[DataUtil getDefaultUser]])
+    else if ( [@"0" isEqualToString:[DataUtil getDefaultUser]] || [DataUtil getDefaultUser] == nil)
         [self performBlock:^{ [self showLoginView:nil]; } afterDelay:0.5];
     
     self.shortcutTable.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"TileBackground"]];

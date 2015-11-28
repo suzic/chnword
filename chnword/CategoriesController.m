@@ -244,15 +244,15 @@ static NSString * const reuseIdentifier = @"CategoryCell";
                         [self.categoryList addObject:@{@"cateName":categoryName,
                                                        @"cateUnlocked":categoryUnlocked,
                                                        @"cateCode":categoryCode,
-                                                       @"cateImageA":[NSString stringWithFormat:@"CATE_L_%02d", i + 1],
-                                                       @"cateImageB":[NSString stringWithFormat:@"CATE_U_%02d", i + 1]}];
+                                                       @"cateImageA":[NSString stringWithFormat:@"CATE_L_%02d", (int)(i + 1)],
+                                                       @"cateImageB":[NSString stringWithFormat:@"CATE_U_%02d", (int)(i + 1)]}];
                     }
                     else
                     {
                         [self.categoryList addObject:@{@"cateName":categoryName,
                                                        @"cateCode":categoryCode,
-                                                       @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02d", i + 1],
-                                                       @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02d", i + 1]}];
+                                                       @"cateImageA":[NSString stringWithFormat:@"CATE_A_%02d", (int)(i + 1)],
+                                                       @"cateImageB":[NSString stringWithFormat:@"CATE_B_%02d", (int)(i + 1)]}];
                     }
                 }
                 [self.collectionView reloadData];

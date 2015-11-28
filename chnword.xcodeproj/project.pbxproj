@@ -106,6 +106,7 @@
 		D07204D61B3680D7007C01E8 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204D51B3680D7007C01E8 /* ShopViewController.m */; };
 		D07204D91B3680E4007C01E8 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D07204D81B3680E4007C01E8 /* UserViewController.m */; };
 		D0746D1B1BDF466700BF6129 /* SampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0746D1A1BDF466700BF6129 /* SampleController.m */; };
+		D0808BEB1C09BA1A00BF55D9 /* GifView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0808BEA1C09BA1A00BF55D9 /* GifView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D0B947091B36940B00A1DFD6 /* CategoriesController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B947081B36940B00A1DFD6 /* CategoriesController.m */; };
 		D0B9470C1B369C6B00A1DFD6 /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9470B1B369C6B00A1DFD6 /* CategoryCell.m */; };
 		D0B9470F1B36A8B300A1DFD6 /* WordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9470E1B36A8B300A1DFD6 /* WordsController.m */; };
@@ -331,6 +332,8 @@
 		D07204D81B3680E4007C01E8 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		D0746D191BDF466700BF6129 /* SampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleController.h; sourceTree = "<group>"; };
 		D0746D1A1BDF466700BF6129 /* SampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleController.m; sourceTree = "<group>"; };
+		D0808BE91C09BA1A00BF55D9 /* GifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifView.h; sourceTree = "<group>"; };
+		D0808BEA1C09BA1A00BF55D9 /* GifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifView.m; sourceTree = "<group>"; };
 		D0B947071B36940B00A1DFD6 /* CategoriesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesController.h; sourceTree = "<group>"; };
 		D0B947081B36940B00A1DFD6 /* CategoriesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesController.m; sourceTree = "<group>"; };
 		D0B9470A1B369C6B00A1DFD6 /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
@@ -925,6 +928,8 @@
 		D0B947251B37B03F00A1DFD6 /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				D0808BE91C09BA1A00BF55D9 /* GifView.h */,
+				D0808BEA1C09BA1A00BF55D9 /* GifView.m */,
 				D0B947291B37B49800A1DFD6 /* GIFPlayer.h */,
 				D0B9472A1B37B49800A1DFD6 /* GIFPlayer.m */,
 				D0B947221B36F73500A1DFD6 /* PlayController.h */,
@@ -1079,6 +1084,7 @@
 				A7D678191B419E4B00282EBD /* UIImage+GIF.m in Sources */,
 				A7B432D21B42CEA100CEFC58 /* QR_Encode.cpp in Sources */,
 				A7B0531E1B3996D0009A0CC2 /* UIWebView+AFNetworking.m in Sources */,
+				D0808BEB1C09BA1A00BF55D9 /* GifView.m in Sources */,
 				D0E0C9E41BDD46B500B5071F /* HeaderCell.m in Sources */,
 				D0746D1B1BDF466700BF6129 /* SampleController.m in Sources */,
 				D0D207CC1B99AD70001E4C04 /* ShopHeaderCell.m in Sources */,

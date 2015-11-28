@@ -117,14 +117,14 @@ static NSString * const reuseIdentifier = @"WordCell";
     if ([@"0" isEqualToString:[DataUtil getDefaultUser]])
     {
         PlayController *player = (PlayController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PlayController"];
-        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"loading" withExtension:@"gif"];
+        //player.fileUrl = [[NSBundle mainBundle] URLForResource:@"loading" withExtension:@"gif"];
         player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
         [self.navigationController pushViewController:player animated:YES];
     }
     else
     {
         PlayController *player = (PlayController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PlayController"];
-        player.fileUrl = [[NSBundle mainBundle] URLForResource:@"loading" withExtension:@"gif"];
+        //player.fileUrl = [[NSBundle mainBundle] URLForResource:@"loading" withExtension:@"gif"];
         player.wordCode = [[self.wordsList objectAtIndex: self.selectedIndex] objectForKey:@"wordCode"];
     }
 }

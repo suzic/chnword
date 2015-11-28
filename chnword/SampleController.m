@@ -75,8 +75,9 @@
 // 设置体验数据
 - (void)setupSampleData
 {
+#warning 根据配置文件决定显示内容。这里，unlockMore的数据来源需要读配置完成
     self.unlockMore = NO;
-    // 根据配置文件决定显示内容
+    
     NSInteger findCount = 0;
     NSInteger count = self.wordsList.count;
     for (int i = 0; i < count; i++)
@@ -92,13 +93,14 @@
             findCount++;
             [self.freeWord setImage:wordImage.image forState:UIControlStateNormal];
             [self.freeWord setTitle:word[@"wordName"] forState:UIControlStateNormal];
-            [self.freeWord setTag:[word[@"unicode"] intValue]];
+            [self.freeWord setTag:[word[@"wordCode"] intValue]];
             [self.freeWord setEnabled:YES];
         }
         else if (self.unlockMore)
         {
             [self.freeWord setImage:wordImage.image forState:UIControlStateNormal];
-            [self.freeWordMore setTag:[word[@"unicode"] intValue]];
+            [self.freeWord setTitle:word[@"wordName"] forState:UIControlStateNormal];
+            [self.freeWordMore setTag:[word[@"wordCode"] intValue]];
             [self.freeWordMore setEnabled:YES];
         }
     }
@@ -206,8 +208,7 @@
 - (void)showWordPlayer:(NSString*)wordCode
 {
     PlayController *player = (PlayController *)[self.storyboard instantiateViewControllerWithIdentifier:@"PlayController"];
-#warning 这里的文件Url，出于测试目的，先写了一个；正式联网场合下不应该写默认值
-    player.fileUrl = [[NSBundle mainBundle] URLForResource:@"loading" withExtension:@"gif"];
+    //player.fileUrl = [[NSBundle mainBundle] URLForResource:@"loading" withExtension:@"gif"];
     player.wordCode = wordCode;
     [self.navigationController pushViewController:player animated:YES];
 }

@@ -13,7 +13,7 @@
 /**
  * @abstract 将要播放的动画的文件路径
  */
-@property (strong, nonatomic) NSURL *fileUrl;
+@property (strong, nonatomic) NSString *fileUrl;
 
 /**
  * @abstract 将要播放的动画的字的编码

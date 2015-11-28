@@ -144,11 +144,14 @@
 {
     if (self.videoUrl)
     {
+        [self.gifViewer stopGif];
+        
         NSURL *url = [NSURL URLWithString:self.videoUrl];
         self.moviePlayerView = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
         
         self.moviePlayerView.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
         self.moviePlayerView.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
+        [self.moviePlayerView.moviePlayer.backgroundView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"VideoBG"]]];
         
         [[[UIApplication sharedApplication] keyWindow] addSubview:self.moviePlayerView.view];
     }
@@ -159,6 +162,7 @@
     NSLog(@"播放完成");
     [self.moviePlayerView.view removeFromSuperview];
     self.moviePlayerView = nil;
+    [self.gifViewer resumeGif];
 }
 
 #pragma mark - Animation Controls

@@ -20,6 +20,7 @@
 }
 
 - (id)initWithFrame:(CGRect)frame filePath:(NSString *)filePath;
+- (void)resumeGif;
 - (void)stopGif;
 
 @end

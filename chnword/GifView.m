@@ -37,6 +37,12 @@
     CFRelease(ref);
 }
 
+- (void)resumeGif
+{
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.04 target:self selector:@selector(play) userInfo:nil repeats:YES];
+    [timer fire];
+}
+
 - (void)dealloc
 {
     NSLog(@"dealloc");

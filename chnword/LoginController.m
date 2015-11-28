@@ -49,45 +49,35 @@
 }
 
 // 在这里写调用登录请求
-- (void)requestLoginFromNetwork:(NSString *)userCode
+- (void)requestVerifyFromNetwork:(NSString *)userCode
 {
     NSString *opid = [Util generateUuid];
     NSString *deviceId = [Util getUdid];
-    // NSString *userid = [Util generateUuid];
-
-    NSString *userid = userCode;
 
     //本地用户存储
-    NSDictionary *param = [NetParamFactory registParam:opid
-                                                userid:userid
+    NSDictionary *param = [NetParamFactory verifyParam:opid
+                                                userid:@"0"
                                                 device:deviceId
-                                              userCode:userCode
-                                              deviceId:deviceId
-                                               session:[Util generateUuid]
-                                                verify:@"verify"];
+                                                  code:userCode];
     
-    [NetManager postRequest:URL_LOGIN param:param success:^(id json){
+    [NetManager postRequest:URL_VERIFY param:param success:^(id json){
         
         NSLog(@"success with json:\n %@", json);
         NSDictionary *dict = json;
         if (dict != nil)
         {
-            NSString *result = [dict objectForKey:@"result"];
+            NSString *result = [NSString stringWithFormat:@"%@", [dict objectForKey:@"result"]];
             if (result && [@"1" isEqualToString:result])
             {
-#warning 添加默认用户
-                // [DataUtil setDefaultUser:userid];
+                NSDictionary *data = [dict objectForKey:@"data"];
+                NSString *userid = [data objectForKey:@"userid"];
+                [DataUtil setDefaultUser:userid];
                 [self dismissViewControllerAnimated:YES completion:nil];
             }
+            else if ([@"2" isEqualToString:result])
+                [self loginNeedsVerify];
             else
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                message:@"注册失败"
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"确定"
-                                                      otherButtonTitles: nil];
-                [alert show];
-            }
+                [self loginFailed];
         }
         else
         {
@@ -100,83 +90,6 @@
         }
     }fail:^ (){
         NSLog(@"Login Failed.");
-    }];
-}
-
-// 在这里写登录请求验证码
-- (void)requestVerifyFromNetwork:(NSString *)verifyCode
-{
-    // NSString *activeCode = self.activeCodeField.text;
-    NSString *opid = [Util generateUuid];
-    NSString *deviceId = [Util getUdid];    
-    NSString *userid = [DataUtil getDefaultUser];
-    
-    if (!userid)
-    {
-        [DataUtil setDefaultUser:@"0"];
-        userid = @"0";
-    }
-    
-    //本地用户存储
-    [self.hud show:YES];
-    
-    // NSDictionary *param = [NetParamFactory registParam:opid userid:userid device:deviceId userCode:userid  deviceId:deviceId session:[Util generateUuid] verify:@"verify"];
-    NSDictionary *param = [NetParamFactory verifyParam:opid userid:userid device:deviceId code:verifyCode user:userid];
-    [NetManager postRequest:URL_VERIFY param:param success:^(id json){
-        
-        NSLog(@"success with json:\n %@", json);
-        
-        [self.hud hide:YES];
-        NSDictionary *dict = json;
-        NSString *str = [dict objectForKey:@"result"];
-        if (str && [@"1" isEqualToString:str])
-        {
-            //成功
-            NSDictionary *data = [dict objectForKey:@"data"];
-            if (data)
-            {
-                NSString *unlock_all = [dict objectForKey:@"unlock_all"];
-                NSArray *zones = [dict objectForKey:@"unlock_zone"];
-                if (unlock_all && [@"1" isEqualToString:unlock_all])
-                {
-                    //解锁全部的
-                    NSLog(@"unlock_all");
-                    [DataUtil setUnlockAllModelsForUser:[DataUtil getDefaultUser]];
-                }
-                else
-                {
-                    //得到解锁的其他条目,处理unlock_zone.
-                    for (NSString *unlocked in zones)
-                        NSLog(@"unlocked %@", unlocked);
-                    [DataUtil setUnlockModel:userid models:zones];
-                }
-                NSString *message = [NSString stringWithFormat:@"解锁成功：\n data \n %@", data];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                [alert show];
-                
-                //登录成功的处理
-                [self loginSucceed];
-            }
-            else
-            {
-                NSString *message = [dict objectForKey:@"message"];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                [alert show];
-            }
-        }
-        else
-        {
-            // NSString *message = @"请求失败！";
-            // UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-            // [alert show];
-            // 登录失败
-            [self loginNeedsVerify];
-        }
-    } fail:^ () {
-        NSLog(@"Login Failed.");
-        [self.hud hide:YES];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alert show];
     }];
 }
 
@@ -235,28 +148,19 @@
 // 登录按钮点击
 - (IBAction)loginButtonPressed:(id)sender
 {
-#warning 测试登录出错效果
-    [self testErrorResult];
-    
-//    if (self.loginButton.alpha < 1.0f)
-//    {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-//                                                        message:@"请输入您的用户码然后再点击登录"
-//                                                       delegate:nil
-//                                              cancelButtonTitle:@"确定"
-//                                              otherButtonTitles:nil];
-//        [alert show];
-//        return;
-//    }
+    if (self.loginButton.alpha < 1.0f)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                        message:@"请输入您的用户码然后再点击登录"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
 
     // 发送网络登录请求，verify接口。
-    [self requestLoginFromNetwork:self.userCodeInput.text];
-    // [self requestVerifyFromNetwork:self.userCodeInput.text];
-    
-#warning 现在默认返回需要验证
-    // [self loginNeedsVerify];
-    // 如果返回登录成功直接调用
-    // [self loginSucceed];
+    [self requestVerifyFromNetwork:self.userCodeInput.text];
 }
 
 // 登录成功处理
@@ -314,7 +218,7 @@
         UITextField *tf = [alertView textFieldAtIndex:0];
         [self requestVerifyFromNetwork:tf.text];
 
-#warning 现在默认直接登录成功
+        // 默认直接登录成功,测试用
         [self loginSucceed];
     }
 }

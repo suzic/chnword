@@ -8,12 +8,19 @@
 
 #import "LoginHolderController.h"
 #import "LoginController.h"
+#import "NetManager.h"
+#import "NetParamFactory.h"
+#import "Util.h"
+#import "DataUtil.h"
+#import "MBProgressHUD.h"
+
 
 @interface LoginHolderController ()
 
 @property (strong, nonatomic) IBOutlet UIView *errorView;
 @property (strong, nonatomic) IBOutlet UIView *errorContent;
 @property (strong, nonatomic) IBOutlet UIView *errorBuy;
+@property (nonatomic, retain) MBProgressHUD *hud;
 
 @end
 
@@ -76,6 +83,83 @@
     [self closeError:sender];
     [self dismissViewControllerAnimated:YES completion:^{
         [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowShop object:self];
+    }];
+}
+
+// 在这里写登录请求验证码
+- (void)requestVerifyFromNetwork:(NSString *)verifyCode
+{
+    // NSString *activeCode = self.activeCodeField.text;
+    NSString *opid = [Util generateUuid];
+    NSString *deviceId = [Util getUdid];
+    NSString *userid = [DataUtil getDefaultUser];
+    
+    if (!userid)
+    {
+        [DataUtil setDefaultUser:@"0"];
+        userid = @"0";
+    }
+    
+    //本地用户存储
+    [self.hud show:YES];
+    
+    // NSDictionary *param = [NetParamFactory registParam:opid userid:userid device:deviceId userCode:userid  deviceId:deviceId session:[Util generateUuid] verify:@"verify"];
+    NSDictionary *param = [NetParamFactory verifyParam:opid userid:userid device:deviceId code:verifyCode];
+    [NetManager postRequest:URL_VERIFY param:param success:^(id json){
+        
+        NSLog(@"success with json:\n %@", json);
+        
+        [self.hud hide:YES];
+        NSDictionary *dict = json;
+        NSString *str = [dict objectForKey:@"result"];
+        if (str && [@"1" isEqualToString:str])
+        {
+            //成功
+            NSDictionary *data = [dict objectForKey:@"data"];
+            if (data)
+            {
+                NSString *unlock_all = [dict objectForKey:@"unlock_all"];
+                NSArray *zones = [dict objectForKey:@"unlock_zone"];
+                if (unlock_all && [@"1" isEqualToString:unlock_all])
+                {
+                    //解锁全部的
+                    NSLog(@"unlock_all");
+                    [DataUtil setUnlockAllModelsForUser:[DataUtil getDefaultUser]];
+                }
+                else
+                {
+                    //得到解锁的其他条目,处理unlock_zone.
+                    for (NSString *unlocked in zones)
+                        NSLog(@"unlocked %@", unlocked);
+                    [DataUtil setUnlockModel:userid models:zones];
+                }
+                NSString *message = [NSString stringWithFormat:@"解锁成功：\n data \n %@", data];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+                
+                //登录成功的处理
+                //[self loginSucceed];
+            }
+            else
+            {
+                NSString *message = [dict objectForKey:@"message"];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                [alert show];
+            }
+        }
+        else
+        {
+            // NSString *message = @"请求失败！";
+            // UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            // [alert show];
+            // 登录失败
+            //[self loginNeedsVerify];
+        }
+    } fail:^ () {
+        NSLog(@"Login Failed.");
+        [self.hud hide:YES];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
     }];
 }
 

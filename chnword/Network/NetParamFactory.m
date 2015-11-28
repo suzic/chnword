@@ -13,15 +13,12 @@
 /**
  *  验证接口
  */
-+ (NSDictionary *) verifyParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId code:(NSString *) code user:(NSString *) user
++ (NSDictionary *) verifyParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId code:(NSString *) code
 {
     NSDictionary *dict = @{@"opid":opid,
                            @"userid": userid,
                            @"device": deviceId,
-                           @"param": @{
-                                   @"code": code,
-                                   @"user": user}
-                           };
+                           @"code": code};
     
     return dict;
 }
@@ -110,7 +107,7 @@
 /**
  *  注册接口
  */
-+ (NSDictionary *) registParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId userCode:(NSString *) userCode deviceId:(NSString *) device session:(NSString *) sessionId verify:(NSString *) verifyCode
++ (NSDictionary *) loginParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId userCode:(NSString *) userCode deviceId:(NSString *) device session:(NSString *) sessionId verify:(NSString *) verifyCode
 {
     NSDictionary *dict = @{@"opid":opid,
                            @"userid": userid,

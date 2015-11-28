@@ -42,7 +42,7 @@
 #define URL_SUBLIST [NSString stringWithFormat:@"%@/%@", URL_BASE, @"sublist.php"]
 #define URL_WORD    [NSString stringWithFormat:@"%@/%@", URL_BASE, @"word.php"]
 #define URL_SHOW    [NSString stringWithFormat:@"%@/%@", URL_BASE, @"show.php"]
-#define URL_LOGIN   [NSString stringWithFormat:@"%@/%@", URL_BASE, @"regist.php"]
+#define URL_LOGIN   [NSString stringWithFormat:@"%@/%@", URL_BASE, @"login.php"]
 
 //设置页面特殊url
 

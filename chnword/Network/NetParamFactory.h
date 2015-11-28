@@ -11,9 +11,14 @@
 @interface NetParamFactory : NSObject
 
 /**
- *  验证接口
+ *  验证用户码接口
  */
-+ (NSDictionary *)verifyParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId code:(NSString *) code user:(NSString *) user;
++ (NSDictionary *)verifyParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId code:(NSString *) code;
+
+/**
+ * 发送验证码请求
+ */
++ (NSDictionary *)sendParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId code:(NSString *) code;
 
 /**
  *  一级模块接口
@@ -41,8 +46,8 @@
 + (NSDictionary *)showParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId wordCode:(NSString *) wordCode;
 
 /**
- *  注册接口
+ *  登录接口
  */
-+ (NSDictionary *)registParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId userCode:(NSString *) userCode deviceId:(NSString *) deviceId session:(NSString *) sessionId verify:(NSString *) verifyCode;
++ (NSDictionary *)loginParam:(NSString *) opid userid:(NSString *) userid device:(NSString *) deviceId userCode:(NSString *) userCode deviceId:(NSString *) deviceId session:(NSString *) sessionId verify:(NSString *) verifyCode;
 
 @end

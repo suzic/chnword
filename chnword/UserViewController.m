@@ -241,51 +241,51 @@
 
 - (void)registerUser
 {
-    NSString *opid = [Util generateUuid];
-    NSString *deviceId = [Util getUdid];
-    //    NSString *userid = [Util generateUuid];
-    NSString *userid = @"";//self.phoneNumberField.text;
-    
-    //本地用户存储
-    NSDictionary *param = [NetParamFactory
-                           registParam:opid
-                           userid:userid
-                           device:deviceId
-                           userCode:userid
-                           deviceId:deviceId
-                           session:[Util generateUuid]
-                           verify:@"verify"];
-    [NetManager postRequest:URL_LOGIN param:param success:^(id json){
-        
-        NSLog(@"success with json:\n %@", json);
-        
-        NSDictionary *dict = json;
-        
-        if (dict) {
-            NSString *result = [dict objectForKey:@"result"];
-            if (result && [@"1" isEqualToString:result]) {
-#pragma warning 添加默认用户
-                [DataUtil setDefaultUser:userid];
-                //                [self dismissViewControllerAnimated:YES completion:nil];
-                NSString *message = [NSString stringWithFormat:@"注册成功.账号为：%@", userid];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                [alert show];
-                
-            } else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                [alert show];
-            }
-            
-        }else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-            [alert show];
-        }
-        
-        
-    }fail:^ (){
-        NSLog(@"fail ");
-        
-    }];
+//    NSString *opid = [Util generateUuid];
+//    NSString *deviceId = [Util getUdid];
+//    //    NSString *userid = [Util generateUuid];
+//    NSString *userid = @"";//self.phoneNumberField.text;
+//    
+//    //本地用户存储
+//    NSDictionary *param = [NetParamFactory
+//                           registParam:opid
+//                           userid:userid
+//                           device:deviceId
+//                           userCode:userid
+//                           deviceId:deviceId
+//                           session:[Util generateUuid]
+//                           verify:@"verify"];
+//    [NetManager postRequest:URL_LOGIN param:param success:^(id json){
+//        
+//        NSLog(@"success with json:\n %@", json);
+//        
+//        NSDictionary *dict = json;
+//        
+//        if (dict) {
+//            NSString *result = [dict objectForKey:@"result"];
+//            if (result && [@"1" isEqualToString:result]) {
+//#pragma warning 添加默认用户
+//                [DataUtil setDefaultUser:userid];
+//                //                [self dismissViewControllerAnimated:YES completion:nil];
+//                NSString *message = [NSString stringWithFormat:@"注册成功.账号为：%@", userid];
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//                [alert show];
+//                
+//            } else {
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//                [alert show];
+//            }
+//            
+//        }else {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//            [alert show];
+//        }
+//        
+//        
+//    }fail:^ (){
+//        NSLog(@"fail ");
+//        
+//    }];
 }
 
 - (void)showBonus
